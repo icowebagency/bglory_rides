@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 40,
+            // vertical: 20,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,6 +39,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
+
+              /// Profile section
               Center(
                 child: Stack(
                   children: [
@@ -91,98 +93,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              Container(
-                // height: height * 0.45,
-                width: width,
-                decoration: BoxDecoration(
-                  color: TColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        TTexts.fullName,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        TTexts.profileFullName,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        TTexts.address,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        TTexts.profileAddress,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        TTexts.dateOfBirth,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        TTexts.profileBirth,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        TTexts.profileGenderTitle,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        TTexts.profileGender,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwSections,
-                      ),
-                      const Divider(
-                        color: TColors.grey,
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwSections,
-                      ),
-                      Center(
-                        child: Text(
-                          TTexts.profileEdit,
+              Expanded(
+                child: Container(
+                  // height: height * 0.45,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: TColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          TTexts.fullName,
                           style: Theme.of(context).textTheme.titleLarge!.apply(
-                                color: TColors.buttonPrimaryDeepGreen,
+                                color: TColors.grey,
                               ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          TTexts.profileFullName,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          TTexts.address,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          TTexts.profileAddress,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          TTexts.dateOfBirth,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          TTexts.profileBirth,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          TTexts.profileGenderTitle,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          TTexts.profileGender,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwSections,
+                        ),
+                        const Divider(
+                          color: TColors.grey,
+                          thickness: 1,
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwSections,
+                        ),
+                        Center(
+                          child: Text(
+                            TTexts.profileEdit,
+                            style:
+                                Theme.of(context).textTheme.titleLarge!.apply(
+                                      color: TColors.buttonPrimaryDeepGreen,
+                                    ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
