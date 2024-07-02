@@ -1,3 +1,4 @@
+import 'package:bglory_rides/features/driver/screens/home/profile/account.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/driver/screens/home/driver_homepage_screen.dart';
@@ -42,6 +43,10 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverProfile,
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverAccountScreen,
+        builder: (context, state) => const AccountScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverEarnings,
@@ -133,6 +138,7 @@ class BGRouteNames {
   static const String driverEarnings = '/driver/earnings-screen';
   static const String driverTripHistory = '/driver/trip-history';
   static const String driverSettings = '/driver/settings-screen';
+  static const String driverAccountScreen = '/driver/account-screen';
   static const String driverSafety = '/driver/safety-screen';
   static const String driverHelpAndSupport = '/driver/helpandsupport-screen';
   static const String driverVerificationSuccessful =

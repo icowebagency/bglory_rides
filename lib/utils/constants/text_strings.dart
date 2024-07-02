@@ -5,8 +5,12 @@ class TTexts {
   static const String skip = "Skip";
   static const String done = "Done";
   static const String submit = "Submit";
-  static const String appName = "BGRide";
+  static const String appName = "BGlory Rides";
   static const String tContinue = "Continue";
+  static const String tAccount = "Account";
+  static const String tDriverDocument = "Driver\'s Document";
+  static const String tVehicleInformation = "Vehicle Information";
+  static const String tPaymentDetails = "Payment Details";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 = "Earn with ease while driving";

@@ -17,11 +17,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
+        title: const Text(
+          TTexts.profileTitle,
+        ),
+        centerTitle: true,
       ),
       backgroundColor: const Color(0xffF7F7F7),
       body: SafeArea(
@@ -30,72 +33,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
             horizontal: 20,
             // vertical: 20,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  TTexts.profileTitle,
-                  style: Theme.of(context).textTheme.headlineMedium,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Profile section
+                Center(
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: const BoxDecoration(
+                          //   border: Border.all(color: TColors.grey),
+                          image: DecorationImage(
+                            filterQuality: FilterQuality.high,
+                            fit: BoxFit.contain,
+                            image: AssetImage(TImages.user),
+                          ),
+                          color: TColors.white,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: TColors.buttonPrimaryDeepGreen,
+                            ),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Iconsax.add,
+                                color: TColors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                Text(
+                  TTexts.profilePersonalInformation,
+                  style: Theme.of(context).textTheme.bodyLarge!.apply(
+                        color: TColors.grey,
+                      ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
 
-              /// Profile section
-              Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: const BoxDecoration(
-                        //   border: Border.all(color: TColors.grey),
-                        image: DecorationImage(
-                          filterQuality: FilterQuality.high,
-                          fit: BoxFit.contain,
-                          image: AssetImage(TImages.user),
-                        ),
-                        color: TColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: TColors.buttonPrimaryDeepGreen,
-                          ),
-                          child: const Icon(
-                            Iconsax.add,
-                            color: TColors.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Text(
-                TTexts.profilePersonalInformation,
-                style: Theme.of(context).textTheme.bodyLarge!.apply(
-                      color: TColors.grey,
-                    ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              Expanded(
-                child: Container(
-                  // height: height * 0.45,
+                /// Profile Details
+                Container(
                   width: width,
                   decoration: BoxDecoration(
                     color: TColors.white,
@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Text(
                           TTexts.profileFullName,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
                           height: TSizes.spaceBtwItems,
@@ -133,14 +133,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Text(
                           TTexts.profileAddress,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
                           height: TSizes.spaceBtwItems,
                         ),
                         Text(
                           TTexts.dateOfBirth,
-                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                          style: Theme.of(context).textTheme.bodyLarge!.apply(
                                 color: TColors.grey,
                               ),
                         ),
@@ -149,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Text(
                           TTexts.profileBirth,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
                           height: TSizes.spaceBtwItems,
@@ -165,10 +165,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Text(
                           TTexts.profileGender,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
-                          height: TSizes.spaceBtwSections,
+                          height: TSizes.spaceBtwItems,
                         ),
                         const Divider(
                           color: TColors.grey,
@@ -178,20 +178,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: TSizes.spaceBtwSections,
                         ),
                         Center(
-                          child: Text(
-                            TTexts.profileEdit,
-                            style:
-                                Theme.of(context).textTheme.titleLarge!.apply(
-                                      color: TColors.buttonPrimaryDeepGreen,
-                                    ),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              TTexts.profileEdit,
+                              style:
+                                  Theme.of(context).textTheme.titleLarge!.apply(
+                                        color: TColors.buttonPrimaryDeepGreen,
+                                      ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
