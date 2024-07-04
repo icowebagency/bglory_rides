@@ -171,9 +171,9 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
             ),
           ),
           DraggableScrollableSheet(
-            initialChildSize: 0.36,
-            minChildSize: 0.35,
-            maxChildSize: 0.362,
+            initialChildSize: 0.42,
+            minChildSize: 0.36,
+            maxChildSize: 0.5,
             builder: (BuildContext context, scrollController) {
               return ListView(
                 controller: scrollController,

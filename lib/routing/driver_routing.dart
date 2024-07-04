@@ -1,13 +1,18 @@
-import 'package:bglory_rides/features/driver/screens/home/profile/account.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/document_edit.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/driver/screens/home/account/account.dart';
+import '../features/driver/screens/home/account/drivers_document/driver_document.dart';
+import '../features/driver/screens/home/account/profile/profile.dart';
+import '../features/driver/screens/home/account/profile/profile_edit.dart';
 import '../features/driver/screens/home/driver_homepage_screen.dart';
-import '../features/driver/screens/home/profile/earning_screen.dart';
-import '../features/driver/screens/home/profile/profile.dart';
-import '../features/driver/screens/home/profile/safety.dart';
-import '../features/driver/screens/home/profile/settings.dart';
-import '../features/driver/screens/home/profile/support.dart';
-import '../features/driver/screens/home/profile/trips_history.dart';
+import '../features/driver/screens/home/home-drawer/earning_screen.dart';
+import '../features/driver/screens/home/home-drawer/safety.dart';
+import '../features/driver/screens/home/home-drawer/settings.dart';
+import '../features/driver/screens/home/home-drawer/support.dart';
+import '../features/driver/screens/home/home-drawer/trips_history.dart';
 import '../features/driver/screens/login/driver_login_screen.dart';
 import '../features/driver/screens/signup/signup.dart';
 import '../features/driver/screens/verification/driver_guildelines_screens/driver_exterior_picture_guidline.dart';
@@ -43,6 +48,26 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverProfile,
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverProfileEdit,
+        builder: (context, state) => const ProfileEditScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverDocumentEdit,
+        builder: (context, state) => const DocumentEditScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverDocumentScreen,
+        builder: (context, state) => const DriverDocumentScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.vehicleInformation,
+        builder: (context, state) => const VehicleInformationScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.vehicleInformationEdit,
+        builder: (context, state) => VehicleInformationEditScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverAccountScreen,
@@ -135,10 +160,16 @@ class BGRouteNames {
   static const String driverUploadInformation = '/driver/upload-information';
   static const String driverOption = '/driver/option';
   static const String driverProfile = '/driver/profile-screen';
+  static const String driverProfileEdit = '/driver/profile-edit-screen';
+  static const String driverDocumentEdit = '/driver/document-edit-screen';
+  static const String vehicleInformation = '/driver/vehicle-information-screen';
+  static const String vehicleInformationEdit =
+      '/driver/vehicle-information-edit-screen';
   static const String driverEarnings = '/driver/earnings-screen';
   static const String driverTripHistory = '/driver/trip-history';
   static const String driverSettings = '/driver/settings-screen';
   static const String driverAccountScreen = '/driver/account-screen';
+  static const String driverDocumentScreen = '/driver/document-screen';
   static const String driverSafety = '/driver/safety-screen';
   static const String driverHelpAndSupport = '/driver/helpandsupport-screen';
   static const String driverVerificationSuccessful =

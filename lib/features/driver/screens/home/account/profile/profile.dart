@@ -1,10 +1,13 @@
+import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/driver_document.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/image_strings.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/constants/text_strings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -177,18 +180,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: TSizes.spaceBtwSections,
                         ),
-                        Center(
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              TTexts.profileEdit,
-                              style:
-                                  Theme.of(context).textTheme.titleLarge!.apply(
-                                        color: TColors.buttonPrimaryDeepGreen,
-                                      ),
-                            ),
-                          ),
-                        ),
+                        DriverEditButton(onTap: () {
+                          context.go(BGRouteNames.driverProfileEdit);
+                        })
                       ],
                     ),
                   ),
