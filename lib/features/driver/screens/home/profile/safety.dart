@@ -16,7 +16,7 @@ class _SafetyScreenState extends State<SafetyScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Center(
             child: Text(
           TTexts.homeDrawerSafety,

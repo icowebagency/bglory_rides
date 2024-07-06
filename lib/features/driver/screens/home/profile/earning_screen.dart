@@ -12,15 +12,18 @@ class EarningsScreen extends StatefulWidget {
 class _EarningsScreenState extends State<EarningsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-      ),
-      body: SafeArea(
-        child: Center(
-            child: Text(
-          TTexts.homeDrawerEarnings,
-        )),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+        ),
+        body: const SafeArea(
+          child: Center(
+              child: Text(
+            TTexts.homeDrawerEarnings,
+          )),
+        ),
       ),
     );
   }
