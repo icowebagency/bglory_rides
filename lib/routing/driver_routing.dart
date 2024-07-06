@@ -1,3 +1,4 @@
+import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/driver/screens/home/driver_homepage_screen.dart';
@@ -44,26 +45,6 @@ class DriverRouting {
         builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverEarnings,
-        builder: (context, state) => const EarningsScreen(),
-      ),
-      GoRoute(
-        path: BGRouteNames.driverTripHistory,
-        builder: (context, state) => const TripHistoryScreen(),
-      ),
-      GoRoute(
-        path: BGRouteNames.driverSettings,
-        builder: (context, state) => const SettingsScreen(),
-      ),
-      GoRoute(
-        path: BGRouteNames.driverSafety,
-        builder: (context, state) => const SafetyScreen(),
-      ),
-      GoRoute(
-        path: BGRouteNames.driverHelpAndSupport,
-        builder: (context, state) => const HelpAndSupportScreen(),
-      ),
-      GoRoute(
         path: BGRouteNames.driverVerification,
         builder: (context, state) => DriverVerificationScreen(
           emailInput: state.uri.queryParameters['email'],
@@ -73,10 +54,6 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverVerificationSuccessful,
         builder: (context, state) => const SuccessfulVerification(),
-      ),
-      GoRoute(
-        path: BGRouteNames.driverHomePageScreen,
-        builder: (context, state) => const DriverHomePageScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverOption,
@@ -120,6 +97,49 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverMotorcycleInformation,
         builder: (context, state) => const DriverMotorcycleInformation(),
+      ),
+      StatefulShellRoute.indexedStack(
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverHomePageScreen,
+              builder: (context, state) => const DriverHomePageScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverEarnings,
+              builder: (context, state) => const EarningsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverTripHistory,
+              builder: (context, state) => const TripHistoryScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverSettings,
+              builder: (context, state) => const SettingsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverSafety,
+              builder: (context, state) => const SafetyScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRouteNames.driverHelpAndSupport,
+              builder: (context, state) => const HelpAndSupportScreen(),
+            ),
+          ]),
+        ],
+        builder: (context, state, navigationShell) => DriverHomeShell(
+          navigationShell: navigationShell,
+        ),
       ),
     ],
   );
