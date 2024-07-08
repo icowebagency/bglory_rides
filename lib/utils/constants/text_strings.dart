@@ -239,7 +239,7 @@ class TTexts {
   // -- Vehicle Information section
   static const String vehicleInformationAppBarTitle = 'Vehicle Information';
   static const String vehicleInformationSubTitle =
-      'Uploaded vehicle information associated with your driver’s account';
+      'Uploaded vehicle information associated with your driver\’s account';
   static const String vehicleManufacturerTitle = 'Vehicle manufacturer';
   static const String vehicleManufacturer = 'Toyota';
   static const String vehicleModelTitle = 'Vehicle model';
@@ -248,10 +248,49 @@ class TTexts {
   static const String vehicleYear = '2010';
   static const String vehicleColorTitle = 'Vehicle color';
   static const String vehicleColor = 'White';
-  static const String vehicleNumberTitle = 'Vehicle number';
+  static const String vehicleNumberTitle = 'Plate number';
   static const String vehicleNumber = 'AA123BBB';
   static const String vehicleExteriorTitle = 'Exterior picture of your car';
   static const String vehicleExteriorDemoText = 'exterior picture.jpg';
   static const String vehicleInteriorTitle = 'Interior picture of your car';
   static const String vehicleInteriorDemoText = 'interior picture.jpg';
+
+  // -- Vehicle Document section
+  static const String vehicleDocumentAccountTitle = 'Vehicle documents';
+  static const String vehicleDocumentAppBarTitle = 'Vehicle documents';
+  static const String vehicleDocumentAppBarTitleEdit = 'Edit Vehicle documents';
+  static const String vehicleDocumentTitle = 'Vehicle information';
+  static const String vehicleDocumentProofOfOwnershipCertificateTitle =
+      'Proof of ownership certificate';
+  static const String vehicleDocumentProofOfOwnershipCertificateText =
+      'ownership_cert_picture.jpg';
+  static const String vehicleDocumentLicenseTitle = 'Vehicle license';
+  static const String vehicleDocumentLicenseText =
+      'vehicle_license_picture.jpg';
+  static const String vehicleDocumentCertificateOfRoadWorthinessTitle =
+      'Certificate of road worthiness';
+  static const String vehicleDocumentCertificateOfRoadWorthinessText =
+      'raod_worthiness_picture.jpg';
+  static const String vehicleDocumentVehicleInsuranceTitle =
+      'Vehicle insurance';
+  static const String vehicleDocumentVehicleInsuranceText =
+      'vehicle_insurance_picture.jpg';
+
+  static const String vehicleDocumentSubTitle =
+      'Uploaded vehicle documents associated with your driver\’s account';
+
+  // Payment Details
+  static const String paymentDetailsAppBarTitle = 'Payment Details';
+  static const String paymentDetailsAppBarTitleEdit = 'Edit Payment Details';
+  static const String paymentDetailsTitle = 'Payment Information';
+  static const String paymentDetailsBankNameTitle = 'Bank name';
+  static const String paymentDetailsBankNameText = 'Gauranteed Trust Bank';
+  static const String paymentDetailsBankAccountTitle =
+      'Bank account holder\'s name';
+  static const String paymentDetailsBankAccountText = 'Damola Ayowemi';
+  static const String paymentDetailsBankAccountNumberTitle =
+      'Bank account number';
+  static const String paymentDetailsBankAccountNumberText = '0209004644';
+  static const String paymentDetailsSubTitle =
+      'Bank payment information associated with your driver\’s account';
 }

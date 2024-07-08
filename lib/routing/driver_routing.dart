@@ -1,4 +1,8 @@
 import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/document_edit.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details_edit.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/vehicle-documents/vehicle_document_edit.dart';
+import 'package:bglory_rides/features/driver/screens/home/account/vehicle-documents/vehicle_documents.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
 import 'package:go_router/go_router.dart';
@@ -68,6 +72,22 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.vehicleInformationEdit,
         builder: (context, state) => VehicleInformationEditScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverPaymentDetailsScreen,
+        builder: (context, state) => const PaymentDetailsScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverPaymentDetailsEditScreen,
+        builder: (context, state) => PaymentDetailsEditScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.vehicleDocumentScreen,
+        builder: (context, state) => const VehicleDocumentsScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.vehicleDocumentEditScreen,
+        builder: (context, state) => const VehicleDocumentsEditScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverAccountScreen,
@@ -161,8 +181,16 @@ class BGRouteNames {
   static const String driverOption = '/driver/option';
   static const String driverProfile = '/driver/profile-screen';
   static const String driverProfileEdit = '/driver/profile-edit-screen';
+  static const String driverPaymentDetailsScreen =
+      '/driver/payment-details-screen';
+  static const String driverPaymentDetailsEditScreen =
+      '/driver/payment-details-edit-screen';
   static const String driverDocumentEdit = '/driver/document-edit-screen';
   static const String vehicleInformation = '/driver/vehicle-information-screen';
+  static const String vehicleDocumentScreen =
+      '/driver/vehicle-documents-screen';
+  static const String vehicleDocumentEditScreen =
+      '/driver/vehicle-documents-edit-screen';
   static const String vehicleInformationEdit =
       '/driver/vehicle-information-edit-screen';
   static const String driverEarnings = '/driver/earnings-screen';

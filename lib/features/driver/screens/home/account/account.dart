@@ -107,27 +107,40 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
+              // Profile Screen
               AccountWidget(
                 containerBtn: () {
                   context.push(BGRouteNames.driverProfile);
                 },
                 containerText: TTexts.tAccount,
               ),
+              // Driver's document
               AccountWidget(
                 containerText: TTexts.tDriverDocument,
                 containerBtn: () {
                   context.push(BGRouteNames.driverDocumentScreen);
                 },
               ),
+              // Vehicle's information
               AccountWidget(
                 containerText: TTexts.tVehicleInformation,
                 containerBtn: () {
                   context.push(BGRouteNames.vehicleInformation);
                 },
               ),
+              // Vehicle documents
+              AccountWidget(
+                containerText: TTexts.vehicleDocumentAccountTitle,
+                containerBtn: () {
+                  context.push(BGRouteNames.vehicleDocumentScreen);
+                },
+              ),
+              // Payment details
               AccountWidget(
                 containerText: TTexts.tPaymentDetails,
-                containerBtn: () {},
+                containerBtn: () {
+                  context.push(BGRouteNames.driverPaymentDetailsScreen);
+                },
               ),
             ],
           ),

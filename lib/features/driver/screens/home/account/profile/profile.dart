@@ -2,7 +2,6 @@ import 'package:bglory_rides/features/driver/screens/home/account/drivers_docume
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/image_strings.dart';
@@ -58,29 +57,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: TColors.buttonPrimaryDeepGreen,
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Iconsax.add,
-                                color: TColors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Positioned(
+                      //   bottom: 0,
+                      //   right: 0,
+                      //   child: GestureDetector(
+                      //     onTap: () {},
+                      //     child: Container(
+                      //       width: 35,
+                      //       height: 35,
+                      //       decoration: const BoxDecoration(
+                      //         shape: BoxShape.circle,
+                      //         color: TColors.buttonPrimaryDeepGreen,
+                      //       ),
+                      //       child: IconButton(
+                      //         onPressed: () {},
+                      //         icon: const Icon(
+                      //           Iconsax.add,
+                      //           color: TColors.white,
+                      //           size: 20,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
