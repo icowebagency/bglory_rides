@@ -19,6 +19,7 @@ class TImages {
   static const String aniOne = "assets/animation/riderorder.json";
   static const String aniTwo = "assets/animation/driver_two.json";
   static const String aniThree = "assets/animation/driver_three.json";
+  static const String userAvatar = "assets/animation/userAvatar.json";
   static const String aniFour = "assets/animation/driver_four.json";
   static const String signupVerification =
       "assets/animation/successverification.json";

@@ -48,6 +48,7 @@ class TColors {
   static const Color grey = Color(0xFFA0A0A0);
   static const Color softGrey = Color(0xFFD7D7D7);
   static const Color lightGrey = Color(0xffF2F2F2);
+  static const Color containerBackgroundColor = Color(0xffF5F5F5);
   static const Color white = Color(0xffFFFFFF);
   static const Color dragableBottomSheetColor = Color(0xffF2F2F2);
 }

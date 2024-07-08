@@ -5,8 +5,12 @@ class TTexts {
   static const String skip = "Skip";
   static const String done = "Done";
   static const String submit = "Submit";
-  static const String appName = "BGRide";
+  static const String appName = "BGlory Rides";
   static const String tContinue = "Continue";
+  static const String tAccount = "Account";
+  static const String tDriverDocument = "Driver\'s Document";
+  static const String tVehicleInformation = "Vehicle Information";
+  static const String tPaymentDetails = "Payment Details";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 = "Earn with ease while driving";
@@ -103,6 +107,7 @@ class TTexts {
 
   // Drivers license information
   static const String driverlicenseTitle = "Driver\'s License Information";
+  static const String driverlicenseTitleTwo = "Driver\'s License";
   static const String driverMotocycleInformationTitle = "Motocycle Information";
   static const String driverlicenseNumber = "License number";
   static const String driverlicenseNumberhint = "License number";
@@ -144,11 +149,11 @@ class TTexts {
   static const String signupDriverTitle = "Become a BG Driver";
   static const String loginDriverTitle = "Welcome back!";
   static const String loginDriverSubTitle =
-      "Kindly signin your account using your email or phone number";
+      "Kindly sign in your account using your email or phone number";
   static const String signupPhoneHintText = "Enter your phone number";
   static const String signupTermsOfService = "Terms of Service ";
   static const String signupsigningUpAgreement =
-      "By Signingu up, you agree to our ";
+      "By Signing up, you agree to our ";
 
   // -- Driver HomePage Texts
   static const String driverEarning = "Today\'s earnings";
@@ -163,7 +168,20 @@ class TTexts {
   static const String driverAcceptanceRate = "56%";
   static const String driverAcceptanceRateTitle = "Acceptance rate";
   static const String driverOnlineNotification = "Go online";
+  static const String driverEditPhoneNumber = "09056692354";
   static const String driverName = "Damolar Awoyemi";
+  static const String driverEmail = "damola@gmail.com";
+  static const String driverMonth = "06";
+  static const String driverDay = "21";
+  static const String driverYear = "1990";
+  static const String driverUpdateButton = "Update";
+
+  static const String driverLicenseTitleTwo = "Driver\'s License";
+  static const String driverUploadNotification = "Uploaded Successfully";
+  static const String driverDocumentTitle = "Driver\'s Document";
+  static const String driverSubDocumentText =
+      "Uploaded driver document associated with your driver\'s account";
+  static const String driverProfileEditTitle = "Edit Driver\'s Profile";
 
   static const String signupDriverSubTitle =
       "Sign up to become a BG Driver using your phone number or email";
@@ -205,4 +223,74 @@ class TTexts {
   static const String profileGenderTitle = "Gender";
   static const String profileAddress =
       "3, Adekunle Awoyemi avenue, Caltongate estate, Eleyele, Ibadan, Oyo state";
+
+  //  -- Driver's Document Upload Section
+  static const String documentExpiryDate = '06 - 01 - 2027';
+  static const String documentExpiryDateEditDay = "06";
+  static const String documentExpiryDateEditMonth = "10";
+  static const String documentExpiryDateEditYear = "2027";
+  static const String documentExpiryDateTitle = 'Expiry date';
+  static const String documentLicensePhotoDemoText =
+      'Driver\'s license upload.jpg';
+  static const String documentLicensePhotoDemoTitle = 'License photo';
+  static const String documentLicenseFormTitle = "License Number";
+  static const String documentLicenseFormNumber = "AKW06968AA2";
+
+  // -- Vehicle Information section
+  static const String vehicleInformationAppBarTitle = 'Vehicle Information';
+  static const String vehicleInformationSubTitle =
+      'Uploaded vehicle information associated with your driver\’s account';
+  static const String vehicleManufacturerTitle = 'Vehicle manufacturer';
+  static const String vehicleManufacturer = 'Toyota';
+  static const String vehicleModelTitle = 'Vehicle model';
+  static const String vehicleModel = 'Corolla';
+  static const String vehicleYearTitle = 'Vehicle year';
+  static const String vehicleYear = '2010';
+  static const String vehicleColorTitle = 'Vehicle color';
+  static const String vehicleColor = 'White';
+  static const String vehicleNumberTitle = 'Plate number';
+  static const String vehicleNumber = 'AA123BBB';
+  static const String vehicleExteriorTitle = 'Exterior picture of your car';
+  static const String vehicleExteriorDemoText = 'exterior picture.jpg';
+  static const String vehicleInteriorTitle = 'Interior picture of your car';
+  static const String vehicleInteriorDemoText = 'interior picture.jpg';
+
+  // -- Vehicle Document section
+  static const String vehicleDocumentAccountTitle = 'Vehicle documents';
+  static const String vehicleDocumentAppBarTitle = 'Vehicle documents';
+  static const String vehicleDocumentAppBarTitleEdit = 'Edit Vehicle documents';
+  static const String vehicleDocumentTitle = 'Vehicle information';
+  static const String vehicleDocumentProofOfOwnershipCertificateTitle =
+      'Proof of ownership certificate';
+  static const String vehicleDocumentProofOfOwnershipCertificateText =
+      'ownership_cert_picture.jpg';
+  static const String vehicleDocumentLicenseTitle = 'Vehicle license';
+  static const String vehicleDocumentLicenseText =
+      'vehicle_license_picture.jpg';
+  static const String vehicleDocumentCertificateOfRoadWorthinessTitle =
+      'Certificate of road worthiness';
+  static const String vehicleDocumentCertificateOfRoadWorthinessText =
+      'raod_worthiness_picture.jpg';
+  static const String vehicleDocumentVehicleInsuranceTitle =
+      'Vehicle insurance';
+  static const String vehicleDocumentVehicleInsuranceText =
+      'vehicle_insurance_picture.jpg';
+
+  static const String vehicleDocumentSubTitle =
+      'Uploaded vehicle documents associated with your driver\’s account';
+
+  // Payment Details
+  static const String paymentDetailsAppBarTitle = 'Payment Details';
+  static const String paymentDetailsAppBarTitleEdit = 'Edit Payment Details';
+  static const String paymentDetailsTitle = 'Payment Information';
+  static const String paymentDetailsBankNameTitle = 'Bank name';
+  static const String paymentDetailsBankNameText = 'Gauranteed Trust Bank';
+  static const String paymentDetailsBankAccountTitle =
+      'Bank account holder\'s name';
+  static const String paymentDetailsBankAccountText = 'Damola Ayowemi';
+  static const String paymentDetailsBankAccountNumberTitle =
+      'Bank account number';
+  static const String paymentDetailsBankAccountNumberText = '0209004644';
+  static const String paymentDetailsSubTitle =
+      'Bank payment information associated with your driver\’s account';
 }
