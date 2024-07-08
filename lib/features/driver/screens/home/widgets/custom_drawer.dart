@@ -10,7 +10,9 @@ import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({super.key});
+  const CustomDrawer({super.key, this.onItemTapped, this.index});
+  final ValueChanged<int>? onItemTapped;
+  final int? index;
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -143,35 +145,40 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: const Icon(Icons.wallet_rounded),
               title: const Text(TTexts.homeDrawerEarnings),
               onTap: () {
-                context.push(BGRouteNames.driverEarnings);
+                // context.push(BGRouteNames.driverEarnings);
+                widget.onItemTapped?.call(1);
               },
             ),
             ListTile(
               leading: const Icon(Icons.access_time),
               title: const Text(TTexts.homeDrawerTripHistory),
               onTap: () {
-                context.push(BGRouteNames.driverTripHistory);
+                // context.push(BGRouteNames.driverTripHistory);
+                widget.onItemTapped?.call(2);
               },
             ),
             ListTile(
               leading: const Icon(Iconsax.setting_2),
               title: const Text(TTexts.homeDrawerSettings),
               onTap: () {
-                context.push(BGRouteNames.driverSettings);
+                // context.push(BGRouteNames.driverSettings);                widget.onItemTapped?.call(1);
+                widget.onItemTapped?.call(3);
               },
             ),
             ListTile(
               leading: const Icon(Iconsax.security_safe),
               title: const Text(TTexts.homeDrawerSafety),
               onTap: () {
-                context.push(BGRouteNames.driverSafety);
+                // context.push(BGRouteNames.driverSafety);
+                widget.onItemTapped?.call(4);
               },
             ),
             ListTile(
               leading: const Icon(Iconsax.support),
               title: const Text(TTexts.homeDrawerSupport),
               onTap: () {
-                context.push(BGRouteNames.driverHelpAndSupport);
+                // context.push(BGRouteNames.driverHelpAndSupport);
+                widget.onItemTapped?.call(5);
               },
             ),
           ],
