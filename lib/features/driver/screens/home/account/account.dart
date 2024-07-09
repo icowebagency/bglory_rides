@@ -22,6 +22,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         centerTitle: true,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -20,9 +20,10 @@ class _EarningsScreenState extends State<EarningsScreen> {
         ),
         body: const SafeArea(
           child: Center(
-              child: Text(
-            TTexts.homeDrawerEarnings,
-          )),
+            child: Text(
+              TTexts.homeDrawerEarnings,
+            ),
+          ),
         ),
       ),
     );

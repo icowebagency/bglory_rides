@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
-import 'package:bglory_rides/utils/secrets/apiConstants.dart';
+
+import '../../../../utils/secrets/apiConstants.dart';
 
 abstract class DriverRepositoryContract {
   String? token;
@@ -34,7 +35,7 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     required Map<String, String> files,
   }) async {
     final response = await _apiClientContract.completeDriverProfile(
-    token: token!,
+      token: token!,
       profileData: profileData,
       files: files,
     );

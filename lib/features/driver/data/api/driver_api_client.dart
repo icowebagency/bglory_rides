@@ -1,7 +1,8 @@
-import 'package:bglory_rides/utils/secrets/api_request.dart';
-import 'package:bglory_rides/utils/secrets/api_secrets.dart';
-import 'package:bglory_rides/utils/secrets/handle_api_mixin.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../../utils/secrets/api_request.dart';
+import '../../../../utils/secrets/api_secrets.dart';
+import '../../../../utils/secrets/handle_api_mixin.dart';
 
 abstract class DriverApiClientContract {
   Future requestOtp({required Map<String, String> target});
