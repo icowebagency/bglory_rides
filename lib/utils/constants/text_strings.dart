@@ -293,4 +293,25 @@ class TTexts {
   static const String paymentDetailsBankAccountNumberText = '0209004644';
   static const String paymentDetailsSubTitle =
       'Bank payment information associated with your driver\’s account';
+
+  // -- Earning Screen
+  static const String earningAppBarTitle = 'Earnings';
+  static const String earningSubTitle = 'Current Balance';
+  static const String earningAmountTitle = '₦97,000';
+  static const String earningWithdrawalTitle = 'Withdrawal';
+  static const String earningHistoryTitle = 'History';
+  static const String earningInsightsTitle = 'Insights';
+  static const String earningChartTitle = 'Driving activity \n for today';
+  static const String earningDrivingRateTitle = 'Drive rate';
+  static const String earningDrivingRatePercentage = '83%';
+  static const String earningCompletedRidesTitle = 'Completed rides';
+  static const String earningCompletedRidesPercentage = '85%';
+  static const String earningRejectedRidesTitle = 'Rejected rides';
+  static const String earningRejectedRidesPercentage = '25%';
+  static const String earningCanceledRidesTitle = 'Cancelled rides';
+  static const String earningCanceledRidesPercentage = '0%';
+  static const String earningTargetTitle = 'Earning target';
+  static const String earningViewAnalysisTitle = 'View analysis';
+  static const String earningTargetSubTitle =
+      'Set daily, weekly or monthly ride target';
 }
