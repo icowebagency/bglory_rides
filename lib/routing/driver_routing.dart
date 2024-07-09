@@ -1,4 +1,3 @@
-import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/document_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details_edit.dart';
@@ -6,18 +5,19 @@ import 'package:bglory_rides/features/driver/screens/home/account/vehicle-docume
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle-documents/vehicle_documents.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
+import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
+import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/driver/screens/home/account/account.dart';
 import '../features/driver/screens/home/account/drivers_document/driver_document.dart';
 import '../features/driver/screens/home/account/profile/profile.dart';
 import '../features/driver/screens/home/account/profile/profile_edit.dart';
-import '../features/driver/screens/home/driver_homepage_screen.dart';
-import '../features/driver/screens/home/home-drawer/earning_screen.dart';
-import '../features/driver/screens/home/home-drawer/safety.dart';
-import '../features/driver/screens/home/home-drawer/settings.dart';
-import '../features/driver/screens/home/home-drawer/support.dart';
-import '../features/driver/screens/home/home-drawer/trips_history.dart';
 import '../features/driver/screens/login/driver_login_screen.dart';
 import '../features/driver/screens/signup/signup.dart';
 import '../features/driver/screens/verification/driver_guildelines_screens/driver_exterior_picture_guidline.dart';
@@ -36,7 +36,7 @@ import '../features/onboarding/onboarding.dart';
 
 class DriverRouting {
   static final GoRouter router = GoRouter(
-    initialLocation: BGRouteNames.driverOnboarding,
+    initialLocation: BGRouteNames.driverHomePageScreen,
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
@@ -55,7 +55,6 @@ class DriverRouting {
         builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
-
         path: BGRouteNames.driverProfileEdit,
         builder: (context, state) => const ProfileEditScreen(),
       ),
@@ -81,7 +80,7 @@ class DriverRouting {
       ),
       GoRoute(
         path: BGRouteNames.driverPaymentDetailsEditScreen,
-        builder: (context, state) => PaymentDetailsEditScreen(),
+        builder: (context, state) => const PaymentDetailsEditScreen(),
       ),
       GoRoute(
         path: BGRouteNames.vehicleDocumentScreen,
@@ -95,7 +94,6 @@ class DriverRouting {
         path: BGRouteNames.driverAccountScreen,
         builder: (context, state) => const AccountScreen(),
       ),
-      
       GoRoute(
         path: BGRouteNames.driverVerification,
         builder: (context, state) => DriverVerificationScreen(
