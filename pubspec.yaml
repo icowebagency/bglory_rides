@@ -46,6 +46,7 @@ dependencies:
   google_maps_flutter: ^2.6.1
   back_button_interceptor: ^7.0.3
   json_annotation: ^4.9.0
+  fl_chart: ^0.68.0
 
 
 
