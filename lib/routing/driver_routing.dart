@@ -26,7 +26,7 @@ import '../features/onboarding/onboarding.dart';
 
 class DriverRouting {
   static final GoRouter router = GoRouter(
-    initialLocation: BGRouteNames.driverHomePageScreen,
+    initialLocation: BGRouteNames.driverOnboarding,
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
