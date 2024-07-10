@@ -11,17 +11,37 @@ class MyPieChart extends StatelessWidget {
       PieChartData(
         sections: [
           PieChartSectionData(
+            titleStyle: const TextStyle(
+              color: TColors.white,
+              fontWeight: FontWeight.w600,
+            ),
+            value: 30,
             showTitle: true,
             radius: 50,
             color: TColors.info,
           ),
           PieChartSectionData(
+            titleStyle: const TextStyle(
+              color: TColors.white,
+              fontWeight: FontWeight.w600,
+            ),
+            value: 10,
             color: TColors.primary,
           ),
           PieChartSectionData(
+            titleStyle: const TextStyle(
+              color: TColors.white,
+              fontWeight: FontWeight.w600,
+            ),
+            value: 20,
             color: TColors.linkBlueColor,
           ),
           PieChartSectionData(
+            titleStyle: const TextStyle(
+              color: TColors.white,
+              fontWeight: FontWeight.w600,
+            ),
+            value: 40,
             color: TColors.warning,
           ),
         ],

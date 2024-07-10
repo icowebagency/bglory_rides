@@ -7,10 +7,12 @@ class SaveGeneralButtonWidget extends StatelessWidget {
     super.key,
     this.width = double.infinity,
     required this.onTap,
+    this.buttonText = TTexts.driverUpdateButton,
   });
 
   final double width;
   final VoidCallback onTap;
+  final String? buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class SaveGeneralButtonWidget extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         onPressed: onTap,
-        child: const Text(TTexts.driverUpdateButton),
+        child: Text(buttonText!),
       ),
     );
   }

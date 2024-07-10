@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../../utils/constants/colors.dart';
 
 class EarningOptionWidget extends StatelessWidget {
   const EarningOptionWidget({
