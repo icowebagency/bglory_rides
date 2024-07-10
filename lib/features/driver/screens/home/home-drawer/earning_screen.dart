@@ -1,12 +1,14 @@
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/pie_chart.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'earning/earning_option_widget.dart';
-import 'earning/earning_rate_widget.dart';
+import 'earning/widgets/earning_option_widget.dart';
+import 'earning/widgets/earning_rate_widget.dart';
 
 class EarningsScreen extends StatefulWidget {
   const EarningsScreen({super.key});
@@ -21,6 +23,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
@@ -73,7 +76,9 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       ),
                       Expanded(
                         child: EarningOptionWidget(
-                          onTap: () {},
+                          onTap: () {
+                            context.push(BGRouteNames.driverInsightScreen);
+                          },
                           earningIcon: Iconsax.calendar,
                           containerText: TTexts.earningInsightsTitle,
                         ),

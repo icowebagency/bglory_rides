@@ -314,4 +314,34 @@ class TTexts {
   static const String earningViewAnalysisTitle = 'View analysis';
   static const String earningTargetSubTitle =
       'Set daily, weekly or monthly ride target';
+
+  // -- Earning Insight Screen
+  static const String insightAppBarTitle = 'Balance';
+  static const String insightSubTitle = 'Current Balance';
+  static const String insightAmountTitle = '₦97,000';
+  static const String insightSubText = 'Earning breakdown';
+
+  // --- First Tab View
+  static const String firstTabInAppPaymentTitle = 'In-app payment';
+  static const String firstTabInAppPaymentPrice = '₦23,500';
+  static const String firstTabCashPaymentTitle = 'Cash payment';
+  static const String firstTabCashPaymentPrice = '₦55,600';
+  static const String firstTabCommissionTitle = 'Commission';
+  static const String firstTabCommissionPrice = '5%';
+  static const String firstTabYouEarnedTitle = 'You earned';
+  static const String firstTabYouEarnedPrice = '₦75,145';
+  static const String firstTabSubCommissionText = 'After 5% commission';
+  static const String firstTabWithdrawEarningBtnText = 'Withdraw earnings';
+
+  // Bottom Modal
+  static const String withdrawModalTitle = 'Withdraw Earnings';
+  static const String withdrawAmountTitle = 'Enter amount';
+  static const String withdrawPaymentTitle = 'Payment info';
+  static const String withdrawPaymentSecondTitle = 'Change';
+  static const String withdrawHintText = '0.00';
+  static const String withdrawButtonText = 'Proceed';
+  static const String withdrawButtonSecondText = 'Withdraw';
+  static const String withdrawPinText = 'Enter pin';
+  static const String withdrawPaymentHint =
+      '0209004644 - Awoyemi Damola - GT Bank';
 }
