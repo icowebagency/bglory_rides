@@ -35,9 +35,9 @@ import '../features/driver/screens/verification/driver_guildelines_screens/road_
 import '../features/driver/screens/verification/driver_guildelines_screens/vehicle_license_guideline.dart';
 import '../features/driver/screens/verification/driver_information_registration/driver_infomation_registration.dart';
 import '../features/driver/screens/verification/driver_information_registration/driver_option.dart';
-import '../features/driver/screens/verification/driver_verification_screen.dart';
+import '../features/driver/screens/verification/driver_verification/driver_verification_screen.dart';
 import '../features/driver/screens/verification/motocycle_category/driver_motocycle_information.dart';
-import '../features/driver/screens/verification/successful_verification_screen.dart';
+import '../features/driver/screens/verification/driver_verification_successful/successful_verification_screen.dart';
 import '../features/onboarding/onboarding.dart';
 
 final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
