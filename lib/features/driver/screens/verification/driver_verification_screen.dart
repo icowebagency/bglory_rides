@@ -1,8 +1,13 @@
+import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
+import 'package:bglory_rides/features/driver/screens/verification/provider/driver_verification_provider.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl_phone_field/helpers.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../../routing/driver_routing.dart';
 import '../../../../utils/constants/colors.dart';
@@ -10,13 +15,13 @@ import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 
-final otpFieldProvider = StateProvider.autoDispose(
+final _otpFieldProvider = StateProvider(
   (ref) => '',
 );
 
 class DriverVerificationScreen extends ConsumerWidget {
-  const DriverVerificationScreen({super.key, this.target});
-
+  DriverVerificationScreen({super.key, this.target});
+  final OtpFieldControllerV2 controllerV2 = OtpFieldControllerV2();
   final dynamic target;
 
   @override
@@ -24,114 +29,146 @@ class DriverVerificationScreen extends ConsumerWidget {
     String displayInput = target?['email']?.isNotEmpty ?? false == true
         ? target!['email']!
         : target!['phone']!;
+
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            children: [
-              const Center(
-                child: Image(
-                  width: 150,
-                  height: 100,
-                  image: AssetImage(TImages.driverLogo),
-                ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Text(
-                TTexts.driverVerfTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              Text(
-                TTexts.driverCodeSentTitle,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              Text(
-                displayInput,
-                style: Theme.of(context).textTheme.headlineMedium,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              OTPTextFieldV2(
-                length: 5,
-                autoFocus: true,
-                width: MediaQuery.of(context).size.width,
-                textFieldAlignment: MainAxisAlignment.spaceAround,
-                fieldWidth: 45,
-                fieldStyle: FieldStyle.box,
-                outlineBorderRadius: 5,
-                onChanged: (value) =>
-                    ref.read(otpFieldProvider.notifier).state = value,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Center(
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: TTexts.driverRequestCodeTitle,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    children: [
-                      TextSpan(
-                        text: '23 ',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .apply(color: TColors.primary),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // Navigate to Terms of Service Screen here.
-                          },
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                children: [
+                  const Center(
+                    child: Image(
+                      width: 150,
+                      height: 100,
+                      image: AssetImage(TImages.driverLogo),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  Text(
+                    TTexts.driverVerfTitle,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                  Text(
+                    TTexts.driverCodeSentTitle,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                  Text(
+                    displayInput,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  Pinput(
+                    length: 6,
+                    onChanged: (value) =>
+                        ref.read(_otpFieldProvider.notifier).state = value,
+                    onCompleted: (value) => triggerAction(ref, context),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  Center(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: TTexts.driverRequestCodeTitle,
+                        style: Theme.of(context).textTheme.bodySmall,
+                        children: [
+                          TextSpan(
+                            text: '23 ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .apply(color: TColors.primary),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Navigate to Terms of Service Screen here.
+                              },
+                          ),
+                          TextSpan(
+                            text: TTexts.driverRequestCodeSecondsTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .apply(color: TColors.primary),
+                          ),
+                        ],
                       ),
-                      TextSpan(
-                        text: TTexts.driverRequestCodeSecondsTitle,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .apply(color: TColors.primary),
-                      ),
-                    ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: ref.watch(_otpFieldProvider).length == 6
+                          ? () {
+                              triggerAction(ref, context);
+                            }
+                          : null,
+                      child: const Text(TTexts.driverVerifyButton),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Consumer(builder: (context, ref, child) {
+              return Visibility(
+                visible: ref.watch(
+                  driverVerificationStateNotifier.select(
+                    (value) => value.isLoading,
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    () {
-                      context.go(BGRouteNames.driverVerificationSuccessful);
-                    };
-
-                    validateOtp(ref, context);
-                  },
-                  child: const Text(TTexts.driverVerifyButton),
+                child: Container(
+                  color: Colors.grey.withOpacity(0.4),
+                  child: const Center(
+                    child: AppCircularProgressIndicator(),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              );
+            })
+          ],
         ),
       ),
     );
   }
 
+  void triggerAction(WidgetRef ref, BuildContext context) {
+    if (validateOtp(ref, context)) {
+      target['otp'] = ref.read(_otpFieldProvider);
+      ref
+          .read(driverVerificationStateNotifier.notifier)
+          .onAuthAction(
+            target: Map<String, String>.from(target),
+            onError: NotificationUtil.showErrorNotification,
+          )
+          .then(
+        (verified) {
+          if (verified) {
+            context.go(BGRouteNames.driverVerificationSuccessful);
+          }
+        },
+      );
+    }
+  }
+
   bool validateOtp(WidgetRef ref, BuildContext context) {
-    if (ref.read(otpFieldProvider).isEmpty ||
-        ref.read(otpFieldProvider).length < 6) {
+    final text = ref.read(_otpFieldProvider);
+    if (text.isEmpty || text.length < 6 || !isNumeric(text)) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(

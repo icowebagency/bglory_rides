@@ -8,9 +8,10 @@ abstract class DriverAuthStateNotifer extends StateNotifier<AuthState> {
   final DriverRepositoryContract driverRepositoryContract;
 
   bool Function()? validate;
+  final Ref ref;
 
   DriverAuthStateNotifer(
-      {required this.driverRepositoryContract, required Ref ref})
+      {required this.driverRepositoryContract, required this.ref})
       : super(
           AuthState(
             isLoading: false,
@@ -34,5 +35,5 @@ abstract class DriverAuthStateNotifer extends StateNotifier<AuthState> {
     state = state.copyWith(pageIndex: index);
   }
 
-  Future<bool> onAuthAction({required Map<String, String> target});
+  Future<bool> onAuthAction({required Map<String, String> target, Function(String)? onError});
 }

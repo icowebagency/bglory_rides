@@ -14,6 +14,15 @@ class DriverApp extends StatelessWidget {
       routeInformationParser: DriverRouting.router.routeInformationParser,
       routeInformationProvider: DriverRouting.router.routeInformationProvider,
       title: TTexts.appName,
+      builder: (context, child) => Overlay(
+        initialEntries: [
+          if (child != null) ...[
+            OverlayEntry(
+              builder: (context) => child,
+            ),
+          ],
+        ],
+      ),
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,

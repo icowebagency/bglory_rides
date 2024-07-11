@@ -17,6 +17,7 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.d
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/driver/screens/auth/login/driver_login_screen.dart';
@@ -39,8 +40,11 @@ import '../features/driver/screens/verification/motocycle_category/driver_motocy
 import '../features/driver/screens/verification/successful_verification_screen.dart';
 import '../features/onboarding/onboarding.dart';
 
+final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
+
 class DriverRouting {
   static final GoRouter router = GoRouter(
+    navigatorKey: driverNavKey,
     initialLocation: BGRouteNames.driverOnboarding,
     routes: [
       GoRoute(
@@ -81,7 +85,7 @@ class DriverRouting {
       ),
       GoRoute(
         path: BGRouteNames.driverInsightScreen,
-        builder: (context, state) => InsightScreen(),
+        builder: (context, state) => const InsightScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverPaymentDetailsScreen,

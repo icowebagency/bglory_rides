@@ -20,11 +20,11 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
       {required super.driverRepositoryContract, required super.ref});
 
   @override
-  Future<bool> onAuthAction({required Map<String, String> target}) async {
+  Future<bool> onAuthAction(
+      {required Map<String, String> target, Function(String)? onError}) async {
     assert(target['phone'] != null || target['email'] != null,
         'Either phone or email must be present');
 
-    log('$target');
 
     state = state.copyWith(isLoading: true);
 
@@ -34,10 +34,9 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     state = state.copyWith(isLoading: false);
 
     if (result is Failure) {
-      log('OTP Generation Failed');
+      onError?.call('OTP request failed');
       return false;
     } else {
-      log('OTP Generated Passed');
       return true;
     }
   }
