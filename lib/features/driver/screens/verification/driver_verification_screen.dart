@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 
@@ -9,24 +10,20 @@ import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 
-class DriverVerificationScreen extends StatefulWidget {
+final otpFieldProvider = StateProvider.autoDispose(
+  (ref) => '',
+);
+
+class DriverVerificationScreen extends ConsumerWidget {
   const DriverVerificationScreen({super.key, this.target});
 
   final dynamic target;
 
   @override
-  State<DriverVerificationScreen> createState() =>
-      _DriverVerificationScreenState();
-}
-
-class _DriverVerificationScreenState extends State<DriverVerificationScreen> {
-  @override
-  Widget build(BuildContext context) {
-
-
-    String displayInput = widget.target?['email']?.isNotEmpty ?? false == true
-        ? widget.target!['email']!
-        : widget.target!['phone']!;
+  Widget build(BuildContext context, WidgetRef ref) {
+    String displayInput = target?['email']?.isNotEmpty ?? false == true
+        ? target!['email']!
+        : target!['phone']!;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -74,6 +71,8 @@ class _DriverVerificationScreenState extends State<DriverVerificationScreen> {
                 fieldWidth: 45,
                 fieldStyle: FieldStyle.box,
                 outlineBorderRadius: 5,
+                onChanged: (value) =>
+                    ref.read(otpFieldProvider.notifier).state = value,
               ),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
@@ -114,7 +113,11 @@ class _DriverVerificationScreenState extends State<DriverVerificationScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.go(BGRouteNames.driverVerificationSuccessful);
+                    () {
+                      context.go(BGRouteNames.driverVerificationSuccessful);
+                    };
+
+                    validateOtp(ref, context);
                   },
                   child: const Text(TTexts.driverVerifyButton),
                 ),
@@ -124,5 +127,21 @@ class _DriverVerificationScreenState extends State<DriverVerificationScreen> {
         ),
       ),
     );
+  }
+
+  bool validateOtp(WidgetRef ref, BuildContext context) {
+    if (ref.read(otpFieldProvider).isEmpty ||
+        ref.read(otpFieldProvider).length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Enter valid Otp',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      );
+      return false;
+    }
+    return true;
   }
 }
