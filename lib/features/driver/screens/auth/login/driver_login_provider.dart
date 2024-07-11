@@ -8,7 +8,7 @@ import '../auth_provider/auth_state.dart';
 import '../auth_provider/driver_auth_state_notifer.dart';
 
 final driverLoginStateNotifierProvider =
-    StateNotifierProvider<DriverAuthStateNotifer, AuthState>(
+    StateNotifierProvider.autoDispose<DriverAuthStateNotifer, AuthState>(
   (ref) => DriverLoginAuthStateNotifier(
     driverRepositoryContract: ref.watch(driverRepositoryProvider),
     ref: ref,

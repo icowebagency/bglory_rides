@@ -144,7 +144,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                             final path = Uri(
                               path: BGRouteNames.driverVerification,
                               queryParameters: {
-                               TTexts.TARGET: jsonEncode(target),
+                                TTexts.TARGET: jsonEncode(target),
                               },
                             ).toString();
                             context.go(path);
