@@ -8,7 +8,7 @@ class TTexts {
   static const String appName = "BGlory Rides";
   static const String tContinue = "Continue";
   static const String tAccount = "Account";
-  static const String tDriverDocument = "Driver\'s Document";
+  static const String tDriverDocument = "Driver's Document";
   static const String tVehicleInformation = "Vehicle Information";
   static const String tPaymentDetails = "Payment Details";
 
@@ -106,8 +106,8 @@ class TTexts {
       "* Make sure the photo is taken in a well lit area and has no filter or alterations.";
 
   // Drivers license information
-  static const String driverlicenseTitle = "Driver\'s License Information";
-  static const String driverlicenseTitleTwo = "Driver\'s License";
+  static const String driverlicenseTitle = "Driver's License Information";
+  static const String driverlicenseTitleTwo = "Driver's License";
   static const String driverMotocycleInformationTitle = "Motocycle Information";
   static const String driverlicenseNumber = "License number";
   static const String driverlicenseNumberhint = "License number";
@@ -118,7 +118,7 @@ class TTexts {
   static const String driverlicensePhoto = "License photo";
   static const String driverUploadImageTitle = "Click to upload image";
   static const String driverLisenseGuidelineTitle =
-      "Driver\'s License (Vehicle) \n picture upload";
+      "Driver's License (Vehicle) \n picture upload";
 
   // Driver's Information
   static const String driverInformationTitle = "Driver information";
@@ -156,7 +156,7 @@ class TTexts {
       "By Signing up, you agree to our ";
 
   // -- Driver HomePage Texts
-  static const String driverEarning = "Today\'s earnings";
+  static const String driverEarning = "Today's earnings";
   static const String driverMoney = "₦23,500";
   static const String driverDate = "June, 2024";
   static const String driverLocation = "Lagos";
@@ -176,12 +176,12 @@ class TTexts {
   static const String driverYear = "1990";
   static const String driverUpdateButton = "Update";
 
-  static const String driverLicenseTitleTwo = "Driver\'s License";
+  static const String driverLicenseTitleTwo = "Driver's License";
   static const String driverUploadNotification = "Uploaded Successfully";
-  static const String driverDocumentTitle = "Driver\'s Document";
+  static const String driverDocumentTitle = "Driver's Document";
   static const String driverSubDocumentText =
-      "Uploaded driver document associated with your driver\'s account";
-  static const String driverProfileEditTitle = "Edit Driver\'s Profile";
+      "Uploaded driver document associated with your driver's account";
+  static const String driverProfileEditTitle = "Edit Driver's Profile";
 
   static const String signupDriverSubTitle =
       "Sign up to become a BG Driver using your phone number or email";
@@ -214,7 +214,7 @@ class TTexts {
   static const String homeDrawerProfile = "Profile";
 
   // -- Driver's Profile
-  static const String profileTitle = "Driver\'s Profile";
+  static const String profileTitle = "Driver's Profile";
   static const String profilePersonalInformation = "Personal Information";
   static const String profileFullName = "Damolar Ayowoyemi";
   static const String profileBirth = "03 April 1990";
@@ -239,7 +239,7 @@ class TTexts {
   // -- Vehicle Information section
   static const String vehicleInformationAppBarTitle = 'Vehicle Information';
   static const String vehicleInformationSubTitle =
-      'Uploaded vehicle information associated with your driver\’s account';
+      'Uploaded vehicle information associated with your driver’s account';
   static const String vehicleManufacturerTitle = 'Vehicle manufacturer';
   static const String vehicleManufacturer = 'Toyota';
   static const String vehicleModelTitle = 'Vehicle model';
@@ -277,7 +277,7 @@ class TTexts {
       'vehicle_insurance_picture.jpg';
 
   static const String vehicleDocumentSubTitle =
-      'Uploaded vehicle documents associated with your driver\’s account';
+      'Uploaded vehicle documents associated with your driver’s account';
 
   // Payment Details
   static const String paymentDetailsAppBarTitle = 'Payment Details';
@@ -292,7 +292,7 @@ class TTexts {
       'Bank account number';
   static const String paymentDetailsBankAccountNumberText = '0209004644';
   static const String paymentDetailsSubTitle =
-      'Bank payment information associated with your driver\’s account';
+      'Bank payment information associated with your driver’s account';
 
   // -- Earning Screen
   static const String earningAppBarTitle = 'Earnings';
@@ -316,4 +316,33 @@ class TTexts {
       'Set daily, weekly or monthly ride target';
 
   static const String TARGET = 'TARGET';
+  // -- Earning Insight Screen
+  static const String insightAppBarTitle = 'Balance';
+  static const String insightSubTitle = 'Current Balance';
+  static const String insightAmountTitle = '₦97,000';
+  static const String insightSubText = 'Earning breakdown';
+
+  // --- First Tab View
+  static const String firstTabInAppPaymentTitle = 'In-app payment';
+  static const String firstTabInAppPaymentPrice = '₦23,500';
+  static const String firstTabCashPaymentTitle = 'Cash payment';
+  static const String firstTabCashPaymentPrice = '₦55,600';
+  static const String firstTabCommissionTitle = 'Commission';
+  static const String firstTabCommissionPrice = '5%';
+  static const String firstTabYouEarnedTitle = 'You earned';
+  static const String firstTabYouEarnedPrice = '₦75,145';
+  static const String firstTabSubCommissionText = 'After 5% commission';
+  static const String firstTabWithdrawEarningBtnText = 'Withdraw earnings';
+
+  // Bottom Modal
+  static const String withdrawModalTitle = 'Withdraw Earnings';
+  static const String withdrawAmountTitle = 'Enter amount';
+  static const String withdrawPaymentTitle = 'Payment info';
+  static const String withdrawPaymentSecondTitle = 'Change';
+  static const String withdrawHintText = '0.00';
+  static const String withdrawButtonText = 'Proceed';
+  static const String withdrawButtonSecondText = 'Withdraw';
+  static const String withdrawPinText = 'Enter pin';
+  static const String withdrawPaymentHint =
+      '0209004644 - Awoyemi Damola - GT Bank';
 }

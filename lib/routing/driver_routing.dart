@@ -9,6 +9,8 @@ import 'package:bglory_rides/features/driver/screens/home/account/vehicle_inform
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
@@ -78,6 +80,10 @@ class DriverRouting {
         builder: (context, state) => VehicleInformationEditScreen(),
       ),
       GoRoute(
+        path: BGRouteNames.driverInsightScreen,
+        builder: (context, state) => InsightScreen(),
+      ),
+      GoRoute(
         path: BGRouteNames.driverPaymentDetailsScreen,
         builder: (context, state) => const PaymentDetailsScreen(),
       ),
@@ -96,6 +102,10 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverAccountScreen,
         builder: (context, state) => const AccountScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverWithdrawEarningScreen,
+        builder: (context, state) => const WithdrawEarningsScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverVerification,
@@ -209,6 +219,9 @@ class BGRouteNames {
       '/driver/payment-details-edit-screen';
   static const String driverDocumentEdit = '/driver/document-edit-screen';
   static const String vehicleInformation = '/driver/vehicle-information-screen';
+  static const String driverInsightScreen = '/driver/insight-screen';
+  static const String driverWithdrawEarningScreen =
+      '/driver/withdraw-earning-screen';
   static const String vehicleDocumentScreen =
       '/driver/vehicle-documents-screen';
   static const String vehicleDocumentEditScreen =
