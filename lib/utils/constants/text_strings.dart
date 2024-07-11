@@ -314,4 +314,6 @@ class TTexts {
   static const String earningViewAnalysisTitle = 'View analysis';
   static const String earningTargetSubTitle =
       'Set daily, weekly or monthly ride target';
+
+  static const String TARGET = 'TARGET';
 }

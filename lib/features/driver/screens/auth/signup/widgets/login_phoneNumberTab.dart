@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
@@ -13,7 +14,6 @@ import '../../../../../../routing/driver_routing.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
-import '../../../verification/driver_verification_screen.dart';
 
 final phoneNumberText = StateProvider(
   (ref) => '',
@@ -54,9 +54,8 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                   validator: (value) async {
                     return TValidator.validatePhoneNumber(value);
                   },
-                  onChanged: (value) => ref
-                      .read(phoneNumberText.notifier)
-                      .state = value.completeNumber,
+                  onChanged: (value) =>
+                      ref.read(phoneNumberText.notifier).state = value.number,
                   decoration: const InputDecoration(
                     suffixIcon: Icon(
                       Iconsax.close_circle,
@@ -124,39 +123,35 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    log('${_formKey.currentState?.validate()}');
-                    () {
-                      String userInput = state.textFieldController.text;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DriverVerificationScreen(
-                            userInput: userInput,
-                          ),
-                        ),
-                      );
-                      final path = Uri(
-                          path: BGRouteNames.driverVerification,
-                          queryParameters: {
-                            'userInput': userInput,
-                          }).toString();
-                      context.go(path);
-                    };
+                    () {};
 
-                    if (!ref.read(phoneNumberText).startsWith('+234')) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Enter a valid Nigerian number',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
+                    log(ref.read(phoneNumberText));
+
+                    if ((_formKey.currentState?.validate() ?? false)
+
+                        ///TODO: get backend to fix issue with +234 with numbers
+
+                        //&&
+                        // validatePhoneText(ref, context)
+
+                        ) {
+                      final target = {
+                        'phone': '0${ref.read(phoneNumberText)}',
+                      };
+                      provider.onAuthAction(target: target).then(
+                        (otpGeneratedSuccessfully) {
+                          if (otpGeneratedSuccessfully) {
+                            final path = Uri(
+                              path: BGRouteNames.driverVerification,
+                              queryParameters: {
+                               TTexts.TARGET: jsonEncode(target),
+                              },
+                            ).toString();
+                            context.go(path);
+                          }
+                        },
                       );
                     }
-
-                    provider.onAuthAction(target: {
-                      'phone': ref.read(phoneNumberText),
-                    });
                   },
                   child: const Text(TTexts.loginContinueButtonTitle),
                 ),
@@ -195,5 +190,20 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  bool validatePhoneText(WidgetRef ref, BuildContext context) {
+    if (!ref.read(phoneNumberText).startsWith('+234')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Enter a valid Nigerian number',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      );
+      return false;
+    }
+    return true;
   }
 }

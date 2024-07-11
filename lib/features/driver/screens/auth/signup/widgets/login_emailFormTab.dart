@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
@@ -121,8 +121,6 @@ class LoginEmailFormTab extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    _formKey.currentState?.validate();
-
                     () {
                       String emailInput = _emailController.text;
 
@@ -134,10 +132,24 @@ class LoginEmailFormTab extends ConsumerWidget {
                       context.go(path);
                     };
 
-                    log('Text: ${state.textFieldController.text}');
-                    provider.onAuthAction(
-                      target: {'email': state.textFieldController.text},
-                    );
+                    if (_formKey.currentState?.validate() ?? false) {
+                      final target = {
+                        'email': state.textFieldController.text,
+                      };
+                      provider.onAuthAction(target: target).then(
+                        (otpGeneratedSuccessfully) {
+                          if (otpGeneratedSuccessfully) {
+                            final path = Uri(
+                              path: BGRouteNames.driverVerification,
+                              queryParameters: {
+                                TTexts.TARGET: jsonEncode(target),
+                              },
+                            ).toString();
+                            context.go(path);
+                          }
+                        },
+                      );
+                    }
                   },
                   child: const Text(TTexts.loginContinueButtonTitle),
                 ),

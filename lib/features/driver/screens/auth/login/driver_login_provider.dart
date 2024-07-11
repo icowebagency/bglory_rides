@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
+import 'package:bglory_rides/utils/secrets/apiConstants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../auth_provider/auth_state.dart';
@@ -20,26 +21,24 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
 
   @override
   Future<bool> onAuthAction({required Map<String, String> target}) async {
-    assert(target['phone'] == null && target['email'] == null);
+    assert(target['phone'] != null || target['email'] != null,
+        'Either phone or email must be present');
 
     log('$target');
 
-    // state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoading: true);
 
-    // final result = await driverRepositoryContract.requestOtp(
-    //   target: {
-    //     target: state.textFieldController.text,
-    //   },
-    // );
-    // state = state.copyWith(isLoading: false);
+    final result = await driverRepositoryContract.requestOtp(
+      target: target,
+    );
+    state = state.copyWith(isLoading: false);
 
-    // if (result is Failure) {
-    //   log('OTP Generation Failed');
-    //   return false;
-    // } else {
-    //   log('OTP Generated Passed');
-    //   return true;
-    // }
-    return false;
+    if (result is Failure) {
+      log('OTP Generation Failed');
+      return false;
+    } else {
+      log('OTP Generated Passed');
+      return true;
+    }
   }
 }
