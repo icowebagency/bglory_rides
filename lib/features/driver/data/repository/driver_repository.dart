@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
+import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 
 import '../../../../utils/secrets/apiConstants.dart';
 
@@ -58,7 +59,7 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     if (result is Success) {
       return Success(
         data: DriverData.fromJson(
-          jsonDecode(result.data)['data']['profile'],
+          result.data['data']['profile'],
         ),
       );
     } else {
@@ -83,13 +84,15 @@ class DriverRepositoryImp implements DriverRepositoryContract {
   Future<Object> verifyOtp(
       {required Map<String, String> target, required String otp}) async {
     final result = await _apiClientContract.verifyOtp(target: target, otp: otp);
-
     if (result is Success) {
       return Success(
-        data: 'Otp has been sent',
+        data: LoginResponse.fromJson(
+          result.data,
+        ),
       );
     } else {
-      return result as Failure;
+      final failure = result as Failure;
+      return failure;
     }
   }
 }

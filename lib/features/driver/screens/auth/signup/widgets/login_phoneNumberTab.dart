@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
 
-final phoneNumberText = StateProvider(
+final _phoneNumberText = StateProvider(
   (ref) => '',
 );
 
@@ -28,6 +28,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.read(driverLoginStateNotifierProvider.notifier);
     final state = ref.watch(driverLoginStateNotifierProvider);
+
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -55,7 +56,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                     return TValidator.validatePhoneNumber(value);
                   },
                   onChanged: (value) =>
-                      ref.read(phoneNumberText.notifier).state = value.number,
+                      ref.read(_phoneNumberText.notifier).state = value.number,
                   decoration: const InputDecoration(
                     suffixIcon: Icon(
                       Iconsax.close_circle,
@@ -125,20 +126,21 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                   onPressed: () {
                     () {};
 
-                    log(ref.read(phoneNumberText));
-
                     if ((_formKey.currentState?.validate() ?? false)
 
                         ///TODO: get backend to fix issue with +234 with numbers
 
-                        //&&
-                        // validatePhoneText(ref, context)
-
-                        ) {
+                        &&
+                        validatePhoneText(ref, context)) {
                       final target = {
-                        'phone': '0${ref.read(phoneNumberText)}',
+                        'phone': '0${ref.read(_phoneNumberText)}',
                       };
-                      provider.onAuthAction(target: target).then(
+                      provider
+                          .onAuthAction(
+                        target: target,
+                        onError: NotificationUtil.showErrorNotification,
+                      )
+                          .then(
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
@@ -193,7 +195,8 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
   }
 
   bool validatePhoneText(WidgetRef ref, BuildContext context) {
-    if (!ref.read(phoneNumberText).startsWith('+234')) {
+    // if (!ref.read(_phoneNumberText).startsWith('+234') ) {
+    if (ref.read(_phoneNumberText).length < 11) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(

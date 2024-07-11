@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -121,22 +122,16 @@ class LoginEmailFormTab extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    () {
-                      String emailInput = _emailController.text;
-
-                      final path = Uri(
-                          path: BGRouteNames.driverVerification,
-                          queryParameters: {
-                            'email': emailInput,
-                          }).toString();
-                      context.go(path);
-                    };
-
                     if (_formKey.currentState?.validate() ?? false) {
                       final target = {
                         'email': state.textFieldController.text,
                       };
-                      provider.onAuthAction(target: target).then(
+                      provider
+                          .onAuthAction(
+                        target: target,
+                        onError: NotificationUtil.showErrorNotification,
+                      )
+                          .then(
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
