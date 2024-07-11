@@ -10,10 +10,9 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 
 class DriverVerificationScreen extends StatefulWidget {
-  const DriverVerificationScreen({super.key, this.userInput, this.emailInput});
+  const DriverVerificationScreen({super.key, this.target});
 
-  final String? userInput;
-  final String? emailInput;
+  final dynamic target;
 
   @override
   State<DriverVerificationScreen> createState() =>
@@ -23,9 +22,11 @@ class DriverVerificationScreen extends StatefulWidget {
 class _DriverVerificationScreenState extends State<DriverVerificationScreen> {
   @override
   Widget build(BuildContext context) {
-    String displayInput = widget.emailInput?.isNotEmpty == true
-        ? widget.emailInput!
-        : '+234${widget.userInput}';
+
+
+    String displayInput = widget.target?['email']?.isNotEmpty ?? false == true
+        ? widget.target!['email']!
+        : widget.target!['phone']!;
     return Scaffold(
       body: SafeArea(
         child: Padding(

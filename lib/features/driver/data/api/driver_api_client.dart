@@ -48,7 +48,8 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
 
   @override
   Future requestOtp({required Map<String, String> target}) async {
-    assert(target['phone'] == null && target['email'] == null);
+    assert(target['phone'] != null || target['email'] != null,
+        'Either phone or email must be present');
     var request = MultipartApiRequest('POST', Uri.parse(sendOtpEndpoint));
     request.fields.addAll(target);
 

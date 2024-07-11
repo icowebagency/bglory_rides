@@ -1,20 +1,20 @@
+import 'package:bglory_rides/features/driver/screens/auth/signup/widgets/signup_email_form_tab.dart';
+import 'package:bglory_rides/features/driver/screens/auth/signup/widgets/signup_phoneNumber_form.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
-import '../signup/widgets/login_emailFormTab.dart';
-import '../signup/widgets/login_phoneNumberTab.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
 
-class DriverLoginScreen extends StatefulWidget {
-  const DriverLoginScreen({super.key});
+class DriverSignup extends StatefulWidget {
+  const DriverSignup({super.key});
 
   @override
-  State<DriverLoginScreen> createState() => _DriverLoginScreenState();
+  State<DriverSignup> createState() => _DriverSignupState();
 }
 
-class _DriverLoginScreenState extends State<DriverLoginScreen> {
+class _DriverSignupState extends State<DriverSignup> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -40,11 +40,11 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                   height: TSizes.spaceBtwSections,
                 ),
                 Text(
-                  TTexts.loginDriverTitle,
+                  TTexts.signupDriverTitle,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Text(
-                  TTexts.loginDriverSubTitle,
+                  TTexts.signupDriverSubTitle,
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
                         color: TColors.darkGrey,
                       ),
@@ -71,10 +71,10 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                 Expanded(
                   child: TabBarView(children: [
                     ///  Email Tab
-                    LoginEmailFormTab(),
+                    EmailFormTab(),
 
                     ///  Phone Number Tab
-                    LoginPhoneNumberFormTab(),
+                    PhoneNumberFormTab(),
                   ]),
                 ),
               ],

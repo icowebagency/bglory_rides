@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../routing/driver_routing.dart';
@@ -12,21 +12,24 @@ import 'dot_navigation.dart';
 import 'onboarding_controller.dart';
 import 'onboarding_page.dart';
 
-class OnboardingScreen extends StatefulWidget {
+class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
   static const path = '/';
   static const name = 'onboarding';
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  ConsumerState<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    final controller = Get.put(OnBoardingController());
+    final pageController = ref.watch(onboardingControllerProvider.select(
+      (value) => value.pageController,
+    ));
+    final controller = ref.read(onboardingControllerProvider.notifier);
     return Scaffold(
       backgroundColor: dark ? TColors.dark : TColors.light,
       body: SafeArea(
@@ -52,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   Expanded(
                     child: PageView(
-                      controller: controller.pageController,
+                      controller: pageController,
                       onPageChanged: controller.updatePageIndicator,
                       children: const [
                         OnboardingPage(
