@@ -1,21 +1,28 @@
+import 'dart:developer';
+
+import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../routing/driver_routing.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../../routing/driver_routing.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/constants/text_strings.dart';
 
-class PhoneNumberFormTab extends StatelessWidget {
-  PhoneNumberFormTab({super.key});
+class LoginEmailFormTab extends ConsumerWidget {
+  LoginEmailFormTab({super.key});
+  final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _phoneNumbercontroller = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.read(driverLoginStateNotifierProvider.notifier);
+    final state = ref.watch(driverLoginStateNotifierProvider);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -28,33 +35,41 @@ class PhoneNumberFormTab extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections * 2,
               ),
-              const Text(TTexts.phoneNo),
+              const Text(TTexts.email),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              // Phone Number Section
-              IntlPhoneField(
-                onTap: () {
-                  _phoneNumbercontroller.clear();
-                },
-                controller: _phoneNumbercontroller,
-                autofocus: true,
-                cursorColor: TColors.primary,
-                decoration: const InputDecoration(
-                  suffixIcon: Icon(
-                    Iconsax.close_circle,
-                  ),
-                  hintText: TTexts.signupPhoneHintText,
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                    color: TColors.primary,
-                  )),
-                  labelText: TTexts.phoneNo,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(),
+              Center(
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    controller: state.textFieldController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: TValidator.validateEmail,
+                    decoration: InputDecoration(
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          state.textFieldController.clear();
+                        },
+                        child: const Icon(
+                          Iconsax.close_circle,
+                        ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: TColors.primary),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: TColors.primary.withOpacity(0.3),
+                        ),
+                      ),
+                      hintText: TTexts.driverHintText,
+                      hintStyle: Theme.of(context).textTheme.bodySmall!.apply(
+                            color: TColors.darkGrey,
+                          ),
+                    ),
                   ),
                 ),
-                initialCountryCode: 'NG',
               ),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
@@ -106,23 +121,25 @@ class PhoneNumberFormTab extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    String userInput = _phoneNumbercontroller.text;
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => DriverVerificationScreen(
-                    //       userInput: userInput,
-                    //     ),
-                    //   ),
-                    // );
-                    final path = Uri(
-                        path: BGRouteNames.driverVerification,
-                        queryParameters: {
-                          'userInput': userInput,
-                        }).toString();
-                    context.go(path);
+                    _formKey.currentState?.validate();
+
+                    () {
+                      String emailInput = _emailController.text;
+
+                      final path = Uri(
+                          path: BGRouteNames.driverVerification,
+                          queryParameters: {
+                            'email': emailInput,
+                          }).toString();
+                      context.go(path);
+                    };
+
+                    log('Text: ${state.textFieldController.text}');
+                    provider.onAuthAction(
+                      target: {'email': state.textFieldController.text},
+                    );
                   },
-                  child: const Text(TTexts.createAccount),
+                  child: const Text(TTexts.loginContinueButtonTitle),
                 ),
               ),
               const SizedBox(
@@ -136,15 +153,10 @@ class PhoneNumberFormTab extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     (context),
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const DriverLoginScreen()));
-
-                      context.go(BGRouteNames.driverLogin);
+                      context.go(BGRouteNames.driverSignup);
                     },
                     child: Text(
-                      TTexts.signIn,
+                      TTexts.createAccount,
                       style: Theme.of(context).textTheme.bodyLarge!.apply(
                             color: TColors.linkBlueColor,
                           ),

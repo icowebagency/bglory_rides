@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../routing/driver_routing.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../../routing/driver_routing.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/constants/text_strings.dart';
 
 class EmailFormTab extends StatelessWidget {
   EmailFormTab({super.key});

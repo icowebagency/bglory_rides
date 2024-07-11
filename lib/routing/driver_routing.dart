@@ -18,8 +18,8 @@ import '../features/driver/screens/home/account/account.dart';
 import '../features/driver/screens/home/account/drivers_document/driver_document.dart';
 import '../features/driver/screens/home/account/profile/profile.dart';
 import '../features/driver/screens/home/account/profile/profile_edit.dart';
-import '../features/driver/screens/login/driver_login_screen.dart';
-import '../features/driver/screens/signup/signup.dart';
+import '../features/driver/screens/auth/login/driver_login_screen.dart';
+import '../features/driver/screens/auth/signup/signup.dart';
 import '../features/driver/screens/verification/driver_guildelines_screens/driver_exterior_picture_guidline.dart';
 import '../features/driver/screens/verification/driver_guildelines_screens/driver_interior_picture_guideline.dart';
 import '../features/driver/screens/verification/driver_guildelines_screens/driver_license_guildline.dart';
@@ -36,7 +36,7 @@ import '../features/onboarding/onboarding.dart';
 
 class DriverRouting {
   static final GoRouter router = GoRouter(
-    initialLocation: BGRouteNames.driverHomePageScreen,
+    initialLocation: BGRouteNames.driverOnboarding,
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
