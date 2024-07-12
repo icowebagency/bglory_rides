@@ -30,6 +30,8 @@ class _DriverVehicleLicenseScreenState
             children: [
               const Center(
                 child: Image(
+                  width: 100,
+                  height: 100,
                   image: AssetImage(TImages.driverLogo),
                 ),
               ),
@@ -48,6 +50,7 @@ class _DriverVehicleLicenseScreenState
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
+                  color: TColors.containerBackgroundColor,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: TColors.grey,

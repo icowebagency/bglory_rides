@@ -169,7 +169,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
   }
 
   int currentStep = 0;
-  final int _totalSteps = 4;
+  final int _totalSteps = 5;
   final DateTime _selectedDate = DateTime.now();
 
   @override
@@ -186,7 +186,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
               children: [
                 const Center(
                   child: Image(
-                    width: 150,
+                    width: 100,
                     height: 100,
                     image: AssetImage(TImages.driverLogo),
                   ),
@@ -267,10 +267,20 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   TextFormField(
                                     keyboardType: TextInputType.name,
                                     decoration: InputDecoration(
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                       hintText: TTexts.fullNameHint,
                                       hintStyle:
                                           Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
                                     ),
                                   ),
@@ -293,8 +303,18 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                       hintText: TTexts.homeAddressHint,
                                       hintStyle:
                                           Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -312,11 +332,24 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   /// Date of birth
                                   TextFormField(
                                     controller: _dateOfBirth,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: 'Select Date Of Birth',
-                                      prefixIcon: const Icon(Iconsax.calendar),
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      prefixIcon: Icon(
+                                        Iconsax.calendar,
+                                        color: TColors.primary,
+                                      ),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                     readOnly: true,
                                     onTap: () async {
@@ -353,25 +386,23 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   ),
                                   ValidatedDropdown(
                                     dropdownColor: TColors.grey,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       hintText: TTexts.gender,
-                                      prefixIcon: const Icon(
+                                      prefixIcon: Icon(
                                         Icons.accessibility_new_rounded,
                                         color: TColors.primary,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              TColors.primary.withOpacity(0.3),
-                                        ),
-                                      ),
                                       filled: true,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color:
-                                              TColors.primary.withOpacity(0.3),
+                                          color: TColors.grey,
                                         ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
                                       ),
                                     ),
                                     icon: Icon(
@@ -407,8 +438,18 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                       hintText: TTexts.nextOfKinNamesubTitle,
                                       hintStyle:
                                           Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -430,8 +471,18 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                       hintText: TTexts.nextOfKinNumber,
                                       hintStyle:
                                           Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -481,8 +532,17 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   hintText: TTexts.driverlicenseNumberhint,
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -500,11 +560,23 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                               TextFormField(
                                 controller: _date,
                                 keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   labelText: 'Select Date',
-                                  prefixIcon: const Icon(Iconsax.calendar),
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  prefixIcon: Icon(
+                                    Iconsax.calendar,
+                                    color: TColors.primary,
+                                  ),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                                 readOnly: true,
                                 onTap: () async {
@@ -583,23 +655,22 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                               DropdownButtonFormField(
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Iconsax.car,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
                                   filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -636,23 +707,22 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                               DropdownButtonFormField(
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Iconsax.car,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
                                   filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -689,23 +759,22 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                               DropdownButtonFormField(
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Iconsax.car,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  filled: true,
+                                  fillColor: TColors.containerBackgroundColor,
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
                                   ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -745,8 +814,17 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   hintText: 'e.g White',
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
 
@@ -768,8 +846,17 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   hintText: 'AA123BBB',
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -915,7 +1002,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                         title: const Text(''),
                         content: Padding(
                           padding: const EdgeInsets.symmetric(
-                            vertical: 20,
+                            vertical: 10,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -929,6 +1016,9 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                       .headlineMedium,
                                 ),
                               ),
+                              const SizedBox(
+                                height: TSizes.spaceBtwSections,
+                              ),
 
                               /// Bank Name
                               Text(
@@ -939,26 +1029,26 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                 height: TSizes.spaceBtwItems,
                               ),
                               DropdownButtonFormField(
+                                isExpanded: true,
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Iconsax.bank,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
+                                  filled: true,
+                                  fillColor: TColors.containerBackgroundColor,
                                 ),
                                 icon: Icon(
                                   Iconsax.arrow_down_14,
@@ -1003,8 +1093,17 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   hintText: TTexts.driverBankHolderNameHint,
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -1028,8 +1127,17 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   hintText: TTexts.driverBankHolderNumberHint,
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   filled: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
