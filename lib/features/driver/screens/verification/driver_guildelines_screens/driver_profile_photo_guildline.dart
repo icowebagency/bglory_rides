@@ -33,7 +33,7 @@ class _DriverProfileUploadGuidelineScreenState
             children: [
               const Center(
                 child: Image(
-                  width: 150,
+                  width: 100,
                   height: 100,
                   image: AssetImage(TImages.driverLogo),
                 ),
@@ -49,6 +49,7 @@ class _DriverProfileUploadGuidelineScreenState
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
+                  color: TColors.containerBackgroundColor,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: TColors.grey,
