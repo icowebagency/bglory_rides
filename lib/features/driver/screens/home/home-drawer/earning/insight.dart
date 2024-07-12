@@ -1,6 +1,6 @@
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/first_tab.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/second_tab.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/third_tab.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/daily.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/monthly.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/tabs/weekly.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';

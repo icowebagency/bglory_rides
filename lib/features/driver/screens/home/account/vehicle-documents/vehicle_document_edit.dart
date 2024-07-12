@@ -34,6 +34,7 @@ class _VehicleDocumentsEditScreenState
             vertical: 20,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // vehicle document sub title
               const Text(TTexts.vehicleDocumentSubTitle),
@@ -41,38 +42,9 @@ class _VehicleDocumentsEditScreenState
                 height: TSizes.spaceBtwSections,
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  //  vehicle document header title
-                  const Text(
-                    TTexts.vehicleDocumentTitle,
-                  ),
-                  //  vehicle document upload notification
-                  FittedBox(
-                    child: Row(
-                      children: [
-                        FittedBox(
-                          child: Text(
-                            TTexts.driverUploadNotification,
-                            style: Theme.of(context).textTheme.bodySmall!.apply(
-                                  overflow: TextOverflow.ellipsis,
-                                  color: TColors.primary,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Icon(
-                          Icons.verified_outlined,
-                          color: TColors.primary,
-                          size: 15,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              Text(
+                TTexts.vehicleDocumentTitle,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
                 height: TSizes.spaceBtwItems,

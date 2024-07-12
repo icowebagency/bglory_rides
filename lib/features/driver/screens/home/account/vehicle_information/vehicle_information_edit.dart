@@ -141,276 +141,319 @@ class _VehicleInformationEditScreenState
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(TTexts.vehicleInformationSubTitle),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Text(
-                TTexts.vehicleInformationAppBarTitle,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwInputFields,
-              ),
-              Container(
-                width: width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: TColors.white,
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(TTexts.vehicleInformationSubTitle),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        TTexts.vehicleManufacturerTitle,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwInputFields,
-                      ),
-                      DropdownButtonFormField(
-                        elevation: 0,
-                        dropdownColor: TColors.grey,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          hintText: 'Select one',
-                          errorBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          filled: true,
-                          fillColor: TColors.containerBackgroundColor,
-                        ),
-                        icon: const Icon(
-                          Iconsax.arrow_down_14,
-                          color: TColors.black,
-                        ),
-                        value: _vehicleSelectedValue,
-                        items: _vehicleList
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
+                Text(
+                  TTexts.vehicleInformationAppBarTitle,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwInputFields,
+                ),
+                Container(
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: TColors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          TTexts.vehicleManufacturerTitle,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
                               ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          setState(() {
-                            _vehicleSelectedValue = val;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        TTexts.vehicleModelTitle,
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwInputFields,
-                      ),
-                      DropdownButtonFormField(
-                        elevation: 0,
-                        dropdownColor: TColors.grey,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          hintText: 'Select one',
-                          errorBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          filled: true,
-                          fillColor: TColors.containerBackgroundColor,
                         ),
-                        icon: const Icon(
-                          Iconsax.arrow_down_14,
-                          color: TColors.black,
+                        const SizedBox(
+                          height: TSizes.spaceBtwInputFields,
                         ),
-                        value: _modelSelectedValue,
-                        items: _allVehicleModels
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
+                        DropdownButtonFormField(
+                          isExpanded: true,
+                          elevation: 0,
+                          dropdownColor: TColors.grey,
+                          decoration: const InputDecoration(
+                            hintText: 'Select one',
+                            errorBorder: InputBorder.none,
+                            fillColor: TColors.containerBackgroundColor,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.grey,
                               ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          setState(() {
-                            _modelSelectedValue = val;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        'Vehicle Year',
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
                             ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwInputFields,
-                      ),
-                      DropdownButtonFormField(
-                        elevation: 0,
-                        dropdownColor: TColors.grey,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          hintText: 'Select one',
-                          errorBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          filled: true,
-                          fillColor: TColors.containerBackgroundColor,
-                        ),
-                        icon: const Icon(
-                          Iconsax.arrow_down_14,
-                          color: TColors.black,
-                        ),
-                        value: _yearSelectedValue,
-                        items: _yearList
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
                               ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          setState(() {
-                            _yearSelectedValue = val as String?;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        'Vehicle Color',
-                        style: Theme.of(context).textTheme.titleLarge!.apply(
-                              color: TColors.grey,
                             ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwInputFields,
-                      ),
-                      DropdownButtonFormField(
-                        elevation: 0,
-                        dropdownColor: TColors.grey,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          hintText: 'Select one',
-                          errorBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          filled: true,
-                          fillColor: TColors.containerBackgroundColor,
+                            filled: true,
+                          ),
+                          icon: const Icon(
+                            Iconsax.arrow_down_14,
+                            color: TColors.primary,
+                          ),
+                          value: _vehicleSelectedValue,
+                          items: _vehicleList
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _vehicleSelectedValue = val;
+                            });
+                          },
                         ),
-                        icon: const Icon(
-                          Iconsax.arrow_down_14,
-                          color: TColors.black,
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
                         ),
-                        value: _colorSelectedValue,
-                        items: _colorList
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
+                        Text(
+                          TTexts.vehicleModelTitle,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
                               ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          setState(() {
-                            _colorSelectedValue = val;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Text(
-                        TTexts.vehicleNumberTitle,
-                        style: Theme.of(context).textTheme.bodyLarge!.apply(
-                              color: TColors.grey,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwInputFields,
-                      ),
-                      TextFormField(
-                        maxLines: 1,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: TTexts.vehicleNumber,
-                          hintStyle: Theme.of(context).textTheme.bodySmall,
-                          fillColor: TColors.grey.withOpacity(0.1),
-                          filled: true,
                         ),
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Row(
-                        children: [
-                          const Icon(Icons.photo_library_outlined),
-                          const SizedBox(
-                            width: 10,
+                        const SizedBox(
+                          height: TSizes.spaceBtwInputFields,
+                        ),
+                        DropdownButtonFormField(
+                          isExpanded: true,
+                          elevation: 0,
+                          dropdownColor: TColors.grey,
+                          decoration: const InputDecoration(
+                            hintText: 'Select one',
+                            errorBorder: InputBorder.none,
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
                           ),
-                          Text(
-                            TTexts.vehicleExteriorDemoText,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                          icon: const Icon(
+                            Iconsax.arrow_down_14,
+                            color: TColors.primary,
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      DriverInfoUploadWidget(
-                        onTapNav: () {},
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Row(
-                        children: [
-                          const Icon(Icons.photo_library_outlined),
-                          const SizedBox(
-                            width: 10,
+                          value: _modelSelectedValue,
+                          items: _allVehicleModels
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _modelSelectedValue = val;
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          'Vehicle Year',
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwInputFields,
+                        ),
+                        DropdownButtonFormField(
+                          isExpanded: true,
+                          elevation: 0,
+                          dropdownColor: TColors.grey,
+                          decoration: const InputDecoration(
+                            hintText: 'Select one',
+                            errorBorder: InputBorder.none,
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor,
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
                           ),
-                          Text(
-                            TTexts.vehicleInteriorDemoText,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                          icon: const Icon(
+                            Iconsax.arrow_down_14,
+                            color: TColors.primary,
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      DriverInfoUploadWidget(
-                        onTapNav: () {},
-                      ),
-                    ],
+                          value: _yearSelectedValue,
+                          items: _yearList
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _yearSelectedValue = val;
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          TTexts.vehicleColorTitle,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwInputFields,
+                        ),
+                        DropdownButtonFormField(
+                          isExpanded: true,
+                          elevation: 0,
+                          dropdownColor: TColors.grey,
+                          decoration: const InputDecoration(
+                            hintText: 'Select one',
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
+                          ),
+                          icon: const Icon(
+                            Iconsax.arrow_down_14,
+                            color: TColors.primary,
+                          ),
+                          value: _colorSelectedValue,
+                          items: _colorList
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _colorSelectedValue = val;
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Text(
+                          TTexts.vehicleNumberTitle,
+                          style: Theme.of(context).textTheme.bodyLarge!.apply(
+                                color: TColors.grey,
+                              ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwInputFields,
+                        ),
+                        TextFormField(
+                          maxLines: 1,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                            hintText: TTexts.vehicleNumber,
+                            hintStyle: Theme.of(context).textTheme.bodySmall,
+                            fillColor: TColors.containerBackgroundColor,
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
+                            filled: true,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(Icons.photo_library_outlined),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              TTexts.vehicleExteriorDemoText,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        DriverInfoUploadWidget(
+                          onTapNav: () {},
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(Icons.photo_library_outlined),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              TTexts.vehicleInteriorDemoText,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        DriverInfoUploadWidget(
+                          onTapNav: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SaveGeneralButtonWidget(onTap: () {
-                context.go(BGRouteNames.driverAccountScreen);
-              }),
-            ],
+                SaveGeneralButtonWidget(onTap: () {
+                  context.go(BGRouteNames.driverAccountScreen);
+                }),
+              ],
+            ),
           ),
         ),
       ),

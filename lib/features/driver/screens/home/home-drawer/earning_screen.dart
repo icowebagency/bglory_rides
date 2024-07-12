@@ -66,7 +66,10 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       ),
                       Expanded(
                         child: EarningOptionWidget(
-                          onTap: () {},
+                          onTap: () {
+                            context.push(
+                                BGRouteNames.driverTransactionHistoryScreen);
+                          },
                           earningIcon: Iconsax.activity,
                           containerText: TTexts.earningHistoryTitle,
                         ),
