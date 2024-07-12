@@ -195,7 +195,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                 Expanded(
                   child: Stepper(
                     connectorColor:
-                        const MaterialStatePropertyAll(TColors.primary),
+                        const WidgetStatePropertyAll(TColors.primary),
                     onStepContinue: continueStep,
                     onStepCancel: cancelStep,
                     onStepTapped: onStepTapped,

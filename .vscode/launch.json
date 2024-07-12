@@ -16,6 +16,16 @@
             "noDebug": true
         },
         {
+            "name": "BG Driver Debug",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_driver.dart",
+            "args": [
+                "--flavor",
+                "driver"
+            ],
+        },
+        {
             "name": "BG Rider",
             "request": "launch",
             "type": "dart",

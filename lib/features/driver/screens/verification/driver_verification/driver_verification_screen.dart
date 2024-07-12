@@ -1,5 +1,5 @@
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
-import 'package:bglory_rides/features/driver/screens/verification/provider/driver_verification_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_verification/driver_verification_provider.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +9,11 @@ import 'package:intl_phone_field/helpers.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../routing/driver_routing.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import '../../../../../routing/driver_routing.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
 
 final _otpFieldProvider = StateProvider(
   (ref) => '',

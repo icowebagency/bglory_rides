@@ -41,8 +41,8 @@ DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
       bank: json['bank'] as String?,
       bankAccountName: json['bankAccountName'] as String?,
       bankAccountNumber: json['bankAccountNumber'] as String?,
-      isProfileComplete: (json['isProfileComplete'] as num?)?.toInt(),
-      status: (json['status'] as num?)?.toInt(),
+      isProfileComplete: json['isProfileComplete'] as String?,
+      status: json['status'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

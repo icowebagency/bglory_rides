@@ -36,8 +36,8 @@ class DriverData {
   final String? bank;
   final String? bankAccountName;
   final String? bankAccountNumber;
-  final int? isProfileComplete;
-  final int? status;
+  final String? isProfileComplete;
+  final String? status;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -80,7 +80,10 @@ class DriverData {
     this.updatedAt,
   });
 
-  factory DriverData.fromJson(Map<String, dynamic> json) => _$DriverDataFromJson(json);
+  factory DriverData.fromJson(Map<String, dynamic> json) =>
+      _$DriverDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$DriverDataToJson(this);
+
+  bool get profileIsIncomplete => vehicleType == null;
 }
