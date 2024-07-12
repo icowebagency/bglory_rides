@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
@@ -17,8 +18,6 @@ import '../../../../../../utils/constants/text_strings.dart';
 class LoginEmailFormTab extends ConsumerWidget {
   LoginEmailFormTab({super.key});
   final _formKey = GlobalKey<FormState>();
-
-  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -137,7 +136,7 @@ class LoginEmailFormTab extends ConsumerWidget {
                             final path = Uri(
                               path: BGRouteNames.driverVerification,
                               queryParameters: {
-                                TTexts.TARGET: jsonEncode(target),
+                                KeyConstant.target: jsonEncode(target),
                               },
                             ).toString();
                             context.go(path);

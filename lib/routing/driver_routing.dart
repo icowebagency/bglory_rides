@@ -16,7 +16,7 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dar
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
-import 'package:bglory_rides/utils/constants/text_strings.dart';
+import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -36,8 +36,8 @@ import '../features/driver/screens/verification/driver_guildelines_screens/vehic
 import '../features/driver/screens/verification/driver_information_registration/driver_infomation_registration.dart';
 import '../features/driver/screens/verification/driver_information_registration/driver_option.dart';
 import '../features/driver/screens/verification/driver_verification/driver_verification_screen.dart';
-import '../features/driver/screens/verification/motocycle_category/driver_motocycle_information.dart';
 import '../features/driver/screens/verification/driver_verification_successful/successful_verification_screen.dart';
+import '../features/driver/screens/verification/motocycle_category/driver_motocycle_information.dart';
 import '../features/onboarding/onboarding.dart';
 
 final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
@@ -114,7 +114,7 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverVerification,
         builder: (context, state) => DriverVerificationScreen(
-          target: jsonDecode(state.uri.queryParameters[TTexts.TARGET]!),
+          target: jsonDecode(state.uri.queryParameters[KeyConstant.target]!),
         ),
       ),
       GoRoute(
