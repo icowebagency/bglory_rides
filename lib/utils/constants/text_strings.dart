@@ -315,7 +315,7 @@ class TTexts {
   static const String earningTargetSubTitle =
       'Set daily, weekly or monthly ride target';
 
-  static const String TARGET = 'TARGET';
+  
   // -- Earning Insight Screen
   static const String insightAppBarTitle = 'Balance';
   static const String insightSubTitle = 'Current Balance';

@@ -737,53 +737,23 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
 
                               /// Vehicle Color
                               Text(
-                                TTexts.driverVehicleYearTitle,
+                                TTexts.vehicleColorTitle,
                                 style: Theme.of(context).textTheme.titleLarge,
                               ),
                               const SizedBox(
                                 height: TSizes.spaceBtwItems,
                               ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
+                              TextFormField(
+                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.car,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
+                                  hintText: 'e.g White',
+                                  hintStyle:
+                                      Theme.of(context).textTheme.bodySmall,
                                   fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
+                                  filled: true,
                                 ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _vehicleSelectedValue,
-                                items: _vehicleList
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                  });
-                                },
                               ),
+
                               const SizedBox(
                                 height: TSizes.spaceBtwSections,
                               ),
