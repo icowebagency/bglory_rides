@@ -23,6 +23,15 @@ class _AccountScreenState extends State<AccountScreen> {
       backgroundColor: const Color(0xffF7F7F7),
       appBar: AppBar(
         automaticallyImplyLeading: true,
+        leading: IconButton(
+          onPressed: () {
+            context.go(BGRouteNames.driverHomePageScreen);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+          ),
+        ),
         centerTitle: true,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,

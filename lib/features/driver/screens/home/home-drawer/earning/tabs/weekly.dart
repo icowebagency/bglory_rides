@@ -1,5 +1,13 @@
+import 'package:bglory_rides/utils/constants/colors.dart';
+import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../../../routing/driver_routing.dart';
+import '../../../../../../../utils/constants/text_strings.dart';
+import '../../../../../general-widgets/save_button_general_widget.dart';
+import '../widgets/table_tab_widget.dart';
 
 class SecondTab extends StatefulWidget {
   const SecondTab({Key? key}) : super(key: key);
@@ -41,7 +49,10 @@ class _SecondTabState extends State<SecondTab> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.arrow_left),
+              icon: const Icon(
+                Icons.keyboard_arrow_left_rounded,
+                color: TColors.primary,
+              ),
               onPressed: _onArrowLeft,
             ),
             SizedBox(
@@ -83,10 +94,38 @@ class _SecondTabState extends State<SecondTab> {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.arrow_right),
+              icon: const Icon(
+                Icons.keyboard_arrow_right_rounded,
+                color: TColors.primary,
+              ),
               onPressed: _onArrowRight,
             ),
           ],
+        ),
+        const TabTableWidget(
+          firstText: TTexts.firstTabInAppPaymentTitle,
+          lastText: TTexts.firstTabInAppPaymentPrice,
+        ),
+        const TabTableWidget(
+          firstText: TTexts.firstTabCashPaymentTitle,
+          lastText: TTexts.firstTabCashPaymentPrice,
+        ),
+        const TabTableWidget(
+          firstText: TTexts.firstTabCommissionTitle,
+          lastText: TTexts.firstTabCashPaymentPrice,
+        ),
+        const TabTableWidget(
+          firstText: TTexts.firstTabYouEarnedTitle,
+          lastText: TTexts.firstTabYouEarnedPrice,
+          dividerColor: Colors.transparent,
+          subText: TTexts.firstTabSubCommissionText,
+        ),
+        const SizedBox(height: TSizes.spaceBtwSections),
+        SaveGeneralButtonWidget(
+          onTap: () {
+            context.push(BGRouteNames.driverWithdrawEarningScreen);
+          },
+          buttonText: TTexts.firstTabWithdrawEarningBtnText,
         ),
       ],
     );

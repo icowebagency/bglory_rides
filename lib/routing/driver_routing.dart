@@ -10,6 +10,7 @@ import 'package:bglory_rides/features/driver/screens/home/account/vehicle_inform
 import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
@@ -86,6 +87,10 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverInsightScreen,
         builder: (context, state) => const InsightScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverTransactionHistoryScreen,
+        builder: (context, state) => const TransactionHistory(),
       ),
       GoRoute(
         path: BGRouteNames.driverPaymentDetailsScreen,
@@ -224,6 +229,8 @@ class BGRouteNames {
   static const String driverDocumentEdit = '/driver/document-edit-screen';
   static const String vehicleInformation = '/driver/vehicle-information-screen';
   static const String driverInsightScreen = '/driver/insight-screen';
+  static const String driverTransactionHistoryScreen =
+      '/driver/transaction-history-screen';
   static const String driverWithdrawEarningScreen =
       '/driver/withdraw-earning-screen';
   static const String vehicleDocumentScreen =

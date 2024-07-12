@@ -315,7 +315,6 @@ class TTexts {
   static const String earningTargetSubTitle =
       'Set daily, weekly or monthly ride target';
 
-  
   // -- Earning Insight Screen
   static const String insightAppBarTitle = 'Balance';
   static const String insightSubTitle = 'Current Balance';
@@ -345,4 +344,26 @@ class TTexts {
   static const String withdrawPinText = 'Enter pin';
   static const String withdrawPaymentHint =
       '0209004644 - Awoyemi Damola - GT Bank';
+
+  // Transaction History
+  static const String transactionHistoryAppBarTitle = 'Transaction history';
+  static const String transactionHistoryTitle = 'Transactions';
+  static const String transactionHistorySuccessTitle = 'Successful';
+  static const String transactionHistoryUnSuccessTitle = 'Unsuccessful';
+  static const String transactionHistoryPendingTitle = 'Pending';
+  static const String transactionHistoryFailedTitle = 'Failed';
+  static const String transactionHistoryYesterdayTitle = 'Yesterday';
+  static const String transactionHistoryDateTitle = '29 May';
+  static const String transactionHistoryDateOneTitle = '28 May';
+  static const String transactionHistoryDateTwoTitle = '27 May';
+  static const String transactionHistoryDateThreeTitle = '26 May';
+  static const String transactionHistoryDateFourTitle = '25 May';
+  static const String transactionHistoryEarningWithdrawalTitle =
+      'Earnings withdrawal';
+  static const String transactionHistoryEarningWithdrawalPrice = '₦95,000';
+  static const String transactionHistoryEarningWithdrawalOnePrice = '₦25,000';
+  static const String transactionHistoryEarningWithdrawalTwoPrice = '₦138,000';
+  static const String transactionHistoryEarningWithdrawalThreePrice = '₦8,520';
+  static const String transactionHistoryEarningWithdrawalFourPrice = '₦193,000';
+  static const String transactionHistoryEarningWithdrawalFivePrice = '₦78,200';
 }
