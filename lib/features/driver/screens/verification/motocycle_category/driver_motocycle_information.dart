@@ -1,9 +1,9 @@
+import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../common/widgets/motorcycle_upload_information_widget.dart';
 import '../../../../../routing/driver_routing.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
@@ -164,7 +164,7 @@ class _DriverMotorcycleInformationState
   }
 
   int currentStep = 0;
-  final int _totalSteps = 3;
+  final int _totalSteps = 4;
   final DateTime _selectedDate = DateTime.now();
 
   @override
@@ -181,7 +181,7 @@ class _DriverMotorcycleInformationState
               children: [
                 const Center(
                   child: Image(
-                    width: 150,
+                    width: 100,
                     height: 100,
                     image: AssetImage(TImages.driverLogo),
                   ),
@@ -212,6 +212,7 @@ class _DriverMotorcycleInformationState
                           children: [
                             Center(
                               child: Text(
+                                textAlign: TextAlign.center,
                                 TTexts.driverlicenseTitle,
                                 style:
                                     Theme.of(context).textTheme.headlineMedium,
@@ -240,8 +241,18 @@ class _DriverMotorcycleInformationState
                                           .driverMotocyclelicenseNumberhint,
                                       hintStyle:
                                           Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -251,11 +262,24 @@ class _DriverMotorcycleInformationState
                                   /// Date of birth
                                   TextFormField(
                                     controller: _dateOfBirth,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: 'Select Date Of Birth',
-                                      prefixIcon: const Icon(Iconsax.calendar),
-                                      fillColor: TColors.grey.withOpacity(0.4),
+                                      prefixIcon: Icon(
+                                        Iconsax.calendar,
+                                        color: TColors.primary,
+                                      ),
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
                                       filled: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
                                     ),
                                     readOnly: true,
                                     onTap: () async {
@@ -289,10 +313,12 @@ class _DriverMotorcycleInformationState
                                   const SizedBox(
                                     height: TSizes.spaceBtwItems,
                                   ),
-                                  MotorcycleUploadInformationWidget(onTap: () {
-                                    context.go(
-                                        BGRouteNames.driverLicenseGuideline);
-                                  }),
+                                  DriverInfoUploadWidget(
+                                    onTapNav: () {
+                                      context.go(
+                                          BGRouteNames.driverLicenseGuideline);
+                                    },
+                                  ),
                                   const SizedBox(
                                     height: TSizes.spaceBtwSections,
                                   ),
@@ -335,26 +361,26 @@ class _DriverMotorcycleInformationState
                                 height: TSizes.spaceBtwItems,
                               ),
                               DropdownButtonFormField(
+                                isExpanded: true,
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Icons.motorcycle_rounded,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
+                                  filled: true,
+                                  fillColor: TColors.containerBackgroundColor,
                                 ),
                                 icon: Icon(
                                   Iconsax.arrow_down_14,
@@ -388,25 +414,25 @@ class _DriverMotorcycleInformationState
                                 height: TSizes.spaceBtwItems,
                               ),
                               DropdownButtonFormField(
+                                isExpanded: true,
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Icons.motorcycle,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
                                   filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -444,23 +470,22 @@ class _DriverMotorcycleInformationState
                               DropdownButtonFormField(
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Icons.motorcycle,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
                                   filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -501,7 +526,16 @@ class _DriverMotorcycleInformationState
                                   hintText: 'AA123BBB',
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                   filled: true,
                                 ),
                               ),
@@ -517,7 +551,7 @@ class _DriverMotorcycleInformationState
                               const SizedBox(
                                 height: TSizes.spaceBtwItems,
                               ),
-                              MotorcycleUploadInformationWidget(onTap: () {
+                              DriverInfoUploadWidget(onTapNav: () {
                                 context.go(BGRouteNames.driverLicenseGuideline);
                               }),
                               const SizedBox(
@@ -563,9 +597,7 @@ class _DriverMotorcycleInformationState
                               const SizedBox(
                                 height: TSizes.spaceBtwItems,
                               ),
-                              MotorcycleUploadInformationWidget(onTap: () {
-                                // context.go(BGRouteNames.driverLicenseGuideline);
-                              }),
+                              DriverInfoUploadWidget(onTapNav: () {}),
                               const SizedBox(
                                 height: TSizes.spaceBtwSections,
                               ),
@@ -578,9 +610,7 @@ class _DriverMotorcycleInformationState
                               const SizedBox(
                                 height: TSizes.spaceBtwItems,
                               ),
-                              MotorcycleUploadInformationWidget(onTap: () {
-                                // context.go(BGRouteNames.driverLicenseGuideline);
-                              }),
+                              DriverInfoUploadWidget(onTapNav: () {}),
                               const SizedBox(
                                 height: TSizes.spaceBtwSections,
                               ),
@@ -591,8 +621,8 @@ class _DriverMotorcycleInformationState
 
                       /// Step 4
                       Step(
-                        isActive: currentStep >= 3,
-                        state: currentStep >= 3
+                        isActive: currentStep >= 4,
+                        state: currentStep >= 4
                             ? StepState.complete
                             : StepState.disabled,
                         title: const Text(''),
@@ -625,25 +655,25 @@ class _DriverMotorcycleInformationState
                                 height: TSizes.spaceBtwItems,
                               ),
                               DropdownButtonFormField(
+                                isExpanded: true,
                                 elevation: 0,
                                 dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Select one',
-                                  prefixIcon: const Icon(
+                                  prefixIcon: Icon(
                                     Iconsax.bank,
                                     color: TColors.primary,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
                                   filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
+                                      color: TColors.grey,
                                     ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
                                   ),
                                 ),
                                 icon: Icon(
@@ -667,7 +697,7 @@ class _DriverMotorcycleInformationState
                                     .toList(),
                                 onChanged: (val) {
                                   setState(() {
-                                    _banksSelectedValue = val as String;
+                                    _banksSelectedValue = val;
                                   });
                                 },
                               ),
@@ -689,7 +719,16 @@ class _DriverMotorcycleInformationState
                                   hintText: TTexts.driverBankHolderNameHint,
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
+                                  fillColor: TColors.containerBackgroundColor,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                   filled: true,
                                 ),
                               ),
@@ -714,8 +753,17 @@ class _DriverMotorcycleInformationState
                                   hintText: TTexts.driverBankHolderNumberHint,
                                   hintStyle:
                                       Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
                                   filled: true,
+                                  fillColor: TColors.containerBackgroundColor,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: TColors.grey,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: TColors.primary),
+                                  ),
                                 ),
                               ),
                               const SizedBox(
