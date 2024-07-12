@@ -1,3 +1,4 @@
+import 'package:bglory_rides/features/driver/general-widgets/custom_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,6 +23,7 @@ class DriverInformationScreen extends StatefulWidget {
 class _DriverInformationScreenState extends State<DriverInformationScreen> {
   final TextEditingController _date = TextEditingController();
   final TextEditingController _dateOfBirth = TextEditingController();
+
 
   /// variables
   _DriverInformationScreenState() {
@@ -349,8 +351,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                   const SizedBox(
                                     height: TSizes.spaceBtwItems,
                                   ),
-                                  DropdownButtonFormField(
-                                    elevation: 0,
+                                  ValidatedDropdown(
                                     dropdownColor: TColors.grey,
                                     decoration: InputDecoration(
                                       hintText: TTexts.gender,
@@ -377,19 +378,14 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                       Iconsax.arrow_down_14,
                                       color: TColors.primary.withOpacity(0.4),
                                     ),
-                                    value: _selectedValue,
-                                    items: _genderList
-                                        .map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(e),
-                                          ),
-                                        )
-                                        .toList(),
+                                    items: _genderList,
                                     onChanged: (val) {
                                       setState(() {
                                         _selectedValue = val as String;
                                       });
+                                    },
+                                    validator: (String? value) {
+                                      return null;
                                     },
                                   ),
 
