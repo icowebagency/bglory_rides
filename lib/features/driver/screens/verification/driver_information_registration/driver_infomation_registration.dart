@@ -512,6 +512,7 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                             children: [
                               Center(
                                 child: Text(
+                                  textAlign: TextAlign.center,
                                   TTexts.driverlicenseTitle,
                                   style: Theme.of(context)
                                       .textTheme
@@ -986,8 +987,8 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
                                 height: TSizes.spaceBtwItems,
                               ),
                               DriverInfoUploadWidget(onTapNav: () {
-                                context
-                                    .go(BGRouteNames.driverInteriorGuideline);
+                                context.go(BGRouteNames
+                                    .vehicleInsuranceGuidlineScreen);
                               }),
                               const SizedBox(
                                 height: TSizes.spaceBtwSections,
