@@ -44,7 +44,7 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     if (response is Success) {
       return Success(
         data: DriverData.fromJson(
-          jsonDecode(response.data)['data']['driver_data'],
+          response.data['data']['driver_data'],
         ),
       );
     } else {

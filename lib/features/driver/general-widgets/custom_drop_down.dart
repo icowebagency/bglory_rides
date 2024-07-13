@@ -12,6 +12,7 @@ class ValidatedDropdown extends FormField<String> {
     required void Function(String?)? onChanged,
     Color dropdownColor = Colors.grey, // Default dropdown color
     InputDecoration decoration = const InputDecoration(), // Default decoration
+    bool isExpanded = false,
     Widget? prefixIcon, // Optional prefix icon
     Widget? icon, // Optional dropdown icon
   }) : super(
@@ -22,6 +23,7 @@ class ValidatedDropdown extends FormField<String> {
           builder: (FormFieldState<String> field) {
             return DropdownButtonFormField(
               value: field.value,
+              isExpanded: isExpanded,
               items: items
                   .map((item) => DropdownMenuItem(
                         value: item,

@@ -29,61 +29,62 @@ class _VehicleInsuranceGuidlineState extends State<VehicleInsuranceGuidline> {
             horizontal: 20,
             vertical: 20,
           ),
-          child: Column(
-            children: [
-              const Center(
-                child: Image(
-                  width: 100,
-                  height: 100,
-                  image: AssetImage(TImages.driverLogo),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Center(
+                  child: Image(
+                    width: 100,
+                    height: 100,
+                    image: AssetImage(TImages.driverLogo),
+                  ),
                 ),
-              ),
-              Text(
-                TTexts.vehicleInsuranceGuidelineTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              ModerateImageView(
+                Text(
+                  TTexts.vehicleInsuranceGuidelineTitle,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                ModerateImageView(
+                    photo: photo,
+                    defaultImage: const Image(
+                      fit: BoxFit.contain,
+                      image: AssetImage(
+                        TImages.roadWorthinessImaage,
+                      ),
+                    )),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                Text(
+                  TTexts.driverInsuranceRuleeOne,
+                  style: Theme.of(context).textTheme.bodyLarge!.apply(
+                        color: TColors.linkRedColor,
+                      ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  TTexts.driverInsuranceRuleeTwo,
+                  style: Theme.of(context).textTheme.bodyLarge!.apply(
+                        color: TColors.linkRedColor,
+                      ),
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                TakePhotoButtons(
                   photo: photo,
-                  defaultImage: const Image(
-                    fit: BoxFit.contain,
-                    image: AssetImage(
-                      TImages.roadWorthinessImaage,
-                    ),
-                  )),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Text(
-                TTexts.driverInsuranceRuleeOne,
-                style: Theme.of(context).textTheme.bodyLarge!.apply(
-                      color: TColors.linkRedColor,
-                    ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                TTexts.driverInsuranceRuleeTwo,
-                style: Theme.of(context).textTheme.bodyLarge!.apply(
-                      color: TColors.linkRedColor,
-                    ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              const Spacer(),
-              TakePhotoButtons(
-                photo: photo,
-                onUpdatePhoto: (value) {
-                  photo = value;
-                  setState(() {});
-                },
-              )
-            ],
+                  onUpdatePhoto: (value) {
+                    photo = value;
+                    setState(() {});
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
