@@ -73,11 +73,7 @@ class _DriverInformationScreenState
   }
 
   /// variables
-  _DriverInformationScreenState() {
-    _selectedValue = _genderList[0];
-    _vehicleSelectedValue = _vehicleList[0];
-    _banksSelectedValue = _nigerianBanks[0];
-  }
+  _DriverInformationScreenState();
 
   final List<String> _vehicleList = [
     'Toyota',
@@ -160,10 +156,10 @@ class _DriverInformationScreenState
     "Male",
     "Female",
   ];
-  String? _selectedValue = "";
+  String? _selectedValue;
   String? _vehicleSelectedValue;
   String? _vehicleSelectedModel;
-  String? _banksSelectedValue = "";
+  String? _banksSelectedValue;
 
   /// stepper variables and functions
   /// continueStep function
@@ -714,6 +710,7 @@ class _DriverInformationScreenState
                             children: [
                               Center(
                                 child: Text(
+                                  textAlign: TextAlign.center,
                                   TTexts.driverlicenseTitle,
                                   style: Theme.of(context)
                                       .textTheme
@@ -1284,8 +1281,8 @@ class _DriverInformationScreenState
                                     context: context,
                                     imageDetailKey:
                                         DriverPayloadKey.vehicleInsurance,
-                                    navPath:
-                                        BGRouteNames.driverInteriorGuideline,
+                                    navPath: BGRouteNames
+                                        .vehicleInsuranceGuidlineScreen,
                                   ).then(
                                     (value) {
                                       if (value != null) {
@@ -1296,6 +1293,7 @@ class _DriverInformationScreenState
                                   );
                                 },
                               ),
+
                               const SizedBox(
                                 height: TSizes.spaceBtwSections,
                               ),

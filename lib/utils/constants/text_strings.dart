@@ -297,6 +297,14 @@ class TTexts {
   static const String paymentDetailsSubTitle =
       'Bank payment information associated with your driver’s account';
 
+  // Vehicle Insurance Guideline
+  static const String vehicleInsuranceGuidelineTitle =
+      'Vehicle insurance certificate picture';
+  static const String driverInsuranceRuleeOne =
+      "* Kindly take a clear picture showing the insurance number  of  your certificate";
+  static const String driverInsuranceRuleeTwo =
+      "* Kindly take a clear picture showing the insurance verifiable keys of your certificate";
+
   // -- Earning Screen
   static const String earningAppBarTitle = 'Earnings';
   static const String earningSubTitle = 'Current Balance';
