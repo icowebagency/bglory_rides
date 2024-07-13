@@ -109,7 +109,6 @@ class NotificationUtil {
 
   static void showFailureToast(String message) async {
     init();
-
     if (_fToast == null) {
       showGlobalFailureToast(message);
     } else {

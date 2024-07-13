@@ -16,7 +16,7 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
 
-final _phoneNumberText = StateProvider(
+final phoneNumberText = StateProvider(
   (ref) => '',
 );
 
@@ -57,7 +57,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                     return TValidator.validatePhoneNumber(value);
                   },
                   onChanged: (value) =>
-                      ref.read(_phoneNumberText.notifier).state = value.number,
+                      ref.read(phoneNumberText.notifier).state = value.number,
                   decoration: const InputDecoration(
                     suffixIcon: Icon(
                       Iconsax.close_circle,
@@ -134,7 +134,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                         &&
                         validatePhoneText(ref, context)) {
                       final target = {
-                        'phone': '0${ref.read(_phoneNumberText)}',
+                        'phone': '0${ref.read(phoneNumberText)}',
                       };
                       provider
                           .onAuthAction(
@@ -197,7 +197,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
 
   bool validatePhoneText(WidgetRef ref, BuildContext context) {
     // if (!ref.read(_phoneNumberText).startsWith('+234') ) {
-    if (ref.read(_phoneNumberText).length < 11) {
+    if (ref.read(phoneNumberText).length < 11) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(

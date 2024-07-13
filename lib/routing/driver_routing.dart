@@ -47,7 +47,7 @@ final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
 class DriverRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: driverNavKey,
-    initialLocation: BGRouteNames.driverOnboarding,
+    initialLocation: BGRouteNames.driverLogin,
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,

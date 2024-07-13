@@ -70,6 +70,9 @@ class TTexts {
   static const String driverProceedButton = "Proceed";
   static const String driverTakePhotoButton = "Take Photo";
   static const String driverPaymentDetailsTitle = "Payment Details";
+  static const String driverTakeAgain = "Take Again";
+  static const String driverConfirm = "Confirm";
+
   static const String driverVehicleLicense = "Vehicle license";
   static const String driverBankName = "Bank Name";
   static const String driverBankHolderNameHint = "Your account name";
