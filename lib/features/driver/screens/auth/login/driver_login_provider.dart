@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/secrets/apiConstants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,7 +24,6 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     assert(target['phone'] != null || target['email'] != null,
         'Either phone or email must be present');
 
-
     state = state.copyWith(isLoading: true);
 
     final result = await driverRepositoryContract.requestOtp(
@@ -33,10 +31,19 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     );
     state = state.copyWith(isLoading: false);
 
+    final isTest = ref.read(isTestProvider);
+
     if (result is Failure) {
       onError?.call('OTP request failed');
       return false;
     } else {
+      if (isTest) {
+        final data = (result as Success).data;
+        RegExp otpPattern = RegExp(r"OTP is: (\d{6})");
+        Match? match = otpPattern.firstMatch(data['message']);
+        String otp = match != null ? match.group(1)! : "Not found";
+        NotificationUtil.showSuccessToast(otp);
+      }
       return true;
     }
   }

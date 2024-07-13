@@ -22,4 +22,6 @@ final userTokenProvider = StateProvider<String?>(
   (ref) => null,
 );
 
-
+final isTestProvider = StateProvider<bool>(
+  (ref) => true,
+);

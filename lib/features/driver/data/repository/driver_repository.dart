@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
@@ -72,9 +70,7 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     final result = await _apiClientContract.requestOtp(target: target);
 
     if (result is Success) {
-      return Success(
-        data: 'Otp has been sent',
-      );
+      return result;
     } else {
       return result as Failure;
     }
