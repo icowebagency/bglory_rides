@@ -67,7 +67,25 @@ class TValidator {
     return null;
   }
 
+  static String? simpleInputValidation(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    return null;
+  }
+
+  static String? validNumber(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    if (int.tryParse(text) == null) {
+      return 'Enter a valid input';
+    }
+
+    return null;
+  }
+
 // Add more custom validators as needed for your specific requirements.
 }
-
-

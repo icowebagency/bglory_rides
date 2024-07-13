@@ -1,5 +1,7 @@
 class KeyConstant {
   static const String target = 'TARGET';
+  static const String motorcycle = 'motorcycle';
+  static const String car = 'car';
 }
 
 class DriverPayloadKey {
