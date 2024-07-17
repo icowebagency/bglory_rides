@@ -9,6 +9,7 @@ class KeyConstant {
 class DriverPayloadKey {
   static const String fullName = "full_name";
   static const String phone = "phone";
+  static const String email = "email";
   static const String address = "address";
   static const String dob = "dob";
   static const String gender = "gender";

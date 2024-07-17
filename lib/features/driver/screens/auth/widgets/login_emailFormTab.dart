@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_state.dart';
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
-import 'package:bglory_rides/features/driver/screens/auth/widgets/signup_email_form_tab.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
@@ -18,6 +17,10 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'goto_sign_up.dart';
+
+final emailText = StateProvider(
+  (ref) => '',
+);
 
 class LoginEmailFormTab extends ConsumerWidget {
   LoginEmailFormTab({
@@ -137,6 +140,8 @@ class LoginEmailFormTab extends ConsumerWidget {
                       final target = {
                         KeyConstant.email: state.textFieldController.text,
                       };
+                      ref.read(emailText.notifier).state =
+                          state.textFieldController.text;
                       provider
                           .onAuthAction(
                         target: target,

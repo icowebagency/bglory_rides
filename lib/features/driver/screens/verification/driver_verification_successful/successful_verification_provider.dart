@@ -1,10 +1,12 @@
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/data/repository/driver_repository.dart';
+import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:bglory_rides/utils/secrets/apiConstants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final successfulVerificationStateNotifierProvider = StateNotifierProvider<SuccessfulVerificationStateNotifier, bool>(
+final successfulVerificationStateNotifierProvider =
+    StateNotifierProvider<SuccessfulVerificationStateNotifier, bool>(
   (ref) => SuccessfulVerificationStateNotifier(
     ref.watch(driverRepositoryProvider),
   ),
@@ -20,6 +22,9 @@ class SuccessfulVerificationStateNotifier extends StateNotifier<bool> {
     final result = await driverRepositoryContract.getDriverProfile();
 
     if (result is Failure) {
+      if (result.errorResponse == ConstantValues.driverProfileNotComplete) {
+        return false;
+      }
       onError('An Error Occurred');
     } else {
       final successResult = result as Success;

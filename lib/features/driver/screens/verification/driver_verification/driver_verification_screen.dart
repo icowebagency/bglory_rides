@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_verification/driver_verification_provider.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
@@ -29,6 +31,8 @@ class DriverVerificationScreen extends ConsumerWidget {
     String displayInput = target?['email']?.isNotEmpty ?? false == true
         ? target!['email']!
         : target!['phone']!;
+
+    log('$target');
 
     return Scaffold(
       body: SafeArea(
@@ -150,6 +154,7 @@ class DriverVerificationScreen extends ConsumerWidget {
   void triggerAction(WidgetRef ref, BuildContext context) {
     if (validateOtp(ref, context)) {
       target['otp'] = ref.read(_otpFieldProvider);
+      log('$target');
       ref
           .read(driverVerificationStateNotifier.notifier)
           .onAuthAction(

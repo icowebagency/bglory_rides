@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
@@ -156,10 +157,20 @@ class _DriverInformationScreenState
           key: DriverPayloadKey.bankAccountNumber,
           value: _bankAccountNumber.text);
 
-      updateProfileField(
-        key: DriverPayloadKey.phone,
-        value: '0${ref.read(phoneNumberText)}',
-      );
+      final email = ref.read(emailText);
+      final phone = ref.read(phoneNumberText);
+      if (email.isNotEmpty) {
+        updateProfileField(
+          key: DriverPayloadKey.email,
+          value: email,
+        );
+      }
+      if (phone.isNotEmpty) {
+        updateProfileField(
+          key: DriverPayloadKey.phone,
+          value: phone,
+        );
+      }
     }
 
     if (currentStep < _totalSteps - 1) {
@@ -710,5 +721,3 @@ class _DriverInformationScreenState
     );
   }
 }
-
-

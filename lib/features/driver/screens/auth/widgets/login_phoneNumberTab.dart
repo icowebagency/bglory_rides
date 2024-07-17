@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_state.dart';
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
-import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
-import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
-import 'package:bglory_rides/features/driver/screens/auth/widgets/signup_email_form_tab.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
@@ -68,8 +65,9 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                   validator: (value) async {
                     return TValidator.validatePhoneNumber(value);
                   },
-                  onChanged: (value) =>
-                      ref.read(phoneNumberText.notifier).state = value.number,
+                  onChanged: (value) => ref
+                      .read(phoneNumberText.notifier)
+                      .state = value.completeNumber,
                   decoration: const InputDecoration(
                     suffixIcon: Icon(
                       Iconsax.close_circle,
@@ -144,7 +142,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                         &&
                         validatePhoneText(ref, context)) {
                       final target = {
-                        KeyConstant.phone: '0${ref.read(phoneNumberText)}',
+                        KeyConstant.phone: ref.read(phoneNumberText),
                       };
                       provider
                           .onAuthAction(

@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
 import 'package:bglory_rides/features/driver/general-widgets/custom_drop_down.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_info_step.dart';
@@ -95,6 +98,10 @@ class _DriverMotorcycleInformationState
     _bankAccountNumber = TextEditingController();
     _motorcycleColor = TextEditingController();
     _vehiclePlateNumber = TextEditingController();
+
+    _licenseNumber = TextEditingController();
+
+    _licenseExpiry = TextEditingController();
   }
 
   /// continueStep function
@@ -155,11 +162,20 @@ class _DriverMotorcycleInformationState
       updateProfileField(
           key: DriverPayloadKey.bankAccountNumber,
           value: _bankAccountNumber.text);
-
-      updateProfileField(
-        key: DriverPayloadKey.phone,
-        value: '0${ref.read(phoneNumberText)}',
-      );
+      final email = ref.read(emailText);
+      final phone = ref.read(phoneNumberText);
+      if (email.isNotEmpty) {
+        updateProfileField(
+          key: DriverPayloadKey.email,
+          value: email,
+        );
+      }
+      if (phone.isNotEmpty) {
+        updateProfileField(
+          key: DriverPayloadKey.phone,
+          value: phone,
+        );
+      }
     }
 
     if (currentStep < _totalSteps - 1) {
@@ -170,6 +186,24 @@ class _DriverMotorcycleInformationState
       () {
         context.go(BGRouteNames.driverHomePageScreen);
       };
+
+      log(jsonEncode(ref.read(driverRegistrationFilesProvider)));
+      log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
+
+      ref
+          .read(driverRegistrationProvider.notifier)
+          .onRegister(
+            profileData: ref.read(driverRegistrationDetailsProvider),
+            files: ref.read(driverRegistrationFilesProvider),
+            onError: NotificationUtil.showErrorNotification,
+          )
+          .then(
+        (successful) {
+          if (successful) {
+            context.go(BGRouteNames.driverHomePageScreen);
+          }
+        },
+      );
     }
   }
 
@@ -396,514 +430,559 @@ class _DriverMotorcycleInformationState
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: Column(
-              children: [
-                const Center(
-                  child: Image(
-                    width: 100,
-                    height: 100,
-                    image: AssetImage(TImages.driverLogo),
-                  ),
-                ),
-                const SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
-                Expanded(
-                  child: Stepper(
-                    connectorColor:
-                        const WidgetStatePropertyAll(TColors.primary),
-                    onStepContinue: continueStep,
-                    onStepCancel: cancelStep,
-                    onStepTapped: onStepTapped,
-                    controlsBuilder: controlsBuilder,
-                    elevation: 0,
-                    type: StepperType.horizontal,
-                    currentStep: currentStep,
-                    steps: [
-                      Step(
-                        isActive: currentStep >= 0,
-                        state: currentStep >= 0
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: DriverInfoStep(
-                          profilePic: profilePic,
-                          formKey: _formKeys[0],
-                          fullname: _fullname,
-                          address: _address,
-                          dateOfBirth: _dateOfBirth,
-                          selectedGender: _selectedGender,
-                          genderList: _genderList,
-                          nextOfKin: _nextOfKin,
-                          nextOfKinPhone: _nextOfKinPhone,
-                          onUpdateGender: onUpdateGender,
-                          onUpdateProfilePicture: onUpdateProfilePicture,
-                          onPickDateofBirth: onPickDateofBirth,
-                        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: Column(
+                  children: [
+                    const Center(
+                      child: Image(
+                        width: 100,
+                        height: 100,
+                        image: AssetImage(TImages.driverLogo),
                       ),
-
-                      Step(
-                        isActive: currentStep >= 1,
-                        state: currentStep >= 1
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: DriverLicenseInfo(
-                          formKey: _formKeys[1],
-                          licenseNumber: _licenseNumber,
-                          licenseExpiry: _licenseExpiry,
-                          driversLicensePhoto: driversLicensePhoto,
-                          onPickDriverLicenseExpiryDate:
-                              onPickDriverLicenseExpiryDate,
-                          onPickDriverLicensePhoto: onPickDriverLicensePhoto,
-                        ),
-                      ),
-
-                      /// Step 2  -  Motorcycle Information
-                      Step(
-                        isActive: currentStep >= 2,
-                        state: currentStep >= 2
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Form(
-                          key: _formKeys[2],
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts.driverMotocycleInformationTitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Motorcycle manufacturer
-                              Text(
-                                TTexts.driverVehicleManufacturerTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              ValidatedDropdown(
-                                isExpanded: true,
-                                dropdownColor: TColors.grey,
-                                decoration: const InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: Icon(
-                                    Icons.motorcycle_rounded,
-                                    color: TColors.primary,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.grey,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: TColors.primary),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.containerBackgroundColor,
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                initialValue: _vehicleSelectedValue,
-                                items: _motorcycleList,
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                    updateProfileField(
-                                      key: DriverPayloadKey
-                                          .motorcycleManufacturer,
-                                      value: val,
-                                    );
-                                  });
-                                },
-                                validator: TValidator.simpleInputValidation,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Motorcycle Model
-                              Text(
-                                TTexts.driverVehicleModelTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              ValidatedDropdown(
-                                isExpanded: true,
-                                validator: TValidator.simpleInputValidation,
-                                dropdownColor: TColors.grey,
-                                decoration: const InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: Icon(
-                                    Icons.motorcycle,
-                                    color: TColors.primary,
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.containerBackgroundColor,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.grey,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: TColors.primary),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                initialValue: _motorcycleModelSelectedValue,
-                                items: _motorcycleModelList,
-                                onChanged: (val) {
-                                  setState(() {
-                                    _motorcycleModelSelectedValue =
-                                        val as String;
-                                    updateProfileField(
-                                      key: DriverPayloadKey.motorcycleModel,
-                                      value: val,
-                                    );
-                                  });
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Motorcycle Color
-                              Text(
-                                TTexts.driverVehicleColorTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                keyboardType: TextInputType.text,
-                                controller: _motorcycleColor,
-                                validator: TValidator.simpleInputValidation,
-                                decoration: InputDecoration(
-                                  hintText: 'e.g Red',
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.containerBackgroundColor,
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.grey,
-                                    ),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: TColors.primary),
-                                  ),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle Plate Number
-                              Text(
-                                TTexts.driverVehiclePlateNumberTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                controller: _vehiclePlateNumber,
-                                keyboardType: TextInputType.text,
-                                validator: TValidator.simpleInputValidation,
-                                decoration: InputDecoration(
-                                  hintText: 'e.g AA123BBB',
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.containerBackgroundColor,
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.grey,
-                                    ),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: TColors.primary),
-                                  ),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// License Upload
-                              Text(
-                                TTexts.driverMotorcyclePictureTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(
-                                photo: motorcyclePhoto,
-                                onTapNav: () {
-                                  onTakeMotorcyclePhoto(context);
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      /// Step 3  -  Document information
-
-                      Step(
-                        isActive: currentStep >= 3,
-                        state: currentStep >= 3
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts
-                                      .driverMotocycleDocumentInformationTitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Hackney permit
-                              Text(
-                                TTexts.driverHackneyPermitTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(
-                                photo: hackneyPermit,
-                                onTapNav: () {
-                                  onTakeHackneyPermitPhoto(context);
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Motorcycle insurance
-                              Text(
-                                TTexts.driverMotocycleInsuranceTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(
-                                  photo: motorcycleInsurance,
-                                  onTapNav: () {
-                                    onTakeMotorcycleInsurancePhoto(context);
-                                  }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      /// Step 4
-                      Step(
-                        isActive: currentStep >= 4,
-                        state: currentStep >= 4
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          child: Form(
-                            key: _formKeys[4],
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    TTexts
-                                        .driverVehicleDocumentInformationTitle,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwSections,
-                                ),
-
-                                /// Bank Name
-                                Text(
-                                  TTexts.driverBankName,
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                                ValidatedDropdown(
-                                  isExpanded: true,
-                                  dropdownColor: TColors.grey,
-                                  validator: TValidator.simpleInputValidation,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Select one',
-                                    prefixIcon: Icon(
-                                      Iconsax.bank,
-                                      color: TColors.primary,
-                                    ),
-                                    filled: true,
-                                    fillColor: TColors.containerBackgroundColor,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: TColors.grey,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: TColors.primary),
-                                    ),
-                                  ),
-                                  icon: Icon(
-                                    Iconsax.arrow_down_14,
-                                    color: TColors.primary.withOpacity(0.4),
-                                  ),
-                                  initialValue: _banksSelectedValue,
-                                  items: _nigerianBanks,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      _banksSelectedValue = val as String;
-                                      updateProfileField(
-                                        key: DriverPayloadKey.bank,
-                                        value: val,
-                                      );
-                                    });
-                                  },
-                                ),
-
-                                /// Bank account holder name
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                                Text(
-                                  TTexts.driverBankAccountHolderNameTitle,
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                                TextFormField(
-                                  keyboardType: TextInputType.name,
-                                  controller: _bankAccountName,
-                                  validator: TValidator.simpleInputValidation,
-                                  decoration: InputDecoration(
-                                    hintText: TTexts.driverBankHolderNameHint,
-                                    hintStyle:
-                                        Theme.of(context).textTheme.bodySmall,
-                                    fillColor: TColors.containerBackgroundColor,
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: TColors.grey,
-                                      ),
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: TColors.primary),
-                                    ),
-                                    filled: true,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-
-                                /// Bank account number
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                                Text(
-                                  TTexts.driverBankAccountHolderNumberTitle,
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                                TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  controller: _bankAccountNumber,
-                                  validator: TValidator.validNumber,
-                                  decoration: InputDecoration(
-                                    hintText: TTexts.driverBankHolderNumberHint,
-                                    hintStyle:
-                                        Theme.of(context).textTheme.bodySmall,
-                                    filled: true,
-                                    fillColor: TColors.containerBackgroundColor,
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: TColors.grey,
-                                      ),
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: TColors.primary),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: TSizes.spaceBtwItems,
-                                ),
-                              ],
+                    ),
+                    const SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    Expanded(
+                      child: Stepper(
+                        connectorColor:
+                            const WidgetStatePropertyAll(TColors.primary),
+                        onStepContinue: continueStep,
+                        onStepCancel: cancelStep,
+                        onStepTapped: onStepTapped,
+                        controlsBuilder: controlsBuilder,
+                        elevation: 0,
+                        type: StepperType.horizontal,
+                        currentStep: currentStep,
+                        steps: [
+                          Step(
+                            isActive: currentStep >= 0,
+                            state: currentStep >= 0
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: DriverInfoStep(
+                              profilePic: profilePic,
+                              formKey: _formKeys[0],
+                              fullname: _fullname,
+                              address: _address,
+                              dateOfBirth: _dateOfBirth,
+                              selectedGender: _selectedGender,
+                              genderList: _genderList,
+                              nextOfKin: _nextOfKin,
+                              nextOfKinPhone: _nextOfKinPhone,
+                              onUpdateGender: onUpdateGender,
+                              onUpdateProfilePicture: onUpdateProfilePicture,
+                              onPickDateofBirth: onPickDateofBirth,
                             ),
                           ),
-                        ),
+
+                          Step(
+                            isActive: currentStep >= 1,
+                            state: currentStep >= 1
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: DriverLicenseInfo(
+                              formKey: _formKeys[1],
+                              licenseNumber: _licenseNumber,
+                              licenseExpiry: _licenseExpiry,
+                              driversLicensePhoto: driversLicensePhoto,
+                              onPickDriverLicenseExpiryDate:
+                                  onPickDriverLicenseExpiryDate,
+                              onPickDriverLicensePhoto:
+                                  onPickDriverLicensePhoto,
+                            ),
+                          ),
+
+                          /// Step 2  -  Motorcycle Information
+                          Step(
+                            isActive: currentStep >= 2,
+                            state: currentStep >= 2
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Form(
+                              key: _formKeys[2],
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      TTexts.driverMotocycleInformationTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Motorcycle manufacturer
+                                  Text(
+                                    TTexts.driverVehicleManufacturerTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  ValidatedDropdown(
+                                    isExpanded: true,
+                                    dropdownColor: TColors.grey,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Select one',
+                                      prefixIcon: Icon(
+                                        Icons.motorcycle_rounded,
+                                        color: TColors.primary,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
+                                      filled: true,
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
+                                    ),
+                                    icon: Icon(
+                                      Iconsax.arrow_down_14,
+                                      color: TColors.primary.withOpacity(0.4),
+                                    ),
+                                    initialValue: _vehicleSelectedValue,
+                                    items: _motorcycleList,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        _vehicleSelectedValue = val as String;
+                                        updateProfileField(
+                                          key: DriverPayloadKey
+                                              .motorcycleManufacturer,
+                                          value: val,
+                                        );
+                                      });
+                                    },
+                                    validator: TValidator.simpleInputValidation,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Motorcycle Model
+                                  Text(
+                                    TTexts.driverVehicleModelTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  ValidatedDropdown(
+                                    isExpanded: true,
+                                    validator: TValidator.simpleInputValidation,
+                                    dropdownColor: TColors.grey,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Select one',
+                                      prefixIcon: Icon(
+                                        Icons.motorcycle,
+                                        color: TColors.primary,
+                                      ),
+                                      filled: true,
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
+                                    ),
+                                    icon: Icon(
+                                      Iconsax.arrow_down_14,
+                                      color: TColors.primary.withOpacity(0.4),
+                                    ),
+                                    initialValue: _motorcycleModelSelectedValue,
+                                    items: _motorcycleModelList,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        _motorcycleModelSelectedValue =
+                                            val as String;
+                                        updateProfileField(
+                                          key: DriverPayloadKey.motorcycleModel,
+                                          value: val,
+                                        );
+                                      });
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Motorcycle Color
+                                  Text(
+                                    TTexts.driverVehicleColorTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  TextFormField(
+                                    keyboardType: TextInputType.text,
+                                    controller: _motorcycleColor,
+                                    validator: TValidator.simpleInputValidation,
+                                    decoration: InputDecoration(
+                                      hintText: 'e.g Red',
+                                      hintStyle:
+                                          Theme.of(context).textTheme.bodySmall,
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
+                                      filled: true,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Vehicle Plate Number
+                                  Text(
+                                    TTexts.driverVehiclePlateNumberTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  TextFormField(
+                                    controller: _vehiclePlateNumber,
+                                    keyboardType: TextInputType.text,
+                                    validator: TValidator.simpleInputValidation,
+                                    decoration: InputDecoration(
+                                      hintText: 'e.g AA123BBB',
+                                      hintStyle:
+                                          Theme.of(context).textTheme.bodySmall,
+                                      fillColor:
+                                          TColors.containerBackgroundColor,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: TColors.grey,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: TColors.primary),
+                                      ),
+                                      filled: true,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// License Upload
+                                  Text(
+                                    TTexts.driverMotorcyclePictureTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  DriverInfoUploadWidget(
+                                    photo: motorcyclePhoto,
+                                    onTapNav: () {
+                                      onTakeMotorcyclePhoto(context);
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          /// Step 3  -  Document information
+
+                          Step(
+                            isActive: currentStep >= 3,
+                            state: currentStep >= 3
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 20.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      TTexts
+                                          .driverMotocycleDocumentInformationTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Hackney permit
+                                  Text(
+                                    TTexts.driverHackneyPermitTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  DriverInfoUploadWidget(
+                                    photo: hackneyPermit,
+                                    onTapNav: () {
+                                      onTakeHackneyPermitPhoto(context);
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+
+                                  /// Motorcycle insurance
+                                  Text(
+                                    TTexts.driverMotocycleInsuranceTitle,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwItems,
+                                  ),
+                                  DriverInfoUploadWidget(
+                                      photo: motorcycleInsurance,
+                                      onTapNav: () {
+                                        onTakeMotorcycleInsurancePhoto(context);
+                                      }),
+                                  const SizedBox(
+                                    height: TSizes.spaceBtwSections,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          /// Step 4
+                          Step(
+                            isActive: currentStep >= 4,
+                            state: currentStep >= 4
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
+                              child: Form(
+                                key: _formKeys[4],
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        TTexts
+                                            .driverVehicleDocumentInformationTitle,
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwSections,
+                                    ),
+
+                                    /// Bank Name
+                                    Text(
+                                      TTexts.driverBankName,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                    ValidatedDropdown(
+                                      isExpanded: true,
+                                      dropdownColor: TColors.grey,
+                                      validator:
+                                          TValidator.simpleInputValidation,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Select one',
+                                        prefixIcon: Icon(
+                                          Iconsax.bank,
+                                          color: TColors.primary,
+                                        ),
+                                        filled: true,
+                                        fillColor:
+                                            TColors.containerBackgroundColor,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: TColors.grey,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: TColors.primary),
+                                        ),
+                                      ),
+                                      icon: Icon(
+                                        Iconsax.arrow_down_14,
+                                        color: TColors.primary.withOpacity(0.4),
+                                      ),
+                                      initialValue: _banksSelectedValue,
+                                      items: _nigerianBanks,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          _banksSelectedValue = val as String;
+                                          updateProfileField(
+                                            key: DriverPayloadKey.bank,
+                                            value: val,
+                                          );
+                                        });
+                                      },
+                                    ),
+
+                                    /// Bank account holder name
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                    Text(
+                                      TTexts.driverBankAccountHolderNameTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                    TextFormField(
+                                      keyboardType: TextInputType.name,
+                                      controller: _bankAccountName,
+                                      validator:
+                                          TValidator.simpleInputValidation,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            TTexts.driverBankHolderNameHint,
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                        fillColor:
+                                            TColors.containerBackgroundColor,
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: TColors.grey,
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: TColors.primary),
+                                        ),
+                                        filled: true,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+
+                                    /// Bank account number
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                    Text(
+                                      TTexts.driverBankAccountHolderNumberTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                    TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      controller: _bankAccountNumber,
+                                      validator: TValidator.validNumber,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            TTexts.driverBankHolderNumberHint,
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                        filled: true,
+                                        fillColor:
+                                            TColors.containerBackgroundColor,
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: TColors.grey,
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: TColors.primary),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: TSizes.spaceBtwItems,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Consumer(builder: (context, ref, child) {
+              return Visibility(
+                visible: ref.watch(
+                  driverRegistrationProvider,
+                ),
+                child: Container(
+                  color: Colors.grey.withOpacity(0.4),
+                  child: const Center(
+                    child: AppCircularProgressIndicator(),
                   ),
                 ),
-              ],
-            ),
-          ),
+              );
+            })
+          ],
         ),
       ),
     );

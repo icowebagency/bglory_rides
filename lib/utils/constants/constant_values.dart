@@ -1,5 +1,9 @@
 class ConstantValues {
   ConstantValues._();
+
+  static const String driverProfileNotComplete =
+      "Driver profile is not complete.";
+
   static final List<String> motorcycleList = [
     'Honda',
     'Yamaha',

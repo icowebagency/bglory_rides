@@ -19,7 +19,9 @@ final photoPickerProvider = Provider<ImagePicker>(
 final driverRegistrationProvider =
     StateNotifierProvider<RegistrionStateNotifier, bool>(
   (ref) => RegistrionStateNotifier(
-      driverRepositoryContract: ref.watch(driverRepositoryProvider), ref: ref),
+    driverRepositoryContract: ref.watch(driverRepositoryProvider),
+    ref: ref,
+  ),
 );
 
 class RegistrionStateNotifier extends StateNotifier<bool> {
