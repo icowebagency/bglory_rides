@@ -2,6 +2,8 @@ class KeyConstant {
   static const String target = 'TARGET';
   static const String motorcycle = 'motorcycle';
   static const String car = 'car';
+  static const String email = 'email';
+  static const String phone = 'phone';
 }
 
 class DriverPayloadKey {
@@ -30,6 +32,7 @@ class DriverPayloadKey {
   static const String vehicleInsurance = "vehicle_insurance";
   static const String motorcycleManufacturer = "motorcycle_manufacturer";
   static const String motorcycleModel = "motorcycle_model";
+  static const String motorcycleImage = "motorcycle_image";
   static const String hackneyPermit = "hackney_permit";
   static const String motorcycleInsurance = "motorcycle_insurance";
   static const String bank = "bank";

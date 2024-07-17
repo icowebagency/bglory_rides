@@ -7,8 +7,8 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
-import '../signup/widgets/login_emailFormTab.dart';
-import '../signup/widgets/login_phoneNumberTab.dart';
+import '../widgets/login_emailFormTab.dart';
+import '../widgets/login_phoneNumberTab.dart';
 
 class DriverLoginScreen extends StatefulWidget {
   const DriverLoginScreen({super.key});
@@ -83,10 +83,18 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                         return Expanded(
                           child: TabBarView(children: [
                             ///  Email Tab
-                            LoginEmailFormTab(),
+                            LoginEmailFormTab(
+                              driverAuthProvider:
+                                  driverLoginStateNotifierProvider,
+                              isLogin: true,
+                            ),
 
                             ///  Phone Number Tab
-                            LoginPhoneNumberFormTab(),
+                            LoginPhoneNumberFormTab(
+                              driverAuthProvider:
+                                  driverLoginStateNotifierProvider,
+                              isLogin: true,
+                            ),
                           ]),
                         );
                       });
@@ -109,8 +117,6 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                   ),
                 );
               })
-            
-            
             ],
           ),
         ),

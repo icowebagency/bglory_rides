@@ -63,6 +63,7 @@ class TTexts {
   static const String driverOptionTitle =
       "How do you want to earn as a BG Driver?";
   static const String driverAlreadyHaveAnAccount = "Already have an account? ";
+  static const String driverDontHaveAnAccount = "Dont have an account? ";
   static const String driverCodeSentTitle = "We sent a verification code to";
   static const String driverRequestCodeTitle = "Request code in ";
   static const String driverRequestCodeSecondsTitle = "Secs";
@@ -147,6 +148,9 @@ class TTexts {
       "Exterior picture of your car";
   static const String driverVehicleInteriorPictureTitle =
       "Interior picture of your car";
+
+  static const String driverMotorcyclePictureTitle =
+      "Picture of your motorcycle";
 
   // -- Driver Authentication Headings
   static const String signupDriverTitle = "Become a BG Driver";
