@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../auth_provider/auth_state.dart';
 import '../auth_provider/driver_auth_state_notifer.dart';
 
-final driverLoginStateNotifierProvider =
+final driverSignUpStateNotifierProvider =
     StateNotifierProvider.autoDispose<DriverAuthStateNotifer, AuthState>(
   (ref) => DriverLoginAuthStateNotifier(
     driverRepositoryContract: ref.watch(driverRepositoryProvider),
@@ -26,7 +26,7 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
 
     state = state.copyWith(isLoading: true);
 
-    final result = await driverRepositoryContract.requestLoginOtp(
+    final result = await driverRepositoryContract.requestSignUpOtp(
       target: target,
     );
     state = state.copyWith(isLoading: false);
@@ -34,7 +34,8 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     final isTest = ref.read(isTestProvider);
 
     if (result is Failure) {
-      onError?.call((result).errorResponse ?? 'Login failed');
+      onError?.call("${(result).errorResponse}");
+
       return false;
     } else {
       if (isTest) {

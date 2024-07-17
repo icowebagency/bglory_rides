@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
@@ -15,7 +13,8 @@ abstract class DriverRepositoryContract {
 
   Future<Object> getDriverProfile();
 
-  Future<Object> requestOtp({required Map<String, String> target});
+  Future<Object> requestSignUpOtp({required Map<String, String> target});
+  Future<Object> requestLoginOtp({required Map<String, String> target});
 
   Future<Object> verifyOtp(
       {required Map<String, String> target, required String otp});
@@ -68,13 +67,22 @@ class DriverRepositoryImp implements DriverRepositoryContract {
   }
 
   @override
-  Future<Object> requestOtp({required Map<String, String> target}) async {
-    final result = await _apiClientContract.requestOtp(target: target);
+  Future<Object> requestSignUpOtp({required Map<String, String> target}) async {
+    final result = await _apiClientContract.requestSignUpOtp(target: target);
 
     if (result is Success) {
-      return Success(
-        data: 'Otp has been sent',
-      );
+      return result;
+    } else {
+      return result as Failure;
+    }
+  }
+
+  @override
+  Future<Object> requestLoginOtp({required Map<String, String> target}) async {
+    final result = await _apiClientContract.requestLoginOtp(target: target);
+
+    if (result is Success) {
+      return result;
     } else {
       return result as Failure;
     }

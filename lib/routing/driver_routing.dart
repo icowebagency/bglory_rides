@@ -17,6 +17,8 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dar
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_hackney_picture.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_picture_guideline%20copy.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/vehicle_insurance_guidline.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:flutter/material.dart';
@@ -158,6 +160,16 @@ class DriverRouting {
             const DriverInteriorPictureGuidelineScreen(),
       ),
       GoRoute(
+        path: BGRouteNames.driverMotorcycleGuideline,
+        builder: (context, state) =>
+            const DriverMotorcyclePictureGuidelineScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverMotorcycleHackneyPermit,
+        builder: (context, state) =>
+            const DriverMotorcycleHackneyPermitPictureScreen(),
+      ),
+      GoRoute(
         path: BGRouteNames.driverProofOfOwnership,
         builder: (context, state) =>
             const DriverProofOfOwnershipGuidelineScreen(),
@@ -270,4 +282,8 @@ class BGRouteNames {
   static const String driverLogin = '/driver/login';
   static const String driverMotorcycleInformation =
       '/driver/motorcycle-information';
+  static const String driverMotorcycleGuideline =
+      '/driver/motorcycle-guideline';
+  static const String driverMotorcycleHackneyPermit =
+      '/driver/motorcycle-hackney-permit';
 }

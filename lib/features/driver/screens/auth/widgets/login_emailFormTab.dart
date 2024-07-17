@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_state.dart';
+import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
@@ -9,27 +11,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../../routing/driver_routing.dart';
-import '../../../../../../utils/constants/colors.dart';
-import '../../../../../../utils/constants/sizes.dart';
-import '../../../../../../utils/constants/text_strings.dart';
+import '../../../../../routing/driver_routing.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
+import 'goto_sign_up.dart';
 
-final phoneNumberText = StateProvider(
+final emailText = StateProvider(
   (ref) => '',
 );
 
-class LoginPhoneNumberFormTab extends ConsumerWidget {
-  LoginPhoneNumberFormTab({super.key});
-
+class LoginEmailFormTab extends ConsumerWidget {
+  LoginEmailFormTab({
+    super.key,
+    required this.driverAuthProvider,
+    required this.isLogin,
+  });
   final _formKey = GlobalKey<FormState>();
+  final AutoDisposeStateNotifierProvider<DriverAuthStateNotifer, AuthState>
+      driverAuthProvider;
+
+  final bool isLogin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = ref.read(driverLoginStateNotifierProvider.notifier);
-    final state = ref.watch(driverLoginStateNotifierProvider);
-
+    final provider = ref.read(driverAuthProvider.notifier);
+    final state = ref.watch(driverAuthProvider);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -42,37 +50,40 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections * 2,
               ),
-              const Text(TTexts.phoneNo),
+              const Text(TTexts.email),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              // Phone Number Section
-              Form(
-                key: _formKey,
-                child: IntlPhoneField(
-                  controller: state.textFieldController,
-                  autofocus: true,
-                  cursorColor: TColors.primary,
-                  validator: (value) async {
-                    return TValidator.validatePhoneNumber(value);
-                  },
-                  onChanged: (value) =>
-                      ref.read(phoneNumberText.notifier).state = value.number,
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(
-                      Iconsax.close_circle,
-                    ),
-                    hintText: TTexts.signupPhoneHintText,
-                    focusedBorder: OutlineInputBorder(
+              Center(
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    controller: state.textFieldController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: TValidator.validateEmail,
+                    decoration: InputDecoration(
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          state.textFieldController.clear();
+                        },
+                        child: const Icon(
+                          Iconsax.close_circle,
+                        ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: TColors.primary),
+                      ),
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                      color: TColors.primary,
-                    )),
-                    labelText: TTexts.phoneNo,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
+                          color: TColors.primary.withOpacity(0.3),
+                        ),
+                      ),
+                      hintText: TTexts.driverHintText,
+                      hintStyle: Theme.of(context).textTheme.bodySmall!.apply(
+                            color: TColors.darkGrey,
+                          ),
                     ),
                   ),
-                  initialCountryCode: 'NG',
                 ),
               ),
               const SizedBox(
@@ -125,17 +136,12 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    () {};
-
-                    if ((_formKey.currentState?.validate() ?? false)
-
-                        ///TODO: get backend to fix issue with +234 with numbers
-
-                        &&
-                        validatePhoneText(ref, context)) {
+                    if (_formKey.currentState?.validate() ?? false) {
                       final target = {
-                        'phone': '0${ref.read(phoneNumberText)}',
+                        KeyConstant.email: state.textFieldController.text,
                       };
+                      ref.read(emailText.notifier).state =
+                          state.textFieldController.text;
                       provider
                           .onAuthAction(
                         target: target,
@@ -162,52 +168,11 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    TTexts.driverAlreadyHaveAnAccount,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   (context),
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const DriverSignup(),
-                      //   ),
-                      // );
-
-                      context.go(BGRouteNames.driverSignup);
-                    },
-                    child: Text(
-                      TTexts.createAccount,
-                      style: Theme.of(context).textTheme.bodyLarge!.apply(
-                            color: TColors.linkBlueColor,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
+              if (isLogin) const GotoSignUp() else const GotoSignIn(),
             ],
           ),
         ),
       ),
     );
-  }
-
-  bool validatePhoneText(WidgetRef ref, BuildContext context) {
-    // if (!ref.read(_phoneNumberText).startsWith('+234') ) {
-    if (ref.read(phoneNumberText).length < 11) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Enter a valid Nigerian number',
-            style: TextStyle(color: Colors.red),
-          ),
-        ),
-      );
-      return false;
-    }
-    return true;
   }
 }

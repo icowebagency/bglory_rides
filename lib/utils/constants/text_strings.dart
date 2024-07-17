@@ -63,6 +63,7 @@ class TTexts {
   static const String driverOptionTitle =
       "How do you want to earn as a BG Driver?";
   static const String driverAlreadyHaveAnAccount = "Already have an account? ";
+  static const String driverDontHaveAnAccount = "Dont have an account? ";
   static const String driverCodeSentTitle = "We sent a verification code to";
   static const String driverRequestCodeTitle = "Request code in ";
   static const String driverRequestCodeSecondsTitle = "Secs";
@@ -103,6 +104,10 @@ class TTexts {
       "* Kindly make sure that the details on the document matches the name on your BG Driver account";
   static const String driverInteriorRules =
       "* Kindly take a clear picture showing the interior of  your car";
+  static const String driverMotorcyleRules =
+      "* Kindly take a clear picture showing your motorcycle";
+  static const String driverMotorcyleHackneyRules =
+      "* Kindly take a clear picture showing your hackney permit";
   static const String driverPhotoUploadInst =
       "* Face the camera and make sure your eyes and mouth are clearly visible.";
   static const String driverPhotoUploadInstTw =
@@ -147,6 +152,9 @@ class TTexts {
       "Exterior picture of your car";
   static const String driverVehicleInteriorPictureTitle =
       "Interior picture of your car";
+
+  static const String driverMotorcyclePictureTitle =
+      "Picture of your motorcycle";
 
   // -- Driver Authentication Headings
   static const String signupDriverTitle = "Become a BG Driver";

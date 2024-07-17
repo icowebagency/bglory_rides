@@ -1,20 +1,31 @@
+import 'dart:convert';
+
+import 'package:bglory_rides/features/driver/screens/auth/signup/driver_signup_provider.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
+import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
+import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../../routing/driver_routing.dart';
-import '../../../../../../utils/constants/colors.dart';
-import '../../../../../../utils/constants/sizes.dart';
-import '../../../../../../utils/constants/text_strings.dart';
+import '../../../../../routing/driver_routing.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
 
-class EmailFormTab extends StatelessWidget {
+class EmailFormTab extends ConsumerWidget {
   EmailFormTab({super.key});
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.read(driverSignUpStateNotifierProvider.notifier);
+    final state = ref.watch(driverSignUpStateNotifierProvider);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -33,13 +44,15 @@ class EmailFormTab extends StatelessWidget {
               ),
               Center(
                 child: Form(
+                  key: _formKey,
                   child: TextFormField(
-                    controller: _emailController,
+                    controller: state.textFieldController,
                     keyboardType: TextInputType.emailAddress,
+                    validator: TValidator.validateEmail,
                     decoration: InputDecoration(
                       suffixIcon: GestureDetector(
                         onTap: () {
-                          _emailController.clear();
+                          state.textFieldController.clear();
                         },
                         child: const Icon(
                           Iconsax.close_circle,
@@ -63,6 +76,9 @@ class EmailFormTab extends StatelessWidget {
               ),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
+              ),
+              const SizedBox(
+                height: TSizes.spaceBtwItems,
               ),
               Center(
                 child: RichText(
@@ -108,46 +124,37 @@ class EmailFormTab extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    String emailInput = _emailController.text;
-
-                    final path = Uri(
-                        path: BGRouteNames.driverVerification,
-                        queryParameters: {
-                          'email': emailInput,
-                        }).toString();
-                    context.go(path);
+                    if (_formKey.currentState?.validate() ?? false) {
+                      final target = {
+                        KeyConstant.email: state.textFieldController.text,
+                      };
+                      provider
+                          .onAuthAction(
+                        target: target,
+                        onError: NotificationUtil.showErrorNotification,
+                      )
+                          .then(
+                        (otpGeneratedSuccessfully) {
+                          if (otpGeneratedSuccessfully) {
+                            final path = Uri(
+                              path: BGRouteNames.driverVerification,
+                              queryParameters: {
+                                KeyConstant.target: jsonEncode(target),
+                              },
+                            ).toString();
+                            context.go(path);
+                          }
+                        },
+                      );
+                    }
                   },
-                  child: const Text(TTexts.createAccount),
+                  child: const Text(TTexts.loginContinueButtonTitle),
                 ),
               ),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    TTexts.driverAlreadyHaveAnAccount,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   (context),
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const DriverLoginScreen(),
-                      //   ),
-                      // );
-                      context.go(BGRouteNames.driverLogin);
-                    },
-                    child: Text(
-                      TTexts.signIn,
-                      style: Theme.of(context).textTheme.bodyLarge!.apply(
-                            color: TColors.linkBlueColor,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
+              const GotoSignIn(),
             ],
           ),
         ),

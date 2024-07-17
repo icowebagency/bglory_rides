@@ -5,7 +5,8 @@ import '../../../../utils/secrets/api_secrets.dart';
 import '../../../../utils/secrets/handle_api_mixin.dart';
 
 abstract class DriverApiClientContract {
-  Future requestOtp({required Map<String, String> target});
+  Future requestSignUpOtp({required Map<String, String> target});
+  Future requestLoginOtp({required Map<String, String> target});
   Future verifyOtp({required Map<String, String> target, required String otp});
   Future getDriverProfile({required String token});
   Future completeDriverProfile({
@@ -47,10 +48,10 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
   }
 
   @override
-  Future requestOtp({required Map<String, String> target}) async {
+  Future requestSignUpOtp({required Map<String, String> target}) async {
     assert(target['phone'] != null || target['email'] != null,
         'Either phone or email must be present');
-    var request = MultipartApiRequest('POST', Uri.parse(sendOtpEndpoint));
+    var request = MultipartApiRequest('POST', Uri.parse(sendSignUpOtpEndpoint));
     request.fields.addAll(target);
 
     return handleApiCall(request);
@@ -67,6 +68,16 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
       target.entries.first.key: target.entries.first.value,
       'otp': otp,
     });
+
+    return handleApiCall(request);
+  }
+
+  @override
+  Future requestLoginOtp({required Map<String, String> target}) {
+    assert(target['phone'] != null || target['email'] != null,
+        'Either phone or email must be present');
+    var request = MultipartApiRequest('POST', Uri.parse(sendLoginOtpEndpoint));
+    request.fields.addAll(target);
 
     return handleApiCall(request);
   }

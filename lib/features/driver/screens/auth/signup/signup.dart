@@ -1,7 +1,7 @@
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
-import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
-import 'package:bglory_rides/features/driver/screens/auth/signup/widgets/login_emailFormTab.dart';
-import 'package:bglory_rides/features/driver/screens/auth/signup/widgets/login_phoneNumberTab.dart';
+import 'package:bglory_rides/features/driver/screens/auth/signup/driver_signup_provider.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -77,16 +77,24 @@ class _DriverSignupState extends State<DriverSignup> {
                       child: Consumer(builder: (context, ref, child) {
                         return Builder(builder: (context) {
                           ref
-                              .read(driverLoginStateNotifierProvider.notifier)
+                              .read(driverSignUpStateNotifierProvider.notifier)
                               .setPageController(
                                 controller: DefaultTabController.of(context),
                               );
                           return TabBarView(children: [
                             ///  Email Tab
-                            LoginEmailFormTab(),
+                            LoginEmailFormTab(
+                              driverAuthProvider:
+                                  driverSignUpStateNotifierProvider,
+                              isLogin: false,
+                            ),
 
                             ///  Phone Number Tab
-                            LoginPhoneNumberFormTab(),
+                            LoginPhoneNumberFormTab(
+                              driverAuthProvider:
+                                  driverSignUpStateNotifierProvider,
+                              isLogin: false,
+                            ),
                           ]);
                         });
                       }),
@@ -97,7 +105,7 @@ class _DriverSignupState extends State<DriverSignup> {
               Consumer(builder: (context, ref, child) {
                 return Visibility(
                   visible: ref.watch(
-                    driverLoginStateNotifierProvider.select(
+                    driverSignUpStateNotifierProvider.select(
                       (value) => value.isLoading,
                     ),
                   ),
