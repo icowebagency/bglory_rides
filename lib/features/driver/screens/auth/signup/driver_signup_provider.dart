@@ -34,7 +34,8 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     final isTest = ref.read(isTestProvider);
 
     if (result is Failure) {
-      onError?.call('OTP request failed');
+      onError?.call("${(result).errorResponse}");
+
       return false;
     } else {
       if (isTest) {

@@ -108,14 +108,7 @@ class PhoneNumberFormTab extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     String userInput = _phoneNumbercontroller.text;
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => DriverVerificationScreen(
-                    //       userInput: userInput,
-                    //     ),
-                    //   ),
-                    // );
+
                     final path = Uri(
                         path: BGRouteNames.driverVerification,
                         queryParameters: {

@@ -228,7 +228,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverPayloadKey.motorcycleImage,
-      navPath: BGRouteNames.driverVehicleLicense,
+      navPath: BGRouteNames.driverMotorcycleGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -243,7 +243,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverPayloadKey.motorcycleInsurance,
-      navPath: BGRouteNames.driverVehicleLicense,
+      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
         if (value != null) {
@@ -258,7 +258,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverPayloadKey.hackneyPermit,
-      navPath: BGRouteNames.driverVehicleLicense,
+      navPath: BGRouteNames.driverMotorcycleHackneyPermit,
     ).then(
       (value) {
         if (value != null) {

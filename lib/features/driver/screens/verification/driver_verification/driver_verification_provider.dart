@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_state.dart';
@@ -28,7 +26,6 @@ class DriverVerificationStateNotifier extends DriverAuthStateNotifer {
     assert(target['phone'] != null || target['email'] != null,
         'Either phone or email must be present');
     assert(target['otp'] != null, 'otp must be present');
-
 
     state = state.copyWith(isLoading: true);
 

@@ -1,5 +1,4 @@
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
-import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 import 'package:bglory_rides/features/driver/data/repository/driver_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

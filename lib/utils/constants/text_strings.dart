@@ -104,6 +104,10 @@ class TTexts {
       "* Kindly make sure that the details on the document matches the name on your BG Driver account";
   static const String driverInteriorRules =
       "* Kindly take a clear picture showing the interior of  your car";
+  static const String driverMotorcyleRules =
+      "* Kindly take a clear picture showing your motorcycle";
+  static const String driverMotorcyleHackneyRules =
+      "* Kindly take a clear picture showing your hackney permit";
   static const String driverPhotoUploadInst =
       "* Face the camera and make sure your eyes and mouth are clearly visible.";
   static const String driverPhotoUploadInstTw =
