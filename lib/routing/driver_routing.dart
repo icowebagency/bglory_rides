@@ -16,6 +16,7 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_sc
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_hackney_picture.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_picture_guideline%20copy.dart';
@@ -49,7 +50,7 @@ final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
 class DriverRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: driverNavKey,
-    initialLocation: BGRouteNames.driverLogin,
+    initialLocation: BGRouteNames.driverHomePageScreen,
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
@@ -94,6 +95,10 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.driverTransactionHistoryScreen,
         builder: (context, state) => const TransactionHistory(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverTripHistoryDetails,
+        builder: (context, state) => const TripDetailsScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverPaymentDetailsScreen,
@@ -264,6 +269,7 @@ class BGRouteNames {
   static const String driverAccountScreen = '/driver/account-screen';
   static const String driverDocumentScreen = '/driver/document-screen';
   static const String driverSafety = '/driver/safety-screen';
+  static const String driverTripHistoryDetails = '/driver/trip-details-screen';
   static const String driverHelpAndSupport = '/driver/helpandsupport-screen';
   static const String driverVerificationSuccessful =
       '/driver/verification-successful';

@@ -50,6 +50,7 @@ dependencies:
   pinput: ^5.0.0
   fluttertoast: ^8.2.6
   image_picker: ^1.1.2
+  timelines_plus: ^1.0.3
 
 
 

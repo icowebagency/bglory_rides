@@ -14,6 +14,7 @@ class TransactionWidget extends StatelessWidget {
     required this.withdrawalProgressColor,
     required this.withdrawalIconProgressColor,
   });
+
   final String withdrewedAmount;
   final String withdrawalDate;
   final String withdrawalProgress;
@@ -22,6 +23,7 @@ class TransactionWidget extends StatelessWidget {
   final Color withdrawIconTypeColor;
   final IconData withdrawalIconProgress;
   final Color withdrawalIconProgressColor;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -90,7 +92,7 @@ class TransactionWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             )
           ],
