@@ -385,4 +385,72 @@ class TTexts {
   static const String transactionHistoryEarningWithdrawalThreePrice = '₦8,520';
   static const String transactionHistoryEarningWithdrawalFourPrice = '₦193,000';
   static const String transactionHistoryEarningWithdrawalFivePrice = '₦78,200';
+
+  // Blank Trip history
+  static const String blankTripHistoryAppBarTitle = 'Trips History';
+  static const String blankTripHistoryButtonText = 'Take trips';
+  static const String blankTripHistoryTitle =
+      'Don\'t get bored,\n ride with BG Rides';
+  static const String blankTripHistorySubTitle =
+      'Don\’t get tired, accept trips and\ncomplete rides to earn more';
+
+  // Trips History
+  // June 2024
+  static const String tripsHistoryMonthDate = 'May 2024';
+  static const String tripsHistoryMonthDateOne = 'June 2024';
+  static const String tripsHistoryMonthDateTwo = 'July 2024';
+  static const String tripsHistoryLocationTitle = '18, Chief Dominic Street';
+  static const String tripsHistoryLocation = 'Surulere, Lagos';
+  static const String tripsHistoryFee = '₦4,500';
+  static const String tripsHistoryDate = '19 June, 07:10';
+  static const String tripsHistoryLocationTitleOne = 'Shoprite Mall';
+  static const String tripsHistoryLocationOne = 'Lekki, Lagos';
+  static const String tripsHistoryFeeOne = '₦8500';
+  static const String tripsHistoryDateOne = '17 June, 10:31';
+  static const String tripsHistoryLocationTitleTwo = 'Shoprite Mall';
+  static const String tripsHistoryLocationTwo = 'Lekki, Lagos';
+  static const String tripsHistoryFeeTwo = '₦8500';
+  static const String tripsHistoryDateTwo = '17 June, 10:31';
+
+  // Trip details
+  static const String tripHistoryDetailsAppBarTitle = 'Trip Details';
+  static const String tripHistoryDetailsDate = 'Mon, 19 June, 2024';
+  static const String tripHistoryDetailsKilometer = '10 km';
+  static const String tripHistoryDetailsTime = '53 minutes';
+  static const String tripHistoryDetailsTimeLineStartDestinationTitle =
+      '18, Chief Dominic Street, Surulere';
+  static const String tripHistoryDetailsTimeLineStartDestinationTime =
+      '07:10 AM';
+  static const String tripHistoryDetailsTimeLineFinalDestinationTitle =
+      'Shoprite Mall, Lekki';
+  static const String tripHistoryDetailsTimeLineFinalDestinationTime =
+      '10:15 AM';
+  static const String tripHistoryDetailsPassengerReviewTitle =
+      'Passenger\'s Review';
+  static const String tripHistoryDetailsPassengerReviewSubTitle =
+      'He is a very patient and friendly driver, he was so kind to have assisted me with my luggage\'s, a great driver.';
+  static const String tripHistoryDetailsPaymentDetailsTitle = 'Payment details';
+  static const String tripHistoryDetailsRideFareTitle = 'Ride fare';
+  static const String tripHistoryDetailsBookingFeeTitle = 'Booking fee';
+  static const String tripHistoryDetailsDiscountTitle = 'Discount';
+  static const String tripHistoryDetailsBookingFeePrice = '₦150';
+  static const String tripHistoryDetailsDiscountPrice = '-₦500';
+  static const String tripHistoryDetailsRideFarePrice = '₦4850';
+  static const String tripHistoryDetailsRideTotalTitle = 'Total';
+  static const String tripHistoryDetailsRideTotalAmount = '₦4500';
+  static const String tripHistoryDetailsInAppPaymentTitle = 'In-app payment';
+  static const String tripHistoryDetailsButtonTitle = 'Download Receipt';
+  static const String tripHistoryDetailsInAppPaymentSubTitle =
+      'Total amount paid on the app via bank card';
+  static const String tripHistoryDetailsInAppPaymentPrice = '₦4500';
+
+  // Download Receipt Bottom Sheet
+  static const String downloadReceiptTitle = 'Download Receipt';
+  static const String shareReceiptTitle = 'Share Receipt';
+  static const String resendReceiptTitle = 'Resend Receipt';
+  static const String receiptSentTitle = 'Receipt sent';
+  static const String receiptSentSubTitle =
+      'Ride receipt has been resent to your registered email';
+  static const String downloadReceiptSubTitle =
+      'Kindly select one of the available options';
 }
