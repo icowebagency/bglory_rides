@@ -1,13 +1,14 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
-import 'package:bglory_rides/features/driver/general-widgets/save_button_general_widget.dart';
+import 'package:bglory_rides/features/driver/general-widgets/save_button_widget.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../utils/constants/colors.dart';
-import 'bottom_sheet_shares_widget.dart';
 
 const LatLng currentPosition = LatLng(4.865855964962911, 6.964088436779546);
 
@@ -22,42 +23,6 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   double _currentRating = 2.1;
   int currentStep = 0;
   final int _totalSteps = 3;
-
-  Future<void> _showPopupDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true, // user must tap button to close
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: TColors.dragableBottomSheetColor,
-          content: SizedBox(
-            height: 100,
-            width: double.infinity,
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    TTexts.receiptSentTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    textAlign: TextAlign.center,
-                    TTexts.receiptSentSubTitle,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   /// cancel step function
   void cancelStep() {
@@ -357,52 +322,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                 ),
 
                 const SizedBox(height: TSizes.spaceBtwItems),
-                SaveGeneralButtonWidget(
+                SaveButtonWidget(
                   onTap: () {
-                    showModalBottomSheet(
-                      constraints: BoxConstraints.tight(
-                        Size.fromHeight(height * 0.3),
-                      ),
-                      elevation: 10,
-                      showDragHandle: true,
-                      isScrollControlled: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                TTexts.downloadReceiptTitle,
-                                style:
-                                    Theme.of(context).textTheme.headlineMedium,
-                              ),
-                              const SizedBox(height: TSizes.spaceBtwItems),
-                              BottomSheetSharesWidget(
-                                myBottomSheetIcon: Iconsax.receive_square,
-                                onTap: () {
-                                  _showPopupDialog(context);
-                                },
-                                myBottomSheetText: TTexts.downloadReceiptTitle,
-                              ),
-                              const SizedBox(height: TSizes.spaceBtwItems),
-                              BottomSheetSharesWidget(
-                                  myBottomSheetIcon: Iconsax.directbox_send,
-                                  myBottomSheetText: TTexts.resendReceiptTitle,
-                                  onTap: () {}),
-                              const SizedBox(height: TSizes.spaceBtwItems),
-                              BottomSheetSharesWidget(
-                                  myBottomSheetIcon: Iconsax.export,
-                                  myBottomSheetText: TTexts.shareReceiptTitle,
-                                  onTap: () {}),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                    context.push(BGRouteNames.driverDownloadReceipt);
                   },
                   buttonText: TTexts.tripHistoryDetailsButtonTitle,
                 ),

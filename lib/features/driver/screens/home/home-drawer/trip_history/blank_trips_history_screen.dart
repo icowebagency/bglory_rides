@@ -1,4 +1,4 @@
-import 'package:bglory_rides/features/driver/general-widgets/save_button_general_widget.dart';
+import 'package:bglory_rides/features/driver/general-widgets/save_button_widget.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class _BlankTripHistoryScreenState extends State<BlankTripHistoryScreen> {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                SaveGeneralButtonWidget(
+                SaveButtonWidget(
                   buttonText: TTexts.blankTripHistoryButtonText,
                   onTap: () {},
                 )

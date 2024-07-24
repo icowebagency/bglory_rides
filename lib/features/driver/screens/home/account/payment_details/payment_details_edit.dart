@@ -1,4 +1,4 @@
-import 'package:bglory_rides/features/driver/general-widgets/save_button_general_widget.dart';
+import 'package:bglory_rides/features/driver/general-widgets/save_button_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +20,7 @@ class _PaymentDetailsEditScreenState extends State<PaymentDetailsEditScreen> {
   _PaymentDetailsEditScreenState() {
     _banksSelectedValue = _nigerianBanks[0];
   }
+
   final List<String> _nigerianBanks = [
     'Access Bank',
     'Zenith Bank',
@@ -45,6 +46,7 @@ class _PaymentDetailsEditScreenState extends State<PaymentDetailsEditScreen> {
   ];
 
   String? _banksSelectedValue = "";
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -225,7 +227,7 @@ class _PaymentDetailsEditScreenState extends State<PaymentDetailsEditScreen> {
                         const SizedBox(
                           height: TSizes.spaceBtwSections,
                         ),
-                        SaveGeneralButtonWidget(
+                        SaveButtonWidget(
                           onTap: () {
                             context.go(BGRouteNames.driverAccountScreen);
                           },

@@ -1,9 +1,12 @@
+import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/constants/text_strings.dart';
-import '../../../../../general-widgets/save_button_general_widget.dart';
+import '../../../../../general-widgets/outlined_button_widget.dart';
+import '../../../../../general-widgets/save_button_widget.dart';
 
 class WithdrawPinWidget extends StatelessWidget {
   const WithdrawPinWidget({
@@ -43,9 +46,29 @@ class WithdrawPinWidget extends StatelessWidget {
           const SizedBox(
             height: TSizes.spaceBtwSections,
           ),
-          SaveGeneralButtonWidget(
-            onTap: () {},
-            buttonText: TTexts.withdrawButtonSecondText,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: OutlinedButtonWidget(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  buttonText: TTexts.withdrawButtonCancelText,
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: SaveButtonWidget(
+                  onTap: () {
+                    context.go(BGRouteNames.driverWithdrawSuccessfulScreen);
+                  },
+                  buttonText: TTexts.withdrawButtonSecondText,
+                ),
+              ),
+            ],
           )
         ],
       ),
