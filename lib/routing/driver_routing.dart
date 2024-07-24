@@ -15,10 +15,13 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/wi
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal_successful_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety/share_trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/about_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/app_notification.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/app_settings_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/auto_accept_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/driver_theme_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/notification_and_sound.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/sound_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
@@ -226,6 +229,18 @@ class DriverRouting {
         path: BGRouteNames.driverDownloadReceipt,
         builder: (context, state) => const DownloadReceiptScreen(),
       ),
+      GoRoute(
+        path: BGRouteNames.driverThemeScreen,
+        builder: (context, state) => const DriverThemeScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverAboutScreen,
+        builder: (context, state) => const AboutScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverSafetyShareTripDetailsScreen,
+        builder: (context, state) => const SafetyShareTripDetailsScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(routes: [
@@ -336,4 +351,8 @@ class BGRouteNames {
   static const String driverMotorcycleHackneyPermit =
       '/driver/motorcycle-hackney-permit';
   static const String driverDownloadReceipt = '/driver/download-receipt-screen';
+  static const String driverThemeScreen = '/driver/theme-screen';
+  static const String driverAboutScreen = '/driver/about-screen';
+  static const String driverSafetyShareTripDetailsScreen =
+      '/driver/safety-share-trip-details-screen';
 }

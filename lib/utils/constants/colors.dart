@@ -40,6 +40,7 @@ class TColors {
   static const Color success = Color(0xFF339956);
   static const Color warning = Color(0xFFFAC402);
   static const Color info = Color(0xFFE26844);
+  static const Color popupColor = Color(0xffFEE89A);
 
   // Neutral Shades
   static const Color black = Color(0xFF0F0F0F);
