@@ -76,7 +76,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: TColors.white,
               ),
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+                  context.push(BGRouteNames.driverThemeScreen);
+                },
                 leading: const Icon(Iconsax.path_square),
                 title: const Text(TTexts.settingsThemeText),
                 trailing: const Icon(
@@ -96,7 +98,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: TColors.white,
               ),
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+                  context.push(BGRouteNames.driverAboutScreen);
+                },
                 leading: const Icon(Iconsax.info_circle),
                 title: const Text(TTexts.settingsAboutText),
                 trailing: const Icon(

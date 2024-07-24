@@ -533,4 +533,39 @@ class TTexts {
   static const String invoiceReceiptTotalSubText = 'In-app payment';
   static const String invoiceReceiptTotalSubAmount = '₦4500';
   static const String invoiceReceiptTotalButtonText = 'Download receipt';
+
+  // Theme settings section
+  static const String driverThemeSystemDefault = 'System default';
+  static const String driverThemeAppBarTitle = 'Theme';
+  static const String driverThemeDark = ' Dark';
+  static const String driverThemeLight = 'Light';
+
+  // Safety section
+  static const String driverSafetyAppBarTitle = 'Safety features';
+  static const String driverSafetySubTitle =
+      'Safety features to help you feel safe and secure while driving';
+  static const String driverSafetyOptionOneTitle = 'Emergency call';
+  static const String driverSafetyOptionTwoTitle = 'Share trip details';
+
+  //Safety  Pop-up dialog
+  static const String driverPopupExactLocationTitle = 'Exact location';
+  static const String driverPopupExactLocationAddress =
+      'Adeniji street, Lekki, Nigeria';
+  static const String driverPopupVehicleDetailsTitle = 'Vehicle details';
+  static const String driverPopupPhoneNumberTitle = 'Call +2348123456789';
+  static const String driverPopupVehicleDetails =
+      'Toyota Corolla 2010 (white) - AA123BBB';
+  static const String driverPopupSubText =
+      'Kindly share with the local authorities full information of the incident as won\’t be able to it automatically';
+
+  // Safety trip details
+  static const String driverTripFareTitle = 'Trip fare';
+  static const String driverTripFareAmount = '₦4850';
+  static const String driverTripDetailsButtonText = 'Share details';
+  static const String driverTripDetailsPassengerTitle = 'Passenger';
+  static const String driverTripDetailsPassengerDetails =
+      'Damola Awoyemi - 07067855350';
+  static const String driverTripDetailsVehicleDetailsTitle = 'Vehicle details';
+  static const String driverTripDetailsVehicleDetails =
+      'Toyota Corolla 2010 (white) - AA123BBB';
 }

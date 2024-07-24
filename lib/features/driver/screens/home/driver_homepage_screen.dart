@@ -34,7 +34,7 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
             zoomGesturesEnabled: true,
             mapType: MapType.terrain,
             initialCameraPosition:
-                CameraPosition(zoom: 2.1, target: currentPosition),
+                CameraPosition(zoom: 15.1, target: currentPosition),
           ),
 
           /// Driver Drawer and Driver Notification.
