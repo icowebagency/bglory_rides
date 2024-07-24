@@ -360,9 +360,16 @@ class TTexts {
   static const String withdrawHintText = '0.00';
   static const String withdrawButtonText = 'Proceed';
   static const String withdrawButtonSecondText = 'Withdraw';
+  static const String withdrawButtonCancelText = 'Cancel';
   static const String withdrawPinText = 'Enter pin';
   static const String withdrawPaymentHint =
       '0209004644 - Awoyemi Damola - GT Bank';
+
+  // Withdraw successful section
+  static const String withdrawSuccessfulButtonText = 'Go home';
+  static const String withdrawSuccessfulHeadingText = 'Withdraw\n Successful';
+  static const String withdrawSuccessfulSubText =
+      'Congratulations! Your withdrawal was successful';
 
   // Transaction History
   static const String transactionHistoryAppBarTitle = 'Transaction history';
@@ -439,7 +446,7 @@ class TTexts {
   static const String tripHistoryDetailsRideTotalTitle = 'Total';
   static const String tripHistoryDetailsRideTotalAmount = '₦4500';
   static const String tripHistoryDetailsInAppPaymentTitle = 'In-app payment';
-  static const String tripHistoryDetailsButtonTitle = 'Download Receipt';
+  static const String tripHistoryDetailsButtonTitle = 'View Receipt';
   static const String tripHistoryDetailsInAppPaymentSubTitle =
       'Total amount paid on the app via bank card';
   static const String tripHistoryDetailsInAppPaymentPrice = '₦4500';
@@ -453,4 +460,77 @@ class TTexts {
       'Ride receipt has been resent to your registered email';
   static const String downloadReceiptSubTitle =
       'Kindly select one of the available options';
+
+  // Download Receipt Screen
+
+  // Settings screen
+  static const String settingsAppSettingsText = 'App settings';
+  static const String settingsNotificationText = 'Notification and sound';
+  static const String settingsThemeText = 'Theme';
+  static const String settingsThemeDefaultText = 'default';
+  static const String settingsAboutText = 'About';
+
+  // App settings screen
+  static const String appSettingsAppBarTitle = 'App Settings';
+  static const String appSettingsAutoAcceptTitle = 'Auto-accept';
+  static const String appSettingsAutoAcceptSelectedOptionTitle = 'Off';
+  static const String appSettingsLanguageSelectedOptionTitle = 'English';
+  static const String appSettingsLanguageTitle = 'Language';
+  static const String appSettingsSubTitle =
+      'When toggled on, incoming ride request will be automatically accepted, there may be exceptional optional (maybe outside your search radius). Auto-accept feature will be turned off automatically when you decline or cancel a ride request.';
+
+  // Notification and sound
+  static const String appNotificationAndSoundTitle = 'Notification and sound';
+  static const String appNotificationAndSoundTwoTitle = 'Sound';
+
+  // App Notification
+  static const String appNotificationTitle = 'App notification';
+
+  static const String appNotificationEmailTitle = 'Email';
+  static const String appNotificationPushTitle = 'Push';
+  static const String appNotificationSmsTitle = 'SMS';
+  static const String appNotificationInAppMessageTitle = 'In-app message';
+  static const String appNotificationInAppBannerTitle = 'In-app banners';
+
+  // Sound Screen
+  static const String soundScreenAppBarTitle = 'Sound';
+  static const String soundScreenANoneTitle = 'None';
+  static const String soundScreenAuroraTitle = 'Aurora';
+  static const String soundScreenBamboTitle = 'Bambo';
+  static const String soundScreenChordTitle = 'Chord';
+  static const String soundScreenCirclesTitle = 'Circles';
+  static const String soundScreenHelloTitle = 'Hello';
+  static const String soundScreenInputTitle = 'Input';
+
+  // Driver's Invoice receipt
+  static const String invoiceReceiptDate = 'Mon, 19 June, 2024';
+  static const String invoiceReceiptInvoiceTitle = 'Invoice';
+  static const String invoiceReceiptNumber = 'Invoice no. 1456987-001';
+  static const String invoiceReceiptNameTitle = 'Driver\'s name';
+  static const String invoiceReceiptNumberTitle = 'Driver\'s number';
+  static const String invoiceReceiptName = 'Michael Samson';
+  static const String invoiceReceiptPassengerDetailsTitle = 'Passenger details';
+  static const String invoiceReceiptPassengerNameTitle = 'Name';
+  static const String invoiceReceiptPassengerPhoneTitle = 'Phone number';
+  static const String invoiceReceiptPassengerName = 'Damola Awoyemi';
+  static const String invoiceReceiptPassengerPhoneNumber = '08034532414';
+  static const String invoiceReceiptPickUpTitle = 'Pick up';
+  static const String invoiceReceiptPickUpTime = '07:10 AM';
+  static const String invoiceReceiptPickUpDetails =
+      '18, Chief Dominic Street, Surulere';
+  static const String invoiceReceiptDestinationTitle = 'Destination';
+  static const String invoiceReceiptDestinationDetails = 'Shoprite Mall, Lekki';
+  static const String invoiceReceiptDestinationTime = '10:15 AM';
+  static const String invoiceReceiptPaymentTitle = 'Payment details';
+  static const String invoiceReceiptRideFareTitle = 'Ride fare';
+  static const String invoiceReceiptRideFareAmount = '₦4850';
+  static const String invoiceReceiptBookingFeeTitle = 'Booking fee';
+  static const String invoiceReceiptBookingFeeAmount = '₦4850';
+  static const String invoiceReceiptDiscountTitle = 'Discount';
+  static const String invoiceReceiptDiscountAmount = '₦500';
+  static const String invoiceReceiptTotalTitle = 'Total';
+  static const String invoiceReceiptTotalAmount = '₦4500';
+  static const String invoiceReceiptTotalSubText = 'In-app payment';
+  static const String invoiceReceiptTotalSubAmount = '₦4500';
+  static const String invoiceReceiptTotalButtonText = 'Download receipt';
 }

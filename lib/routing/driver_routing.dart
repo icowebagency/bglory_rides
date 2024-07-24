@@ -12,10 +12,17 @@ import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal_successful_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/app_notification.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/app_settings_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/auto_accept_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/notification_and_sound.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/sound_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/download_receipt_history_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_hackney_picture.dart';
@@ -93,6 +100,10 @@ class DriverRouting {
         builder: (context, state) => const InsightScreen(),
       ),
       GoRoute(
+        path: BGRouteNames.driverWithdrawSuccessfulScreen,
+        builder: (context, state) => const WithdrawalSuccessfulScreen(),
+      ),
+      GoRoute(
         path: BGRouteNames.driverTransactionHistoryScreen,
         builder: (context, state) => const TransactionHistory(),
       ),
@@ -119,6 +130,10 @@ class DriverRouting {
       GoRoute(
         path: BGRouteNames.vehicleInsuranceGuidlineScreen,
         builder: (context, state) => const VehicleInsuranceGuidline(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverAppSettingsScreen,
+        builder: (context, state) => const AppSettingsScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverAccountScreen,
@@ -165,6 +180,14 @@ class DriverRouting {
             const DriverInteriorPictureGuidelineScreen(),
       ),
       GoRoute(
+        path: BGRouteNames.driverAppNotification,
+        builder: (context, state) => const AppNotificationScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverNotificationAndSound,
+        builder: (context, state) => const NotificationAndSoundScreen(),
+      ),
+      GoRoute(
         path: BGRouteNames.driverMotorcycleGuideline,
         builder: (context, state) =>
             const DriverMotorcyclePictureGuidelineScreen(),
@@ -188,8 +211,20 @@ class DriverRouting {
         builder: (context, state) => const DriverVehicleRoadWorthinessScreen(),
       ),
       GoRoute(
+        path: BGRouteNames.driverAutoAccept,
+        builder: (context, state) => const AutoAcceptScreen(),
+      ),
+      GoRoute(
         path: BGRouteNames.driverMotorcycleInformation,
         builder: (context, state) => const DriverMotorcycleInformation(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverSoundScreen,
+        builder: (context, state) => const SoundScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverDownloadReceipt,
+        builder: (context, state) => const DownloadReceiptScreen(),
       ),
       StatefulShellRoute.indexedStack(
         branches: [
@@ -264,6 +299,11 @@ class BGRouteNames {
   static const String vehicleInformationEdit =
       '/driver/vehicle-information-edit-screen';
   static const String driverEarnings = '/driver/earnings-screen';
+  static const String driverAutoAccept = '/driver/auto-accept-screen';
+  static const String driverNotificationAndSound =
+      '/driver/notification-and-sound-screen';
+  static const String driverAppNotification = '/driver/app-notification-screen';
+  static const String driverSoundScreen = '/driver/driver-sound-screen';
   static const String driverTripHistory = '/driver/trip-history';
   static const String driverSettings = '/driver/settings-screen';
   static const String driverAccountScreen = '/driver/account-screen';
@@ -274,7 +314,10 @@ class BGRouteNames {
   static const String driverVerificationSuccessful =
       '/driver/verification-successful';
   static const String driverVerification = '/driver/verification';
+  static const String driverWithdrawSuccessfulScreen =
+      '/driver/withdraw-successful-screen';
   static const String driverProofOfOwnership = '/driver/driver-ownership';
+  static const String driverAppSettingsScreen = '/driver/app-screen';
   static const String driverVehicleLicense = '/driver/driver-vehicleLicense';
   static const String driverRoadWorthiness = '/driver/driver-roadWorthiness';
 
@@ -292,4 +335,5 @@ class BGRouteNames {
       '/driver/motorcycle-guideline';
   static const String driverMotorcycleHackneyPermit =
       '/driver/motorcycle-hackney-permit';
+  static const String driverDownloadReceipt = '/driver/download-receipt-screen';
 }

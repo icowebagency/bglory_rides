@@ -7,7 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../../common/widgets/driver_info_upload_widget.dart';
 import '../../../../../../routing/driver_routing.dart';
 import '../../../../../../utils/constants/colors.dart';
-import '../../../../general-widgets/save_button_general_widget.dart';
+import '../../../../general-widgets/save_button_widget.dart';
 
 class VehicleInformationEditScreen extends StatefulWidget {
   VehicleInformationEditScreen({super.key});
@@ -449,7 +449,7 @@ class _VehicleInformationEditScreenState
                     ),
                   ),
                 ),
-                SaveGeneralButtonWidget(onTap: () {
+                SaveButtonWidget(onTap: () {
                   context.go(BGRouteNames.driverAccountScreen);
                 }),
               ],

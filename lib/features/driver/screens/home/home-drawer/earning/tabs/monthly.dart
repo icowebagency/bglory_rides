@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../../../../../routing/driver_routing.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/constants/text_strings.dart';
-import '../../../../../general-widgets/save_button_general_widget.dart';
+import '../../../../../general-widgets/save_button_widget.dart';
 import '../widgets/table_tab_widget.dart';
 
 class ThirdTab extends StatefulWidget {
@@ -100,7 +100,7 @@ class _ThirdTabState extends State<ThirdTab> {
           subText: TTexts.firstTabSubCommissionText,
         ),
         const SizedBox(height: TSizes.spaceBtwSections),
-        SaveGeneralButtonWidget(
+        SaveButtonWidget(
           onTap: () {
             context.push(BGRouteNames.driverWithdrawEarningScreen);
           },
