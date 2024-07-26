@@ -70,7 +70,9 @@ class TransactionWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     withdrewedAmount,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontFamily: 'Notosans',
+                        ),
                   ),
                 ),
                 FittedBox(

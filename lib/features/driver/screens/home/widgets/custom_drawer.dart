@@ -94,6 +94,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   width: 5,
                                 ),
                                 AnimatedRatingStars(
+                                  readOnly: true,
                                   starSize: 10,
                                   displayRatingValue: true,
                                   minRating: 0.0,

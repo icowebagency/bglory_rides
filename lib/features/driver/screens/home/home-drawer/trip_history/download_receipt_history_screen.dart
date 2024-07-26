@@ -291,7 +291,10 @@ class _DownloadReceiptScreenState extends State<DownloadReceiptScreen> {
                             const SizedBox(
                               width: 20,
                             ),
-                            const Text(TTexts.invoiceReceiptRideFareAmount),
+                            const Text(
+                              TTexts.invoiceReceiptRideFareAmount,
+                              style: TextStyle(fontFamily: 'Notosans'),
+                            ),
                           ],
                         ),
                         // Booking fee
@@ -305,7 +308,10 @@ class _DownloadReceiptScreenState extends State<DownloadReceiptScreen> {
                             const SizedBox(
                               width: 20,
                             ),
-                            const Text(TTexts.invoiceReceiptBookingFeeAmount),
+                            const Text(
+                              TTexts.invoiceReceiptBookingFeeAmount,
+                              style: TextStyle(fontFamily: 'Notosans'),
+                            ),
                           ],
                         ),
                         // Discount
@@ -331,6 +337,7 @@ class _DownloadReceiptScreenState extends State<DownloadReceiptScreen> {
                                   .bodySmall!
                                   .copyWith(
                                     color: TColors.error,
+                                    fontFamily: 'Notosans',
                                   ),
                             ),
                           ],
@@ -352,24 +359,30 @@ class _DownloadReceiptScreenState extends State<DownloadReceiptScreen> {
                             style: Theme.of(context).textTheme.titleLarge),
                         Text(
                           TTexts.invoiceReceiptTotalSubText,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(fontSize: 10),
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 10,
+                                  ),
                         ),
                       ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(TTexts.invoiceReceiptTotalAmount,
-                            style: Theme.of(context).textTheme.titleLarge),
+                        Text(
+                          TTexts.invoiceReceiptTotalAmount,
+                          style:
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    fontFamily: 'Notosans',
+                                  ),
+                        ),
                         Text(
                           TTexts.invoiceReceiptTotalSubAmount,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(fontSize: 10),
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 10,
+                                    fontFamily: 'Notosans',
+                                  ),
                         ),
                       ],
                     ),

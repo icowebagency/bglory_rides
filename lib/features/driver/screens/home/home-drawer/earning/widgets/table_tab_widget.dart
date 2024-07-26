@@ -11,10 +11,12 @@ class TabTableWidget extends StatelessWidget {
     this.dividerColor,
     this.subText,
   });
+
   final String firstText;
   final String lastText;
   final Color? dividerColor;
   final String? subText;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,7 +50,9 @@ class TabTableWidget extends StatelessWidget {
             ),
             Text(
               lastText,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontFamily: 'Notosans',
+                  ),
             ),
           ],
         ),

@@ -46,7 +46,10 @@ class _EarningsScreenState extends State<EarningsScreen> {
                   FittedBox(
                     child: Text(
                       TTexts.earningAmountTitle,
-                      style: Theme.of(context).textTheme.headlineLarge,
+                      style:
+                          Theme.of(context).textTheme.headlineLarge!.copyWith(
+                                fontFamily: 'Notosans',
+                              ),
                     ),
                   ),
                   const SizedBox(

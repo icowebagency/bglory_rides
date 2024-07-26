@@ -77,10 +77,13 @@ class TripHistoryWidget extends StatelessWidget {
                   children: [
                     // Price
                     Text(
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        tripPrice,
-                        style: Theme.of(context).textTheme.titleLarge),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      tripPrice,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontFamily: 'Notosans',
+                          ),
+                    ),
                     // Date
                     Text(
                       overflow: TextOverflow.ellipsis,
