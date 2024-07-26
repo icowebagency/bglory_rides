@@ -25,7 +25,9 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/d
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/notification_and_sound.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/sound_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/cal_us_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/chat_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/faqs_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/download_receipt_history_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
@@ -246,6 +248,14 @@ class DriverRouting {
         path: BGRouteNames.driverChatScreen,
         builder: (context, state) => const ChatScreen(),
       ),
+      GoRoute(
+        path: BGRouteNames.driverCallUsScreen,
+        builder: (context, state) => const CallUsScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqsScreen,
+        builder: (context, state) => const FaqsScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(routes: [
@@ -361,4 +371,6 @@ class BGRouteNames {
   static const String driverSafetyShareTripDetailsScreen =
       '/driver/safety-share-trip-details-screen';
   static const String driverChatScreen = '/driver/chat-screen';
+  static const String driverCallUsScreen = '/driver/call-us-screen';
+  static const String driverFaqsScreen = '/driver/faqs-screen';
 }

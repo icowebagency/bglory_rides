@@ -152,7 +152,9 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                       color: TColors.white,
                     ),
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(BGRouteNames.driverCallUsScreen);
+                      },
                       leading: const Icon(
                         Iconsax.call_outgoing,
                         size: 18,
@@ -181,7 +183,9 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                       color: TColors.white,
                     ),
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(BGRouteNames.driverFaqsScreen);
+                      },
                       leading: const Icon(
                         Iconsax.search_status,
                         size: 18,
