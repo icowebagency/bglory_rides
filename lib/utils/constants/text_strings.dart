@@ -540,6 +540,10 @@ class TTexts {
   static const String driverThemeDark = ' Dark';
   static const String driverThemeLight = 'Light';
 
+  // About Screen
+  static const String aboutAppBarTitle = 'About';
+  static const String aboutFooterTitle = 'All rights reserved, 2024';
+
   // Safety section
   static const String driverSafetyAppBarTitle = 'Safety features';
   static const String driverSafetySubTitle =
@@ -580,5 +584,18 @@ class TTexts {
 
   // Chat screen
   static const String chatHintText = 'Type your message...';
+
+  // Call Us Screen
+  static const String callUsAppBarTitle = 'Get help';
+  static const String callUsHeadlineTitle = 'Hello, help is here!';
+  static const String callUsNumberTitle = '+2347030850395';
+  static const String callUsHeadlineSubText =
+      'Phone lines are available on weekdays\nbetween 8:00AM and 5:00PM\nTap the number to call';
+
+  // FAQ section
+  static const String faqsAppBarTitle = 'FAQs';
+  static const String faqsHintTitle = 'Search for help';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 }
