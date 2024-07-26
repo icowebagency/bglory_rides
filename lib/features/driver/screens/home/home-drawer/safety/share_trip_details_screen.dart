@@ -194,7 +194,10 @@ class _SafetyShareTripDetailsScreenState
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
-                                .copyWith(color: TColors.success),
+                                .copyWith(
+                                  color: TColors.success,
+                                  fontFamily: 'Notosans',
+                                ),
                           ),
                         ],
                       ),

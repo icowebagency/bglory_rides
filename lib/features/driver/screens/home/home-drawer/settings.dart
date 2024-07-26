@@ -21,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

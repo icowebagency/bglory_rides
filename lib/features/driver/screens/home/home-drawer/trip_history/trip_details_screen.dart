@@ -227,8 +227,12 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                   children: [
                     Text(TTexts.tripHistoryDetailsRideFareTitle,
                         style: Theme.of(context).textTheme.bodyLarge),
-                    Text(TTexts.tripHistoryDetailsRideFarePrice,
-                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(
+                      TTexts.tripHistoryDetailsRideFarePrice,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontFamily: 'Notosans',
+                          ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
@@ -237,8 +241,12 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                   children: [
                     Text(TTexts.tripHistoryDetailsBookingFeeTitle,
                         style: Theme.of(context).textTheme.bodyLarge),
-                    Text(TTexts.tripHistoryDetailsBookingFeePrice,
-                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(
+                      TTexts.tripHistoryDetailsBookingFeePrice,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontFamily: 'Notosans',
+                          ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
@@ -254,10 +262,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                     ),
                     Text(
                       TTexts.tripHistoryDetailsDiscountPrice,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: TColors.error),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: TColors.error, fontFamily: 'Notosans'),
                     ),
                   ],
                 ),
@@ -287,7 +293,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
-                                .copyWith(color: TColors.success),
+                                .copyWith(
+                                    color: TColors.success,
+                                    fontFamily: 'Notosans'),
                           ),
                         ],
                       ),
@@ -313,8 +321,15 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                               ),
                             ],
                           ),
-                          Text(TTexts.tripHistoryDetailsInAppPaymentPrice,
-                              style: Theme.of(context).textTheme.titleLarge),
+                          Text(
+                            TTexts.tripHistoryDetailsInAppPaymentPrice,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  fontFamily: 'Notosans',
+                                ),
+                          ),
                         ],
                       ),
                     ],

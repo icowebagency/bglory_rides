@@ -369,7 +369,7 @@ class TTexts {
   static const String withdrawSuccessfulButtonText = 'Go home';
   static const String withdrawSuccessfulHeadingText = 'Withdraw\n Successful';
   static const String withdrawSuccessfulSubText =
-      'Congratulations! Your withdrawal was successful';
+      'Congratulations! Your withdrawal\nwas successful';
 
   // Transaction History
   static const String transactionHistoryAppBarTitle = 'Transaction history';
@@ -441,7 +441,7 @@ class TTexts {
   static const String tripHistoryDetailsBookingFeeTitle = 'Booking fee';
   static const String tripHistoryDetailsDiscountTitle = 'Discount';
   static const String tripHistoryDetailsBookingFeePrice = '₦150';
-  static const String tripHistoryDetailsDiscountPrice = '-₦500';
+  static const String tripHistoryDetailsDiscountPrice = '- ₦500';
   static const String tripHistoryDetailsRideFarePrice = '₦4850';
   static const String tripHistoryDetailsRideTotalTitle = 'Total';
   static const String tripHistoryDetailsRideTotalAmount = '₦4500';

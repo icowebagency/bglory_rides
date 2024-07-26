@@ -42,7 +42,9 @@ class _InsightScreenState extends State<InsightScreen> {
                 ),
                 Text(
                   TTexts.insightAmountTitle,
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        fontFamily: 'Notosans',
+                      ),
                 ),
                 Text(
                   TTexts.insightSubText,
