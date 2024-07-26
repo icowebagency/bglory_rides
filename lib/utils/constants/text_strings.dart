@@ -568,4 +568,17 @@ class TTexts {
   static const String driverTripDetailsVehicleDetailsTitle = 'Vehicle details';
   static const String driverTripDetailsVehicleDetails =
       'Toyota Corolla 2010 (white) - AA123BBB';
+
+  // Support section
+  static const String supportWelcomeName = 'Hi Damola';
+  static const String supportSubText = 'How can we help you?';
+  static const String supportTitle = 'Contact Support';
+  static const String supportSendMessageTitle = 'send us a message';
+  static const String supportCallTitle = 'Call us';
+  static const String supportGetHelpTitle = 'Get help';
+  static const String supportExploreFAQsTitle = 'Explore FAQs';
+
+  // Chat screen
+  static const String chatHintText = 'Type your message...';
+// static const String supportCallTitle  = '';
 }

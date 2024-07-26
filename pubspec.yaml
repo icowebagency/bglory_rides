@@ -15,7 +15,7 @@ dependencies:
 
   # Utility Packages
   http: ^1.2.1
-  intl: ^0.18.1
+  intl: ^0.19.0
   logger: ^2.0.1
   url_launcher: ^6.1.12
   flutter_native_splash: ^2.4.0
@@ -51,6 +51,8 @@ dependencies:
   fluttertoast: ^8.2.6
   image_picker: ^1.1.2
   timelines_plus: ^1.0.3
+  flutter_chat_ui: ^1.6.14
+
 
 
 
