@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/data/repository/driver_repository.dart';
@@ -29,6 +31,7 @@ class SuccessfulVerificationStateNotifier extends StateNotifier<bool> {
     } else {
       final successResult = result as Success;
       final driverProfile = successResult.data as DriverData;
+      log('$driverProfile');
       return !driverProfile.profileIsIncomplete;
     }
     return null;

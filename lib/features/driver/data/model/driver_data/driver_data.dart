@@ -15,7 +15,7 @@ class DriverData {
   final String? nextOfKinPhoneNumber;
   final String? vehicleType;
   final String? licenseNumber;
-  final String? licenseExpiryDate;
+  final DateTime? licenseExpiryDate;
   final String? licensePicture;
   final String? profilePicture;
   final String? vehicleManufacturer;
@@ -86,4 +86,9 @@ class DriverData {
   Map<String, dynamic> toJson() => _$DriverDataToJson(this);
 
   bool get profileIsIncomplete => vehicleType == null;
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }
