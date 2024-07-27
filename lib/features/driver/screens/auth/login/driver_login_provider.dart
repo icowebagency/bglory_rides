@@ -39,10 +39,11 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     } else {
       if (isTest) {
         final data = (result as Success).data;
-        RegExp otpPattern = RegExp(r"OTP is: (\d{6})");
-        Match? match = otpPattern.firstMatch(data['message']);
-        String otp = match != null ? match.group(1)! : "Not found";
-        NotificationUtil.showSuccessToast(otp);
+        dynamic otp = data['data']['otp'];
+        NotificationUtil.showSuccessToast(
+          '$otp',
+          duration: const Duration(seconds: 10),
+        );
       }
       return true;
     }

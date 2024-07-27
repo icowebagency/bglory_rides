@@ -66,6 +66,7 @@ class TTexts {
   static const String driverDontHaveAnAccount = "Dont have an account? ";
   static const String driverCodeSentTitle = "We sent a verification code to";
   static const String driverRequestCodeTitle = "Request code in ";
+  static const String driverRequestCode = "Request code";
   static const String driverRequestCodeSecondsTitle = "Secs";
   static const String driverVerifyButton = "Verify";
   static const String driverProceedButton = "Proceed";

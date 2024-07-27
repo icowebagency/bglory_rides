@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/helpers.dart';
-import 'package:otp_text_field_v2/otp_field_v2.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../../routing/driver_routing.dart';
@@ -21,18 +21,57 @@ final _otpFieldProvider = StateProvider(
   (ref) => '',
 );
 
-class DriverVerificationScreen extends ConsumerWidget {
-  DriverVerificationScreen({super.key, this.target});
-  final OtpFieldControllerV2 controllerV2 = OtpFieldControllerV2();
+class DriverVerificationScreen extends ConsumerStatefulWidget {
+  const DriverVerificationScreen({super.key, this.target});
   final dynamic target;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    String displayInput = target?['email']?.isNotEmpty ?? false == true
-        ? target!['email']!
-        : target!['phone']!;
+  ConsumerState<DriverVerificationScreen> createState() =>
+      _DriverVerificationScreenState();
+}
 
-    log('$target');
+class _DriverVerificationScreenState
+    extends ConsumerState<DriverVerificationScreen> {
+  static const int _initialCountdown = 30;
+  late int _countdown;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _countdown = _initialCountdown;
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    _timer?.cancel();
+    _countdown = _initialCountdown;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_countdown > 0) {
+        setState(() {
+          _countdown--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    String displayInput = widget.target?['email']?.isNotEmpty ?? false == true
+        ? widget.target!['email']!
+        : widget.target!['phone']!;
+
+    log('${widget.target}');
 
     return Scaffold(
       body: SafeArea(
@@ -81,40 +120,68 @@ class DriverVerificationScreen extends ConsumerWidget {
                         ref.read(_otpFieldProvider.notifier).state = value,
                     onCompleted: (value) => triggerAction(ref, context),
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
                   Center(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: TTexts.driverRequestCodeTitle,
-                        style: Theme.of(context).textTheme.bodySmall,
+                    child: Builder(builder: (context) {
+                      if (_countdown == 0) {
+                        return Column(
+                          children: [
+                            const SizedBox(
+                              height: TSizes.space18Sections,
+                            ),
+                            TextButton(
+                              onPressed: requestCode,
+                              child: Text(
+                                TTexts.driverRequestCode,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(color: TColors.primary),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: TSizes.space18Sections,
+                            ),
+                          ],
+                        );
+                      }
+                      return Column(
                         children: [
-                          TextSpan(
-                            text: '23 ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .apply(color: TColors.primary),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Navigate to Terms of Service Screen here.
-                              },
+                          const SizedBox(
+                            height: TSizes.spaceBtwSections,
                           ),
-                          TextSpan(
-                            text: TTexts.driverRequestCodeSecondsTitle,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .apply(color: TColors.primary),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: TTexts.driverRequestCodeTitle,
+                              style: Theme.of(context).textTheme.bodySmall,
+                              children: [
+                                TextSpan(
+                                  text: '$_countdown ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .apply(color: TColors.primary),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // Navigate to Terms of Service Screen here.
+                                    },
+                                ),
+                                TextSpan(
+                                  text: TTexts.driverRequestCodeSecondsTitle,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .apply(color: TColors.primary),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: TSizes.spaceBtwSections,
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
+                      );
+                    }),
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -151,14 +218,30 @@ class DriverVerificationScreen extends ConsumerWidget {
     );
   }
 
+  void requestCode() {
+    ref
+        .read(driverVerificationStateNotifier.notifier)
+        .onRequestOtp(
+          target: Map<String, String>.from(widget.target),
+          onError: NotificationUtil.showErrorNotification,
+        )
+        .then(
+      (value) {
+        if (value) {
+          _startCountdown();
+        }
+      },
+    );
+  }
+
   void triggerAction(WidgetRef ref, BuildContext context) {
     if (validateOtp(ref, context)) {
-      target['otp'] = ref.read(_otpFieldProvider);
-      log('$target');
+      widget.target['otp'] = ref.read(_otpFieldProvider);
+      log('${widget.target}');
       ref
           .read(driverVerificationStateNotifier.notifier)
           .onAuthAction(
-            target: Map<String, String>.from(target),
+            target: Map<String, String>.from(widget.target),
             onError: NotificationUtil.showErrorNotification,
           )
           .then(
