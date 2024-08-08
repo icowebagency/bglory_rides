@@ -595,7 +595,27 @@ class TTexts {
   // FAQ section
   static const String faqsAppBarTitle = 'FAQs';
   static const String faqsHintTitle = 'Search for help';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
+
+  // Hailing service bottoms sheet section.
+  static const String rideHailingTitle = 'Incoming ride request';
+  static const String rideHailingPriceTitle = 'N3800';
+  static const String rideHailingDistanceTitle = '10 km';
+  static const String rideHailingTimeTitle = '53 Minutes';
+  static const String rideHailingStandardTitle = 'Premium ride';
+  static const String rideHailingPaymentTypeTitle = 'Cash Payment';
+  static const String rideHailingCancelButton = 'Cancel';
+  static const String rideHailingAcceptButton = 'Accept';
+  static const String rideHailingLocationTitle =
+      '18, Chief Dominic Street, Surulere, 124595';
+  static const String rideHailingDestinationTitle =
+      'Shoprite Mall, Lekki, 256985';
+
+  // Earning Target
+  static const String earningsTargetTitle = 'Earning Target';
+  static const String earningsDailyTargetTitle = 'Set daily target';
+  static const String earningsDailyTargetAmount = '₦4850';
+  static const String nairaSymbol = '₦';
+  static const String earningsTargetSubTitle =
+      'Set daily, weekly or monthly target';
 // static const String supportCallTitle  = '';
 }

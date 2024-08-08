@@ -191,7 +191,8 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                               margin: const EdgeInsets.only(bottom: 10),
                               height: 5,
                               width: 40,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
                                 color: TColors.grey,
                               ),
                             ),
@@ -205,7 +206,7 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                             height: height * 0.05,
                             decoration: BoxDecoration(
                               color: TColors.white,
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

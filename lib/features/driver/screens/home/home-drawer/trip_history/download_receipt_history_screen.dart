@@ -1,4 +1,4 @@
-import 'package:bglory_rides/features/driver/general-widgets/save_button_widget.dart';
+import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
