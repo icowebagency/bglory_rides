@@ -1,3 +1,4 @@
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/driver_activity_breakdown_bottomsheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/earning_target_bottomsheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/pie_chart.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
@@ -10,7 +11,6 @@ import 'package:iconsax/iconsax.dart';
 
 import 'earning/widgets/earning_option_widget.dart';
 import 'earning/widgets/earning_rate_widget.dart';
-import 'earning/widgets/withdraw_pin_widget.dart';
 
 class EarningsScreen extends StatefulWidget {
   const EarningsScreen({super.key});
@@ -171,12 +171,12 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       onPressed: () {
                         showModalBottomSheet(
                           constraints: BoxConstraints.tight(
-                            Size.fromHeight(height * 0.4),
+                            Size.fromHeight(height * 0.5),
                           ),
                           isScrollControlled: false,
                           context: context,
                           builder: (BuildContext context) {
-                            return const WithdrawPinWidget();
+                            return const DriverActivityBreakdownBottomSheet();
                           },
                         );
                       },

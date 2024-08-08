@@ -7,6 +7,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
+import 'hailing/hailing_bottom_sheet.dart';
 
 const LatLng currentPosition = LatLng(25.1193, 55.3773);
 
@@ -146,16 +147,29 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   /// Driver map
+                  // map button
                   MapCustomIcons(
                     myMargin: const EdgeInsets.only(top: 50, left: 20),
                     containerIcon: Icons.map_outlined,
                     onTap: () {},
                     scaffoldKey: null,
                   ),
+                  // car location button
                   MapCustomIcons(
                     myMargin: const EdgeInsets.only(top: 50, right: 20),
                     containerIcon: Iconsax.car,
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                        constraints: BoxConstraints.tight(
+                          Size.fromHeight(height * 0.5),
+                        ),
+                        isScrollControlled: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const HailingBottomSheet();
+                        },
+                      );
+                    },
                     scaffoldKey: null,
                   ),
                 ],
@@ -163,7 +177,7 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
             ),
           ),
           DraggableScrollableSheet(
-            initialChildSize: 0.42,
+            initialChildSize: 0.37,
             minChildSize: 0.36,
             maxChildSize: 0.5,
             builder: (BuildContext context, scrollController) {
