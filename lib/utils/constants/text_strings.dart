@@ -598,9 +598,9 @@ class TTexts {
 
   // Hailing service bottoms sheet section.
   static const String rideHailingTitle = 'Incoming ride request';
-  static const String rideHailingPriceTitle = 'N3800';
+  static const String rideHailingPriceTitle = '₦3800';
   static const String rideHailingDistanceTitle = '10 km';
-  static const String rideHailingTimeTitle = '53 Minutes';
+  static const String rideHailingTimeTitle = '53 Mins';
   static const String rideHailingStandardTitle = 'Premium ride';
   static const String rideHailingPaymentTypeTitle = 'Cash Payment';
   static const String rideHailingCancelButton = 'Cancel';
@@ -609,6 +609,9 @@ class TTexts {
       '18, Chief Dominic Street, Surulere, 124595';
   static const String rideHailingDestinationTitle =
       'Shoprite Mall, Lekki, 256985';
+  static const String rideHailingLocation =
+      '18, Chief Dominic Street, Surulere, 124595';
+  static const String rideHailingDestination = 'Shoprite Mall, Lekki, 256985';
 
   // Earning Target
   static const String earningsTargetTitle = 'Earning Target';
@@ -617,5 +620,35 @@ class TTexts {
   static const String nairaSymbol = '₦';
   static const String earningsTargetSubTitle =
       'Set daily, weekly or monthly target';
+
+  // Driving activity breakdown
+  static const String drivingActivityDriveRateTitle = 'Drive rate';
+  static const String drivingActivityDriveRatePercentage = '83%';
+  static const String drivingActivityRideTargetTitle = 'Ride target';
+  static const String drivingActivityRideTargetPercentage = '100';
+  static const String drivingActivityCompletedRidesTitle = 'Completed rides';
+  static const String drivingActivityCompletedRidesPercentage = '75';
+  static const String drivingActivityRejectedRidesTitle = 'Rejected rides';
+  static const String drivingActivityRejectedRidesPercentage = '25';
+  static const String drivingActivityCancelledRidesTitle = 'Cancelled rides';
+  static const String drivingActivityCancelledRidesPercentage = '0';
+  static const String drivingActivityTitle = 'Driving activity breakdown';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 }

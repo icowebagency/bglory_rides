@@ -1,4 +1,3 @@
-import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/text_strings.dart';
@@ -9,11 +8,15 @@ class OutlinedButtonWidget extends StatelessWidget {
     this.width = double.infinity,
     required this.onTap,
     this.buttonText = TTexts.driverUpdateButton,
+    this.buttonOutlineColor,
+    this.buttonTextColor,
   });
 
   final double width;
   final VoidCallback onTap;
   final String? buttonText;
+  final Color? buttonOutlineColor;
+  final Color? buttonTextColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +24,16 @@ class OutlinedButtonWidget extends StatelessWidget {
       width: width,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: const BorderSide(
-              color: TColors.primary,
-            ),
-          ),
+          side: BorderSide(color: buttonOutlineColor!),
         ),
         onPressed: onTap,
-        child: Text(buttonText!),
+        child: Text(
+          buttonText!,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: buttonTextColor),
+        ),
       ),
     );
   }
