@@ -1,5 +1,5 @@
 import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
-import 'package:bglory_rides/features/driver/general-widgets/save_button_widget.dart';
+import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

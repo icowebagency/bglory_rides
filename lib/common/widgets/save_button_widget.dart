@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/text_strings.dart';
+import '../../utils/constants/text_strings.dart';
 
 class SaveButtonWidget extends StatelessWidget {
   const SaveButtonWidget({

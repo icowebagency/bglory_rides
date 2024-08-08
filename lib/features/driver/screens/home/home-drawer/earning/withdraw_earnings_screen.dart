@@ -1,10 +1,10 @@
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/widgets/withdraw_pin_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../common/widgets/save_button_widget.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
-import '../../../../general-widgets/save_button_widget.dart';
 
 class WithdrawEarningsScreen extends StatefulWidget {
   const WithdrawEarningsScreen({super.key});
