@@ -1,6 +1,7 @@
 import 'package:another_stepper/another_stepper.dart';
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/features/driver/general-widgets/outlined_button_widget.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/go_to_pickup_bottom_sheet.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
@@ -30,6 +31,7 @@ class _HailingBottomSheetState extends State<HailingBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -154,7 +156,19 @@ class _HailingBottomSheetState extends State<HailingBottomSheet> {
               height: TSizes.spaceBtwItems,
             ),
             SaveButtonWidget(
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                showModalBottomSheet(
+                  // constraints: BoxConstraints.tight(
+                  //   Size.fromHeight(height * 0.4),
+                  // ),
+                  isScrollControlled: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const GoToPickupBottomSheetScreen();
+                  },
+                );
+              },
               buttonText: TTexts.rideHailingAcceptButton,
             ),
             const SizedBox(

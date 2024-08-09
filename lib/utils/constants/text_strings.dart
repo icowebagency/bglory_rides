@@ -633,7 +633,15 @@ class TTexts {
   static const String drivingActivityCancelledRidesTitle = 'Cancelled rides';
   static const String drivingActivityCancelledRidesPercentage = '0';
   static const String drivingActivityTitle = 'Driving activity breakdown';
-// static const String supportCallTitle  = '';
+
+  // driver pickup bottom sheet
+  static const String pickupBottomSheetDriverName = 'Damola Awoyemi';
+  static const String pickupBottomSheetDriverRating = '4.5';
+  static const String pickupBottomSheetDriverArrivalTime =
+      'Arrive at pickup in 45 minutes';
+  static const String goToPickupBottomSheetDriverButton = 'Go to pickup';
+  static const String pickupBottomSheetDriverButton = 'Pickup';
+
 // static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';

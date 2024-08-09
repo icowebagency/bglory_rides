@@ -58,4 +58,5 @@ class TImages {
   static const String vehicleLicenseImage = "assets/images/vehicle_license.png";
   static const String proofOfOwnershipImage =
       "assets/images/ownership_certificate.png";
+  static const String driverCarAnimation = "assets/images/car_icon.png";
 }
