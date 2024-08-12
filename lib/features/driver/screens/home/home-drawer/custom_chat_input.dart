@@ -60,33 +60,31 @@ class _CustomChatInputState extends State<CustomChatInput> {
           const SizedBox(
             width: 5,
           ),
-          Container(
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              color: TColors.secondary,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: IconButton(
-                icon: const Icon(
-                  Iconsax.add,
-                  color: TColors.white,
-                  size: 20,
-                ),
-                onPressed: () {
-                  final text = _controller.text;
-                  if (text.isNotEmpty) {
-                    widget.onSendPressed(text);
-                    _controller.clear();
-                  }
-                },
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 5,
-          ),
+          // Container(
+          //   width: 40,
+          //   height: 40,
+          //   decoration: const BoxDecoration(
+          //     color: TColors.secondary,
+          //     shape: BoxShape.circle,
+          //   ),
+          //   child: Center(
+          //     child: IconButton(
+          //       icon: const Icon(
+          //         Iconsax.add,
+          //         color: TColors.white,
+          //         size: 20,
+          //       ),
+          //       onPressed: () {
+          //         final text = _controller.text;
+          //         if (text.isNotEmpty) {
+          //           widget.onSendPressed(text);
+          //           _controller.clear();
+          //         }
+          //       },
+          //     ),
+          //   ),
+          // ),
+
           Container(
             width: 40,
             height: 40,

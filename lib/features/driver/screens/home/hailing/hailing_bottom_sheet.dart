@@ -31,7 +31,6 @@ class _HailingBottomSheetState extends State<HailingBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -176,10 +175,12 @@ class _HailingBottomSheetState extends State<HailingBottomSheet> {
             ),
             OutlinedButtonWidget(
               buttonOutlineColor: TColors.error,
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+              },
               buttonText: TTexts.rideHailingCancelButton,
               buttonTextColor: TColors.error,
-            )
+            ),
           ],
         ),
       ),

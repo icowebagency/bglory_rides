@@ -5,9 +5,11 @@ import 'package:bglory_rides/utils/constants/image_strings.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../common/distance_animation/car_animation_screen.dart';
+import '../../../../../routing/driver_routing.dart';
 
 class GoToPickupBottomSheetScreen extends StatefulWidget {
   const GoToPickupBottomSheetScreen({super.key});
@@ -70,10 +72,13 @@ class _GoToPickupBottomSheetScreenState
                   ],
                 ),
                 // contact buttons row
+                // contact buttons row
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(BGRouteNames.driverCallScreen);
+                      },
                       child: const CircleAvatar(
                         backgroundColor: TColors.primary,
                         child: Icon(
@@ -87,7 +92,9 @@ class _GoToPickupBottomSheetScreenState
                       width: 10,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(BGRouteNames.driverChatScreen);
+                      },
                       child: const CircleAvatar(
                         backgroundColor: TColors.primary,
                         child: Icon(

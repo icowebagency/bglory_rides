@@ -2,8 +2,11 @@ import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../routing/driver_routing.dart';
 import '../custom_chat_input.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -40,7 +43,31 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TColors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.push(BGRouteNames.driverCallScreen);
+                  },
+                  child: const CircleAvatar(
+                    backgroundColor: TColors.primary,
+                    child: Icon(
+                      Iconsax.call_calling,
+                      color: TColors.white,
+                      size: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: Chat(
         timeFormat: DateFormat('h:mm a'),
         user: _user,
