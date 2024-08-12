@@ -596,6 +596,109 @@ class TTexts {
   // FAQ section
   static const String faqsAppBarTitle = 'FAQs';
   static const String faqsHintTitle = 'Search for help';
+
+  // Hailing service bottoms sheet section.
+  static const String rideHailingTitle = 'Incoming ride request';
+  static const String rideHailingPriceTitle = '₦3800';
+  static const String rideHailingDistanceTitle = '10 km';
+  static const String rideHailingTimeTitle = '53 Mins';
+  static const String rideHailingStandardTitle = 'Premium ride';
+  static const String rideHailingPaymentTypeTitle = 'Cash Payment';
+  static const String rideHailingCancelButton = 'Cancel';
+  static const String rideHailingAcceptButton = 'Accept';
+  static const String rideHailingLocationTitle =
+      '18, Chief Dominic Street, Surulere, 124595';
+  static const String rideHailingDestinationTitle =
+      'Shoprite Mall, Lekki, 256985';
+  static const String rideHailingLocation =
+      '18, Chief Dominic Street, Surulere, 124595';
+  static const String rideHailingDestination = 'Shoprite Mall, Lekki, 256985';
+
+  // Earning Target
+  static const String earningsTargetTitle = 'Earning Target';
+  static const String earningsDailyTargetTitle = 'Set daily target';
+  static const String earningsDailyTargetAmount = '₦4850';
+  static const String nairaSymbol = '₦';
+  static const String earningsTargetSubTitle =
+      'Set daily, weekly or monthly target';
+
+  // Driving activity breakdown
+  static const String drivingActivityDriveRateTitle = 'Drive rate';
+  static const String drivingActivityDriveRatePercentage = '83%';
+  static const String drivingActivityRideTargetTitle = 'Ride target';
+  static const String drivingActivityRideTargetPercentage = '100';
+  static const String drivingActivityCompletedRidesTitle = 'Completed rides';
+  static const String drivingActivityCompletedRidesPercentage = '75';
+  static const String drivingActivityRejectedRidesTitle = 'Rejected rides';
+  static const String drivingActivityRejectedRidesPercentage = '25';
+  static const String drivingActivityCancelledRidesTitle = 'Cancelled rides';
+  static const String drivingActivityCancelledRidesPercentage = '0';
+  static const String drivingActivityTitle = 'Driving activity breakdown';
+
+  // driver pickup bottom sheet
+  static const String pickupBottomSheetDriverName = 'Damola Awoyemi';
+  static const String pickupBottomSheetDriverRating = '4.5';
+  static const String pickupBottomSheetDriverArrivalTime =
+      'Arrive at pickup in 45 minutes';
+  static const String goToPickupBottomSheetDriverButton = 'Go to pickup';
+
+  // Pickup Bottom Sheet
+  static const String pickupBottomSheetDriverButton = 'Pickup';
+  static const String pickupBottomSheetArrivedTitle = 'Arrived!';
+  static const String pickupBottomSheetStartTripTitle = 'Start a trip';
+
+  // Start Trip Bottom Sheet
+  static const String startTripDestinationTitle = 'Arrive at destination in';
+  static const String startTripTime = '01:45 minutes';
+  static const String startTripButton = 'Start trip';
+  static const String startTripAmount = '₦3800';
+
+  // Trip Started
+  static const String tripStartedCancelRideButton = 'Cancel ride';
+  static const String tripStartedEmergencyButton = 'Report emergency';
+
+  // Trip Completed
+  static const String tripCompletedButtonTitle = 'Confirm payment';
+
+  // Trip Invoice screen
+  static const String driverTripInvoiceAppBarTitle = 'Trip details';
+  static const String driverTripInvoiceDate = 'Mon, 19 June, 2024';
+  static const String driverTripInvoiceDistance = '10 km';
+  static const String driverTripInvoiceTripTime = '53 min';
+  static const String driverTripInvoiceButton = 'View invoice';
+  static const String driverTripInvoiceTimeSubTitle = '07:10AM';
+  static const String driverTripInvoiceTimeSubTitleTwo = '10:15AM';
+
+  // Driver passenger's rating screen
+  static const String driverPassengerRatingRiderTitle = 'Damola Awoyemi';
+  static const String driverPassengerRatingTitle = 'Passenger\'s Rating';
+  static const String driverPassengerRating = 'Hurray!!! You got a 4.5 rating';
+  static const String driverPassengerRatingButton = 'Go home';
+  static const String driverPassengerRatingAdditionalCommentsTitle =
+      'Additional comments';
+  static const String driverPassengerRatingAdditionalComments =
+      '"He is a very patient and friendly driver, he was so kind to have assited me with my luggage\'s, a great driver”';
+
+  // Call Screen
+  static const String driverCallScreenTitle = 'Smith Osagie';
+  static const String driverCallScreenCallingTitle = 'Calling...';
+  static const String driverCallScreenMute = 'Mute';
+  static const String driverCallScreenEndCall = 'End call';
+  static const String driverCallScreenSpeaker = 'Speaker';
+
+  // Driver cancel ride
+  static const String driverCancelRide = 'Cancel ride?';
+  static const String driverCancelRideCancelButton = 'Cancel';
+  static const String driverCancelRideDontCancelButton = 'No, dont\'t cancel';
+  static const String driverCancelRideSubText =
+      'We understand you want to cancel your current trip, kindly give us a reason for canceling a ride so we further address the issue.';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
+// static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
