@@ -24,15 +24,15 @@ class OutlinedButtonWidget extends StatelessWidget {
       width: width,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: buttonOutlineColor!),
+          side: BorderSide(color: buttonOutlineColor!, width: 1.2),
         ),
         onPressed: onTap,
         child: Text(
           buttonText!,
           style: Theme.of(context)
               .textTheme
-              .titleMedium!
-              .copyWith(color: buttonTextColor),
+              .headlineMedium!
+              .copyWith(color: buttonTextColor, fontSize: 16),
         ),
       ),
     );

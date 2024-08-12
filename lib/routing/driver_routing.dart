@@ -9,6 +9,8 @@ import 'package:bglory_rides/features/driver/screens/home/account/vehicle_inform
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/passenger_rating.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/trip_invoice.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
@@ -25,7 +27,8 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/d
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/notification_and_sound.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/settings/sound_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/cal_us_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/call_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/call_us_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/chat_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/faqs_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/download_receipt_history_screen.dart';
@@ -256,6 +259,18 @@ class DriverRouting {
         path: BGRouteNames.driverFaqsScreen,
         builder: (context, state) => const FaqsScreen(),
       ),
+      GoRoute(
+        path: BGRouteNames.driverTripInvoiceScreen,
+        builder: (context, state) => const TripInvoiceScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverPassengerRatingScreen,
+        builder: (context, state) => const PassengerRaatingScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverCallScreen,
+        builder: (context, state) => const CallScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(routes: [
@@ -373,4 +388,8 @@ class BGRouteNames {
   static const String driverChatScreen = '/driver/chat-screen';
   static const String driverCallUsScreen = '/driver/call-us-screen';
   static const String driverFaqsScreen = '/driver/faqs-screen';
+  static const String driverTripInvoiceScreen = '/driver/trip-invoice-screen';
+  static const String driverPassengerRatingScreen =
+      '/driver/passenger-rating-screen';
+  static const String driverCallScreen = '/driver/call-screen';
 }

@@ -1,4 +1,5 @@
 import 'package:bglory_rides/routing/driver_routing.dart';
+import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
@@ -51,6 +52,7 @@ class WithdrawPinWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButtonWidget(
+                  buttonOutlineColor: TColors.primary,
                   onTap: () {
                     Navigator.pop(context);
                   },

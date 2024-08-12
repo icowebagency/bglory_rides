@@ -1,7 +1,9 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -53,8 +55,8 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                   margin: const EdgeInsets.only(
                     top: 50,
                   ),
-                  width: width * 0.35,
-                  height: 45,
+                  width: width * 0.31,
+                  height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     shape: BoxShape.rectangle,
@@ -78,8 +80,8 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            width: 30,
-                            height: 30,
+                            width: 25,
+                            height: 25,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: TColors.white,
@@ -96,6 +98,7 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                             child: const Icon(
                               Icons.check,
                               color: TColors.buttonPrimaryDeepGreen,
+                              size: 15,
                             ),
                           ),
                           const SizedBox(
@@ -119,63 +122,62 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                   myMargin: const EdgeInsets.only(top: 50, right: 20),
                   containerIcon: Iconsax.notification,
                   scaffoldKey: null,
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet(
+                      constraints: BoxConstraints.tight(
+                        Size.fromHeight(height * 0.5),
+                      ),
+                      isScrollControlled: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const HailingBottomSheet();
+                      },
+                    );
+                  },
                 ),
               ],
             ),
           ),
 
-          /// location button
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: MapCustomIcons(
-                  myMargin: const EdgeInsets.only(top: 50, left: 20),
-                  containerIcon: Icons.location_on_outlined,
-                  scaffoldKey: null,
-                  onTap: () {},
-                )),
-          ),
+          // /// location button
+          // Align(
+          //   alignment: Alignment.centerLeft,
+          //   child: Padding(
+          //       padding: const EdgeInsets.only(top: 10),
+          //       child: MapCustomIcons(
+          //         myMargin: const EdgeInsets.only(top: 50, left: 20),
+          //         containerIcon: Icons.location_on_outlined,
+          //         scaffoldKey: null,
+          //         onTap: () {},
+          //       )),
+          // ),
 
           /// Driver Map and car icon section
-          Align(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 130),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  /// Driver map
-                  // map button
-                  MapCustomIcons(
-                    myMargin: const EdgeInsets.only(top: 50, left: 20),
-                    containerIcon: Icons.map_outlined,
-                    onTap: () {},
-                    scaffoldKey: null,
-                  ),
-                  // car location button
-                  MapCustomIcons(
-                    myMargin: const EdgeInsets.only(top: 50, right: 20),
-                    containerIcon: Iconsax.car,
-                    onTap: () {
-                      showModalBottomSheet(
-                        constraints: BoxConstraints.tight(
-                          Size.fromHeight(height * 0.5),
-                        ),
-                        isScrollControlled: false,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const HailingBottomSheet();
-                        },
-                      );
-                    },
-                    scaffoldKey: null,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 130),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       /// Driver map
+          //       // map button
+          //       // MapCustomIcons(
+          //       //   myMargin: const EdgeInsets.only(top: 50, left: 20),
+          //       //   containerIcon: Icons.map_outlined,
+          //       //   onTap: () {},
+          //       //   scaffoldKey: null,
+          //       // ),
+          //       // car location button
+          //       MapCustomIcons(
+          //         myMargin: const EdgeInsets.only(top: 50, right: 20),
+          //         containerIcon: Iconsax.car,
+          //         onTap: () {
+          //
+          //         },
+          //         scaffoldKey: null,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           DraggableScrollableSheet(
             initialChildSize: 0.37,
             minChildSize: 0.36,
@@ -255,6 +257,7 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                 Row(
                                   children: [
                                     AnimatedRatingStars(
+                                      readOnly: true,
                                       starSize: 10,
                                       displayRatingValue: true,
                                       minRating: 0.0,
@@ -303,7 +306,10 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                           boxTitle: TTexts.driverMoney,
                                           boxSubTitle: TTexts.driverEarning,
                                           boxIcon: Icons.wallet,
-                                          boxOnTap: () {},
+                                          boxOnTap: () {
+                                            context.push(
+                                                BGRouteNames.driverEarnings);
+                                          },
                                           useFittedBox: true,
                                         ),
                                       ),
@@ -315,7 +321,10 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                         boxSubTitle:
                                             TTexts.driverCompletedTripsTitle,
                                         boxIcon: Icons.car_rental,
-                                        boxOnTap: () {},
+                                        boxOnTap: () {
+                                          context.push(
+                                              BGRouteNames.driverEarnings);
+                                        },
                                         useFittedBox: true,
                                       )),
                                     ],
@@ -332,7 +341,10 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                           boxSubTitle:
                                               TTexts.driverDriveRateTitle,
                                           boxIcon: Icons.rate_review,
-                                          boxOnTap: () {},
+                                          boxOnTap: () {
+                                            context.push(
+                                                BGRouteNames.driverEarnings);
+                                          },
                                           useFittedBox: false,
                                         ),
                                       ),
@@ -344,7 +356,10 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                           boxSubTitle:
                                               TTexts.driverAcceptanceRateTitle,
                                           boxIcon: Iconsax.wallet,
-                                          boxOnTap: () {},
+                                          boxOnTap: () {
+                                            context.push(
+                                                BGRouteNames.driverEarnings);
+                                          },
                                           useFittedBox: true,
                                         ),
                                       ),
