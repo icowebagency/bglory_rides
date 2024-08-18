@@ -21,7 +21,7 @@ class SuccessfulVerificationStateNotifier extends StateNotifier<bool> {
 
   Future<bool?> onProceed({required Function(String message) onError}) async {
     state = true;
-    final result = await driverRepositoryContract.getDriverProfile();
+    final result = await driverRepositoryContract.getDriverEarnings();
 
     if (result is Failure) {
       if (result.errorResponse == ConstantValues.driverProfileNotComplete) {
@@ -31,8 +31,8 @@ class SuccessfulVerificationStateNotifier extends StateNotifier<bool> {
     } else {
       final successResult = result as Success;
       final driverProfile = successResult.data as DriverData;
-      log('$driverProfile');
-      return !driverProfile.profileIsIncomplete;
+      log('is profile incomplete ${driverProfile.profileIsIncomplete}');
+      return  driverProfile.profileIsIncomplete == null ? null : !driverProfile.profileIsIncomplete!;
     }
     return null;
   }

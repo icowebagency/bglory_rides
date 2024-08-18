@@ -118,56 +118,55 @@ class _DriverInformationScreenState
     }
 
     if (currentStep == 0) {
-      updateProfileField(key: DriverPayloadKey.fullName, value: _fullname.text);
-      updateProfileField(key: DriverPayloadKey.address, value: _address.text);
+      updateProfileField(key: DriverKey.fullName, value: _fullname.text);
+      updateProfileField(key: DriverKey.address, value: _address.text);
       updateProfileField(
-        key: DriverPayloadKey.nextOfKinName,
+        key: DriverKey.nextOfKinName,
         value: _nextOfKin.text,
       );
       updateProfileField(
-        key: DriverPayloadKey.nextOfKinPhoneNumber,
+        key: DriverKey.nextOfKinPhoneNumber,
         value: _nextOfKinPhone.text,
       );
     }
     if (currentStep == 1) {
       updateProfileField(
-        key: DriverPayloadKey.licenseNumber,
+        key: DriverKey.licenseNumber,
         value: _licenseNumber.text,
       );
     }
     if (currentStep == 2) {
       updateProfileField(
-        key: DriverPayloadKey.vehicleYear,
+        key: DriverKey.vehicleYear,
         value: _vehicleYear.text,
       );
       updateProfileField(
-        key: DriverPayloadKey.vehicleColor,
+        key: DriverKey.vehicleColor,
         value: _vehicleColor.text,
       );
       updateProfileField(
-        key: DriverPayloadKey.plateNumber,
+        key: DriverKey.plateNumber,
         value: _vehiclePlateNumber.text,
       );
     }
 
     if (currentStep == 4) {
       updateProfileField(
-          key: DriverPayloadKey.bankAccountName, value: _bankAccountName.text);
+          key: DriverKey.bankAccountName, value: _bankAccountName.text);
       updateProfileField(
-          key: DriverPayloadKey.bankAccountNumber,
-          value: _bankAccountNumber.text);
+          key: DriverKey.bankAccountNumber, value: _bankAccountNumber.text);
 
       final email = ref.read(emailText);
       final phone = ref.read(phoneNumberText);
       if (email.isNotEmpty) {
         updateProfileField(
-          key: DriverPayloadKey.email,
+          key: DriverKey.email,
           value: email,
         );
       }
       if (phone.isNotEmpty) {
         updateProfileField(
-          key: DriverPayloadKey.phone,
+          key: DriverKey.phone,
           value: phone,
         );
       }
@@ -495,7 +494,7 @@ class _DriverInformationScreenState
     setState(() {
       _banksSelectedValue = val as String;
       updateProfileField(
-        key: DriverPayloadKey.bank,
+        key: DriverKey.bank,
         value: val,
       );
     });
@@ -504,7 +503,7 @@ class _DriverInformationScreenState
   void onTakeVehicleInsurancePhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.vehicleInsurance,
+      imageDetailKey: DriverKey.vehicleInsurance,
       navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
@@ -519,7 +518,7 @@ class _DriverInformationScreenState
   void onTakeRoadWorthinessPhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.vehicleRoadWorthiness,
+      imageDetailKey: DriverKey.vehicleRoadWorthiness,
       navPath: BGRouteNames.driverRoadWorthiness,
     ).then(
       (value) {
@@ -534,7 +533,7 @@ class _DriverInformationScreenState
   void onTakeVehicleLicensePhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.vehicleLicense,
+      imageDetailKey: DriverKey.vehicleLicense,
       navPath: BGRouteNames.driverVehicleLicense,
     ).then(
       (value) {
@@ -549,7 +548,7 @@ class _DriverInformationScreenState
   void onTakeProofOfOwnershipPhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.proofOfOwnership,
+      imageDetailKey: DriverKey.proofOfOwnership,
       navPath: BGRouteNames.driverProofOfOwnership,
     ).then(
       (value) {
@@ -564,7 +563,7 @@ class _DriverInformationScreenState
   void onTakeVehicleInteriorPhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.vehicleImageInterior,
+      imageDetailKey: DriverKey.vehicleImageInterior,
       navPath: BGRouteNames.driverInteriorGuideline,
     ).then(
       (value) {
@@ -579,7 +578,7 @@ class _DriverInformationScreenState
   void onTakeVehicleExteriorPhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.vehicleImageExterior,
+      imageDetailKey: DriverKey.vehicleImageExterior,
       navPath: BGRouteNames.driverExteriorGuideline,
     ).then(
       (value) {
@@ -595,7 +594,7 @@ class _DriverInformationScreenState
     setState(() {
       _vehicleSelectedModel = val as String;
       updateProfileField(
-        key: DriverPayloadKey.vehicleModel,
+        key: DriverKey.vehicleModel,
         value: val,
       );
     });
@@ -605,7 +604,7 @@ class _DriverInformationScreenState
     setState(() {
       _vehicleSelectedValue = val as String;
       updateProfileField(
-        key: DriverPayloadKey.vehicleManufacturer,
+        key: DriverKey.vehicleManufacturer,
         value: val,
       );
     });
@@ -623,8 +622,7 @@ class _DriverInformationScreenState
         if (value != null) {
           driversLicensePhoto = value;
 
-          updateProfileFiles(
-              key: DriverPayloadKey.licensePicture, value: value.path);
+          updateProfileFiles(key: DriverKey.licensePicture, value: value.path);
 
           log('${ref.read(driverRegistrationFilesProvider)}');
           setState(() {});
@@ -645,7 +643,7 @@ class _DriverInformationScreenState
       setState(() {
         _licenseExpiry.text = DateFormat.yMMMd('en_US').format(pickedDate);
 
-        ref.read(driverRegistrationDetailsProvider)[DriverPayloadKey
+        ref.read(driverRegistrationDetailsProvider)[DriverKey
             .licenseExpiryDate] = DateFormat('yyyy-MM-dd').format(pickedDate);
 
         log("${ref.read(driverRegistrationDetailsProvider)}");
@@ -656,7 +654,7 @@ class _DriverInformationScreenState
   void onUpdateGender(String? val) {
     setState(() {
       _selectedValue = val as String;
-      ref.read(driverRegistrationDetailsProvider)[DriverPayloadKey.gender] =
+      ref.read(driverRegistrationDetailsProvider)[DriverKey.gender] =
           val.toLowerCase();
 
       log('${ref.read(driverRegistrationDetailsProvider)}');
@@ -675,7 +673,7 @@ class _DriverInformationScreenState
       setState(() {
         _dateOfBirth.text = DateFormat.yMMMd('en_US').format(pickeddateofbirth);
 
-        ref.read(driverRegistrationDetailsProvider)[DriverPayloadKey.dob] =
+        ref.read(driverRegistrationDetailsProvider)[DriverKey.dob] =
             DateFormat('yyyy-MM-dd').format(pickeddateofbirth);
       });
     }
@@ -687,8 +685,7 @@ class _DriverInformationScreenState
         if (value != null) {
           profilePic = value;
 
-          updateProfileFiles(
-              key: DriverPayloadKey.profilePicture, value: value.path);
+          updateProfileFiles(key: DriverKey.profilePicture, value: value.path);
 
           log('${ref.read(driverRegistrationFilesProvider)}');
           setState(() {});

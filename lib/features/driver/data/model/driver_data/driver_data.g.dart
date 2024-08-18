@@ -5,9 +5,11 @@ part of 'driver_data.dart';
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
+
 DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
       id: (json['id'] as num?)?.toInt(),
       fullName: json['full_name'] as String?,
+      email: json['email'] as String?,
       phone: json['phone'] as String?,
       otpExpiresAt: json['otp_expires_at'] == null
           ? null
@@ -39,6 +41,7 @@ DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
       motorcycleModel: json['motorcycle_model'] as String?,
       hackneyPermit: json['hackney_permit'] as String?,
       motorcycleInsurance: json['motorcycle_insurance'] as String?,
+      motorcycleImage: json['motorcycle_image'] as String?,
       bank: json['bank'] as String?,
       bankAccountName: json['bank_account_name'] as String?,
       bankAccountNumber: json['bank_account_number'] as String?,
@@ -50,12 +53,20 @@ DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
+      earnings: (json['earnings'] as List<dynamic>?)
+          ?.map((e) => Earning.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      trips: (json['trips'] as List<dynamic>?)
+          ?.map((e) => Trip.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      balance: (json['balance'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'full_name': instance.fullName,
+      'email': instance.email,
       'phone': instance.phone,
       'otp_expires_at': instance.otpExpiresAt?.toIso8601String(),
       'address': instance.address,
@@ -83,6 +94,7 @@ Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
       'motorcycle_model': instance.motorcycleModel,
       'hackney_permit': instance.hackneyPermit,
       'motorcycle_insurance': instance.motorcycleInsurance,
+      'motorcycle_image': instance.motorcycleImage,
       'bank': instance.bank,
       'bank_account_name': instance.bankAccountName,
       'bank_account_number': instance.bankAccountNumber,
@@ -90,4 +102,7 @@ Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
       'status': instance.status,
       'created_at': instance.createdAt?.toIso8601String(),
       'updated_at': instance.updatedAt?.toIso8601String(),
+      'earnings': instance.earnings,
+      'trips': instance.trips,
+      'balance': instance.balance,
     };
