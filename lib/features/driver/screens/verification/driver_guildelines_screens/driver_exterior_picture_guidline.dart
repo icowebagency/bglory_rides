@@ -8,7 +8,7 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
-import '../../../general-widgets/take_photo_buttons.dart';
+import '../../../general_widgets/take_photo_buttons.dart';
 
 class DriverExteriorPictureGuidlineScreen extends ConsumerStatefulWidget {
   const DriverExteriorPictureGuidlineScreen({super.key});

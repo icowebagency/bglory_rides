@@ -1,6 +1,5 @@
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
-import 'package:bglory_rides/features/driver/general-widgets/outlined_button_widget.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
@@ -8,6 +7,7 @@ import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/distance_animation/car_animation_screen.dart';
+import '../../../general_widgets/outlined_button_widget.dart';
 
 class TripToDestinationBottomSheet extends StatefulWidget {
   const TripToDestinationBottomSheet({super.key});

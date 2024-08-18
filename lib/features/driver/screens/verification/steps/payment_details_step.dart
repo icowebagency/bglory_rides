@@ -1,10 +1,11 @@
-import 'package:bglory_rides/features/driver/general-widgets/custom_drop_down.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../../general_widgets/custom_drop_down.dart';
 
 class PaymentDetailsStep extends StatelessWidget {
   const PaymentDetailsStep({

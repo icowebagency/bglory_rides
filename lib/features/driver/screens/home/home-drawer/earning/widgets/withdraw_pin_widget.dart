@@ -7,7 +7,7 @@ import 'package:otp_text_field_v2/otp_field_v2.dart';
 import '../../../../../../../common/widgets/save_button_widget.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/constants/text_strings.dart';
-import '../../../../../general-widgets/outlined_button_widget.dart';
+import '../../../../../general_widgets/outlined_button_widget.dart';
 
 class WithdrawPinWidget extends StatelessWidget {
   const WithdrawPinWidget({
