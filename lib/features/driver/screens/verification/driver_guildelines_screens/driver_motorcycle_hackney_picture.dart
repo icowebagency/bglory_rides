@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:bglory_rides/features/driver/general-widgets/take_photo_buttons.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../general_widgets/take_photo_buttons.dart';
 
 class DriverMotorcycleHackneyPermitPictureScreen extends StatefulWidget {
   const DriverMotorcycleHackneyPermitPictureScreen({super.key});

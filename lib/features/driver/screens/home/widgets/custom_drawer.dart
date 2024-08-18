@@ -147,6 +147,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
             /// Earning option
             ListTile(
+              leading: const Icon(Icons.home_rounded),
+              title: const Text(TTexts.homeDrawerHomeScreen),
+              onTap: () {
+                // context.push(BGRouteNames.driverEarnings);
+                widget.onItemTapped?.call(0);
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.wallet_rounded),
               title: const Text(TTexts.homeDrawerEarnings),
               onTap: () {
@@ -192,6 +200,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 // context.push(BGRouteNames.driverHelpAndSupport);
                 widget.onItemTapped?.call(5);
               },
+            ),
+            const Spacer(),
+
+            /// Earning option
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+                color: TColors.error,
+              ),
+              title: const Text(TTexts.homeDrawerLogout),
+              onTap: () {},
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
             ),
           ],
         ),

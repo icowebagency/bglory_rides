@@ -1,13 +1,15 @@
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
-import 'package:bglory_rides/features/driver/general-widgets/outlined_button_widget.dart';
+import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../../common/distance_animation/car_animation_screen.dart';
+import '../../../general_widgets/outlined_button_widget.dart';
 
 class TripStarted extends StatefulWidget {
   const TripStarted({super.key});
@@ -38,26 +40,79 @@ class _TripStartedState extends State<TripStarted> {
         return AlertDialog(
           backgroundColor: TColors.dragableBottomSheetColor,
           content: SizedBox(
-            height: 100,
-            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.55,
+            //  width: double.infinity,
             child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    TTexts.receiptSentTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    textAlign: TextAlign.center,
-                    TTexts.receiptSentSubTitle,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: TColors.grey.withOpacity(0.2),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Iconsax.info_circle,
+                          color: TColors.error,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      TTexts.driverCancelRide,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 20,
+                          ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      textAlign: TextAlign.center,
+                      TTexts.driverCancelRideSubText,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      autocorrect: true,
+                      maxLines: 5,
+                      keyboardType: TextInputType.name,
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                        //  contentPadding: EdgeInsets.all(10),
+                        filled: true,
+                        labelText: TTexts.driverCancelRideTextForm,
+                        labelStyle: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: TSizes.spaceBtwItems,
+                    ),
+                    SaveButtonWidget(
+                      buttonColor: TColors.error,
+                      onTap: () {},
+                      buttonText:
+                          TTexts.driverCancelRideCancelConfirmationButton,
+                    ),
+                    const SizedBox(
+                      height: TSizes.spaceBtwItems,
+                    ),
+                    OutlinedButtonWidget(
+                      buttonOutlineColor: TColors.grey,
+                      buttonTextColor: TColors.black,
+                      onTap: () {},
+                      buttonText:
+                          TTexts.driverCancelRideDontCancelConfirmationButton,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
