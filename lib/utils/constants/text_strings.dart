@@ -169,7 +169,7 @@ class TTexts {
   // -- Driver HomePage Texts
   static const String driverEarning = "Today's earnings";
   static const String driverMoney = "₦23,500";
-  static const String driverDate = "June, 2024";
+  static const String driverDate = "18, June, 2024";
   static const String driverLocation = "Lagos";
   static const String driverRating = "4.5";
   static const String driverCompletedTrips = "11";
@@ -178,7 +178,7 @@ class TTexts {
   static const String driverDriveRateTitle = "Drive rate";
   static const String driverAcceptanceRate = "56%";
   static const String driverAcceptanceRateTitle = "Acceptance rate";
-  static const String driverOnlineNotification = "Go online";
+  static const String driverOnlineNotification = "Online";
   static const String driverEditPhoneNumber = "09056692354";
   static const String driverName = "Damolar Awoyemi";
   static const String driverEmail = "damola@gmail.com";
@@ -223,6 +223,8 @@ class TTexts {
   static const String homeDrawerSafety = "Safety";
   static const String homeDrawerSupport = "Help and Support";
   static const String homeDrawerProfile = "Profile";
+  static const String homeDrawerLogout = "Logout";
+  static const String homeDrawerHomeScreen = "Home";
 
   // -- Driver's Profile
   static const String profileTitle = "Driver's Profile";
@@ -688,7 +690,11 @@ class TTexts {
   // Driver cancel ride
   static const String driverCancelRide = 'Cancel ride?';
   static const String driverCancelRideCancelButton = 'Cancel';
-  static const String driverCancelRideDontCancelButton = 'No, dont\'t cancel';
+  static const String driverCancelRideCancelConfirmationButton = 'Yes,Cancel!';
+  static const String driverCancelRideDontCancelConfirmationButton =
+      'No, don\'t cancel!';
+  static const String driverCancelRideDontCancelButton = 'No, don\'t cancel';
+  static const String driverCancelRideTextForm = 'Type your reason here.';
   static const String driverCancelRideSubText =
       'We understand you want to cancel your current trip, kindly give us a reason for canceling a ride so we further address the issue.';
 // static const String supportCallTitle  = '';

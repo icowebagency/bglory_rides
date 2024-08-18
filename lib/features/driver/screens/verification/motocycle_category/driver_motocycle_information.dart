@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
-import 'package:bglory_rides/features/driver/general-widgets/custom_drop_down.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
@@ -25,6 +24,7 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../general_widgets/custom_drop_down.dart';
 
 class DriverMotorcycleInformation extends ConsumerStatefulWidget {
   const DriverMotorcycleInformation({super.key});
