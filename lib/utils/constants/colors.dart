@@ -42,6 +42,10 @@ class TColors {
   static const Color info = Color(0xFFE26844);
   static const Color popupColor = Color(0xffFEE89A);
 
+  // Appbar colors
+  static const Color appBarBackgroundColor = Color(0xFF125A36);
+  static const Color appBarSearchBarBackgroundColor = Color(0xFF063F1F);
+
   // Neutral Shades
   static const Color black = Color(0xFF0F0F0F);
   static const Color darkerGrey = Color(0xFF262626);

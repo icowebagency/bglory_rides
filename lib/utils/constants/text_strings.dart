@@ -695,6 +695,7 @@ class TTexts {
       'No, don\'t cancel!';
   static const String driverCancelRideDontCancelButton = 'No, don\'t cancel';
   static const String driverCancelRideTextForm = 'Type your reason here.';
+  static const String appBarSearchFormHintText = 'Search for knowledge base...';
   static const String driverCancelRideSubText =
       'We understand you want to cancel your current trip, kindly give us a reason for canceling a ride so we further address the issue.';
 // static const String supportCallTitle  = '';
