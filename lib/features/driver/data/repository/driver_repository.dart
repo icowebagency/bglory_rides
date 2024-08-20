@@ -1,4 +1,5 @@
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
+import 'package:bglory_rides/features/driver/data/model/driver_dashboard/driver_dashboard_data.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 import 'package:bglory_rides/features/driver/data/model/transaction_insights/transaction_insights.dart';
@@ -31,6 +32,7 @@ abstract class DriverRepositoryContract {
 
   Future getTransactionHistory();
   Future getTransactionInsights();
+  Future getDriverDashboardData();
 }
 
 class DriverRepositoryImp implements DriverRepositoryContract {
@@ -189,6 +191,22 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     if (result is Success) {
       return Success(
         data: result.data['transactions'],
+      );
+    } else {
+      return result as Failure;
+    }
+  }
+
+  @override
+  Future getDriverDashboardData() async {
+    final result = await _apiClientContract.getDashboardData(token: token!);
+
+    if (result is Success) {
+      final jsonDataList = result.data['data'] as List;
+      final data = jsonDataList[0];
+
+      return Success(
+        data: DriverDashboardData.fromJson(data),
       );
     } else {
       return result as Failure;

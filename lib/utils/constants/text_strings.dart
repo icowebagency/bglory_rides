@@ -402,7 +402,7 @@ class TTexts {
   static const String blankTripHistoryTitle =
       'Don\'t get bored,\n ride with BG Rides';
   static const String blankTripHistorySubTitle =
-      'Don\’t get tired, accept trips and\ncomplete rides to earn more';
+      'Don’t get tired, accept trips and\ncomplete rides to earn more';
 
   // Trips History
   // June 2024
@@ -563,7 +563,7 @@ class TTexts {
   static const String driverPopupVehicleDetails =
       'Toyota Corolla 2010 (white) - AA123BBB';
   static const String driverPopupSubText =
-      'Kindly share with the local authorities full information of the incident as won\’t be able to it automatically';
+      'Kindly share with the local authorities full information of the incident as won’t be able to it automatically';
 
   // Safety trip details
   static const String driverTripFareTitle = 'Trip fare';

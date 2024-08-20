@@ -54,7 +54,7 @@ class _DailyTargetTabThreeState extends State<DailyTargetTabThree> {
               controller: _textController,
               style: Theme.of(context).textTheme.titleSmall,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: TColors.primary,
                   ),

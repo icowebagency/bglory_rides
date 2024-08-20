@@ -67,7 +67,7 @@ class _CarAnimationScreenState extends State<CarAnimationScreen>
                     child: child!,
                   );
                 },
-                child: CarWidget(
+                child: const CarWidget(
                   carImage: TImages
                       .driverCarAnimation, // Path to your custom car icon
                 ),

@@ -52,4 +52,10 @@ class DriverKey {
   static const String totalWithdrawals = "total_withdrawals";
   static const String availableBalance = "available_balance";
   static const String transactionHistory = "transaction_history";
+  static const String todaysEarnings= "todays_earnings";
+  static const String averageRating= "average_rating";
+  static const String completedTrips= "completed_trips";
+  static const String driveRate= "drive_rate";
+  static const String acceptanceRate= "acceptance_rate";
+
 }

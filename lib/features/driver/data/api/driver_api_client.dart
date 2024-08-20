@@ -29,6 +29,7 @@ abstract class DriverApiClientContract {
 
   Future getTransactionHistory({required String token});
   Future getTransactionInsights({required String token});
+  Future getDashboardData({required String token});
 }
 
 class DriverApiClientImp with HandleApi implements DriverApiClientContract {
@@ -163,6 +164,15 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
       'transaction_pin_confirmation': transactionPinConfirmation,
     };
     request.fields.addAll(target);
+    request.headers.addAll(headers);
+    return handleApiCall(request);
+  }
+
+  @override
+  Future getDashboardData({required String token}) {
+    var headers = {'Authorization': 'Bearer Bearer $token'};
+    var request = SimpleApiRequest('GET', Uri.parse(driverDashboardEndpoint));
+
     request.headers.addAll(headers);
 
     return handleApiCall(request);

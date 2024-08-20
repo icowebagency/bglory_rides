@@ -102,7 +102,7 @@ class DriverRouting {
       ),
       GoRoute(
         path: BGRouteNames.vehicleInformationEdit,
-        builder: (context, state) => VehicleInformationEditScreen(),
+        builder: (context, state) => const VehicleInformationEditScreen(),
       ),
       GoRoute(
         path: BGRouteNames.driverInsightScreen,
