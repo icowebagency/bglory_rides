@@ -10,7 +10,7 @@ import '../../../../../../routing/driver_routing.dart';
 import '../../../../../../utils/constants/colors.dart';
 
 class VehicleInformationEditScreen extends StatefulWidget {
-  VehicleInformationEditScreen({super.key});
+  const VehicleInformationEditScreen({super.key});
 
   @override
   State<VehicleInformationEditScreen> createState() =>
@@ -291,12 +291,12 @@ class _VehicleInformationEditScreenState
                             errorBorder: InputBorder.none,
                             filled: true,
                             fillColor: TColors.containerBackgroundColor,
-                            enabledBorder: const OutlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: TColors.grey,
                               ),
                             ),
-                            focusedBorder: const OutlineInputBorder(
+                            focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: TColors.primary,
                               ),

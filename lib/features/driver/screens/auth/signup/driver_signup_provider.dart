@@ -1,6 +1,6 @@
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
-import 'package:bglory_rides/utils/secrets/apiConstants.dart';
+import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../auth_provider/auth_state.dart';
@@ -43,7 +43,10 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
         RegExp otpPattern = RegExp(r"OTP is: (\d{6})");
         Match? match = otpPattern.firstMatch(data['message']);
         String otp = match != null ? match.group(1)! : "Not found";
-        NotificationUtil.showSuccessToast(otp);
+        NotificationUtil.showSuccessToast(
+          otp,
+          duration: const Duration(seconds: 6),
+        );
       }
       return true;
     }

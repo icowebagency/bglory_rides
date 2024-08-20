@@ -19,7 +19,7 @@ class DriverHomeShell extends StatefulWidget {
   }
 
   @override
-  _DriverHomeWrapperState createState() => _DriverHomeWrapperState();
+  State<DriverHomeShell> createState() => _DriverHomeWrapperState();
 }
 
 class _DriverHomeWrapperState extends State<DriverHomeShell> {
@@ -66,14 +66,18 @@ class _DriverHomeWrapperState extends State<DriverHomeShell> {
       body: Stack(
         children: [
           widget.navigationShell,
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
+          Positioned(
+            top: 0,
+            left: 0,
             child: MapCustomIcons(
               onTap: () {
                 _scaffoldkey.currentState?.openDrawer();
               },
               containerIcon: Icons.menu_rounded,
-              myMargin: const EdgeInsets.only(top: 50, left: 20),
+              myMargin: EdgeInsets.only(
+                top: MediaQuery.sizeOf(context).height / 32,
+                left: 20,
+              ),
               scaffoldKey: _scaffoldkey,
             ),
           ),

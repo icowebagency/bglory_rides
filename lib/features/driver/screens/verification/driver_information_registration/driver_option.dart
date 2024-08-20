@@ -59,7 +59,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   onTap: () {
                     setState(() {
                       ref.read(driverRegistrationDetailsProvider)[
-                          DriverPayloadKey.vehicleType] = KeyConstant.car;
+                          DriverKey.vehicleType] = KeyConstant.car;
 
                       _selectedIndex = 0; // Update the selected index
                     });
@@ -118,8 +118,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   onTap: () {
                     setState(() {
                       ref.read(driverRegistrationDetailsProvider)[
-                              DriverPayloadKey.vehicleType] =
-                          KeyConstant.motorcycle;
+                          DriverKey.vehicleType] = KeyConstant.motorcycle;
 
                       _selectedIndex = 1; // Update the selected index
                     });

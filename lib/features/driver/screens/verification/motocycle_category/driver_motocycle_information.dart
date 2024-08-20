@@ -128,51 +128,50 @@ class _DriverMotorcycleInformationState
     }
 
     if (currentStep == 0) {
-      updateProfileField(key: DriverPayloadKey.fullName, value: _fullname.text);
-      updateProfileField(key: DriverPayloadKey.address, value: _address.text);
+      updateProfileField(key: DriverKey.fullName, value: _fullname.text);
+      updateProfileField(key: DriverKey.address, value: _address.text);
       updateProfileField(
-        key: DriverPayloadKey.nextOfKinName,
+        key: DriverKey.nextOfKinName,
         value: _nextOfKin.text,
       );
       updateProfileField(
-        key: DriverPayloadKey.nextOfKinPhoneNumber,
+        key: DriverKey.nextOfKinPhoneNumber,
         value: _nextOfKinPhone.text,
       );
     }
     if (currentStep == 1) {
       updateProfileField(
-        key: DriverPayloadKey.licenseNumber,
+        key: DriverKey.licenseNumber,
         value: _licenseNumber.text,
       );
     }
     if (currentStep == 2) {
       updateProfileField(
-        key: DriverPayloadKey.vehicleColor,
+        key: DriverKey.vehicleColor,
         value: _motorcycleColor.text,
       );
       updateProfileField(
-        key: DriverPayloadKey.plateNumber,
+        key: DriverKey.plateNumber,
         value: _vehiclePlateNumber.text,
       );
     }
 
     if (currentStep == 4) {
       updateProfileField(
-          key: DriverPayloadKey.bankAccountName, value: _bankAccountName.text);
+          key: DriverKey.bankAccountName, value: _bankAccountName.text);
       updateProfileField(
-          key: DriverPayloadKey.bankAccountNumber,
-          value: _bankAccountNumber.text);
+          key: DriverKey.bankAccountNumber, value: _bankAccountNumber.text);
       final email = ref.read(emailText);
       final phone = ref.read(phoneNumberText);
       if (email.isNotEmpty) {
         updateProfileField(
-          key: DriverPayloadKey.email,
+          key: DriverKey.email,
           value: email,
         );
       }
       if (phone.isNotEmpty) {
         updateProfileField(
-          key: DriverPayloadKey.phone,
+          key: DriverKey.phone,
           value: phone,
         );
       }
@@ -213,8 +212,7 @@ class _DriverMotorcycleInformationState
         if (value != null) {
           profilePic = value;
 
-          updateProfileFiles(
-              key: DriverPayloadKey.profilePicture, value: value.path);
+          updateProfileFiles(key: DriverKey.profilePicture, value: value.path);
 
           log('${ref.read(driverRegistrationFilesProvider)}');
           setState(() {});
@@ -227,7 +225,7 @@ class _DriverMotorcycleInformationState
   void onTakeMotorcyclePhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.motorcycleImage,
+      imageDetailKey: DriverKey.motorcycleImage,
       navPath: BGRouteNames.driverMotorcycleGuideline,
     ).then(
       (value) {
@@ -242,7 +240,7 @@ class _DriverMotorcycleInformationState
   void onTakeMotorcycleInsurancePhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.motorcycleInsurance,
+      imageDetailKey: DriverKey.motorcycleInsurance,
       navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
@@ -257,7 +255,7 @@ class _DriverMotorcycleInformationState
   void onTakeHackneyPermitPhoto(BuildContext context) {
     getPictureAndUpdateDataField(
       context: context,
-      imageDetailKey: DriverPayloadKey.hackneyPermit,
+      imageDetailKey: DriverKey.hackneyPermit,
       navPath: BGRouteNames.driverMotorcycleHackneyPermit,
     ).then(
       (value) {
@@ -281,7 +279,7 @@ class _DriverMotorcycleInformationState
       setState(() {
         _dateOfBirth.text = DateFormat.yMMMd('en_US').format(pickeddateofbirth);
 
-        ref.read(driverRegistrationDetailsProvider)[DriverPayloadKey.dob] =
+        ref.read(driverRegistrationDetailsProvider)[DriverKey.dob] =
             DateFormat('yyyy-MM-dd').format(pickeddateofbirth);
       });
     }
@@ -314,7 +312,7 @@ class _DriverMotorcycleInformationState
   void onUpdateGender(String? val) {
     setState(() {
       _selectedGender = val as String;
-      ref.read(driverRegistrationDetailsProvider)[DriverPayloadKey.gender] =
+      ref.read(driverRegistrationDetailsProvider)[DriverKey.gender] =
           val.toLowerCase();
 
       log('${ref.read(driverRegistrationDetailsProvider)}');
@@ -351,7 +349,7 @@ class _DriverMotorcycleInformationState
         _licenseExpiry.text = DateFormat.yMMMd('en_US').format(pickedDate);
 
         updateProfileField(
-          key: DriverPayloadKey.licenseExpiryDate,
+          key: DriverKey.licenseExpiryDate,
           value: DateFormat('yyyy-MM-dd').format(pickedDate),
         );
 
@@ -372,8 +370,7 @@ class _DriverMotorcycleInformationState
         if (value != null) {
           driversLicensePhoto = value;
 
-          updateProfileFiles(
-              key: DriverPayloadKey.licensePicture, value: value.path);
+          updateProfileFiles(key: DriverKey.licensePicture, value: value.path);
 
           log('${ref.read(driverRegistrationFilesProvider)}');
           setState(() {});
@@ -567,8 +564,7 @@ class _DriverMotorcycleInformationState
                                       setState(() {
                                         _vehicleSelectedValue = val as String;
                                         updateProfileField(
-                                          key: DriverPayloadKey
-                                              .motorcycleManufacturer,
+                                          key: DriverKey.motorcycleManufacturer,
                                           value: val,
                                         );
                                       });
@@ -622,7 +618,7 @@ class _DriverMotorcycleInformationState
                                         _motorcycleModelSelectedValue =
                                             val as String;
                                         updateProfileField(
-                                          key: DriverPayloadKey.motorcycleModel,
+                                          key: DriverKey.motorcycleModel,
                                           value: val,
                                         );
                                       });
@@ -868,7 +864,7 @@ class _DriverMotorcycleInformationState
                                         setState(() {
                                           _banksSelectedValue = val as String;
                                           updateProfileField(
-                                            key: DriverPayloadKey.bank,
+                                            key: DriverKey.bank,
                                             value: val,
                                           );
                                         });

@@ -21,7 +21,7 @@ class SafetyShareTripDetailsScreen extends StatefulWidget {
 
 class _SafetyShareTripDetailsScreenState
     extends State<SafetyShareTripDetailsScreen> {
-  double _currentRating = 2.1;
+  final double _currentRating = 2.1;
   int currentStep = 0;
   final int _totalSteps = 3;
 

@@ -6,7 +6,8 @@ class KeyConstant {
   static const String phone = 'phone';
 }
 
-class DriverPayloadKey {
+class DriverKey {
+  static const String id = "id";
   static const String fullName = "full_name";
   static const String phone = "phone";
   static const String email = "email";
@@ -39,4 +40,22 @@ class DriverPayloadKey {
   static const String bank = "bank";
   static const String bankAccountName = "bank_account_name";
   static const String bankAccountNumber = "bank_account_number";
+  static const String isProfileComplete = "is_profile_complete";
+  static const String status = "status";
+  static const String createdAt = "created_at";
+  static const String updatedAt = "updated_at";
+  static const String earnings = "earnings";
+  static const String trips = "trips";
+  static const String balance = "balance";
+  static const String otpExpiresAt = "otp_expires_at"; 
+  static const String totalEarnings = "total_earnings";
+  static const String totalWithdrawals = "total_withdrawals";
+  static const String availableBalance = "available_balance";
+  static const String transactionHistory = "transaction_history";
+  static const String todaysEarnings= "todays_earnings";
+  static const String averageRating= "average_rating";
+  static const String completedTrips= "completed_trips";
+  static const String driveRate= "drive_rate";
+  static const String acceptanceRate= "acceptance_rate";
+
 }

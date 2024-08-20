@@ -87,13 +87,17 @@ class NotificationUtil {
         ),
       );
 
-  static void showSuccessToast(String message) async {
+  static void showSuccessToast(String message,
+      {Duration duration = const Duration(seconds: 2)}) async {
     init();
     if (_fToast == null) {
       showGlobalSuccessToast(message);
     } else {
       await _fToast!.removeQueuedCustomToasts();
-      _fToast!.showToast(child: _successToast(message));
+      _fToast!.showToast(
+        child: _successToast(message),
+        toastDuration: duration,
+      );
     }
   }
 

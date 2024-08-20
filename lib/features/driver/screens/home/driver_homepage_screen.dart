@@ -1,8 +1,10 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:bglory_rides/features/driver/screens/home/provider/home_provider.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,24 +16,32 @@ import 'hailing/hailing_bottom_sheet.dart';
 
 const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
-class DriverHomePageScreen extends StatefulWidget {
+class DriverHomePageScreen extends ConsumerStatefulWidget {
   const DriverHomePageScreen({super.key});
 
   @override
-  State<DriverHomePageScreen> createState() => _DriverHomePageScreenState();
+  ConsumerState<DriverHomePageScreen> createState() =>
+      _DriverHomePageScreenState();
 }
 
-class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
+class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
+// initial rating value
   // Global key to control the scaffold
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   double _currentRating = 2.1;
   bool status = false;
 
   @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+  void initState() {
+    ref.read(driverHomeDataNotifierProvider.notifier).loadHomePageData();
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    double width = size.width;
+    double height = size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -105,54 +115,60 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
             minChildSize: 0.36,
             maxChildSize: 0.5,
             builder: (BuildContext context, scrollController) {
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: TColors.primary.withOpacity(0.8),
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  color: TColors.dragableBottomSheetColor,
-                ),
-                height: height,
-                width: width,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Column(
-                    children: [
-                      /// Slide handle
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          height: 5,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: TColors.grey,
-                          ),
-                        ),
+              return Consumer(
+                builder: (context, ref, child) {
+                  final dashboardState =
+                      ref.watch(driverHomeDataNotifierProvider);
+                  final location = dashboardState.otherData.driverLocation;
+                  final todaysDate = dashboardState.otherData.todaysDate;
+                  final earnings = dashboardState.dashboardData.todaysEarnings;
+                  final completedRides =
+                      dashboardState.dashboardData.completedTrips;
+                  final driverRate = dashboardState.dashboardData.driveRate;
+                  final acceptanceRate =
+                      dashboardState.dashboardData.acceptanceRate;
+                  return Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
                       ),
+                      color: TColors.dragableBottomSheetColor,
+                    ),
+                    height: height,
+                    width: width,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Column(
+                        children: [
+                          /// slide handle
+                          Center(
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 10),
+                              height: 5,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: TColors.grey,
+                              ),
+                            ),
+                          ),
 
-                      /// Top container listing location and ratings
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        width: double.infinity,
-                        height: height * 0.05,
-                        decoration: BoxDecoration(
-                          color: TColors.white,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Flexible(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              /// Date
-                              FittedBox(
-                                child: Row(
+                          /// Top container listing location and ratings
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            width: double.infinity,
+                            height: height * 0.05,
+                            decoration: BoxDecoration(
+                              color: TColors.white,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
                                   children: [
                                     const Icon(
                                       Iconsax.calendar,
@@ -160,34 +176,26 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                     ),
                                     const SizedBox(width: 10),
                                     Text(
-                                      TTexts.driverDate,
+                                      todaysDate,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
                                     ),
                                   ],
                                 ),
-                              ),
-
-                              /// Location
-                              FittedBox(
-                                child: Row(
+                                Row(
                                   children: [
                                     const Icon(Iconsax.location, size: 20),
-                                    // const SizedBox(width: 5),
+                                    const SizedBox(width: 10),
                                     Text(
-                                      TTexts.driverLocation,
+                                      location,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
                                     ),
                                   ],
                                 ),
-                              ),
-
-                              /// Rating - set to read-only.
-                              FittedBox(
-                                child: Row(
+                                Row(
                                   children: [
                                     AnimatedRatingStars(
                                       readOnly: true,
@@ -220,91 +228,94 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
+                                      overflow: TextOverflow.clip,
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.30,
-                        child: Column(
-                          children: [
-                            /// Driver Price
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: DriverBox(
-                                      boxTitle: TTexts.driverMoney,
-                                      boxSubTitle: TTexts.driverEarning,
-                                      boxIcon: Icons.wallet,
-                                      boxOnTap: () {
-                                        context
-                                            .push(BGRouteNames.driverEarnings);
-                                      },
-                                      useFittedBox: true,
-                                    ),
-                                  ),
+                          SizedBox(
+                            height: height * 0.30,
+                            child: Column(
+                              children: [
+                                /// Driver Price
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: DriverBox(
+                                          boxTitle: earnings.toString(),
+                                          boxSubTitle: TTexts.driverEarning,
+                                          boxIcon: Icons.wallet,
+                                          boxOnTap: () {
+                                            context.go(
+                                                BGRouteNames.driverEarnings);
+                                          },
+                                          useFittedBox: true,
+                                        ),
+                                      ),
 
-                                  /// Completed Trips
-                                  Expanded(
-                                      child: DriverBox(
-                                    boxTitle: TTexts.driverCompletedTrips,
-                                    boxSubTitle:
-                                        TTexts.driverCompletedTripsTitle,
-                                    boxIcon: Icons.car_rental,
-                                    boxOnTap: () {
-                                      context.push(BGRouteNames.driverEarnings);
-                                    },
-                                    useFittedBox: true,
-                                  )),
-                                ],
-                              ),
+                                      /// Completed Trips
+                                      Expanded(
+                                          child: DriverBox(
+                                        boxTitle: completedRides.toString(),
+                                        boxSubTitle:
+                                            TTexts.driverCompletedTripsTitle,
+                                        boxIcon: Icons.car_rental,
+                                        boxOnTap: () {
+                                          context
+                                              .go(BGRouteNames.driverEarnings);
+                                        },
+                                        useFittedBox: true,
+                                      )),
+                                    ],
+                                  ),
+                                ),
+
+                                /// Driver Rate
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: DriverBox(
+                                          boxTitle: driverRate.toString(),
+                                          boxSubTitle:
+                                              TTexts.driverDriveRateTitle,
+                                          boxIcon: Icons.rate_review,
+                                          boxOnTap: () {
+                                            context.push(
+                                                BGRouteNames.driverEarnings);
+                                          },
+                                          useFittedBox: false,
+                                        ),
+                                      ),
+
+                                      /// Driver Acceptance rate
+                                      Expanded(
+                                        child: DriverBox(
+                                          boxTitle: acceptanceRate.toString(),
+                                          boxSubTitle:
+                                              TTexts.driverAcceptanceRateTitle,
+                                          boxIcon: Iconsax.wallet,
+                                          boxOnTap: () {
+                                            context.push(
+                                                BGRouteNames.driverEarnings);
+                                          },
+                                          useFittedBox: true,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-
-                            /// Driver Rate
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: DriverBox(
-                                      boxTitle: TTexts.driverDriveRate,
-                                      boxSubTitle: TTexts.driverDriveRateTitle,
-                                      boxIcon: Icons.rate_review,
-                                      boxOnTap: () {
-                                        context
-                                            .push(BGRouteNames.driverEarnings);
-                                      },
-                                      useFittedBox: false,
-                                    ),
-                                  ),
-
-                                  /// Driver Acceptance rate
-                                  Expanded(
-                                    child: DriverBox(
-                                      boxTitle: TTexts.driverAcceptanceRate,
-                                      boxSubTitle:
-                                          TTexts.driverAcceptanceRateTitle,
-                                      boxIcon: Iconsax.wallet,
-                                      boxOnTap: () {
-                                        context
-                                            .push(BGRouteNames.driverEarnings);
-                                      },
-                                      useFittedBox: true,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               );
             },
           ),

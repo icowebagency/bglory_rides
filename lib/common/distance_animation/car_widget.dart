@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CarWidget extends StatelessWidget {
   final String carImage;
 
-  CarWidget({required this.carImage});
+  const CarWidget({super.key, required this.carImage});
 
   @override
   Widget build(BuildContext context) {
