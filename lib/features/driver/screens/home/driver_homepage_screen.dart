@@ -9,6 +9,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
@@ -49,7 +50,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
             zoomGesturesEnabled: true,
             mapType: MapType.terrain,
             initialCameraPosition:
-                CameraPosition(zoom: 15.1, target: currentPosition),
+                CameraPosition(zoom: 17.1, target: currentPosition),
           ),
 
           /// Positioned widget to align the row at the top
@@ -79,10 +80,11 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                     valueFontSize: 13,
                     padding: 5,
                     value: status,
-                    onToggle: (val) {
+                    onToggle: (val) async {
                       setState(() {
                         status = val;
                       });
+                      Vibration.vibrate(duration: 50);
                     },
                   ),
 
