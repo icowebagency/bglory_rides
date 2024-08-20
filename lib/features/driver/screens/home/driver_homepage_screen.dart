@@ -5,6 +5,7 @@ import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_ico
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
@@ -28,6 +29,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
   // Global key to control the scaffold
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   double _currentRating = 2.1;
+  bool status = false;
 
   @override
   void initState() {
@@ -50,144 +52,64 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                 CameraPosition(zoom: 15.1, target: currentPosition),
           ),
 
-          /// Driver Drawer and Driver Notification.
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(
-                  width: 50,
-                ),
+          /// Positioned widget to align the row at the top
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(width: width * 0.15),
+                  // Replace with any leading widget or leave as is
 
-                /// Pop-up Go online notification
-                Container(
-                  margin: const EdgeInsets.only(
-                    top: 50,
+                  /// Pop-up Go online notification
+                  FlutterSwitch(
+                    inactiveTextFontWeight: FontWeight.w700,
+                    activeTextFontWeight: FontWeight.w700,
+                    width: 90,
+                    height: 40,
+                    activeText: 'Online',
+                    activeTextColor: TColors.white,
+                    inactiveTextColor: TColors.white,
+                    activeColor: TColors.primary,
+                    inactiveColor: TColors.error,
+                    inactiveText: 'Offline',
+                    showOnOff: true,
+                    valueFontSize: 13,
+                    padding: 5,
+                    value: status,
+                    onToggle: (val) {
+                      setState(() {
+                        status = val;
+                      });
+                    },
                   ),
-                  width: width * 0.30,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    shape: BoxShape.rectangle,
-                    color: TColors.buttonPrimaryDeepGreen,
-                    boxShadow: [
-                      BoxShadow(
-                        color:
-                            TColors.black.withOpacity(0.1), // Soft shadow color
-                        blurRadius: 10, // Softness of the shadow
-                        offset: const Offset(0, 5), // Position of the shadow
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 25,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: TColors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: TColors.black
-                                      .withOpacity(0.1), // Soft shadow color
-                                  blurRadius: 10, // Softness of the shadow
-                                  offset: const Offset(
-                                      0, 5), // Position of the shadow
-                                ),
-                              ],
-                            ),
-                            child: const Icon(
-                              Icons.check,
-                              color: TColors.buttonPrimaryDeepGreen,
-                              size: 15,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            TTexts.driverOnlineNotification,
-                            style:
-                                Theme.of(context).textTheme.titleMedium!.apply(
-                                      color: TColors.white,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
 
-                /// Driver notification
-                MapCustomIcons(
-                  myMargin: const EdgeInsets.only(top: 50, right: 20),
-                  containerIcon: Iconsax.notification,
-                  scaffoldKey: null,
-                  onTap: () {
-                    showModalBottomSheet(
-                      constraints: BoxConstraints.tight(
-                        Size.fromHeight(height * 0.5),
-                      ),
-                      isScrollControlled: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const HailingBottomSheet();
-                      },
-                    );
-                  },
-                ),
-              ],
+                  /// Driver notification
+                  MapCustomIcons(
+                    myMargin: const EdgeInsets.only(right: 20),
+                    containerIcon: Iconsax.notification,
+                    scaffoldKey: null,
+                    onTap: () {
+                      showModalBottomSheet(
+                        constraints: BoxConstraints.tight(
+                          Size.fromHeight(height * 0.5),
+                        ),
+                        isScrollControlled: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const HailingBottomSheet();
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
 
-          // /// location button
-          // Align(
-          //   alignment: Alignment.centerLeft,
-          //   child: Padding(
-          //       padding: const EdgeInsets.only(top: 10),
-          //       child: MapCustomIcons(
-          //         myMargin: const EdgeInsets.only(top: 50, left: 20),
-          //         containerIcon: Icons.location_on_outlined,
-          //         scaffoldKey: null,
-          //         onTap: () {},
-          //       )),
-          // ),
-
-          /// Driver Map and car icon section
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 130),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       /// Driver map
-          //       // map button
-          //       // MapCustomIcons(
-          //       //   myMargin: const EdgeInsets.only(top: 50, left: 20),
-          //       //   containerIcon: Icons.map_outlined,
-          //       //   onTap: () {},
-          //       //   scaffoldKey: null,
-          //       // ),
-          //       // car location button
-          //       MapCustomIcons(
-          //         myMargin: const EdgeInsets.only(top: 50, right: 20),
-          //         containerIcon: Iconsax.car,
-          //         onTap: () {
-          //
-          //         },
-          //         scaffoldKey: null,
-          //       ),
-          //     ],
-          //   ),
-          // ),
           DraggableScrollableSheet(
             initialChildSize: 0.41,
             minChildSize: 0.36,

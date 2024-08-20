@@ -19,7 +19,7 @@ class DriverHomeShell extends StatefulWidget {
   }
 
   @override
-  _DriverHomeWrapperState createState() => _DriverHomeWrapperState();
+  State<DriverHomeShell> createState() => _DriverHomeWrapperState();
 }
 
 class _DriverHomeWrapperState extends State<DriverHomeShell> {

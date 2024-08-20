@@ -4,7 +4,7 @@ import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 import 'package:bglory_rides/features/driver/data/model/transaction_insights/transaction_insights.dart';
 
-import '../../../../utils/secrets/apiConstants.dart';
+import '../../../../utils/secrets/api_constants.dart';
 
 abstract class DriverRepositoryContract {
   String? token;

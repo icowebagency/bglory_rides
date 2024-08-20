@@ -35,7 +35,7 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_histo
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_hackney_picture.dart';
-import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_picture_guideline%20copy.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_motorcycle_picture_guideline.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/vehicle_insurance_guidline.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:flutter/material.dart';

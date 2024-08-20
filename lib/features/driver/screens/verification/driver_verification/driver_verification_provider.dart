@@ -3,7 +3,7 @@ import 'package:bglory_rides/features/driver/data/provider/driver_data_providers
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_state.dart';
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
-import 'package:bglory_rides/utils/secrets/apiConstants.dart';
+import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final driverVerificationStateNotifier =

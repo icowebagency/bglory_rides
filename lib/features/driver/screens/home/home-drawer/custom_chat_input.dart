@@ -17,7 +17,7 @@ class CustomChatInput extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomChatInputState createState() => _CustomChatInputState();
+  State<CustomChatInput> createState() => _CustomChatInputState();
 }
 
 class _CustomChatInputState extends State<CustomChatInput> {
