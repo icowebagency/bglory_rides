@@ -27,9 +27,9 @@ class MapCustomIcons extends StatelessWidget {
         color: TColors.white,
         boxShadow: [
           BoxShadow(
-            color: TColors.black.withOpacity(0.1), // Soft shadow color
+            color: TColors.black.withOpacity(0.25), // Soft shadow color
             blurRadius: 10, // Softness of the shadow
-            offset: const Offset(0, 5), // Position of the shadow
+            offset: const Offset(0, 4), // Position of the shadow
           ),
         ],
       ),

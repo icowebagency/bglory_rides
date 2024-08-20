@@ -1,8 +1,9 @@
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/data/repository/driver_repository.dart';
-import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../../utils/secrets/api_constants.dart';
 
 final driverRegistrationDetailsProvider = StateProvider<Map<String, String>>(
   (ref) => {},
