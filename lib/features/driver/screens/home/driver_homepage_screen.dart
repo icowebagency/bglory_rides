@@ -12,7 +12,7 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
 import 'hailing/hailing_bottom_sheet.dart';
 
-const LatLng currentPosition = LatLng(25.1193, 55.3773);
+const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
 class DriverHomePageScreen extends StatefulWidget {
   const DriverHomePageScreen({super.key});
@@ -52,7 +52,6 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(width: width * 0.15),
-                  // Replace with any leading widget or leave as is
 
                   /// Pop-up Go online notification
                   FlutterSwitch(
@@ -100,14 +99,18 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
             ),
           ),
 
+          /// Bottom sheet section
           DraggableScrollableSheet(
             initialChildSize: 0.41,
             minChildSize: 0.36,
             maxChildSize: 0.5,
             builder: (BuildContext context, scrollController) {
               return Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: TColors.primary.withOpacity(0.8),
+                  ),
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
@@ -143,67 +146,86 @@ class _DriverHomePageScreenState extends State<DriverHomePageScreen> {
                           color: TColors.white,
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                const Icon(
-                                  Iconsax.calendar,
-                                  size: 20,
+                        child: Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              /// Date
+                              FittedBox(
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Iconsax.calendar,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      TTexts.driverDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  TTexts.driverDate,
-                                  style: Theme.of(context).textTheme.titleLarge,
+                              ),
+
+                              /// Location
+                              FittedBox(
+                                child: Row(
+                                  children: [
+                                    const Icon(Iconsax.location, size: 20),
+                                    // const SizedBox(width: 5),
+                                    Text(
+                                      TTexts.driverLocation,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const Icon(Iconsax.location, size: 20),
-                                const SizedBox(width: 10),
-                                Text(
-                                  TTexts.driverLocation,
-                                  style: Theme.of(context).textTheme.titleLarge,
+                              ),
+
+                              /// Rating - set to read-only.
+                              FittedBox(
+                                child: Row(
+                                  children: [
+                                    AnimatedRatingStars(
+                                      readOnly: true,
+                                      starSize: 10,
+                                      displayRatingValue: true,
+                                      minRating: 0.0,
+                                      maxRating: 5.0,
+                                      emptyColor: Colors.grey,
+                                      interactiveTooltips: true,
+                                      filledIcon: Icons.star,
+                                      filledColor: TColors.warning,
+                                      emptyIcon: Icons.star_outlined,
+                                      halfFilledIcon: Icons.star_half,
+                                      animationCurve: Curves.easeInOut,
+                                      animationDuration:
+                                          const Duration(milliseconds: 500),
+                                      initialRating: 3.5,
+                                      onChanged: (rating) {
+                                        setState(() {
+                                          _currentRating = rating;
+                                        });
+                                      },
+                                      customFilledIcon: Icons.star,
+                                      customEmptyIcon: Icons.star_outline,
+                                      customHalfFilledIcon: Icons.star_half,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      _currentRating.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                AnimatedRatingStars(
-                                  readOnly: true,
-                                  starSize: 10,
-                                  displayRatingValue: true,
-                                  minRating: 0.0,
-                                  maxRating: 5.0,
-                                  emptyColor: Colors.grey,
-                                  interactiveTooltips: true,
-                                  filledIcon: Icons.star,
-                                  filledColor: TColors.warning,
-                                  emptyIcon: Icons.star_outlined,
-                                  halfFilledIcon: Icons.star_half,
-                                  animationCurve: Curves.easeInOut,
-                                  animationDuration:
-                                      const Duration(milliseconds: 500),
-                                  initialRating: 3.5,
-                                  onChanged: (rating) {
-                                    setState(() {
-                                      _currentRating = rating;
-                                    });
-                                  },
-                                  customFilledIcon: Icons.star,
-                                  customEmptyIcon: Icons.star_outline,
-                                  customHalfFilledIcon: Icons.star_half,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  _currentRating.toString(),
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                              ],
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
