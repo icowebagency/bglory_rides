@@ -14,7 +14,7 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
 import 'hailing/hailing_bottom_sheet.dart';
 
-const LatLng currentPosition = LatLng(25.1193, 55.3773);
+const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
 class DriverHomePageScreen extends ConsumerStatefulWidget {
   const DriverHomePageScreen({super.key});
@@ -62,7 +62,6 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(width: width * 0.15),
-                  // Replace with any leading widget or leave as is
 
                   /// Pop-up Go online notification
                   FlutterSwitch(
@@ -110,6 +109,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
             ),
           ),
 
+          /// Bottom sheet section
           DraggableScrollableSheet(
             initialChildSize: 0.41,
             minChildSize: 0.36,
