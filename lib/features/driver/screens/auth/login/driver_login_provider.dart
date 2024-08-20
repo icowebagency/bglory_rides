@@ -1,8 +1,8 @@
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
-import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../utils/secrets/api_constants.dart';
 import '../auth_provider/auth_state.dart';
 import '../auth_provider/driver_auth_state_notifer.dart';
 

@@ -8,6 +8,7 @@ import '../../../../utils/secrets/api_constants.dart';
 
 abstract class DriverRepositoryContract {
   String? token;
+
   Future<Object> completeDriverProfile({
     required Map<String, String> profileData,
     required Map<String, String> files,
@@ -16,6 +17,7 @@ abstract class DriverRepositoryContract {
   Future<Object> getDriverProfile();
 
   Future<Object> requestSignUpOtp({required Map<String, String> target});
+
   Future<Object> requestLoginOtp({required Map<String, String> target});
 
   Future<Object> verifyOtp(
@@ -31,7 +33,9 @@ abstract class DriverRepositoryContract {
       {required String amount, required String transactionPin});
 
   Future getTransactionHistory();
+
   Future getTransactionInsights();
+
   Future getDriverDashboardData();
 }
 
