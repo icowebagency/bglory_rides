@@ -699,14 +699,150 @@ class TTexts {
   static const String appBarSearchFormHintText = 'Search for knowledge base...';
   static const String driverCancelRideSubText =
       'We understand you want to cancel your current trip, kindly give us a reason for canceling a ride so we further address the issue.';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
-// static const String supportCallTitle  = '';
+
+  // Faq section
+  static const String faqHeader = 'What are you looking for?';
+  static const String faqGettingStartedHeader = 'Getting Started';
+  static const String faqGettingStarted = 'Getting started';
+  static const String faqUsingTheApp = 'Using the app';
+  static const String faqPaymentAndEarnings = 'Payments and earnings';
+  static const String faqDriverSupport = 'Driver support';
+  static const String faqAccountAndSettings = 'Account and settings';
+  static const String faqGeneralQuestions = 'General questions';
+  static const String faqGeneralQuestionsDriverSignup =
+      'How do i signup as a driver?';
+  static const String faqGeneralQuestionsNumberOne = '1.';
+  static const String faqGeneralQuestionsNumberTwo = '2.';
+
+  // using the app bullet points
+  static const String usingTheAppOne =
+      'Download the BGlory Rides app from the App Store or Google Play Store.';
+  static const String usingTheAppTwo =
+      'Open the app and select “Sign Up” from the main screen.';
+  static const String usingTheAppThree =
+      'Choose “Driver” as your account type.';
+  static const String usingTheAppFour =
+      'Follow the on-screen instructions to provide your personal details, driving license information, and vehicle details.';
+  static const String usingTheAppFive =
+      'Upload the required documents for verification.';
+  static const String usingTheAppSix =
+      'Once your application is reviewed and approved, you will receive a confirmation email and can start driving.';
+
+  //FAQ Getting started section
+  static const String faqRequirementsHeader =
+      'What are the requirements to become a BGlory Rides driver?';
+  static const String requirementsOne = 'Clean driving record';
+  static const String requirementsTwo =
+      'Minimum age requirement (varies by location).';
+  static const String requirementsThree = 'Background check clearance.';
+  static const String requirementsFour =
+      'Smartphone with the latest version of the BGlory Rides app.';
+  static const String requirementsFive =
+      'A vehicle that meets our standards (age, condition, and type)';
+
+  //FAQ Using the app
+  static const String faqUsingTheAppHeader = 'Using the app';
+  static const String faqUsingTheAppHeaderTitleOne =
+      'How do i start receiving ride request?';
+  static const String faqUsingTheAppOne =
+      'Open the BGlory Rides app and log in.';
+  static const String faqUsingTheAppTwo =
+      'Make sure your status is set to “Online.';
+  static const String faqUsingTheAppThree =
+      'You’ll start receiving ride requests when you’re in an area with demand.';
+  static const String faqUsingTheAppFour =
+      'Accept a ride request by tapping the “Accept” button.';
+
+  static const String faqUsingTheAppQuestionTwoTitle =
+      'How do I navigate to the passenger’s location?';
+  static const String faqUsingTheAppQuestionTwoNumber = '2';
+  static const String faqUsingTheAppQuestionTwoOne =
+      'After accepting a ride request, the app will provide the passenger’s pickup location.';
+  static const String faqUsingTheAppQuestionTwoTwo =
+      'Use the in-app navigation or your preferred navigation app to reach the pickup point.';
+  static const String faqUsingTheAppQuestionTwoThree =
+      'Tap “Arrived” once you reach the pickup location.';
+
+  //FAQ Payment and earnings
+  static const String faqPaymentAndEarningsHeader = 'Payments and earnings';
+  static const String faqPaymentAndEarningsNumber = '1';
+  static const String faqPaymentAndEarningsOne =
+      'You can view your earnings summary in the app under the “Earnings” tab.';
+  static const String faqPaymentAndEarningsTwo =
+      'For instant payouts, use the “Cash Out” feature in the app (if available).';
+  static const String faqPaymentAndEarningsThree =
+      'Payments are processed weekly and directly deposited into your bank account.';
+  static const String faqPaymentAndEarningsTitle = 'How do i get paid?';
+
+  static const String faqPaymentAndEarningsTwoTitle =
+      'How are fares calculated?';
+  static const String faqPaymentAndEarningsTwoNumber = '2';
+  static const String faqPaymentAndEarningsTwoOne =
+      'Fares are calculated based on the distance traveled, time taken, and base fare.';
+  static const String faqPaymentAndEarningsTwoTwo =
+      'Surge pricing may apply during high-demand periods.';
+  static const String faqPaymentAndEarningsTwoThree =
+      'You can view the fare breakdown for each ride in the app.';
+
+  //FAQ Driver support
+  static const String faqDriverSupportTitle = 'Driver Support';
+  static const String faqDriverSupportHeader =
+      'What should i do  in case of an emergency?';
+  static const String faqDriverSupportOne =
+      'If you are in immediate danger, contact emergency services right away.';
+  static const String faqDriverSupportTwo =
+      'For non-emergency issues, use the “Help” section in the app to contact driver support.';
+  static const String faqDriverSupportThree =
+      'You can also report incidents directly through the app.';
+
+  static const String faqDriverSupportTwoHeader =
+      'How do I report a problem with a passenger?';
+  static const String faqDriverSupportTwoOne =
+      'After completing a ride, go to the “Trip History” section in the app.';
+  static const String faqDriverSupportTwoTwo =
+      'Select the ride with the issue and choose “Report an Issue.”';
+  static const String faqDriverSupportTwoThree =
+      'Provide detailed information about the incident.';
+  static const String faqDriverSupportTwoFour =
+      'Our support team will review your report and take appropriate action.';
+
+// FAQ Account and settings
+  static const String driverFaqAccountAndSettingsHeader =
+      'Account and Settings';
+  static const String driverFaqAccountAndSettingsTitleOne =
+      'How do i update my personal information or vehicle details?';
+  static const String driverFaqAccountAndSettingsOne =
+      'Go to the “Profile” section in the app.';
+  static const String driverFaqAccountAndSettingsTwo =
+      'Tap on the information you want to update (e.g., name, phone number, vehicle details).';
+  static const String driverFaqAccountAndSettingsThree =
+      'Make the necessary changes and save them.';
+  static const String driverFaqAccountAndSettingsFour =
+      'Some updates may require additional verification.';
+  static const String driverFaqAccountAndSettingsNumber = '1';
+  static const String driverFaqAccountAndSettingsTitleTwo =
+      'How do I report a problem with a passenger?';
+  static const String driverFaqAccountAndSettingsOneTwo =
+      'Open the BGlory Rides app and tap “Forgot Password” on the login screen.';
+  static const String driverFaqAccountAndSettingsTwoTwo =
+      'Enter your registered email address or phone number.';
+  static const String driverFaqAccountAndSettingsThreeTwo =
+      'Follow the instructions sent to your email or phone to reset your password.';
+
+  // FAQ General questions
+  static const String driverFaqGeneralQuestionsHeader = 'General Questions';
+  static const String driverFaqGeneralQuestionsTitle =
+      'Can I drive part-time with BGlory Rides?';
+  static const String driverFaqGeneralQuestionsOne =
+      'Yes, you can drive with BGlory Rides on a flexible schedule that suits you.';
+  static const String driverFaqGeneralQuestionsTwo =
+      'Simply go online when you’re available to accept ride requests and go offline when you’re done.';
+  static const String driverFaqGeneralQuestionsTitleTwo =
+      'What should I do if my vehicle needs maintenance?';
+  static const String driverFaqGeneralQuestionsHOneTwo =
+      'If your vehicle needs maintenance, go offline in the app until your vehicle is ready to drive again.';
+  static const String driverFaqGeneralQuestionsTwoTwo =
+      'Ensure your vehicle meets all safety and condition standards before going back online.';
 // static const String supportCallTitle  = '';
 // static const String supportCallTitle  = '';
 }

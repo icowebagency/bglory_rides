@@ -24,6 +24,7 @@ class DriverHomeShell extends StatefulWidget {
 
 class _DriverHomeWrapperState extends State<DriverHomeShell> {
   int _drawerSelectedIndex = 0;
+
   // Initial selected drawer item
   final _scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -67,7 +68,7 @@ class _DriverHomeWrapperState extends State<DriverHomeShell> {
         children: [
           widget.navigationShell,
           Positioned(
-            top: 0,
+            top: 30,
             left: 0,
             child: MapCustomIcons(
               onTap: () {
