@@ -1,4 +1,5 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/trip_completed.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/home_provider.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
@@ -13,7 +14,6 @@ import 'package:vibration/vibration.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
-import 'hailing/hailing_bottom_sheet.dart';
 
 const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
@@ -66,16 +66,24 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
 
                   /// Pop-up Go online notification
                   FlutterSwitch(
+                    inactiveIcon: const Icon(
+                      Icons.close,
+                      color: TColors.error,
+                    ),
+                    activeIcon: const Icon(
+                      Icons.check,
+                      color: TColors.primary,
+                    ),
                     inactiveTextFontWeight: FontWeight.w700,
                     activeTextFontWeight: FontWeight.w700,
-                    width: 90,
+                    width: 110,
                     height: 40,
-                    activeText: 'Online',
+                    activeText: 'Go Online',
                     activeTextColor: TColors.white,
                     inactiveTextColor: TColors.white,
                     activeColor: TColors.primary,
                     inactiveColor: TColors.error,
-                    inactiveText: 'Offline',
+                    inactiveText: 'Go Offline',
                     showOnOff: true,
                     valueFontSize: 13,
                     padding: 5,
@@ -101,7 +109,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                         isScrollControlled: false,
                         context: context,
                         builder: (BuildContext context) {
-                          return const HailingBottomSheet();
+                          return const TripCompleted();
                         },
                       );
                     },

@@ -1,3 +1,5 @@
+import 'package:another_stepper/dto/stepper_data.dart';
+import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
@@ -57,6 +59,19 @@ class _SafetyShareTripDetailsScreenState
     return Container(); // Return an empty container to remove the default buttons
   }
 
+  List<StepperData> stepperData = [
+    StepperData(
+      title: StepperText(
+        TTexts.rideHailingLocation,
+      ),
+    ),
+    StepperData(
+      title: StepperText(
+        TTexts.rideHailingDestination,
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -100,70 +115,13 @@ class _SafetyShareTripDetailsScreenState
                   ],
                 ),
                 // Start timeline
-                Stepper(
-                  onStepContinue: continueStep,
-                  onStepCancel: cancelStep,
-                  onStepTapped: onStepTapped,
-                  controlsBuilder: controlsBuilder,
-                  elevation: 0,
-                  currentStep: 0,
-                  connectorColor: const WidgetStatePropertyAll(TColors.primary),
-                  steps: [
-                    Step(
-                      isActive: currentStep >= 0,
-                      state: currentStep >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
-                      title: const Text(''),
-                      content: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            TTexts
-                                .tripHistoryDetailsTimeLineStartDestinationTitle,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          Text(
-                            TTexts
-                                .tripHistoryDetailsTimeLineStartDestinationTime,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  color: TColors.grey,
-                                ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Step(
-                      isActive: currentStep >= 1,
-                      state: currentStep >= 1
-                          ? StepState.complete
-                          : StepState.disabled,
-                      title: const Text(''),
-                      content: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            TTexts
-                                .tripHistoryDetailsTimeLineFinalDestinationTitle,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          Text(
-                            TTexts
-                                .tripHistoryDetailsTimeLineFinalDestinationTime,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  color: TColors.grey,
-                                ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                AnotherStepper(
+                  verticalGap: 20,
+                  activeBarColor: TColors.grey,
+                  activeIndex: 1,
+                  stepperList: stepperData,
+                  stepperDirection: Axis.vertical,
+                  inActiveBarColor: TColors.grey,
                 ),
 
                 const SizedBox(height: TSizes.spaceBtwItems),

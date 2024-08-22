@@ -32,7 +32,106 @@ class _TripStartedState extends State<TripStarted> {
     ),
   ];
 
-  Future<void> _showPopupDialog(BuildContext context) async {
+// Emergency dialog
+  Future<void> _showEmergencyPopupDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button to close
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Center(child: Text(TTexts.driverSafetyOptionOneTitle)),
+          backgroundColor: TColors.dragableBottomSheetColor,
+          content: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  TTexts.driverPopupExactLocationTitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  TTexts.driverPopupExactLocationAddress,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwInputFields,
+                ),
+                Text(
+                  TTexts.driverPopupVehicleDetailsTitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  TTexts.driverPopupVehicleDetails,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwInputFields,
+                ),
+                Container(
+                  height: 70,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: TColors.popupColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      TTexts.driverPopupSubText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: 10),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwInputFields,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: TColors.error,
+                    ),
+                    child: Center(
+                      child: Text(
+                        TTexts.driverPopupPhoneNumberTitle,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: TColors.white,
+                            ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // Cancel dialog
+  Future<void> _showCancelPopupDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button to close
@@ -220,37 +319,12 @@ class _TripStartedState extends State<TripStarted> {
             const SizedBox(
               height: TSizes.spaceBtwItems,
             ),
-            // driver pickup button
-            // SaveButtonWidget(
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //     // showModalBottomSheet(
-            //     //   // constraints: BoxConstraints.tight(
-            //     //   //   Size.fromHeight(height * 0.4),
-            //     //   // ),
-            //     //   isScrollControlled: false,
-            //     //   context: context,
-            //     //   builder: (BuildContext context) {
-            //     //     return const GoToPickupBottomSheetScreen();
-            //     //   },
-            //     // );
-            //   },
-            //   buttonText: TTexts.pickupBottomSheetDriverButton,
-            // )
+
             OutlinedButtonWidget(
               onTap: () {
                 Navigator.pop(context);
-                // showModalBottomSheet(
-                //   constraints: BoxConstraints.tight(
-                //     Size.fromHeight(height * 0.5),
-                //   ),
-                //   isScrollControlled: false,
-                //   context: context,
-                //   builder: (BuildContext context) {
-                //     return const TripCompleted();
-                //   },
-                // );
-                _showPopupDialog(context);
+
+                _showCancelPopupDialog(context);
               },
               buttonText: TTexts.tripStartedCancelRideButton,
               buttonTextColor: TColors.primary,
@@ -260,7 +334,9 @@ class _TripStartedState extends State<TripStarted> {
               height: TSizes.spaceBtwItems,
             ),
             OutlinedButtonWidget(
-              onTap: () {},
+              onTap: () {
+                _showEmergencyPopupDialog(context);
+              },
               buttonText: TTexts.tripStartedEmergencyButton,
               buttonTextColor: TColors.error,
               buttonOutlineColor: TColors.error,
