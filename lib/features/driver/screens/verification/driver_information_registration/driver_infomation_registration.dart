@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
-import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
@@ -185,7 +185,7 @@ class _DriverInformationScreenState
       log(jsonEncode(ref.read(driverRegistrationFilesProvider)));
 
       ref
-          .read(driverRegistrationProvider.notifier)
+          .read(registrationNotifierProvider.notifier)
           .onRegister(
             profileData: ref.read(driverRegistrationDetailsProvider),
             files: ref.read(driverRegistrationFilesProvider),
@@ -474,7 +474,7 @@ class _DriverInformationScreenState
             Consumer(builder: (context, ref, child) {
               return Visibility(
                 visible: ref.watch(
-                  driverRegistrationProvider,
+                  registrationNotifierProvider,
                 ),
                 child: Container(
                   color: Colors.grey.withOpacity(0.4),

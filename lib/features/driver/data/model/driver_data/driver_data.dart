@@ -129,6 +129,16 @@ class DriverData {
 
   @JsonKey(name: DriverKey.balance)
   final double? balance;
+  @JsonKey(name: DriverKey.completedRides)
+  final double? completedRides;
+  @JsonKey(name: DriverKey.rejectedRides)
+  final double? rejectedRides;
+  @JsonKey(name: DriverKey.canceledRides)
+  final double? canceledRides;
+  @JsonKey(name: DriverKey.driveRate)
+  final double? driveRate;
+
+
 
   DriverData({
     this.id,
@@ -172,6 +182,10 @@ class DriverData {
     this.earnings,
     this.trips,
     this.balance,
+    this.completedRides,
+    this.rejectedRides,
+    this.canceledRides,
+    this.driveRate,
   });
 
   bool? get profileIsIncomplete => (isProfileComplete == null

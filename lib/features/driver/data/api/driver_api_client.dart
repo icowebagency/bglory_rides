@@ -30,6 +30,7 @@ abstract class DriverApiClientContract {
   Future getTransactionHistory({required String token});
   Future getTransactionInsights({required String token});
   Future getDashboardData({required String token});
+  Future getTrips({required String token, required int page});
 }
 
 class DriverApiClientImp with HandleApi implements DriverApiClientContract {
@@ -172,6 +173,20 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
   Future getDashboardData({required String token}) {
     var headers = {'Authorization': 'Bearer Bearer $token'};
     var request = SimpleApiRequest('GET', Uri.parse(driverDashboardEndpoint));
+
+    request.headers.addAll(headers);
+
+    return handleApiCall(request);
+  }
+
+  @override
+  Future getTrips({required String token, required int page}) {
+    var headers = {'Authorization': 'Bearer Bearer $token'};
+    var request = SimpleApiRequest(
+        'GET',
+        Uri(path: driverTripsEndpoint, queryParameters: {
+          'page': page,
+        }));
 
     request.headers.addAll(headers);
 

@@ -1,8 +1,10 @@
 import 'package:bglory_rides/features/driver/data/api/driver_api_client.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_dashboard/driver_dashboard_data.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
+import 'package:bglory_rides/features/driver/data/model/driver_response/driver_response.dart';
 import 'package:bglory_rides/features/driver/data/model/login_response.dart';
 import 'package:bglory_rides/features/driver/data/model/transaction_insights/transaction_insights.dart';
+import 'package:bglory_rides/features/driver/data/model/trip/trip.dart';
 
 import '../../../../utils/secrets/api_constants.dart';
 
@@ -33,6 +35,8 @@ abstract class DriverRepositoryContract {
   Future getTransactionHistory();
   Future getTransactionInsights();
   Future getDriverDashboardData();
+
+  Future getTrips({required int page});
 }
 
 class DriverRepositoryImp implements DriverRepositoryContract {
@@ -127,8 +131,8 @@ class DriverRepositoryImp implements DriverRepositoryContract {
 
     if (result is Success) {
       return Success(
-        data: DriverData.fromJson(
-          result.data['data']['driver'],
+        data: DriverResponse.fromJson(
+          result.data['data'],
         ),
       );
     } else {
@@ -202,11 +206,25 @@ class DriverRepositoryImp implements DriverRepositoryContract {
     final result = await _apiClientContract.getDashboardData(token: token!);
 
     if (result is Success) {
-      final jsonDataList = result.data['data'] as List;
-      final data = jsonDataList[0];
+      final data = result.data['data'];
 
       return Success(
         data: DriverDashboardData.fromJson(data),
+      );
+    } else {
+      return result as Failure;
+    }
+  }
+
+  @override
+  Future getTrips({required int page}) async {
+    final result = await _apiClientContract.getTrips(token: token!, page: page);
+
+    if (result is Success) {
+      final jsonDataList = result.data['data']['data'] as List;
+
+      return Success(
+        data: jsonDataList.map((data) => Trip.fromJson(data)).toList(),
       );
     } else {
       return result as Failure;

@@ -6,7 +6,7 @@ import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart
 import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
-import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_info_step.dart';
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_license_info.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
@@ -190,7 +190,7 @@ class _DriverMotorcycleInformationState
       log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
 
       ref
-          .read(driverRegistrationProvider.notifier)
+          .read(registrationNotifierProvider.notifier)
           .onRegister(
             profileData: ref.read(driverRegistrationDetailsProvider),
             files: ref.read(driverRegistrationFilesProvider),
@@ -968,7 +968,7 @@ class _DriverMotorcycleInformationState
             Consumer(builder: (context, ref, child) {
               return Visibility(
                 visible: ref.watch(
-                  driverRegistrationProvider,
+                  registrationNotifierProvider,
                 ),
                 child: Container(
                   color: Colors.grey.withOpacity(0.4),

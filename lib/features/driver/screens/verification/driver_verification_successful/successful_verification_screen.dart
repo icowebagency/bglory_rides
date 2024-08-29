@@ -1,5 +1,5 @@
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
-import 'package:bglory_rides/features/driver/screens/verification/driver_verification_successful/successful_verification_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_verification_successful/provider/successful_verification_provider.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

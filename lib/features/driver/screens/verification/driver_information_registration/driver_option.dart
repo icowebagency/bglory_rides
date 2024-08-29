@@ -1,4 +1,4 @@
-import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

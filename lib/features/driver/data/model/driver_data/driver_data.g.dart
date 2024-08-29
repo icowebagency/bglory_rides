@@ -60,6 +60,10 @@ DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
           ?.map((e) => Trip.fromJson(e as Map<String, dynamic>))
           .toList(),
       balance: (json['balance'] as num?)?.toDouble(),
+      completedRides: (json['completed_rides'] as num?)?.toDouble(),
+      rejectedRides: (json['rejected_rides'] as num?)?.toDouble(),
+      canceledRides: (json['canceled_rides'] as num?)?.toDouble(),
+      driveRate: (json['drive_rate'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
@@ -105,4 +109,8 @@ Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
       'earnings': instance.earnings,
       'trips': instance.trips,
       'balance': instance.balance,
+      'completed_rides': instance.completedRides,
+      'rejected_rides': instance.rejectedRides,
+      'canceled_rides': instance.canceledRides,
+      'drive_rate': instance.driveRate,
     };
