@@ -337,6 +337,23 @@ class TTexts {
   static const String earningTargetSubTitle =
       'Set daily, weekly or monthly ride target';
 
+  // -- Withdrawal Account details
+  static const String driverChangePaymentAccountNameTitle = 'Account name';
+  static const String driverChangePaymentAccountName = 'Damola Awoyemi';
+  static const String driverChangePaymentAccountNumberTitle = 'Account number';
+  static const String driverChangePaymentAccountNumber = '0209004644';
+  static const String driverChangePaymentBankNameTitle = 'Bank name';
+  static const String driverChangePaymentBankName = 'Guaranteed Trust Bank';
+
+  // -- Withdrawal bottom-sheet
+  static const String driverChangePaymentBottomSheetTitle =
+      'Change payment information';
+  static const String driverChangePaymentBottomSheetAddButtonTitle = 'Add';
+  static const String driverChangePaymentBottomSheetCancelButtonText = 'Cancel';
+  static const String driverChangePaymentBottomSheetConfirmButtonText =
+      'Confirm';
+  static const String driverChangePaymentBottomSheetSave = 'Save';
+
   // -- Earning Insight Screen
   static const String insightAppBarTitle = 'Balance';
   static const String insightSubTitle = 'Current Balance';
@@ -366,7 +383,7 @@ class TTexts {
   static const String withdrawButtonCancelText = 'Cancel';
   static const String withdrawPinText = 'Enter pin';
   static const String withdrawPaymentHint =
-      '0209004644 - Awoyemi Damola - GT Bank';
+      ' 0209004644 - Awoyemi Damola - GT Bank';
 
   // Withdraw successful section
   static const String withdrawSuccessfulButtonText = 'Go home';
@@ -620,7 +637,7 @@ class TTexts {
   static const String earningsTargetTitle = 'Earning Target';
   static const String earningsDailyTargetTitle = 'Set daily target';
   static const String earningsDailyTargetAmount = '₦4850';
-  static const String nairaSymbol = '₦';
+  static const String nairaSymbol = '₦ ';
   static const String earningsTargetSubTitle =
       'Set daily, weekly or monthly target';
 
