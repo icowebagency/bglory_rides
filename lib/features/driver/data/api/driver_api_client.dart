@@ -158,8 +158,10 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
       required String transactionPin,
       required String transactionPinConfirmation}) {
     var headers = {'Authorization': 'Bearer Bearer $token'};
-    var request =
-        MultipartApiRequest('POST', Uri.parse(driverWithdrawalEndpoint));
+    var request = MultipartApiRequest(
+      'POST',
+      Uri.parse(driverSetTransactionPinEndpoint),
+    );
     final target = {
       'transaction_pin': transactionPin,
       'transaction_pin_confirmation': transactionPinConfirmation,

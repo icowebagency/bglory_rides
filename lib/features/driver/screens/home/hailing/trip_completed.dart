@@ -34,7 +34,7 @@ class _TripCompletedState extends State<TripCompleted> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(

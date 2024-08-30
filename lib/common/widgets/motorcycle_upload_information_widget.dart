@@ -13,8 +13,8 @@ class MotorcycleUploadInformationWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.12,
+        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.sizeOf(context).height * 0.12,
         decoration: BoxDecoration(
           color: TColors.grey.withOpacity(0.4),
           border: Border.all(

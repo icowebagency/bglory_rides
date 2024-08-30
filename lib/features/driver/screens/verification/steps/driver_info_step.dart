@@ -26,6 +26,7 @@ class DriverInfoStep extends StatelessWidget {
     required this.onUpdateGender,
     required this.onUpdateProfilePicture,
     required this.onPickDateofBirth,
+    this.autovalidateMode = AutovalidateMode.disabled,
   })  : _formKey = formKey,
         _fullname = fullname,
         _address = address,
@@ -47,6 +48,7 @@ class DriverInfoStep extends StatelessWidget {
   final void Function(String? val) onUpdateGender;
   final void Function(BuildContext context) onUpdateProfilePicture;
   final Future<void> Function(BuildContext context) onPickDateofBirth;
+  final AutovalidateMode autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +98,7 @@ class DriverInfoStep extends StatelessWidget {
         ),
         Form(
           key: _formKey,
+          autovalidateMode: autovalidateMode,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

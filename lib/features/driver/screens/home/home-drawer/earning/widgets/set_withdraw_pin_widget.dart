@@ -8,16 +8,19 @@ import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/constants/text_strings.dart';
 import '../../../../../general_widgets/outlined_button_widget.dart';
 
-class WithdrawPinWidget extends StatefulWidget {
-  const WithdrawPinWidget({
+class SetWithdrawPinWidget extends StatefulWidget {
+  const SetWithdrawPinWidget({
     super.key,
+    this.isConfirmation = false,
   });
 
+  final bool isConfirmation;
+
   @override
-  State<WithdrawPinWidget> createState() => _WithdrawPinWidgetState();
+  State<SetWithdrawPinWidget> createState() => _SetWithdrawPinWidgetState();
 }
 
-class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
+class _SetWithdrawPinWidgetState extends State<SetWithdrawPinWidget> {
   late final TextEditingController _controller;
 
   @override
@@ -69,14 +72,18 @@ class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            TTexts.withdrawModalTitle,
+            widget.isConfirmation
+                ? TTexts.setWithdrawModalTitleConfirm
+                : TTexts.setWithdrawModalTitle,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
             height: TSizes.spaceBtwItems,
           ),
           Text(
-            TTexts.withdrawPinText,
+            widget.isConfirmation
+                ? TTexts.setWithdrawModalTextConfirmation
+                : TTexts.setWithdrawModalText,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(
@@ -119,7 +126,9 @@ class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
                       : () {
                           context.pop(_controller.text);
                         },
-                  buttonText: TTexts.withdrawButtonSecondText,
+                  buttonText: widget.isConfirmation
+                      ? TTexts.driverConfirm
+                      : TTexts.driverProceedButton,
                 ),
               ),
             ],

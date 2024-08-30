@@ -13,7 +13,7 @@ import 'package:bglory_rides/features/driver/screens/home/hailing/passenger_rati
 import 'package:bglory_rides/features/driver/screens/home/hailing/trip_invoice.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal/withdraw_earnings_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal_successful_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';

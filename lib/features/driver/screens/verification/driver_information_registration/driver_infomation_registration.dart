@@ -64,6 +64,14 @@ class _DriverInformationScreenState
     GlobalKey<FormState>()
   ];
 
+  final _formValidateMode = [
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -96,6 +104,8 @@ class _DriverInformationScreenState
   /// stepper variables and functions
   /// continueStep function
   continueStep() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     bool canGoNext = false;
     canGoNext = (_formKeys[currentStep].currentState?.validate() ?? false);
 
@@ -114,6 +124,7 @@ class _DriverInformationScreenState
     }
 
     if (!canGoNext) {
+      _formValidateMode[currentStep] = AutovalidateMode.always;
       return;
     }
 
@@ -346,6 +357,7 @@ class _DriverInformationScreenState
                                 : StepState.disabled,
                             title: const Text(''),
                             content: DriverInfoStep(
+                              autovalidateMode: _formValidateMode[0],
                               profilePic: profilePic,
                               formKey: _formKeys[0],
                               fullname: _fullname,
@@ -370,6 +382,7 @@ class _DriverInformationScreenState
                             title: const Text(''),
                             content: DriverLicenseInfo(
                               formKey: _formKeys[1],
+                              autovalidateMode: _formValidateMode[1],
                               licenseNumber: _licenseNumber,
                               licenseExpiry: _licenseExpiry,
                               driversLicensePhoto: driversLicensePhoto,
@@ -392,6 +405,7 @@ class _DriverInformationScreenState
                                   const EdgeInsets.symmetric(vertical: 20.0),
                               child: VehicleInfoStep(
                                 formKey: _formKeys[2],
+                                autovalidateMode: _formValidateMode[2],
                                 vehicleSelectedValue: _vehicleSelectedValue,
                                 vehicleManfacturersList: _vehicleList,
                                 vehicleSelectedModel: _vehicleSelectedModel,
@@ -455,6 +469,7 @@ class _DriverInformationScreenState
                                 var formKey = _formKeys[4];
                                 return PaymentDetailsStep(
                                   formKey: formKey,
+                                  autovalidateMode: _formValidateMode[4],
                                   banksSelectedValue: _banksSelectedValue,
                                   nigerianBanks: _nigerianBanks,
                                   bankAccountName: _bankAccountName,

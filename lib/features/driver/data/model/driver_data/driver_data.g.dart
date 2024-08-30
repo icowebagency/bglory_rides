@@ -64,6 +64,7 @@ DriverData _$DriverDataFromJson(Map<String, dynamic> json) => DriverData(
       rejectedRides: (json['rejected_rides'] as num?)?.toDouble(),
       canceledRides: (json['canceled_rides'] as num?)?.toDouble(),
       driveRate: (json['drive_rate'] as num?)?.toDouble(),
+      isTransactionPinSet: json['is_transaction_pin_set'] as bool?,
     );
 
 Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
@@ -113,4 +114,5 @@ Map<String, dynamic> _$DriverDataToJson(DriverData instance) =>
       'rejected_rides': instance.rejectedRides,
       'canceled_rides': instance.canceledRides,
       'drive_rate': instance.driveRate,
+      'is_transaction_pin_set': instance.isTransactionPinSet,
     };

@@ -35,7 +35,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               margin: const EdgeInsets.symmetric(
                 horizontal: 5,
               ),
-              height: MediaQuery.of(context).size.height * 0.09,
+              height: MediaQuery.sizeOf(context).height * 0.09,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: TColors.white,

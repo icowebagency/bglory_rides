@@ -137,8 +137,8 @@ class DriverData {
   final double? canceledRides;
   @JsonKey(name: DriverKey.driveRate)
   final double? driveRate;
-
-
+  @JsonKey(name: 'is_transaction_pin_set')
+  final bool? isTransactionPinSet; // New field added
 
   DriverData({
     this.id,
@@ -186,6 +186,7 @@ class DriverData {
     this.rejectedRides,
     this.canceledRides,
     this.driveRate,
+    this.isTransactionPinSet,
   });
 
   bool? get profileIsIncomplete => (isProfileComplete == null

@@ -20,7 +20,7 @@ class _VehicleDocumentsEditScreenState
     extends State<VehicleDocumentsEditScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
         //  vehicle document app bar title

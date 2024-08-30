@@ -66,7 +66,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.13,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
                     decoration: BoxDecoration(
                       color: TColors.grey.withOpacity(0.3),
                       border: Border.all(
@@ -125,7 +125,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.13,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
                     decoration: BoxDecoration(
                       color: TColors.grey.withOpacity(0.3),
                       border: Border.all(

@@ -7,13 +7,13 @@ class SaveButtonWidget extends StatelessWidget {
   const SaveButtonWidget({
     super.key,
     this.width = double.infinity,
-    required this.onTap,
+    this.onTap,
     this.buttonText = TTexts.driverUpdateButton,
     this.buttonColor = TColors.primary,
   });
 
   final double width;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String? buttonText;
   final Color? buttonColor;
 

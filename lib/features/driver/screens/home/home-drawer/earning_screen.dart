@@ -24,8 +24,8 @@ class EarningsScreen extends StatefulWidget {
 class _EarningsScreenState extends State<EarningsScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -53,11 +53,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       child: Consumer(
                         builder: (context, ref, child) {
                           return Text(
-                            ref
-                                    .watch(driverInfoProvider)
-                                    .driverData
-                                    ?.balance
-                                    ?.toStringAsFixed(2) ??
+                            ref.watch(driverInfoProvider).driverData?.balance ??
                                 '0.00',
                             style: Theme.of(context)
                                 .textTheme

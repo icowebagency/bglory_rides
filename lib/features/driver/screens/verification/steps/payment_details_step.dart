@@ -16,6 +16,7 @@ class PaymentDetailsStep extends StatelessWidget {
     required TextEditingController bankAccountName,
     required TextEditingController bankAccountNumber,
     required this.onSelectBank,
+    this.autovalidateMode = AutovalidateMode.disabled,
   })  : _banksSelectedValue = banksSelectedValue,
         _nigerianBanks = nigerianBanks,
         _bankAccountName = bankAccountName,
@@ -27,11 +28,13 @@ class PaymentDetailsStep extends StatelessWidget {
   final TextEditingController _bankAccountName;
   final TextEditingController _bankAccountNumber;
   final ValueChanged<String?> onSelectBank;
+  final AutovalidateMode autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

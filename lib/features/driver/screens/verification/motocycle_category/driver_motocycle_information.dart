@@ -84,6 +84,14 @@ class _DriverMotorcycleInformationState
     GlobalKey<FormState>()
   ];
 
+  final _formValidateMode = [
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+  ];
+
   final _genderList = ConstantValues.genderList;
 
   @override
@@ -106,6 +114,8 @@ class _DriverMotorcycleInformationState
 
   /// continueStep function
   continueStep() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     bool canGoNext = false;
     canGoNext = (_formKeys[currentStep].currentState?.validate() ?? false);
 
@@ -124,6 +134,7 @@ class _DriverMotorcycleInformationState
     }
 
     if (!canGoNext) {
+      _formValidateMode[currentStep] = AutovalidateMode.always;
       return;
     }
 
@@ -468,6 +479,7 @@ class _DriverMotorcycleInformationState
                             content: DriverInfoStep(
                               profilePic: profilePic,
                               formKey: _formKeys[0],
+                              autovalidateMode: _formValidateMode[0],
                               fullname: _fullname,
                               address: _address,
                               dateOfBirth: _dateOfBirth,
@@ -489,6 +501,7 @@ class _DriverMotorcycleInformationState
                             title: const Text(''),
                             content: DriverLicenseInfo(
                               formKey: _formKeys[1],
+                              autovalidateMode: _formValidateMode[1],
                               licenseNumber: _licenseNumber,
                               licenseExpiry: _licenseExpiry,
                               driversLicensePhoto: driversLicensePhoto,
@@ -508,6 +521,7 @@ class _DriverMotorcycleInformationState
                             title: const Text(''),
                             content: Form(
                               key: _formKeys[2],
+                              autovalidateMode: _formValidateMode[2],
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -803,6 +817,7 @@ class _DriverMotorcycleInformationState
                               ),
                               child: Form(
                                 key: _formKeys[4],
+                                autovalidateMode: _formValidateMode[4],
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

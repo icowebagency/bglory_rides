@@ -95,7 +95,7 @@ class ModerateImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.sizeOf(context).height * 0.3,
       decoration: BoxDecoration(
         color: TColors.containerBackgroundColor,
         borderRadius: BorderRadius.circular(10),
@@ -132,8 +132,8 @@ class ImageViewWithProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.4,
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height * 0.4,
       decoration: BoxDecoration(
         color: TColors.containerBackgroundColor,
         borderRadius: BorderRadius.circular(10),

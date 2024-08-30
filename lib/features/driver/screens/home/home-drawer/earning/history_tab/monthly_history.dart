@@ -96,7 +96,7 @@ class _MonthlyHistoryTabState extends State<MonthlyHistoryTab> {
           const SizedBox(height: TSizes.spaceBtwItems),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.sizeOf(context).width,
             decoration: BoxDecoration(
               color: TColors.white,
               borderRadius: BorderRadius.circular(10),

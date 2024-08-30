@@ -18,7 +18,7 @@ class AccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenHeight = MediaQuery.sizeOf(context).height;
     final double containerHeight = screenHeight * heightFraction;
 
     return GestureDetector(
