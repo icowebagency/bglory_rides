@@ -24,10 +24,10 @@ class OnboardingDotNavigation extends ConsumerWidget {
       onDotClicked: onBoardingController.dotNavigationClick,
       count: 3,
       effect: ExpandingDotsEffect(
-        activeDotColor: dark ? TColors.secondary : TColors.primary,
-        dotColor: TColors.buttonDisabled,
+        activeDotColor: TColors.primary,
+        dotColor: dark ? TColors.darkGrey : TColors.buttonDisabled,
         dotHeight: 6,
-        dotWidth: 5,
+        dotWidth: 10,
       ),
     );
   }
