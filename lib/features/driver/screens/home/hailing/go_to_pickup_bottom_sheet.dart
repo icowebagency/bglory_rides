@@ -23,7 +23,6 @@ class _GoToPickupBottomSheetScreenState
     extends State<GoToPickupBottomSheetScreen> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(

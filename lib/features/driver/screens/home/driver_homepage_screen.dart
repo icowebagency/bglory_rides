@@ -27,7 +27,6 @@ class DriverHomePageScreen extends ConsumerStatefulWidget {
 class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
 // initial rating value
   // Global key to control the scaffold
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   double _currentRating = 2.1;
   bool status = false;
 

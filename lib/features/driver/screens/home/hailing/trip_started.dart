@@ -123,7 +123,6 @@ class _TripStartedState extends State<TripStarted> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
