@@ -1,5 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/home/home_provider.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/trip_completed.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
@@ -9,10 +10,10 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
-import 'hailing/hailing_bottom_sheet.dart';
 
 const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
@@ -48,7 +49,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
             zoomGesturesEnabled: true,
             mapType: MapType.terrain,
             initialCameraPosition:
-                CameraPosition(zoom: 15.1, target: currentPosition),
+                CameraPosition(zoom: 17.1, target: currentPosition),
           ),
 
           /// Positioned widget to align the row at the top
@@ -64,24 +65,33 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
 
                   /// Pop-up Go online notification
                   FlutterSwitch(
+                    inactiveIcon: const Icon(
+                      Icons.close,
+                      color: TColors.error,
+                    ),
+                    activeIcon: const Icon(
+                      Icons.check,
+                      color: TColors.primary,
+                    ),
                     inactiveTextFontWeight: FontWeight.w700,
                     activeTextFontWeight: FontWeight.w700,
-                    width: 90,
+                    width: 110,
                     height: 40,
-                    activeText: 'Online',
+                    activeText: 'Go Online',
                     activeTextColor: TColors.white,
                     inactiveTextColor: TColors.white,
                     activeColor: TColors.primary,
                     inactiveColor: TColors.error,
-                    inactiveText: 'Offline',
+                    inactiveText: 'Go Offline',
                     showOnOff: true,
                     valueFontSize: 13,
                     padding: 5,
                     value: status,
-                    onToggle: (val) {
+                    onToggle: (val) async {
                       setState(() {
                         status = val;
                       });
+                      Vibration.vibrate(duration: 50);
                     },
                   ),
 
@@ -98,7 +108,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                         isScrollControlled: false,
                         context: context,
                         builder: (BuildContext context) {
-                          return const HailingBottomSheet();
+                          return const TripCompleted();
                         },
                       );
                     },
@@ -127,8 +137,11 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                   final acceptanceRate =
                       dashboardState.dashboardData.acceptanceRate;
                   return Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: TColors.primary.withOpacity(0.8),
+                      ),
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20),
                       ),
@@ -164,74 +177,93 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                               color: TColors.white,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Iconsax.calendar,
-                                      size: 20,
+                            child: FittedBox(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  /// Date
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Iconsax.calendar,
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          todaysDate,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      todaysDate,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
+                                  ),
+                                  const SizedBox(width: 20),
+
+                                  /// Location
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Iconsax.location,
+                                          size: 17,
+                                          color: TColors.primary,
+                                        ),
+                                        Text(
+                                          location,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(Iconsax.location, size: 20),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      location,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
+                                  ),
+                                  const SizedBox(width: 20),
+
+                                  /// Rating
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        AnimatedRatingStars(
+                                          readOnly: true,
+                                          starSize: 10,
+                                          displayRatingValue: true,
+                                          minRating: 0.0,
+                                          maxRating: 5.0,
+                                          emptyColor: Colors.grey,
+                                          interactiveTooltips: true,
+                                          filledIcon: Icons.star,
+                                          filledColor: TColors.warning,
+                                          emptyIcon: Icons.star_outlined,
+                                          halfFilledIcon: Icons.star_half,
+                                          animationCurve: Curves.easeInOut,
+                                          animationDuration:
+                                              const Duration(milliseconds: 500),
+                                          initialRating: 3.5,
+                                          onChanged: (rating) {
+                                            setState(() {
+                                              _currentRating = rating;
+                                            });
+                                          },
+                                          customFilledIcon: Icons.star,
+                                          customEmptyIcon: Icons.star_outline,
+                                          customHalfFilledIcon: Icons.star_half,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          _currentRating.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    AnimatedRatingStars(
-                                      readOnly: true,
-                                      starSize: 10,
-                                      displayRatingValue: true,
-                                      minRating: 0.0,
-                                      maxRating: 5.0,
-                                      emptyColor: Colors.grey,
-                                      interactiveTooltips: true,
-                                      filledIcon: Icons.star,
-                                      filledColor: TColors.warning,
-                                      emptyIcon: Icons.star_outlined,
-                                      halfFilledIcon: Icons.star_half,
-                                      animationCurve: Curves.easeInOut,
-                                      animationDuration:
-                                          const Duration(milliseconds: 500),
-                                      initialRating: 3.5,
-                                      onChanged: (rating) {
-                                        setState(() {
-                                          _currentRating = rating;
-                                        });
-                                      },
-                                      customFilledIcon: Icons.star,
-                                      customEmptyIcon: Icons.star_outline,
-                                      customHalfFilledIcon: Icons.star_half,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      _currentRating.toString(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(

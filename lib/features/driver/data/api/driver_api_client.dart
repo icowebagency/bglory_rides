@@ -6,9 +6,13 @@ import '../../../../utils/secrets/handle_api_mixin.dart';
 
 abstract class DriverApiClientContract {
   Future requestSignUpOtp({required Map<String, String> target});
+
   Future requestLoginOtp({required Map<String, String> target});
+
   Future verifyOtp({required Map<String, String> target, required String otp});
+
   Future getDriverProfile({required String token});
+
   Future completeDriverProfile({
     required Map<String, String> profileData,
     required Map<String, String> files,
@@ -28,7 +32,9 @@ abstract class DriverApiClientContract {
       required String transactionPin});
 
   Future getTransactionHistory({required String token});
+
   Future getTransactionInsights({required String token});
+
   Future getDashboardData({required String token});
   Future getTrips({required String token, required int page});
 }

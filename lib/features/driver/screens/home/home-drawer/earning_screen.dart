@@ -53,7 +53,11 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       child: Consumer(
                         builder: (context, ref, child) {
                           return Text(
-                            ref.watch(driverInfoProvider).driverData?.balance ??
+                            ref
+                                    .watch(driverInfoProvider)
+                                    .driverData
+                                    ?.balance
+                                    .toString() ??
                                 '0.00',
                             style: Theme.of(context)
                                 .textTheme

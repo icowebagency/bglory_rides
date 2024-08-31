@@ -24,11 +24,11 @@ class _SafetyScreenState extends State<SafetyScreen> {
           title: const Center(child: Text(TTexts.driverSafetyOptionOneTitle)),
           backgroundColor: TColors.dragableBottomSheetColor,
           content: SizedBox(
-            height: 350,
+            height: MediaQuery.of(context).size.height * 0.35,
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   TTexts.driverPopupExactLocationTitle,
@@ -65,7 +65,7 @@ class _SafetyScreenState extends State<SafetyScreen> {
                   height: TSizes.spaceBtwInputFields,
                 ),
                 Container(
-                  height: 100,
+                  height: 70,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -75,7 +75,10 @@ class _SafetyScreenState extends State<SafetyScreen> {
                     child: Text(
                       textAlign: TextAlign.center,
                       TTexts.driverPopupSubText,
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: 10),
                     ),
                   ),
                 ),

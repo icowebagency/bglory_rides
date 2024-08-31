@@ -90,9 +90,13 @@ class _WithdrawEarningsScreenState
         }
         if (result1 == result2) {
           log('They Match!');
-          ref
-              .read(withdrawalStateNotifierProvider.notifier)
-              .setWithdrawalPin(transactionPin: result1);
+          ref.read(withdrawalStateNotifierProvider.notifier).setWithdrawalPin(
+                transactionPin: result1,
+                onError: NotificationUtil.showErrorNotification,
+                onSuccess: () => NotificationUtil.showPositiveNotification(
+                  "PIN set successfully. Kindly proceed",
+                ),
+              );
         } else {
           log("They don't match");
           NotificationUtil.showErrorNotification("Pin does don't match");

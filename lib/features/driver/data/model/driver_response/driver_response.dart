@@ -13,7 +13,7 @@ class DriverResponse {
   final List<Earning>? earnings;
 
   @JsonKey(name: 'balance')
-  final String? balance;
+  final double? balance;
 
   @JsonKey(name: 'completed_rides')
   final int? completedRides;

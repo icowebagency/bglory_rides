@@ -7,7 +7,7 @@ part of 'withdrawal_provider.dart';
 // **************************************************************************
 
 String _$withdrawalStateNotifierHash() =>
-    r'406bc9f81cfeb16dce4a1ef4018ffba36a9d9ef6';
+    r'babb57f1914568ad79d392a369ba19fd42cab5d8';
 
 /// See also [WithdrawalStateNotifier].
 @ProviderFor(WithdrawalStateNotifier)

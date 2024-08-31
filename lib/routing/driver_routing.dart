@@ -31,6 +31,12 @@ import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/ca
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/call_us_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/chat_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/faqs_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/account_and_settings.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/driver_support.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/general_questions.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/getting_started.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/payment_and_earnings.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/support/widgets/using_the_app.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/download_receipt_history_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trip_history/trip_details_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/trips_history.dart';
@@ -66,7 +72,8 @@ final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
 class DriverRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: driverNavKey,
-    initialLocation: BGRouteNames.driverLogin,
+    initialLocation: BGRouteNames.driverOnboarding,
+    
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
@@ -271,6 +278,30 @@ class DriverRouting {
         path: BGRouteNames.driverCallScreen,
         builder: (context, state) => const CallScreen(),
       ),
+      GoRoute(
+        path: BGRouteNames.driverFaqGettingStartedScreen,
+        builder: (context, state) => const GettingStartedScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqUsingTheAppScreen,
+        builder: (context, state) => const UsingTheAppScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqPaymentsAndEarningsScreen,
+        builder: (context, state) => const PaymentAndEarningsScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqDriverSupportScreen,
+        builder: (context, state) => const DriverSupportScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqDAccountAndSettingsScreen,
+        builder: (context, state) => const AccountAndSettingsScreen(),
+      ),
+      GoRoute(
+        path: BGRouteNames.driverFaqGeneralQuestionsScreen,
+        builder: (context, state) => const GeneralQuestionsScreens(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(routes: [
@@ -314,8 +345,6 @@ class DriverRouting {
           navigationShell: navigationShell,
         ),
       ),
-    
-    
     ],
   );
 }
@@ -394,4 +423,16 @@ class BGRouteNames {
   static const String driverPassengerRatingScreen =
       '/driver/passenger-rating-screen';
   static const String driverCallScreen = '/driver/call-screen';
+  static const String driverFaqGettingStartedScreen =
+      '/driver/faq-getting-started-screen';
+  static const String driverFaqUsingTheAppScreen =
+      '/driver/faq-using-the-app-screen';
+  static const String driverFaqPaymentsAndEarningsScreen =
+      '/driver/faq-payments-and-earnings-screen';
+  static const String driverFaqDriverSupportScreen =
+      '/driver/faq-driver-support-screen';
+  static const String driverFaqDAccountAndSettingsScreen =
+      '/driver/faq-account-and-settings-screen';
+  static const String driverFaqGeneralQuestionsScreen =
+      '/driver/faq-general-questions-screen';
 }

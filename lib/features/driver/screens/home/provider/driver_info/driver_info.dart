@@ -1,4 +1,3 @@
-import 'package:bglory_rides/features/driver/data/model/driver_data/driver_data.dart';
 import 'package:bglory_rides/features/driver/data/model/driver_response/driver_response.dart';
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/utils/secrets/api_constants.dart';

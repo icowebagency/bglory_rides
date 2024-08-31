@@ -29,6 +29,7 @@ class DriverHomeShell extends ConsumerStatefulWidget {
 
 class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
   int _drawerSelectedIndex = 0;
+
   // Initial selected drawer item
   final _scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -79,7 +80,6 @@ class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
         children: [
           widget.navigationShell,
           Positioned(
-            top: 0,
             left: 0,
             child: MapCustomIcons(
               onTap: () {

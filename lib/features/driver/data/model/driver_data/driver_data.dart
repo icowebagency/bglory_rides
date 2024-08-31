@@ -110,7 +110,7 @@ class DriverData {
   final String? bankAccountNumber;
 
   @JsonKey(name: DriverKey.isProfileComplete)
-  final String? isProfileComplete;
+  final bool? isProfileComplete;
 
   @JsonKey(name: DriverKey.status)
   final String? status;
@@ -191,7 +191,7 @@ class DriverData {
 
   bool? get profileIsIncomplete => (isProfileComplete == null
       ? null
-      : (int.parse(isProfileComplete!) == 0 ? true : false));
+      : !isProfileComplete!);
 
   factory DriverData.fromJson(Map<String, dynamic> json) =>
       _$DriverDataFromJson(json);

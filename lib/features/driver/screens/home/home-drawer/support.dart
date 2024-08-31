@@ -53,7 +53,9 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                          horizontal: 20,
+                          vertical: 30,
+                        ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +94,9 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                               ],
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.go(BGRouteNames.driverHomePageScreen);
+                              },
                               icon: const Icon(
                                 Iconsax.close_circle,
                                 color: TColors.white,

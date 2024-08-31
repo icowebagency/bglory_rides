@@ -14,7 +14,7 @@ DriverResponse _$DriverResponseFromJson(Map<String, dynamic> json) =>
       earnings: (json['earnings'] as List<dynamic>?)
           ?.map((e) => Earning.fromJson(e as Map<String, dynamic>))
           .toList(),
-      balance: json['balance'] as String?,
+      balance: (json['balance'] as num?)?.toDouble(),
       completedRides: (json['completed_rides'] as num?)?.toInt(),
       rejectedRides: (json['rejected_rides'] as num?)?.toInt(),
       canceledRides: (json['canceled_rides'] as num?)?.toInt(),
