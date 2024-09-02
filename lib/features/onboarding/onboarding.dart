@@ -1,3 +1,4 @@
+import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';
 import '../../utils/constants/text_strings.dart';
 import '../../utils/helpers/helper_functions.dart';
+import '../driver/general_widgets/outlined_button_widget.dart';
 import 'dot_navigation.dart';
 import 'onboarding_controller.dart';
 import 'onboarding_page.dart';
@@ -88,61 +90,27 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Handle login button press
-                            // Get.off(() => const DriverLoginScreen());
-
+                        child: OutlinedButtonWidget(
+                          onTap: () {
                             context.go(BGRouteNames.driverLogin);
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: dark
-                                ? TColors.buttonDisabledDark
-                                : TColors.white,
-                            side: BorderSide(
-                                color: dark
-                                    ? TColors.buttonDisabledDark
-                                    : TColors.darkGrey),
-                          ),
-                          child: Text(
-                            TTexts.signIn,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .apply(
-                                    color: dark
-                                        ? TColors.secondary
-                                        : TColors.primary),
-                          ),
+                          width: double.infinity,
+                          buttonOutlineColor:
+                              dark ? TColors.grey : TColors.primary,
+                          buttonText: TTexts.signIn,
+                          buttonTextColor:
+                              dark ? TColors.white : TColors.primary,
                         ),
                       ),
                       const SizedBox(
                         width: TSizes.spaceBtwItems,
                       ),
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Handle signup button press
-                            // Get.off(() => const DriverSignup());
+                        child: SaveButtonWidget(
+                          onTap: () {
                             context.go(BGRouteNames.driverSignup);
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                dark ? TColors.secondary : TColors.primary,
-                            side: BorderSide(
-                              color: dark ? TColors.secondary : TColors.primary,
-                            ),
-                          ),
-                          child: Text(
-                            TTexts.createAccount,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .apply(
-                                    color: dark
-                                        ? TColors.buttonDisabledDark
-                                        : TColors.white),
-                          ),
+                          buttonText: TTexts.createAccount,
                         ),
                       ),
                     ],

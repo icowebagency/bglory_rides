@@ -10,12 +10,14 @@ class SaveButtonWidget extends StatelessWidget {
     this.onTap,
     this.buttonText = TTexts.driverUpdateButton,
     this.buttonColor = TColors.primary,
+    this.buttonTextColor = TColors.white,
   });
 
   final double width;
   final VoidCallback? onTap;
   final String? buttonText;
   final Color? buttonColor;
+  final Color? buttonTextColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,13 @@ class SaveButtonWidget extends StatelessWidget {
           backgroundColor: buttonColor,
         ),
         onPressed: onTap,
-        child: Text(buttonText!),
+        child: Text(
+          buttonText!,
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(color: buttonTextColor),
+        ),
       ),
     );
   }

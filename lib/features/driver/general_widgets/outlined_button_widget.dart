@@ -1,3 +1,4 @@
+import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/text_strings.dart';
@@ -8,7 +9,7 @@ class OutlinedButtonWidget extends StatelessWidget {
     this.width = double.infinity,
     required this.onTap,
     this.buttonText = TTexts.driverUpdateButton,
-    this.buttonOutlineColor,
+    this.buttonOutlineColor = TColors.grey,
     this.buttonTextColor,
   });
 
