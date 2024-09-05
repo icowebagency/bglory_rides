@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/document_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details.dart';
@@ -10,12 +9,12 @@ import 'package:bglory_rides/features/driver/screens/home/account/vehicle_inform
 import 'package:bglory_rides/features/driver/screens/home/account/vehicle_information/vehicle_information_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_home_shell.dart';
 import 'package:bglory_rides/features/driver/screens/home/driver_homepage_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/driver_call_option_sheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/hailing/passenger_rating.dart';
 import 'package:bglory_rides/features/driver/screens/home/hailing/trip_invoice.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
 // import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal/withdraw_earnings_screen.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/widgets/add_card.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen_copy.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal_successful_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
@@ -304,18 +303,20 @@ class DriverRouting {
         path: BGRouteNames.driverFaqGeneralQuestionsScreen,
         builder: (context, state) => const GeneralQuestionsScreens(),
       ),
-      // GoRoute(
-      //   path: BGRouteNames.driverAddCardScreen,
-      //   builder: (context, state) => AddCardScreen(),
-      // ),
+      GoRoute(
+        path: BGRouteNames.driverCallOptionSheetScreen,
+        builder: (context, state) => const DriverCallOptionSheetScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRouteNames.driverHomePageScreen,
-              builder: (context, state) => const DriverHomePageScreen(),
-            ),
-          ]),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRouteNames.driverHomePageScreen,
+                builder: (context, state) => const DriverHomePageScreen(),
+              ),
+            ],
+          ),
           StatefulShellBranch(routes: [
             GoRoute(
               path: BGRouteNames.driverEarnings,
@@ -442,4 +443,6 @@ class BGRouteNames {
   static const String driverFaqGeneralQuestionsScreen =
       '/driver/faq-general-questions-screen';
   static const String driverAddCardScreen = '/driver/add-card-screen';
+  static const String driverCallOptionSheetScreen =
+      '/driver/call-option-sheet-screen';
 }

@@ -229,9 +229,6 @@ class _WithdrawEarningsScreenState
                       TextButton(
                         onPressed: () {
                           showModalBottomSheet(
-                            constraints: BoxConstraints.tight(
-                              Size.fromHeight(height * 0.5),
-                            ),
                             isScrollControlled: false,
                             context: context,
                             builder: (BuildContext context) {

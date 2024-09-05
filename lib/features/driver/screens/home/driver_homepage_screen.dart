@@ -1,6 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/home/home_provider.dart';
-import 'package:bglory_rides/features/driver/screens/home/hailing/trip_completed.dart';
+import 'package:bglory_rides/features/driver/screens/home/hailing/pickup_bottom_sheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
@@ -108,7 +108,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                         isScrollControlled: false,
                         context: context,
                         builder: (BuildContext context) {
-                          return const TripCompleted();
+                          return const PickupBottomSheetScreen();
                         },
                       );
                     },

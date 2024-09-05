@@ -866,6 +866,11 @@ class TTexts {
       'If your vehicle needs maintenance, go offline in the app until your vehicle is ready to drive again.';
   static const String driverFaqGeneralQuestionsTwoTwo =
       'Ensure your vehicle meets all safety and condition standards before going back online.';
-// static const String supportCallTitle  = '';
+
+  // Driver Call Option Sheet
+  static const String driverCallOptionSheetTitle = 'Call passenger';
+  static const String driverCallOptionSheetInAppCallTitle = 'In-app call';
+  static const String driverCallOptionSheetPhoneCarrierCallTitle =
+      'Phone carrier call';
 // static const String supportCallTitle  = '';
 }
