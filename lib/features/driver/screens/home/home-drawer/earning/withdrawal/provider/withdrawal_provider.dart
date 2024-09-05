@@ -35,6 +35,7 @@ class WithdrawalStateNotifier extends _$WithdrawalStateNotifier {
       onError?.call((result.errorResponse) ?? 'Request Failed');
       return false;
     } else {
+      onSuccess?.call();
       return true;
     }
   }
@@ -58,6 +59,7 @@ class WithdrawalStateNotifier extends _$WithdrawalStateNotifier {
       onError?.call('Request Failed');
       return false;
     } else {
+      onSuccess?.call();
       return true;
     }
   }

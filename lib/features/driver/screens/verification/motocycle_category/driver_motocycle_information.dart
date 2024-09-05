@@ -944,7 +944,7 @@ class _DriverMotorcycleInformationState
                                     TextFormField(
                                       keyboardType: TextInputType.number,
                                       controller: _bankAccountNumber,
-                                      validator: TValidator.validNumber,
+                                      validator: TValidator.validAccountNumber,
                                       decoration: InputDecoration(
                                         hintText:
                                             TTexts.driverBankHolderNumberHint,

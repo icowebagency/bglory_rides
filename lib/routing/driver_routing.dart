@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bglory_rides/features/driver/screens/home/account/drivers_document/document_edit.dart';
 import 'package:bglory_rides/features/driver/screens/home/account/payment_details/payment_details.dart';
@@ -13,9 +14,9 @@ import 'package:bglory_rides/features/driver/screens/home/hailing/passenger_rati
 import 'package:bglory_rides/features/driver/screens/home/hailing/trip_invoice.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/insight.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/transaction_history.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal/withdraw_earnings_screen.dart';
+// import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal/withdraw_earnings_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/widgets/add_card.dart';
-import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen.dart';
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdraw_earnings_screen_copy.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/withdrawal_successful_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning_screen.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/safety.dart';
@@ -75,7 +76,6 @@ class DriverRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: driverNavKey,
     initialLocation: BGRouteNames.driverOnboarding,
-    
     routes: [
       GoRoute(
         path: BGRouteNames.driverLogin,
@@ -304,10 +304,10 @@ class DriverRouting {
         path: BGRouteNames.driverFaqGeneralQuestionsScreen,
         builder: (context, state) => const GeneralQuestionsScreens(),
       ),
-      GoRoute(
-        path: BGRouteNames.driverAddCardScreen,
-        builder: (context, state) => AddCardScreen(),
-      ),
+      // GoRoute(
+      //   path: BGRouteNames.driverAddCardScreen,
+      //   builder: (context, state) => AddCardScreen(),
+      // ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(routes: [

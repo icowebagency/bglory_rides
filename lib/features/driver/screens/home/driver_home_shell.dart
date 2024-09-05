@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
-import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
+import 'package:bglory_rides/common/widgets/loading_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/driver_info/driver_info.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/custom_drawer.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
+import 'package:bglory_rides/utils/extensions/router_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -30,6 +32,16 @@ class DriverHomeShell extends ConsumerStatefulWidget {
 class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
   int _drawerSelectedIndex = 0;
 
+  // Define the paths that belong to the StatefulShellBranches
+  final List<String> _shellRoutes = [
+    BGRouteNames.driverHomePageScreen,
+    BGRouteNames.driverEarnings,
+    BGRouteNames.driverTripHistory,
+    BGRouteNames.driverSettings,
+    BGRouteNames.driverSafety,
+    BGRouteNames.driverHelpAndSupport,
+  ];
+
   // Initial selected drawer item
   final _scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -41,29 +53,34 @@ class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
     });
   }
 
+  void startRouteListening() {
+    DriverRouting.router.backButtonDispatcher;
+  }
+
   bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    if (widget.navigationShell.currentIndex != 0) {
+    final uri = DriverRouting.router.location;
+    log('INTERCEPTOR: $uri');
+
+    if (widget.navigationShell.currentIndex != 0 &&
+        _shellRoutes.contains(uri)) {
+      // Navigate back to the DriverHome tab if we're not on it
       _onItemTapped(0);
-      return true;
+      return true; // Stop default back button behavior
     }
+    // Allow default back button behavior otherwise
     return false;
   }
 
   @override
   void initState() {
     super.initState();
-    // final String location =
-    //     GoRouter.of(context).routeInformationProvider.value.uri.toString();
-    // _selectedIndex = _routeIndexMap[location] ?? 0;
+
     BackButtonInterceptor.add(myInterceptor,
         name: widget.name, context: context);
 
     if (ref.read(driverInfoProvider).driverData == null) {
-      log('DRIVER DATA IS NULL');
       ref.read(driverInfoProvider.notifier).getDriverInfo();
-    } else {
-      log('DRIVER DATA IS NOT NULL');
-    }
+    } else {}
   }
 
   @override
@@ -78,36 +95,25 @@ class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
       key: _scaffoldkey,
       body: Stack(
         children: [
-          widget.navigationShell,
+          LoadingWidget(
+            isLoading: ref.watch(driverInfoProvider).driverData == null,
+            child: widget.navigationShell,
+          ),
           Positioned(
             left: 0,
-            child: MapCustomIcons(
-              onTap: () {
-                _scaffoldkey.currentState?.openDrawer();
-              },
-              containerIcon: Icons.menu_rounded,
-              myMargin: EdgeInsets.only(
-                top: MediaQuery.sizeOf(context).height / 32,
-                left: 20,
+            child: SafeArea(
+              child: MapCustomIcons(
+                onTap: () {
+                  _scaffoldkey.currentState?.openDrawer();
+                },
+                containerIcon: Icons.menu_rounded,
+                myMargin: const EdgeInsets.only(
+                  left: 20,
+                ),
+                scaffoldKey: _scaffoldkey,
               ),
-              scaffoldKey: _scaffoldkey,
             ),
           ),
-          Consumer(builder: (context, ref, child) {
-            return Visibility(
-              visible: ref.watch(driverInfoProvider).driverData == null,
-              child: Positioned(
-                top: 0,
-                right: 0,
-                left: 0,
-                bottom: 0,
-                child: Container(
-                  color: Colors.grey.withOpacity(0.2),
-                  child: const AppCircularProgressIndicator(),
-                ),
-              ),
-            );
-          })
         ],
       ),
       drawer: Builder(builder: (context) {

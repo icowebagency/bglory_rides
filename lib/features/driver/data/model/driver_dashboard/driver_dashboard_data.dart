@@ -9,7 +9,7 @@ class DriverDashboardData {
   final int todaysEarnings;
 
   @JsonKey(name: DriverKey.averageRating)
-  final int averageRating;
+  final String averageRating;
 
   @JsonKey(name: DriverKey.completedTrips)
   final int completedTrips;

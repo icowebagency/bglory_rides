@@ -87,5 +87,21 @@ class TValidator {
     return null;
   }
 
+  static String? validAccountNumber(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    if (int.tryParse(text) == null) {
+      return 'Enter a valid input';
+    }
+
+    if (text.length != 10) {
+      return 'Enter a valid account number';
+    }
+
+    return null;
+  }
+
 // Add more custom validators as needed for your specific requirements.
 }

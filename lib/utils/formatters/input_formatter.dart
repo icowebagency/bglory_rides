@@ -1,7 +1,12 @@
-import 'package:bglory_rides/utils/formatters/formatter.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class MoneyTextInputFormatter extends TextInputFormatter {
+  final NumberFormat _formatter = NumberFormat.currency(
+    locale: 'en_US',
+    symbol: '', // Set the symbol to an empty string to remove the dollar sign
+  );
+
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
@@ -18,8 +23,8 @@ class MoneyTextInputFormatter extends TextInputFormatter {
     // Convert the new text to a double value to format it correctly
     double value = double.parse(newText) / 100;
 
-    // Format the value using the currency formatter
-    String newFormattedText = TFormatter.formatCurrency(value);
+    // Format the value using the currency formatter without the currency symbol
+    String newFormattedText = _formatter.format(value);
 
     // Return the formatted value as a new TextEditingValue
     return newValue.copyWith(

@@ -132,7 +132,10 @@ class _SetWithdrawPinWidgetState extends State<SetWithdrawPinWidget> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(
+            height: TSizes.spaceBtwSections,
+          ),
         ],
       ),
     );

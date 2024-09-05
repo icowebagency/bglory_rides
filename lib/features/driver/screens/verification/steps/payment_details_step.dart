@@ -137,11 +137,11 @@ class PaymentDetailsStep extends StatelessWidget {
           TextFormField(
             controller: _bankAccountNumber,
             keyboardType: TextInputType.number,
-            validator: TValidator.validNumber,
+            validator: TValidator.validAccountNumber,
             decoration: InputDecoration(
               hintText: TTexts.driverBankHolderNumberHint,
               hintStyle: Theme.of(context).textTheme.bodySmall,
-              fillColor: TColors.containerBackgroundColor,
+              fillColor: const Color.fromARGB(255, 100, 88, 88),
               filled: true,
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
