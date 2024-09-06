@@ -27,8 +27,12 @@ class OnboardingPage extends StatelessWidget {
           height: 350,
           width: double.infinity,
           decoration: BoxDecoration(
+              border: Border.all(
+                width: dark ? 3 : 0,
+                color: dark ? TColors.primary : TColors.white,
+              ),
               borderRadius: BorderRadius.circular(20),
-              color: dark ? TColors.dark : TColors.white),
+              color: TColors.white),
           child: Lottie.asset(image),
         ),
         // Text for onboarding
@@ -37,7 +41,10 @@ class OnboardingPage extends StatelessWidget {
         ),
         Text(
           title,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(color: dark ? TColors.white : TColors.black),
           textAlign: TextAlign.center,
         ),
 
@@ -46,7 +53,10 @@ class OnboardingPage extends StatelessWidget {
         ),
         Text(
           subTitle,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(color: dark ? TColors.grey : TColors.black),
           textAlign: TextAlign.center,
         ),
         const SizedBox(

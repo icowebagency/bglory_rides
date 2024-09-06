@@ -4,6 +4,7 @@ import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -50,6 +51,7 @@ class DriverInfoStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -64,14 +66,10 @@ class DriverInfoStep extends StatelessWidget {
         ),
         Center(
           child: Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              color: TColors.white,
+            width: 100,
+            height: 100,
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: TColors.primary,
-              ),
             ),
             child: GestureDetector(
               onTap: () {
@@ -122,7 +120,7 @@ class DriverInfoStep extends StatelessWidget {
                   ),
                   hintText: TTexts.fullNameHint,
                   hintStyle: Theme.of(context).textTheme.bodySmall,
-                  fillColor: TColors.containerBackgroundColor,
+                  fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,
                 ),
               ),
@@ -145,15 +143,16 @@ class DriverInfoStep extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: TTexts.homeAddressHint,
                   hintStyle: Theme.of(context).textTheme.bodySmall,
-                  fillColor: TColors.containerBackgroundColor,
+                  fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: TColors.grey,
                     ),
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: TColors.primary),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: dark ? TColors.secondary : TColors.primary),
                   ),
                 ),
               ),
@@ -172,20 +171,20 @@ class DriverInfoStep extends StatelessWidget {
               TextFormField(
                 controller: _dateOfBirth,
                 validator: TValidator.simpleInputValidation,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Select Date Of Birth',
                   prefixIcon: Icon(
                     Iconsax.calendar,
-                    color: TColors.primary,
+                    color: dark ? TColors.white : TColors.primary,
                   ),
-                  fillColor: TColors.containerBackgroundColor,
+                  fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: TColors.grey,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: TColors.primary),
                   ),
                 ),
@@ -208,23 +207,23 @@ class DriverInfoStep extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
               ValidatedDropdown(
-                dropdownColor: TColors.grey,
+                dropdownColor: dark ? TColors.darkGrey : TColors.grey,
                 initialValue: _selectedGender,
                 validator: TValidator.simpleInputValidation,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: TTexts.gender,
                   prefixIcon: Icon(
                     Icons.accessibility_new_rounded,
-                    color: TColors.primary,
+                    color: dark ? TColors.white : TColors.primary,
                   ),
                   filled: true,
-                  fillColor: TColors.containerBackgroundColor,
-                  enabledBorder: OutlineInputBorder(
+                  fillColor: dark ? TColors.dark : TColors.white,
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: TColors.grey,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: TColors.primary),
                   ),
                 ),
@@ -256,7 +255,7 @@ class DriverInfoStep extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: TTexts.nextOfKinNamesubTitle,
                   hintStyle: Theme.of(context).textTheme.bodySmall,
-                  fillColor: TColors.containerBackgroundColor,
+                  fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
@@ -288,7 +287,7 @@ class DriverInfoStep extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: TTexts.nextOfKinNumber,
                   hintStyle: Theme.of(context).textTheme.bodySmall,
-                  fillColor: TColors.containerBackgroundColor,
+                  fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(

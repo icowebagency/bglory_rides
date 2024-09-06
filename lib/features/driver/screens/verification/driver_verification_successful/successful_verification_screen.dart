@@ -1,5 +1,6 @@
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_verification_successful/successful_verification_provider.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +17,7 @@ class SuccessfulVerification extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dark = THelperFunctions.isDarkMode(context);
     final provider =
         ref.read(successfulVerificationStateNotifierProvider.notifier);
     return Scaffold(
@@ -26,12 +28,12 @@ class SuccessfulVerification extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 children: [
-                  const Center(
+                  Center(
                     child: Image(
                       width: 150,
                       height: 100,
                       image: AssetImage(
-                        TImages.driverLogo,
+                        dark ? TImages.darkAppLogo : TImages.lightAppLogo,
                       ),
                     ),
                   ),
@@ -44,13 +46,6 @@ class SuccessfulVerification extends ConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const DriverOptionScreen(),
-                        //   ),
-                        // );
-
                         provider
                             .onProceed(
                                 onError: NotificationUtil.showErrorNotification)
