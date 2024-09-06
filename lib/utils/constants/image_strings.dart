@@ -3,13 +3,11 @@
 /// This class contains all the App Images in String formats.
 class TImages {
   // -- App Logos
-  static const String darkAppLogo = "assets/logos/logo_dark.png";
-  static const String lightAppLogo = "assets/logos/logo_light.png";
-  static const String logoGreen = "assets/logos/GREEN.png";
-  static const String logoGreenTwo = "assets/logos/GREEN 2.png";
-  static const String logoWhiteMixed = "assets/logos/WHITE MIXED.png";
-  static const String lightAppLogoGreenMixed = "assets/logos/GREEN MIXED.png";
-  static const String driverLogo = "assets/logos/bg_driver_logo.png";
+  static const String darkAppLogo = "assets/logo/logo_dark.png";
+  static const String lightAppLogo = "assets/logo/logo_light.png";
+  static const String driverLogo = "assets/logo/logo_light.png";
+  static const String splashLight = "assets/logo/splash_light.png";
+  static const String splashDark = "assets/logo/splash_dark.png";
 
   // -- Social Logos
   static const String google = "assets/logos/google-icon.png";
@@ -19,7 +17,9 @@ class TImages {
   static const String aniOne = "assets/animation/riderorder.json";
   static const String aniTwo = "assets/animation/driver_two.json";
   static const String aniThree = "assets/animation/driver_three.json";
+  static const String userAvatar = "assets/animation/userAvatar.json";
   static const String aniFour = "assets/animation/driver_four.json";
+  static const String callUsAnim = "assets/animation/callUsanimation.json";
   static const String signupVerification =
       "assets/animation/successverification.json";
   static const String successVerification =
@@ -58,4 +58,5 @@ class TImages {
   static const String vehicleLicenseImage = "assets/images/vehicle_license.png";
   static const String proofOfOwnershipImage =
       "assets/images/ownership_certificate.png";
+  static const String driverCarAnimation = "assets/images/car_icon.png";
 }

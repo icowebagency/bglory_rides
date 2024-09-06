@@ -12,11 +12,13 @@ class DriverBox extends StatelessWidget {
     this.boxOnTap,
     this.useFittedBox = true,
   });
+
   final String boxTitle;
   final String boxSubTitle;
   final IconData boxIcon;
   final VoidCallback? boxOnTap;
   final bool useFittedBox;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +39,9 @@ class DriverBox extends StatelessWidget {
               Text(
                 overflow: TextOverflow.ellipsis,
                 boxTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      fontFamily: 'Notosans',
+                    ),
               ),
               const Spacer(),
               if (useFittedBox)

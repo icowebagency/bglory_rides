@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:intl_phone_field/phone_number.dart';
 
 class TValidator {
   static String? validateEmail(String? value) {
@@ -43,16 +46,58 @@ class TValidator {
     return null;
   }
 
-  static String? validatePhoneNumber(String? value) {
-    if (value == null || value.isEmpty) {
+  static String? validatePhoneNumber(PhoneNumber? phone) {
+    if (phone == null || phone.number.isEmpty) {
       return 'Phone number is required.';
     }
 
     // Regular expression for phone number validation (assuming a 10-digit US phone number format)
     final phoneRegExp = RegExp(r'^\d{10}$');
 
-    if (!phoneRegExp.hasMatch(value)) {
+    if (!phoneRegExp.hasMatch(phone.number)) {
       return 'Invalid phone number format (10 digits required).';
+    }
+
+    log('${phone.completeNumber.startsWith('+234')}');
+
+    if (!phone.completeNumber.startsWith('+234')) {
+      return 'Nigerian number only';
+    }
+
+    return null;
+  }
+
+  static String? simpleInputValidation(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    return null;
+  }
+
+  static String? validNumber(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    if (int.tryParse(text) == null) {
+      return 'Enter a valid input';
+    }
+
+    return null;
+  }
+
+  static String? validAccountNumber(String? text) {
+    if (text == null || text.isEmpty) {
+      return 'This field is required.';
+    }
+
+    if (int.tryParse(text) == null) {
+      return 'Enter a valid input';
+    }
+
+    if (text.length != 10) {
+      return 'Enter a valid account number';
     }
 
     return null;

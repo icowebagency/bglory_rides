@@ -1,4 +1,7 @@
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
+import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../routing/driver_routing.dart';
@@ -51,101 +54,121 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedIndex = 0; // Update the selected index
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.13,
-                  decoration: BoxDecoration(
-                    color: TColors.grey.withOpacity(0.3),
-                    border: Border.all(
-                      color:
-                          _selectedIndex == 0 ? TColors.darkGrey : TColors.grey,
+              Consumer(builder: (context, ref, child) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      ref.read(driverRegistrationDetailsProvider)[
+                          DriverKey.vehicleType] = KeyConstant.car;
+
+                      _selectedIndex = 0; // Update the selected index
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
+                    decoration: BoxDecoration(
+                      color: TColors.grey.withOpacity(0.3),
+                      border: Border.all(
+                        color: _selectedIndex == 0
+                            ? TColors.darkGrey
+                            : TColors.grey,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          TTexts.driverBoxTitle,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(
-                          TTexts.driverBoxTripTitle,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall!.apply(
-                                    color: TColors.darkGrey.withOpacity(0.6),
-                                  ),
-                        ),
-                        Text(
-                          TTexts.driverBoxCarTitle,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall!.apply(
-                                    color: TColors.darkGrey.withOpacity(0.6),
-                                  ),
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            TTexts.driverBoxTitle,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Text(
+                            TTexts.driverBoxTripTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .apply(
+                                  color: TColors.darkGrey.withOpacity(0.6),
+                                ),
+                          ),
+                          Text(
+                            TTexts.driverBoxCarTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .apply(
+                                  color: TColors.darkGrey.withOpacity(0.6),
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              }),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedIndex = 1; // Update the selected index
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.13,
-                  decoration: BoxDecoration(
-                    color: TColors.grey.withOpacity(0.3),
-                    border: Border.all(
-                      color:
-                          _selectedIndex == 1 ? TColors.darkGrey : TColors.grey,
+              Consumer(builder: (context, ref, child) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      ref.read(driverRegistrationDetailsProvider)[
+                          DriverKey.vehicleType] = KeyConstant.motorcycle;
+
+                      _selectedIndex = 1; // Update the selected index
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
+                    decoration: BoxDecoration(
+                      color: TColors.grey.withOpacity(0.3),
+                      border: Border.all(
+                        color: _selectedIndex == 1
+                            ? TColors.darkGrey
+                            : TColors.grey,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          TTexts.driverMotorcycleTitle,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(
-                          TTexts.driverMakeDelivery,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall!.apply(
-                                    color: TColors.darkGrey.withOpacity(0.6),
-                                  ),
-                        ),
-                        Text(
-                          TTexts.driverSubTitle,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall!.apply(
-                                    color: TColors.darkGrey.withOpacity(0.6),
-                                  ),
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            TTexts.driverMotorcycleTitle,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Text(
+                            TTexts.driverMakeDelivery,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .apply(
+                                  color: TColors.darkGrey.withOpacity(0.6),
+                                ),
+                          ),
+                          Text(
+                            TTexts.driverSubTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .apply(
+                                  color: TColors.darkGrey.withOpacity(0.6),
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              }),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),

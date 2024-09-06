@@ -1,130 +1,274 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 
-import '../../../../../common/widgets/driver_info_upload_widget.dart';
+import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
+import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
+import 'package:bglory_rides/utils/constants/constant_values.dart';
+import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/notification/notification_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+
 import '../../../../../routing/driver_routing.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/constants/text_strings.dart';
+import '../steps/driver_info_step.dart';
+import '../steps/driver_license_info.dart';
+import '../steps/payment_details_step.dart';
+import '../steps/vehicle_document_info_step.dart';
+import '../steps/vehicle_info_step.dart';
 
-class DriverInformationScreen extends StatefulWidget {
+class DriverInformationScreen extends ConsumerStatefulWidget {
   const DriverInformationScreen({super.key});
 
   @override
-  State<DriverInformationScreen> createState() =>
+  ConsumerState<DriverInformationScreen> createState() =>
       _DriverInformationScreenState();
 }
 
-class _DriverInformationScreenState extends State<DriverInformationScreen> {
-  final TextEditingController _date = TextEditingController();
+class _DriverInformationScreenState
+    extends ConsumerState<DriverInformationScreen> {
+  final TextEditingController _licenseExpiry = TextEditingController();
   final TextEditingController _dateOfBirth = TextEditingController();
+  late final TextEditingController _fullname;
+  late final TextEditingController _address;
+  late final TextEditingController _nextOfKin;
+  late final TextEditingController _nextOfKinPhone;
+  late final TextEditingController _licenseNumber;
+  late final TextEditingController _vehicleColor;
+  late final TextEditingController _vehicleYear;
+  late final TextEditingController _vehiclePlateNumber;
+  late final TextEditingController _bankAccountName;
+  late final TextEditingController _bankAccountNumber;
 
-  /// variables
-  _DriverInformationScreenState() {
-    _selectedValue = _genderList[0];
-    _vehicleSelectedValue = _vehicleList[0];
-    _banksSelectedValue = _nigerianBanks[0];
+  File? profilePic;
+  File? driversLicensePhoto;
+  File? vehicleExteriorPhoto;
+  File? vehicleInteriorPhoto;
+  File? proofOfOwnershipPhoto;
+  File? vehicleLicensePhoto;
+  File? roadWorthinessPhoto;
+  File? vehicleInsurancePhoto;
+
+  final _formKeys = [
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>()
+  ];
+
+  final _formValidateMode = [
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fullname = TextEditingController();
+    _address = TextEditingController();
+    _nextOfKin = TextEditingController();
+    _nextOfKinPhone = TextEditingController();
+    _licenseNumber = TextEditingController();
+    _vehicleColor = TextEditingController();
+    _vehicleYear = TextEditingController();
+    _vehiclePlateNumber = TextEditingController();
+    _bankAccountName = TextEditingController();
+    _bankAccountNumber = TextEditingController();
   }
 
-  final List<String> _vehicleList = [
-    'Toyota',
-    'Volkswagen',
-    'Ford',
-    'Honda',
-    'Chevrolet',
-    'Nissan',
-    'BMW',
-    'Mercedes-Benz',
-    'Hyundai',
-    'Kia',
-    'Audi',
-    'Subaru',
-    'Mazda',
-    'Lexus',
-    'Jaguar',
-    'Porsche',
-    'Ferrari',
-    'Lamborghini',
-    'Volvo',
-    'Land Rover',
-    'Jeep',
-    'Dodge',
-    'Chrysler',
-    'Buick',
-    'Cadillac',
-    'Acura',
-    'Infiniti',
-    'Mitsubishi',
-    'Tesla',
-    'Mini',
-    'Maserati',
-    'Alfa Romeo',
-    'Bentley',
-    'Rolls-Royce',
-    'Bugatti',
-    'Aston Martin',
-    'Peugeot',
-    'Renault',
-    'Citroën',
-    'Skoda',
-    'SEAT',
-    'Fiat',
-    'Suzuki',
-    'Isuzu',
-    'Saab',
-    'Lincoln',
-    'Genesis',
-    'McLaren',
-    'Pagani',
-    'Koenigsegg'
-  ];
+  /// variables
+  _DriverInformationScreenState();
 
-  final List<String> _nigerianBanks = [
-    'Access Bank',
-    'Zenith Bank',
-    'First Bank of Nigeria',
-    'United Bank for Africa (UBA)',
-    'Guaranty Trust Bank (GTBank)',
-    'Stanbic IBTC Bank',
-    'Union Bank of Nigeria',
-    'Fidelity Bank',
-    'Ecobank Nigeria',
-    'Sterling Bank',
-    'Wema Bank',
-    'Polaris Bank',
-    'FCMB (First City Monument Bank)',
-    'Heritage Bank',
-    'Unity Bank',
-    'Keystone Bank',
-    'Jaiz Bank',
-    'SunTrust Bank Nigeria',
-    'Providus Bank',
-    'Titan Trust Bank',
-    'Globus Bank'
-  ];
+  final List<String> _vehicleList = ConstantValues.vehicleList;
 
-  final _genderList = [
-    "Male",
-    "Female",
-  ];
-  String? _selectedValue = "";
-  String? _vehicleSelectedValue = "";
-  String? _banksSelectedValue = "";
+  final List<String> _nigerianBanks = ConstantValues.nigerianBanks;
+
+  final _genderList = ConstantValues.genderList;
+  String? _selectedValue;
+  String? _vehicleSelectedValue;
+  String? _vehicleSelectedModel;
+  String? _banksSelectedValue;
 
   /// stepper variables and functions
   /// continueStep function
   continueStep() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    bool canGoNext = false;
+    canGoNext = (_formKeys[currentStep].currentState?.validate() ?? false);
+
+    log('$currentStep');
+    if (currentStep == 0) {
+      canGoNext = canGoNext && checkProfilePhoto();
+    }
+    if (currentStep == 1) {
+      canGoNext = canGoNext && checkLicensePhoto();
+    }
+    if (currentStep == 2) {
+      canGoNext = canGoNext && checkInteriorAndExteriorPhoto();
+    }
+    if (currentStep == 3) {
+      canGoNext = checkAllVehicleDocumentInformation();
+    }
+
+    if (!canGoNext) {
+      _formValidateMode[currentStep] = AutovalidateMode.always;
+      return;
+    }
+
+    if (currentStep == 0) {
+      updateProfileField(key: DriverKey.fullName, value: _fullname.text);
+      updateProfileField(key: DriverKey.address, value: _address.text);
+      updateProfileField(
+        key: DriverKey.nextOfKinName,
+        value: _nextOfKin.text,
+      );
+      updateProfileField(
+        key: DriverKey.nextOfKinPhoneNumber,
+        value: _nextOfKinPhone.text,
+      );
+    }
+    if (currentStep == 1) {
+      updateProfileField(
+        key: DriverKey.licenseNumber,
+        value: _licenseNumber.text,
+      );
+    }
+    if (currentStep == 2) {
+      updateProfileField(
+        key: DriverKey.vehicleYear,
+        value: _vehicleYear.text,
+      );
+      updateProfileField(
+        key: DriverKey.vehicleColor,
+        value: _vehicleColor.text,
+      );
+      updateProfileField(
+        key: DriverKey.plateNumber,
+        value: _vehiclePlateNumber.text,
+      );
+    }
+
+    if (currentStep == 4) {
+      updateProfileField(
+          key: DriverKey.bankAccountName, value: _bankAccountName.text);
+      updateProfileField(
+          key: DriverKey.bankAccountNumber, value: _bankAccountNumber.text);
+
+      final email = ref.read(emailText);
+      final phone = ref.read(phoneNumberText);
+      if (email.isNotEmpty) {
+        updateProfileField(
+          key: DriverKey.email,
+          value: email,
+        );
+      }
+      if (phone.isNotEmpty) {
+        updateProfileField(
+          key: DriverKey.phone,
+          value: phone,
+        );
+      }
+    }
+
     if (currentStep < _totalSteps - 1) {
       setState(() {
         currentStep += 1;
       });
     } else {
-      context.go(BGRouteNames.driverHomePageScreen);
+      () {
+        context.go(BGRouteNames.driverHomePageScreen);
+      };
+
+      log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
+      log(jsonEncode(ref.read(driverRegistrationFilesProvider)));
+
+      ref
+          .read(registrationNotifierProvider.notifier)
+          .onRegister(
+            profileData: ref.read(driverRegistrationDetailsProvider),
+            files: ref.read(driverRegistrationFilesProvider),
+            onError: NotificationUtil.showErrorNotification,
+          )
+          .then(
+        (successful) {
+          if (successful) {
+            context.go(BGRouteNames.driverHomePageScreen);
+          }
+        },
+      );
     }
+  }
+
+  void updateProfileFiles({required String key, required String value}) {
+    ref.read(driverRegistrationFilesProvider)[key] = value;
+    log('${ref.read(driverRegistrationFilesProvider)}');
+  }
+
+  void updateProfileField({required String key, required String value}) {
+    ref.read(driverRegistrationDetailsProvider)[key] = value;
+    log('${ref.read(driverRegistrationDetailsProvider)}');
+  }
+
+  bool checkProfilePhoto() {
+    if (profilePic == null) {
+      NotificationUtil.showErrorNotification('Enter a photo');
+      return false;
+    }
+    return true;
+  }
+
+  bool checkLicensePhoto() {
+    if (driversLicensePhoto == null) {
+      NotificationUtil.showErrorNotification('Enter license photo');
+      return false;
+    }
+    return true;
+  }
+
+  bool checkInteriorAndExteriorPhoto() {
+    if (vehicleExteriorPhoto == null) {
+      NotificationUtil.showErrorNotification('Enter Vehicle Exterior photo');
+      return false;
+    }
+    if (vehicleInteriorPhoto == null) {
+      NotificationUtil.showErrorNotification('Enter Vehicle Interior photo');
+      return false;
+    }
+    return true;
+  }
+
+  bool checkAllVehicleDocumentInformation() {
+    if (proofOfOwnershipPhoto == null) {
+      log('Im here');
+      NotificationUtil.showErrorNotification('Enter Proof of Ownership photo');
+      return false;
+    }
+    if (vehicleLicensePhoto == null) {
+      NotificationUtil.showErrorNotification('Enter Vehicle License photo');
+      return false;
+    }
+    if (roadWorthinessPhoto == null) {
+      NotificationUtil.showErrorNotification('Enter Road Worthiness photo');
+      return false;
+    }
+    if (vehicleInsurancePhoto == null) {
+      NotificationUtil.showErrorNotification('Enter Vehicle Insurance photo');
+      return false;
+    }
+    return true;
   }
 
   /// cancel step function
@@ -167,920 +311,425 @@ class _DriverInformationScreenState extends State<DriverInformationScreen> {
   }
 
   int currentStep = 0;
-  final int _totalSteps = 4;
+  final int _totalSteps = 5;
   final DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: Column(
-              children: [
-                const Center(
-                  child: Image(
-                    width: 150,
-                    height: 100,
-                    image: AssetImage(TImages.driverLogo),
-                  ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: Column(
+                  children: [
+                    const Center(
+                      child: Image(
+                        width: 100,
+                        height: 100,
+                        image: AssetImage(TImages.driverLogo),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    Expanded(
+                      child: Stepper(
+                        connectorColor:
+                            const WidgetStatePropertyAll(TColors.primary),
+                        onStepContinue: continueStep,
+                        onStepCancel: cancelStep,
+                        onStepTapped: onStepTapped,
+                        controlsBuilder: controlsBuilder,
+                        elevation: 0,
+                        type: StepperType.horizontal,
+                        currentStep: currentStep,
+                        steps: [
+                          Step(
+                            isActive: currentStep >= 0,
+                            state: currentStep >= 0
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: DriverInfoStep(
+                              autovalidateMode: _formValidateMode[0],
+                              profilePic: profilePic,
+                              formKey: _formKeys[0],
+                              fullname: _fullname,
+                              address: _address,
+                              dateOfBirth: _dateOfBirth,
+                              selectedGender: _selectedValue,
+                              genderList: _genderList,
+                              nextOfKin: _nextOfKin,
+                              nextOfKinPhone: _nextOfKinPhone,
+                              onUpdateGender: onUpdateGender,
+                              onUpdateProfilePicture: onUpdateProfilePicture,
+                              onPickDateofBirth: onPickDateofBirth,
+                            ),
+                          ),
+
+                          /// Section 2 -- License Information
+                          Step(
+                            isActive: currentStep >= 1,
+                            state: currentStep >= 1
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: DriverLicenseInfo(
+                              formKey: _formKeys[1],
+                              autovalidateMode: _formValidateMode[1],
+                              licenseNumber: _licenseNumber,
+                              licenseExpiry: _licenseExpiry,
+                              driversLicensePhoto: driversLicensePhoto,
+                              onPickDriverLicenseExpiryDate:
+                                  onPickDriverLicenseExpiryDate,
+                              onPickDriverLicensePhoto:
+                                  onPickDriverLicensePhoto,
+                            ),
+                          ),
+
+                          /// Driver Vehicle Information
+                          Step(
+                            isActive: currentStep >= 2,
+                            state: currentStep >= 2
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 20.0),
+                              child: VehicleInfoStep(
+                                formKey: _formKeys[2],
+                                autovalidateMode: _formValidateMode[2],
+                                vehicleSelectedValue: _vehicleSelectedValue,
+                                vehicleManfacturersList: _vehicleList,
+                                vehicleSelectedModel: _vehicleSelectedModel,
+                                vehicleYear: _vehicleYear,
+                                vehicleColor: _vehicleColor,
+                                vehiclePlateNumber: _vehiclePlateNumber,
+                                vehicleExteriorPhoto: vehicleExteriorPhoto,
+                                vehicleInteriorPhoto: vehicleInteriorPhoto,
+                                onSelectVehicleManufacturer:
+                                    onSelectVehicleManufacturer,
+                                onUpateVehicleModel: onUpateVehicleModel,
+                                onTakeVehicleExteriorPhoto:
+                                    onTakeVehicleExteriorPhoto,
+                                onTakeVehicleInteriorPhoto:
+                                    onTakeVehicleInteriorPhoto,
+                                vehicleModelList: _vehicleList,
+                              ),
+                            ),
+                          ),
+
+                          /// Step 4 -- Vehicle document information
+                          Step(
+                            isActive: currentStep >= 3,
+                            state: currentStep >= 3
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
+                              child: VehicleDocumentInfoStep(
+                                proofOfOwnershipPhoto: proofOfOwnershipPhoto,
+                                vehicleLicensePhoto: vehicleLicensePhoto,
+                                roadWorthinessPhoto: roadWorthinessPhoto,
+                                vehicleInsurancePhoto: vehicleInsurancePhoto,
+                                onTakeProofOfOwnershipPhoto:
+                                    onTakeProofOfOwnershipPhoto,
+                                onTakeRoadWorthinessPhoto:
+                                    onTakeRoadWorthinessPhoto,
+                                onTakeVehicleInsurancePhoto:
+                                    onTakeVehicleInsurancePhoto,
+                                onTakeVehicleLicensePhoto:
+                                    onTakeVehicleLicensePhoto,
+                              ),
+                            ),
+                          ),
+
+                          /// Step 5 -- Payment Details
+                          Step(
+                            isActive: currentStep >= 4,
+                            state: currentStep >= 4
+                                ? StepState.complete
+                                : StepState.disabled,
+                            title: const Text(''),
+                            content: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                              ),
+                              child: Builder(builder: (context) {
+                                var formKey = _formKeys[4];
+                                return PaymentDetailsStep(
+                                  formKey: formKey,
+                                  autovalidateMode: _formValidateMode[4],
+                                  banksSelectedValue: _banksSelectedValue,
+                                  nigerianBanks: _nigerianBanks,
+                                  bankAccountName: _bankAccountName,
+                                  bankAccountNumber: _bankAccountNumber,
+                                  onSelectBank: onSelectBank,
+                                );
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
-                Expanded(
-                  child: Stepper(
-                    connectorColor:
-                        const MaterialStatePropertyAll(TColors.primary),
-                    onStepContinue: continueStep,
-                    onStepCancel: cancelStep,
-                    onStepTapped: onStepTapped,
-                    controlsBuilder: controlsBuilder,
-                    elevation: 0,
-                    type: StepperType.horizontal,
-                    currentStep: currentStep,
-                    steps: [
-                      Step(
-                        isActive: currentStep >= 0,
-                        state: currentStep >= 0
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Text(
-                                TTexts.driverInformationTitle,
-                                style:
-                                    Theme.of(context).textTheme.headlineMedium,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: TSizes.spaceBtwSections,
-                            ),
-                            Center(
-                              child: Container(
-                                width: 200,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: TColors.white,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: TColors.primary,
-                                  ),
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context
-                                        .go(BGRouteNames.driverUploadProfile);
-                                  },
-                                  child: Lottie.asset(
-                                    fit: BoxFit.contain,
-                                    TImages.animUser,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: TSizes.spaceBtwSections,
-                            ),
-                            Form(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  /// Full name
-                                  Text(
-                                    TTexts.fullName,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.name,
-                                    decoration: InputDecoration(
-                                      hintText: TTexts.fullNameHint,
-                                      hintStyle:
-                                          Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      filled: true,
-                                    ),
-                                  ),
-
-                                  /// Address
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  Text(
-                                    TTexts.address,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.streetAddress,
-                                    decoration: InputDecoration(
-                                      hintText: TTexts.homeAddressHint,
-                                      hintStyle:
-                                          Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      filled: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  Text(
-                                    TTexts.dateOfBirth,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-
-                                  /// Date of birth
-                                  TextFormField(
-                                    controller: _dateOfBirth,
-                                    decoration: InputDecoration(
-                                      labelText: 'Select Date Of Birth',
-                                      prefixIcon: const Icon(Iconsax.calendar),
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      filled: true,
-                                    ),
-                                    readOnly: true,
-                                    onTap: () async {
-                                      DateTime? pickeddateofbirth =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(1980),
-                                        lastDate: DateTime(2101),
-                                      );
-                                      //Conditions
-                                      if (pickeddateofbirth != null) {
-                                        setState(() {
-                                          _dateOfBirth.text =
-                                              DateFormat.yMMMd('en_US')
-                                                  .format(pickeddateofbirth);
-                                        });
-                                      }
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-
-                                  /// Gender
-                                  Text(
-                                    TTexts.genderTitle,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  DropdownButtonFormField(
-                                    elevation: 0,
-                                    dropdownColor: TColors.grey,
-                                    decoration: InputDecoration(
-                                      hintText: TTexts.gender,
-                                      prefixIcon: const Icon(
-                                        Icons.accessibility_new_rounded,
-                                        color: TColors.primary,
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              TColors.primary.withOpacity(0.3),
-                                        ),
-                                      ),
-                                      filled: true,
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              TColors.primary.withOpacity(0.3),
-                                        ),
-                                      ),
-                                    ),
-                                    icon: Icon(
-                                      Iconsax.arrow_down_14,
-                                      color: TColors.primary.withOpacity(0.4),
-                                    ),
-                                    value: _selectedValue,
-                                    items: _genderList
-                                        .map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(e),
-                                          ),
-                                        )
-                                        .toList(),
-                                    onChanged: (val) {
-                                      setState(() {
-                                        _selectedValue = val as String;
-                                      });
-                                    },
-                                  ),
-
-                                  /// Next of kin name
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  Text(
-                                    TTexts.nextOfKinName,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.name,
-                                    decoration: InputDecoration(
-                                      hintText: TTexts.nextOfKinNamesubTitle,
-                                      hintStyle:
-                                          Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      filled: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-
-                                  /// Next of kin Phone Number
-                                  Text(
-                                    TTexts.nextOfKinNumber,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.phone,
-                                    decoration: InputDecoration(
-                                      hintText: TTexts.nextOfKinNumber,
-                                      hintStyle:
-                                          Theme.of(context).textTheme.bodySmall,
-                                      fillColor: TColors.grey.withOpacity(0.4),
-                                      filled: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: TSizes.spaceBtwItems,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      /// Section 2 -- License Information
-                      Step(
-                        isActive: currentStep >= 1,
-                        state: currentStep >= 1
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Form(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts.driverlicenseTitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                              ),
-
-                              /// License number
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                              Text(
-                                TTexts.driverlicenseNumber,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  hintText: TTexts.driverlicenseNumberhint,
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-
-                              /// Expiry date
-                              Text(
-                                TTexts.driverlicenseExpireyDate,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                controller: _date,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  labelText: 'Select Date',
-                                  prefixIcon: const Icon(Iconsax.calendar),
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  filled: true,
-                                ),
-                                readOnly: true,
-                                onTap: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2101));
-                                  //Conditions
-                                  if (pickedDate != null) {
-                                    setState(() {
-                                      _date.text = DateFormat.yMMMd('en_US')
-                                          .format(pickedDate);
-                                    });
-                                  }
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-
-                              /// License Upload
-                              Text(
-                                TTexts.driverlicensePhoto,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(
-                                onTapNav: () {
-                                  context
-                                      .go(BGRouteNames.driverLicenseGuideline);
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      /// Driver Vehicle Information
-                      Step(
-                        isActive: currentStep >= 2,
-                        state: currentStep >= 2
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts.driverVehicleInformationTitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Driver manufacturer
-                              Text(
-                                TTexts.driverVehicleManufacturerTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.car,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _vehicleSelectedValue,
-                                items: _vehicleList
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                  });
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Driver Vehicle Model
-                              Text(
-                                TTexts.driverVehicleModelTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.car,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _vehicleSelectedValue,
-                                items: _vehicleList
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                  });
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle year
-                              Text(
-                                TTexts.driverVehicleYearTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.car,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _vehicleSelectedValue,
-                                items: _vehicleList
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                  });
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle Color
-                              Text(
-                                TTexts.driverVehicleYearTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.car,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _vehicleSelectedValue,
-                                items: _vehicleList
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _vehicleSelectedValue = val as String;
-                                  });
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle Plate Number
-                              Text(
-                                TTexts.driverVehiclePlateNumberTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                  hintText: 'AA123BBB',
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Exterior picture of your car
-                              Text(
-                                TTexts.driverVehicleExteriorPictureTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(
-                                onTapNav: () {
-                                  context
-                                      .go(BGRouteNames.driverExteriorGuideline);
-                                },
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Interior picture of your car
-                              Text(
-                                TTexts.driverVehicleInteriorPictureTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(onTapNav: () {
-                                context
-                                    .go(BGRouteNames.driverInteriorGuideline);
-                              }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      /// Step 4 -- Vehicle document information
-                      Step(
-                        isActive: currentStep >= 3,
-                        state: currentStep >= 3
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts.driverVehicleDocumentInformationTitle,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Proof of ownership certificate
-                              Text(
-                                TTexts.driverVehicleProofOfOwnership,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(onTapNav: () {
-                                context.go(BGRouteNames.driverProofOfOwnership);
-                              }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle license
-                              Text(
-                                TTexts.driverVehicleLicense,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(onTapNav: () {
-                                context.go(BGRouteNames.driverVehicleLicense);
-                              }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// certificate of road worthiness
-                              Text(
-                                TTexts.driverRoadWorthinessTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(onTapNav: () {
-                                context.go(BGRouteNames.driverRoadWorthiness);
-                              }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-
-                              /// Vehicle insurance
-                              Text(
-                                TTexts.driverVehicleInsurance,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DriverInfoUploadWidget(onTapNav: () {
-                                context
-                                    .go(BGRouteNames.driverInteriorGuideline);
-                              }),
-                              const SizedBox(
-                                height: TSizes.spaceBtwSections,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      /// Step 5 -- Payment Details
-                      Step(
-                        isActive: currentStep >= 4,
-                        state: currentStep >= 4
-                            ? StepState.complete
-                            : StepState.disabled,
-                        title: const Text(''),
-                        content: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  TTexts.driverPaymentDetailsTitle,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                              ),
-
-                              /// Bank Name
-                              Text(
-                                TTexts.driverBankName,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              DropdownButtonFormField(
-                                elevation: 0,
-                                dropdownColor: TColors.grey,
-                                decoration: InputDecoration(
-                                  hintText: 'Select one',
-                                  prefixIcon: const Icon(
-                                    Iconsax.bank,
-                                    color: TColors.primary,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: TColors.primary.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                                icon: Icon(
-                                  Iconsax.arrow_down_14,
-                                  color: TColors.primary.withOpacity(0.4),
-                                ),
-                                value: _banksSelectedValue,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .apply(
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                items: _nigerianBanks
-                                    .map(
-                                      (e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (val) {
-                                  setState(() {
-                                    _banksSelectedValue = val as String;
-                                  });
-                                },
-                              ),
-
-                              /// Bank account holder name
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              Text(
-                                TTexts.driverBankAccountHolderNameTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  hintText: TTexts.driverBankHolderNameHint,
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-
-                              /// Bank account number
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              Text(
-                                TTexts.driverBankAccountHolderNumberTitle,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                              TextFormField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  hintText: TTexts.driverBankHolderNumberHint,
-                                  hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
-                                  fillColor: TColors.grey.withOpacity(0.4),
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: TSizes.spaceBtwItems,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            Consumer(builder: (context, ref, child) {
+              return Visibility(
+                visible: ref.watch(
+                  registrationNotifierProvider,
+                ),
+                child: Container(
+                  color: Colors.grey.withOpacity(0.4),
+                  child: const Center(
+                    child: AppCircularProgressIndicator(),
+                  ),
+                ),
+              );
+            })
+          ],
         ),
       ),
+    );
+  }
+
+  void onSelectBank(String? val) {
+    setState(() {
+      _banksSelectedValue = val as String;
+      updateProfileField(
+        key: DriverKey.bank,
+        value: val,
+      );
+    });
+  }
+
+  void onTakeVehicleInsurancePhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.vehicleInsurance,
+      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
+    ).then(
+      (value) {
+        if (value != null) {
+          vehicleInsurancePhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onTakeRoadWorthinessPhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.vehicleRoadWorthiness,
+      navPath: BGRouteNames.driverRoadWorthiness,
+    ).then(
+      (value) {
+        if (value != null) {
+          roadWorthinessPhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onTakeVehicleLicensePhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.vehicleLicense,
+      navPath: BGRouteNames.driverVehicleLicense,
+    ).then(
+      (value) {
+        if (value != null) {
+          vehicleLicensePhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onTakeProofOfOwnershipPhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.proofOfOwnership,
+      navPath: BGRouteNames.driverProofOfOwnership,
+    ).then(
+      (value) {
+        if (value != null) {
+          proofOfOwnershipPhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onTakeVehicleInteriorPhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.vehicleImageInterior,
+      navPath: BGRouteNames.driverInteriorGuideline,
+    ).then(
+      (value) {
+        if (value != null) {
+          vehicleInteriorPhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onTakeVehicleExteriorPhoto(BuildContext context) {
+    getPictureAndUpdateDataField(
+      context: context,
+      imageDetailKey: DriverKey.vehicleImageExterior,
+      navPath: BGRouteNames.driverExteriorGuideline,
+    ).then(
+      (value) {
+        if (value != null) {
+          vehicleExteriorPhoto = value;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void onUpateVehicleModel(String? val) {
+    setState(() {
+      _vehicleSelectedModel = val as String;
+      updateProfileField(
+        key: DriverKey.vehicleModel,
+        value: val,
+      );
+    });
+  }
+
+  void onSelectVehicleManufacturer(String? val) {
+    setState(() {
+      _vehicleSelectedValue = val as String;
+      updateProfileField(
+        key: DriverKey.vehicleManufacturer,
+        value: val,
+      );
+    });
+  }
+
+  void onPickDriverLicensePhoto(BuildContext context) {
+    context
+        .push<File?>(
+      Uri(
+        path: BGRouteNames.driverLicenseGuideline,
+      ).toString(),
+    )
+        .then(
+      (value) {
+        if (value != null) {
+          driversLicensePhoto = value;
+
+          updateProfileFiles(key: DriverKey.licensePicture, value: value.path);
+
+          log('${ref.read(driverRegistrationFilesProvider)}');
+          setState(() {});
+        }
+        return;
+      },
+    );
+  }
+
+  Future<void> onPickDriverLicenseExpiryDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2101));
+    //Conditions
+    if (pickedDate != null) {
+      setState(() {
+        _licenseExpiry.text = DateFormat.yMMMd('en_US').format(pickedDate);
+
+        ref.read(driverRegistrationDetailsProvider)[DriverKey
+            .licenseExpiryDate] = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+        log("${ref.read(driverRegistrationDetailsProvider)}");
+      });
+    }
+  }
+
+  void onUpdateGender(String? val) {
+    setState(() {
+      _selectedValue = val as String;
+      ref.read(driverRegistrationDetailsProvider)[DriverKey.gender] =
+          val.toLowerCase();
+
+      log('${ref.read(driverRegistrationDetailsProvider)}');
+    });
+  }
+
+  Future<void> onPickDateofBirth(BuildContext context) async {
+    DateTime? pickeddateofbirth = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1980),
+      lastDate: DateTime(2101),
+    );
+    //Conditions
+    if (pickeddateofbirth != null) {
+      setState(() {
+        _dateOfBirth.text = DateFormat.yMMMd('en_US').format(pickeddateofbirth);
+
+        ref.read(driverRegistrationDetailsProvider)[DriverKey.dob] =
+            DateFormat('yyyy-MM-dd').format(pickeddateofbirth);
+      });
+    }
+  }
+
+  void onUpdateProfilePicture(BuildContext context) {
+    context.push<File?>(BGRouteNames.driverUploadProfile).then(
+      (value) {
+        if (value != null) {
+          profilePic = value;
+
+          updateProfileFiles(key: DriverKey.profilePicture, value: value.path);
+
+          log('${ref.read(driverRegistrationFilesProvider)}');
+          setState(() {});
+        }
+        return;
+      },
+    );
+  }
+
+  Future<File?> getPictureAndUpdateDataField({
+    required BuildContext context,
+    required String navPath,
+    required String imageDetailKey,
+  }) {
+    return context
+        .push<File?>(
+      Uri(
+        path: navPath,
+      ).toString(),
+    )
+        .then(
+      (value) {
+        if (value != null) {
+          updateProfileFiles(key: imageDetailKey, value: value.path);
+
+          return value;
+        }
+        return null;
+      },
     );
   }
 }

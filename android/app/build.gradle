@@ -49,6 +49,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        resValue "string", "GAPIKEY", "\"${localProperties.getProperty('GAPIKEY')}\""
     }
 
     flavorDimensions "default"

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TColors {
   // App theme colors
   static const Color primary = Color(0xFF125A36);
-  static const Color secondary = Color(0xFF367300);
+  static const Color secondary = Color(0xFF99CD32);
   static const Color accent = Color(0xFFb0c7ff);
 
   // Text colors
@@ -12,7 +12,7 @@ class TColors {
   static const Color textWhite = Colors.white;
 
   // Background colors
-  static const Color light = Color(0xFFF7F7F7);
+  static const Color light = Color(0xFFF5F5F5);
   static const Color dark = Color(0xFF272727);
   static const Color primaryBackground = Color(0xFFF7F7F7);
 
@@ -40,6 +40,11 @@ class TColors {
   static const Color success = Color(0xFF339956);
   static const Color warning = Color(0xFFFAC402);
   static const Color info = Color(0xFFE26844);
+  static const Color popupColor = Color(0xffFEE89A);
+
+  // Appbar colors
+  static const Color appBarBackgroundColor = Color(0xFF125A36);
+  static const Color appBarSearchBarBackgroundColor = Color(0xFF063F1F);
 
   // Neutral Shades
   static const Color black = Color(0xFF0F0F0F);
@@ -48,6 +53,7 @@ class TColors {
   static const Color grey = Color(0xFFA0A0A0);
   static const Color softGrey = Color(0xFFD7D7D7);
   static const Color lightGrey = Color(0xffF2F2F2);
+  static const Color containerBackgroundColor = Color(0xffF5F5F5);
   static const Color white = Color(0xffFFFFFF);
   static const Color dragableBottomSheetColor = Color(0xffF2F2F2);
 }

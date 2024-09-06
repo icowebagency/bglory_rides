@@ -6,14 +6,15 @@ import '../../utils/constants/sizes.dart';
 import '../../utils/helpers/helper_functions.dart';
 
 class OnboardingPage extends StatelessWidget {
- 
   const OnboardingPage({
     super.key,
     required this.image,
     required this.title,
     required this.subTitle,
   });
+
   final String image, title, subTitle;
+
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
