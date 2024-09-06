@@ -1,4 +1,5 @@
 import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,6 +21,7 @@ class DriverLoginScreen extends StatefulWidget {
 class _DriverLoginScreenState extends State<DriverLoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -34,11 +36,14 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Center(
+                    /// Logo
+                    Center(
                       child: Image(
                         width: 150,
                         height: 100,
-                        image: AssetImage(TImages.driverLogo),
+                        image: AssetImage(
+                          dark ? TImages.darkAppLogo : TImages.lightAppLogo,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -50,21 +55,22 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                     ),
                     Text(
                       TTexts.loginDriverSubTitle,
-                      style: Theme.of(context).textTheme.bodyMedium!.apply(
-                            color: TColors.darkGrey,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: dark ? TColors.white : TColors.dark,
                           ),
                     ),
                     // Signup Tab line
-                    const TabBar(
+                    TabBar(
                       automaticIndicatorColorAdjustment: true,
-                      unselectedLabelColor: TColors.darkGrey,
-                      labelColor: TColors.primary,
+                      unselectedLabelColor:
+                          dark ? TColors.white.withOpacity(0.8) : TColors.dark,
+                      labelColor: dark ? TColors.white : TColors.primary,
                       isScrollable: false,
                       indicatorColor: TColors.primary,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
-                      tabs: [
+                      tabs: const [
                         Tab(
                           text: 'Email',
                         ),

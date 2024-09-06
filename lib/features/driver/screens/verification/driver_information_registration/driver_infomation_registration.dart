@@ -8,6 +8,7 @@ import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNum
 import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -305,6 +306,7 @@ class _DriverInformationScreenState
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -317,11 +319,12 @@ class _DriverInformationScreenState
                 },
                 child: Column(
                   children: [
-                    const Center(
+                    Center(
                       child: Image(
                         width: 100,
                         height: 100,
-                        image: AssetImage(TImages.driverLogo),
+                        image: AssetImage(
+                            dark ? TImages.darkAppLogo : TImages.driverLogo),
                       ),
                     ),
                     const SizedBox(

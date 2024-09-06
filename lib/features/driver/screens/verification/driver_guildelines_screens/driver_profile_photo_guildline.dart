@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bglory_rides/features/driver/screens/verification/driver_guildelines_screens/driver_interior_picture_guideline.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,25 +25,25 @@ class _DriverProfileUploadGuidelineScreenState
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
+          iconTheme: IconThemeData(color: dark ? TColors.white : TColors.dark),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 20,
-            right: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Center(
+                Center(
                   child: Image(
+                    fit: BoxFit.contain,
                     width: 100,
                     height: 100,
-                    image: AssetImage(TImages.driverLogo),
+                    image: AssetImage(
+                        dark ? TImages.darkAppLogo : TImages.lightAppLogo),
                   ),
                 ),
                 Text(
@@ -64,7 +65,7 @@ class _DriverProfileUploadGuidelineScreenState
                 Text(
                   TTexts.driverPhotoUploadInst,
                   style: Theme.of(context).textTheme.bodyLarge!.apply(
-                        color: TColors.linkRedColor,
+                        color: dark ? TColors.white : TColors.error,
                       ),
                 ),
                 const SizedBox(
@@ -73,7 +74,7 @@ class _DriverProfileUploadGuidelineScreenState
                 Text(
                   TTexts.driverPhotoUploadInstTw,
                   style: Theme.of(context).textTheme.bodyLarge!.apply(
-                        color: TColors.linkRedColor,
+                        color: dark ? TColors.white : TColors.error,
                       ),
                 ),
                 const SizedBox(

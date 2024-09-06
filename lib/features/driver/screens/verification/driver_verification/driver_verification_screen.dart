@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_verification/driver_verification_provider.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ final _otpFieldProvider = StateProvider(
 
 class DriverVerificationScreen extends ConsumerStatefulWidget {
   const DriverVerificationScreen({super.key, this.target});
+
   final dynamic target;
 
   @override
@@ -72,7 +74,7 @@ class _DriverVerificationScreenState
         : widget.target!['phone']!;
 
     log('${widget.target}');
-
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -81,11 +83,12 @@ class _DriverVerificationScreenState
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 children: [
-                  const Center(
+                  Center(
                     child: Image(
                       width: 150,
                       height: 100,
-                      image: AssetImage(TImages.driverLogo),
+                      image: AssetImage(
+                          dark ? TImages.darkAppLogo : TImages.lightAppLogo),
                     ),
                   ),
                   const SizedBox(
