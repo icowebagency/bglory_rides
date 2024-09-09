@@ -307,6 +307,10 @@ class DriverRouting {
         path: BGRouteNames.driverCallOptionSheetScreen,
         builder: (context, state) => const DriverCallOptionSheetScreen(),
       ),
+      // GoRoute(
+      //   path: BGRouteNames.driverAddCardScreen,
+      //   builder: (context, state) => AddCardScreen(),
+      // ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(
