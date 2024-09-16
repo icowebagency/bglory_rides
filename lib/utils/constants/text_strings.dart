@@ -866,5 +866,39 @@ class TTexts {
   static const String driverCallOptionSheetInAppCallTitle = 'In-app call';
   static const String driverCallOptionSheetPhoneCarrierCallTitle =
       'Phone carrier call';
-// static const String supportCallTitle  = '';
+
+  /// Rider section below
+// Onboarding
+  static const String riderOnboardingTitleOne = 'Your ride is on the way!';
+  static const String riderOnboardingTitleTwo =
+      'Get moving with just one click';
+  static const String riderOnboardingTitleThree =
+      'On-demand rides, anytime, anywhere';
+  static const String riderOnboardingSubTitleOne =
+      'Sit back, relax, and track your driver\'s arrival in real-time.';
+  static const String riderOnboardingSubTitleTwo =
+      'No hassle, BGlory Rides provides an easy platform to book rides and get you to your destination.';
+  static const String riderOnboardingSubTitleThree =
+      'With BGlory Rides, no more waiting in queues to catch a ride';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
 }
