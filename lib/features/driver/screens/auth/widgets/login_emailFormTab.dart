@@ -163,7 +163,7 @@ class LoginEmailFormTab extends ConsumerWidget {
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
-                              path: BGRouteNames.driverVerification,
+                              path: BGDriverRouteNames.driverVerification,
                               queryParameters: {
                                 KeyConstant.target: jsonEncode(target),
                               },

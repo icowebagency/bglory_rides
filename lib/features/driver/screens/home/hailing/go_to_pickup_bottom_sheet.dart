@@ -77,7 +77,7 @@ class _GoToPickupBottomSheetScreenState
                   children: [
                     GestureDetector(
                       onTap: () {
-                        context.push(BGRouteNames.driverCallScreen);
+                        context.push(BGDriverRouteNames.driverCallScreen);
                       },
                       child: const CircleAvatar(
                         backgroundColor: TColors.primary,
@@ -93,7 +93,7 @@ class _GoToPickupBottomSheetScreenState
                     ),
                     GestureDetector(
                       onTap: () {
-                        context.push(BGRouteNames.driverChatScreen);
+                        context.push(BGDriverRouteNames.driverChatScreen);
                       },
                       child: const CircleAvatar(
                         backgroundColor: TColors.primary,

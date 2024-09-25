@@ -92,7 +92,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       Expanded(
                         child: OutlinedButtonWidget(
                           onTap: () {
-                            context.go(BGRouteNames.driverLogin);
+                            context.go(BGDriverRouteNames.driverLogin);
                           },
                           width: double.infinity,
                           buttonOutlineColor:
@@ -108,7 +108,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       Expanded(
                         child: SaveButtonWidget(
                           onTap: () {
-                            context.go(BGRouteNames.driverSignup);
+                            context.go(BGDriverRouteNames.driverSignup);
                           },
                           buttonText: TTexts.createAccount,
                         ),

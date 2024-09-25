@@ -184,7 +184,7 @@ class _DriverMotorcycleInformationState
       });
     } else {
       () {
-        context.go(BGRouteNames.driverHomePageScreen);
+        context.go(BGDriverRouteNames.driverHomePageScreen);
       };
 
       log(jsonEncode(ref.read(driverRegistrationFilesProvider)));
@@ -200,7 +200,7 @@ class _DriverMotorcycleInformationState
           .then(
         (successful) {
           if (successful) {
-            context.go(BGRouteNames.driverHomePageScreen);
+            context.go(BGDriverRouteNames.driverHomePageScreen);
           }
         },
       );
@@ -208,7 +208,7 @@ class _DriverMotorcycleInformationState
   }
 
   void onUpdateProfilePicture(BuildContext context) {
-    context.push<File?>(BGRouteNames.driverUploadProfile).then(
+    context.push<File?>(BGDriverRouteNames.driverUploadProfile).then(
       (value) {
         if (value != null) {
           profilePic = value;
@@ -227,7 +227,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.motorcycleImage,
-      navPath: BGRouteNames.driverMotorcycleGuideline,
+      navPath: BGDriverRouteNames.driverMotorcycleGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -242,7 +242,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.motorcycleInsurance,
-      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
+      navPath: BGDriverRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
         if (value != null) {
@@ -257,7 +257,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.hackneyPermit,
-      navPath: BGRouteNames.driverMotorcycleHackneyPermit,
+      navPath: BGDriverRouteNames.driverMotorcycleHackneyPermit,
     ).then(
       (value) {
         if (value != null) {
@@ -363,7 +363,7 @@ class _DriverMotorcycleInformationState
     context
         .push<File?>(
       Uri(
-        path: BGRouteNames.driverLicenseGuideline,
+        path: BGDriverRouteNames.driverLicenseGuideline,
       ).toString(),
     )
         .then(

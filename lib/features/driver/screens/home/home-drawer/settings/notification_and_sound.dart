@@ -40,7 +40,7 @@ class _NotificationAndSoundScreenState
                 ),
                 child: ListTile(
                   onTap: () {
-                    context.push(BGRouteNames.driverAppNotification);
+                    context.push(BGDriverRouteNames.driverAppNotification);
                   },
                   title: const Text(TTexts.appNotificationTitle),
                   trailing: const Icon(
@@ -60,7 +60,7 @@ class _NotificationAndSoundScreenState
                 ),
                 child: ListTile(
                   onTap: () {
-                    context.push(BGRouteNames.driverSoundScreen);
+                    context.push(BGDriverRouteNames.driverSoundScreen);
                   },
                   title: const Text(TTexts.appNotificationAndSoundTwoTitle),
                   trailing: const Icon(

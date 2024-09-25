@@ -450,7 +450,7 @@ class _VehicleInformationEditScreenState
                   ),
                 ),
                 SaveButtonWidget(onTap: () {
-                  context.go(BGRouteNames.driverAccountScreen);
+                  context.go(BGDriverRouteNames.driverAccountScreen);
                 }),
               ],
             ),

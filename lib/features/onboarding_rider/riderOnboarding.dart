@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../routing/driver_routing.dart';
+import '../../routing/rider_routing.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';
@@ -93,7 +93,7 @@ class _OnboardingScreenState extends ConsumerState<RiderOnboardingScreen> {
                       Expanded(
                         child: OutlinedButtonWidget(
                           onTap: () {
-                            context.go(BGRouteNames.driverLogin);
+                            context.go(BGRiderRouteNames.riderLogin);
                           },
                           width: double.infinity,
                           buttonOutlineColor:
@@ -109,13 +109,13 @@ class _OnboardingScreenState extends ConsumerState<RiderOnboardingScreen> {
                       Expanded(
                         child: SaveButtonWidget(
                           onTap: () {
-                            context.go(BGRouteNames.driverSignup);
+                            context.go(BGRiderRouteNames.riderSignup);
                           },
                           buttonText: TTexts.createAccount,
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

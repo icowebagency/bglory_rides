@@ -53,9 +53,10 @@ class SuccessfulVerification extends ConsumerWidget {
                           (isProfileComplete) {
                             if (isProfileComplete != null) {
                               if (isProfileComplete) {
-                                context.go(BGRouteNames.driverHomePageScreen);
+                                context.go(
+                                    BGDriverRouteNames.driverHomePageScreen);
                               } else {
-                                context.go(BGRouteNames.driverOption);
+                                context.go(BGDriverRouteNames.driverOption);
                               }
                             }
                           },

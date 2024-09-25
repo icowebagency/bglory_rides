@@ -25,10 +25,10 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
   // Navigation method based on the selected index
   void _navigateToOption() {
     if (_selectedIndex == 0) {
-      context.go(BGRouteNames
+      context.go(BGDriverRouteNames
           .driverUploadInformation); // Navigate to the car option screen
     } else if (_selectedIndex == 1) {
-      context.go(BGRouteNames
+      context.go(BGDriverRouteNames
           .driverMotorcycleInformation); // Navigate to the motorcycle option screen
     }
   }

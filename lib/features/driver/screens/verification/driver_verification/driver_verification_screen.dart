@@ -95,7 +95,7 @@ class _DriverVerificationScreenState
                     height: TSizes.spaceBtwSections,
                   ),
                   Text(
-                    TTexts.driverVerfTitle,
+                    TTexts.driverVerifyTitle,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(
@@ -250,7 +250,7 @@ class _DriverVerificationScreenState
           .then(
         (verified) {
           if (verified) {
-            context.go(BGRouteNames.driverVerificationSuccessful);
+            context.go(BGDriverRouteNames.driverVerificationSuccessful);
           }
         },
       );

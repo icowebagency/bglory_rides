@@ -58,7 +58,7 @@ class _DriverCallOptionSheetScreenState
           GestureDetector(
             onTap: () {
               _onSelected(0);
-              context.go(BGRouteNames.driverCallScreen);
+              context.go(BGDriverRouteNames.driverCallScreen);
             },
             child: Container(
               margin: const EdgeInsets.all(10),

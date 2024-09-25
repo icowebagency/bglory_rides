@@ -33,7 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               child: ListTile(
                 onTap: () {
-                  context.push(BGRouteNames.driverAppSettingsScreen);
+                  context.push(BGDriverRouteNames.driverAppSettingsScreen);
                 },
                 leading: const Icon(Iconsax.setting_2),
                 title: const Text(TTexts.settingsAppSettingsText),
@@ -55,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               child: ListTile(
                 onTap: () {
-                  context.push(BGRouteNames.driverNotificationAndSound);
+                  context.push(BGDriverRouteNames.driverNotificationAndSound);
                 },
                 leading: const Icon(Iconsax.notification),
                 title: const Text(TTexts.settingsNotificationText),
@@ -77,7 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               child: ListTile(
                 onTap: () {
-                  context.push(BGRouteNames.driverThemeScreen);
+                  context.push(BGDriverRouteNames.driverThemeScreen);
                 },
                 leading: const Icon(Iconsax.path_square),
                 title: const Text(TTexts.settingsThemeText),
@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               child: ListTile(
                 onTap: () {
-                  context.push(BGRouteNames.driverAboutScreen);
+                  context.push(BGDriverRouteNames.driverAboutScreen);
                 },
                 leading: const Icon(Iconsax.info_circle),
                 title: const Text(TTexts.settingsAboutText),

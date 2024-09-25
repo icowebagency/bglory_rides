@@ -179,7 +179,7 @@ class _DriverInformationScreenState
       });
     } else {
       () {
-        context.go(BGRouteNames.driverHomePageScreen);
+        context.go(BGDriverRouteNames.driverHomePageScreen);
       };
 
       log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
@@ -195,7 +195,7 @@ class _DriverInformationScreenState
           .then(
         (successful) {
           if (successful) {
-            context.go(BGRouteNames.driverHomePageScreen);
+            context.go(BGDriverRouteNames.driverHomePageScreen);
           }
         },
       );
@@ -507,7 +507,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleInsurance,
-      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
+      navPath: BGDriverRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
         if (value != null) {
@@ -522,7 +522,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleRoadWorthiness,
-      navPath: BGRouteNames.driverRoadWorthiness,
+      navPath: BGDriverRouteNames.driverRoadWorthiness,
     ).then(
       (value) {
         if (value != null) {
@@ -537,7 +537,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleLicense,
-      navPath: BGRouteNames.driverVehicleLicense,
+      navPath: BGDriverRouteNames.driverVehicleLicense,
     ).then(
       (value) {
         if (value != null) {
@@ -552,7 +552,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.proofOfOwnership,
-      navPath: BGRouteNames.driverProofOfOwnership,
+      navPath: BGDriverRouteNames.driverProofOfOwnership,
     ).then(
       (value) {
         if (value != null) {
@@ -567,7 +567,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleImageInterior,
-      navPath: BGRouteNames.driverInteriorGuideline,
+      navPath: BGDriverRouteNames.driverInteriorGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -582,7 +582,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleImageExterior,
-      navPath: BGRouteNames.driverExteriorGuideline,
+      navPath: BGDriverRouteNames.driverExteriorGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -617,7 +617,7 @@ class _DriverInformationScreenState
     context
         .push<File?>(
       Uri(
-        path: BGRouteNames.driverLicenseGuideline,
+        path: BGDriverRouteNames.driverLicenseGuideline,
       ).toString(),
     )
         .then(
@@ -683,7 +683,7 @@ class _DriverInformationScreenState
   }
 
   void onUpdateProfilePicture(BuildContext context) {
-    context.push<File?>(BGRouteNames.driverUploadProfile).then(
+    context.push<File?>(BGDriverRouteNames.driverUploadProfile).then(
       (value) {
         if (value != null) {
           profilePic = value;

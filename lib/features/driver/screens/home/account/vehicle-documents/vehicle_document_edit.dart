@@ -192,7 +192,7 @@ class _VehicleDocumentsEditScreenState
                         height: TSizes.spaceBtwSections,
                       ),
                       SaveButtonWidget(onTap: () {
-                        context.go(BGRouteNames.driverAccountScreen);
+                        context.go(BGDriverRouteNames.driverAccountScreen);
                       })
                     ],
                   ),

@@ -253,7 +253,7 @@ class DriverInfoStep extends StatelessWidget {
                 keyboardType: TextInputType.name,
                 validator: TValidator.simpleInputValidation,
                 decoration: InputDecoration(
-                  hintText: TTexts.nextOfKinNamesubTitle,
+                  hintText: TTexts.nextOfKinNameSubTitle,
                   hintStyle: Theme.of(context).textTheme.bodySmall,
                   fillColor: dark ? TColors.dark : TColors.white,
                   filled: true,

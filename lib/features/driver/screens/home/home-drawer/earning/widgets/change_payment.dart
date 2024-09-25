@@ -53,7 +53,7 @@ class _ChangePaymentScreenState extends State<ChangePaymentScreen> {
                       ),
                       onPressed: () {
                         Navigator.pop(context);
-                        context.push(BGRouteNames.driverAddCardScreen);
+                        context.push(BGDriverRouteNames.driverAddCardScreen);
                       },
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
