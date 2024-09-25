@@ -19,16 +19,23 @@ class _RiderAddCardScreenState extends State<RiderAddCardScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                TTexts.skip,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: TColors.primary,
-                      decoration: TextDecoration.underline,
-                    ),
+          GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    TTexts.skip,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: TColors.primary,
+                          decoration: TextDecoration.underline,
+                        ),
+                  ),
+                ),
               ),
             ),
           ),
