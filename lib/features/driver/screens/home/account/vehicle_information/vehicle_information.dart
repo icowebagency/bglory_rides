@@ -206,7 +206,7 @@ class VehicleInformationScreen extends StatelessWidget {
                     ),
                     DriverEditButton(
                       onTap: () {
-                        context.go(BGRouteNames.vehicleInformationEdit);
+                        context.go(BGDriverRouteNames.vehicleInformationEdit);
                       },
                     ),
                   ],

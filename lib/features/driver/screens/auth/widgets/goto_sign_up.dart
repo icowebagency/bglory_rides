@@ -21,7 +21,7 @@ class GotoSignUp extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.go(BGRouteNames.driverSignup);
+            context.go(BGDriverRouteNames.driverSignup);
           },
           child: Text(
             TTexts.createAccount,

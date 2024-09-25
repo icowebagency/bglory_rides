@@ -22,7 +22,7 @@ class GotoSignIn extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.go(BGRouteNames.driverLogin);
+            context.go(BGDriverRouteNames.driverLogin);
           },
           child: Text(
             TTexts.signIn,

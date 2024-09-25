@@ -18,6 +18,7 @@ import '../../../../../utils/constants/text_strings.dart';
 
 class EmailFormTab extends ConsumerWidget {
   EmailFormTab({super.key});
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
@@ -137,7 +138,7 @@ class EmailFormTab extends ConsumerWidget {
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
-                              path: BGRouteNames.driverVerification,
+                              path: BGDriverRouteNames.driverVerification,
                               queryParameters: {
                                 KeyConstant.target: jsonEncode(target),
                               },

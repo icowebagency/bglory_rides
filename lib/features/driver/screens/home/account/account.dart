@@ -25,7 +25,7 @@ class _AccountScreenState extends State<AccountScreen> {
         automaticallyImplyLeading: true,
         leading: IconButton(
           onPressed: () {
-            context.go(BGRouteNames.driverHomePageScreen);
+            context.go(BGDriverRouteNames.driverHomePageScreen);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -120,7 +120,7 @@ class _AccountScreenState extends State<AccountScreen> {
               // Profile Screen
               AccountWidget(
                 containerBtn: () {
-                  context.push(BGRouteNames.driverProfile);
+                  context.push(BGDriverRouteNames.driverProfile);
                 },
                 containerText: TTexts.tAccount,
               ),
@@ -128,28 +128,28 @@ class _AccountScreenState extends State<AccountScreen> {
               AccountWidget(
                 containerText: TTexts.tDriverDocument,
                 containerBtn: () {
-                  context.push(BGRouteNames.driverDocumentScreen);
+                  context.push(BGDriverRouteNames.driverDocumentScreen);
                 },
               ),
               // Vehicle's information
               AccountWidget(
                 containerText: TTexts.tVehicleInformation,
                 containerBtn: () {
-                  context.push(BGRouteNames.vehicleInformation);
+                  context.push(BGDriverRouteNames.vehicleInformation);
                 },
               ),
               // Vehicle documents
               AccountWidget(
                 containerText: TTexts.vehicleDocumentAccountTitle,
                 containerBtn: () {
-                  context.push(BGRouteNames.vehicleDocumentScreen);
+                  context.push(BGDriverRouteNames.vehicleDocumentScreen);
                 },
               ),
               // Payment details
               AccountWidget(
                 containerText: TTexts.tPaymentDetails,
                 containerBtn: () {
-                  context.push(BGRouteNames.driverPaymentDetailsScreen);
+                  context.push(BGDriverRouteNames.driverPaymentDetailsScreen);
                 },
               ),
             ],

@@ -3,28 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../routing/driver_routing.dart';
+import '../../routing/rider_routing.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';
 import '../../utils/constants/text_strings.dart';
 import '../../utils/helpers/helper_functions.dart';
 import '../driver/general_widgets/outlined_button_widget.dart';
-import 'dot_navigation.dart';
-import 'onboarding_controller.dart';
-import 'onboarding_page.dart';
+import 'riderOnboarding_page.dart';
+import 'rider_dot_navigation.dart';
+import 'rider_onboarding_controller.dart';
 
-class OnboardingScreen extends ConsumerStatefulWidget {
-  const OnboardingScreen({super.key});
+class RiderOnboardingScreen extends ConsumerStatefulWidget {
+  const RiderOnboardingScreen({super.key});
 
   static const path = '/';
-  static const name = 'onboarding';
+  static const name = 'riderOnboarding';
 
   @override
-  ConsumerState<OnboardingScreen> createState() => _OnboardingScreenState();
+  ConsumerState<RiderOnboardingScreen> createState() =>
+      _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
+class _OnboardingScreenState extends ConsumerState<RiderOnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -60,20 +61,20 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       controller: pageController,
                       onPageChanged: controller.updatePageIndicator,
                       children: const [
-                        OnboardingPage(
+                        RiderOnboardingPage(
                           image: TImages.aniOne,
-                          title: TTexts.onBoardingTitle1,
-                          subTitle: TTexts.onBoardingSubTitle1,
+                          title: TTexts.riderOnboardingTitleOne,
+                          subTitle: TTexts.riderOnboardingSubTitleOne,
                         ),
-                        OnboardingPage(
+                        RiderOnboardingPage(
                           image: TImages.aniThree,
-                          title: TTexts.onBoardingTitle2,
-                          subTitle: TTexts.onBoardingSubTitle2,
+                          title: TTexts.riderOnboardingTitleTwo,
+                          subTitle: TTexts.riderOnboardingSubTitleTwo,
                         ),
-                        OnboardingPage(
+                        RiderOnboardingPage(
                           image: TImages.aniTwo,
-                          title: TTexts.onBoardingTitle3,
-                          subTitle: TTexts.onBoardingSubTitle3,
+                          title: TTexts.riderOnboardingTitleThree,
+                          subTitle: TTexts.riderOnboardingSubTitleThree,
                         ),
                       ],
                     ),
@@ -92,7 +93,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       Expanded(
                         child: OutlinedButtonWidget(
                           onTap: () {
-                            context.go(BGDriverRouteNames.driverLogin);
+                            context.go(BGRiderRouteNames.riderLogin);
                           },
                           width: double.infinity,
                           buttonOutlineColor:
@@ -108,13 +109,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       Expanded(
                         child: SaveButtonWidget(
                           onTap: () {
-                            context.go(BGDriverRouteNames.driverSignup);
+                            context.go(BGRiderRouteNames.riderSignup);
                           },
                           buttonText: TTexts.createAccount,
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

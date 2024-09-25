@@ -64,8 +64,8 @@ class _EarningsScreenState extends State<EarningsScreen> {
                         Expanded(
                           child: EarningOptionWidget(
                             onTap: () {
-                              context.push(
-                                  BGRouteNames.driverWithdrawEarningScreen);
+                              context.push(BGDriverRouteNames
+                                  .driverWithdrawEarningScreen);
                             },
                             earningIcon: Iconsax.money_send,
                             containerText: TTexts.earningWithdrawalTitle,
@@ -77,8 +77,8 @@ class _EarningsScreenState extends State<EarningsScreen> {
                         Expanded(
                           child: EarningOptionWidget(
                             onTap: () {
-                              context.push(
-                                  BGRouteNames.driverTransactionHistoryScreen);
+                              context.push(BGDriverRouteNames
+                                  .driverTransactionHistoryScreen);
                             },
                             earningIcon: Iconsax.activity,
                             containerText: TTexts.earningHistoryTitle,
@@ -90,7 +90,8 @@ class _EarningsScreenState extends State<EarningsScreen> {
                         Expanded(
                           child: EarningOptionWidget(
                             onTap: () {
-                              context.push(BGRouteNames.driverInsightScreen);
+                              context
+                                  .push(BGDriverRouteNames.driverInsightScreen);
                             },
                             earningIcon: Iconsax.calendar,
                             containerText: TTexts.earningInsightsTitle,

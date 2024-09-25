@@ -94,7 +94,7 @@ class _FirstTabState extends State<FirstTab> {
         const SizedBox(height: TSizes.spaceBtwSections),
         SaveButtonWidget(
           onTap: () {
-            context.push(BGRouteNames.driverWithdrawEarningScreen);
+            context.push(BGDriverRouteNames.driverWithdrawEarningScreen);
           },
           buttonText: TTexts.firstTabWithdrawEarningBtnText,
         ),

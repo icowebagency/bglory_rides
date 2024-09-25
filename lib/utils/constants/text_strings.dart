@@ -34,7 +34,7 @@ class TTexts {
   static const String dateOfBirth = "Date of Birth";
   static const String email = "E-Mail";
   static const String nextOfKinName = "Next of Kin Name";
-  static const String nextOfKinNamesubTitle = "Your next of Kin Name";
+  static const String nextOfKinNameSubTitle = "Your next of Kin Name";
   static const String nextOfKinNumber = "Next of Kin Phone Number";
   static const String gender = "Select one";
   static const String genderTitle = "Gender";
@@ -59,7 +59,7 @@ class TTexts {
   static const String loginContinueButtonTitle = "Continue ";
 
   // -- Driver Verification Texts
-  static const String driverVerfTitle = "Enter Code";
+  static const String driverVerifyTitle = "Enter Code";
   static const String driverOptionTitle =
       "How do you want to earn as a BG Driver?";
   static const String driverAlreadyHaveAnAccount = "Already have an account? ";
@@ -74,6 +74,7 @@ class TTexts {
   static const String driverPaymentDetailsTitle = "Payment Details";
   static const String driverTakeAgain = "Take Again";
   static const String driverConfirm = "Confirm";
+  static const String generalRetakeTitle = "Retake";
 
   static const String driverVehicleLicense = "Vehicle license";
   static const String driverBankName = "Bank Name";
@@ -866,5 +867,72 @@ class TTexts {
   static const String driverCallOptionSheetInAppCallTitle = 'In-app call';
   static const String driverCallOptionSheetPhoneCarrierCallTitle =
       'Phone carrier call';
-// static const String supportCallTitle  = '';
+
+  /// Rider section below
+// Onboarding
+  static const String riderOnboardingTitleOne = 'Your ride is on the way!';
+  static const String riderOnboardingTitleTwo =
+      'Get moving with just one click';
+  static const String riderOnboardingTitleThree =
+      'On-demand rides, anytime, anywhere';
+  static const String riderOnboardingSubTitleOne =
+      'Sit back, relax, and track your driver\'s arrival in real-time.';
+  static const String riderOnboardingSubTitleTwo =
+      'No hassle, BGlory Rides provides an easy platform to book rides and get you to your destination.';
+  static const String riderOnboardingSubTitleThree =
+      'With BGlory Rides, no more waiting in queues to catch a ride';
+
+  // Rider Signup
+  static const String riderSignupTitle = 'Enjoy your ride';
+  static const String riderSignupSubTitle =
+      'Sign up to become a BGlory passenger using your phone number or email';
+
+  // Verification screen
+  static const String riderVerificationReceiveCodeTitle = 'Receive code by ';
+  static const String riderVerificationReceiveCodeByEmailTitle = 'e-mail';
+
+  // Rider Details Screen
+  static const String riderDetailsScreenTitle = 'What\'s your name?';
+  static const String riderDetailsScreenYourFirstNameHintTitle =
+      'Your first name';
+  static const String riderDetailsScreenYourLastNameHintTitle =
+      'Your last name';
+
+  // Profile Picture Upload Screen
+  static const String riderProfilePictureUploadTitle = 'Add a profile picture';
+  static const String riderProfilePictureUploadSubTitle =
+      'Add a profile picture so drivers can identify you';
+  static const String riderProfilePictureUploadTermsOne =
+      'Face the camera and make sure your eyes and mouth are clearly visible.';
+  static const String riderProfilePictureUploadTermsTwo =
+      'Make sure the photo is taken in a well lit area and has no filter or alterations.';
+  static const String riderProfilePictureUploadTermsAndCondition =
+      'By uploading, I agree that uploading a fake or inappropriate picture will be rejected';
+
+// Rider Add Card
+  static const String riderAddCardTitle = 'Add a payment card';
+  static const String riderAddCardNameOnCardTitle = 'Name on card';
+  static const String riderAddCardCardNumberTitle = 'Card number';
+  static const String riderAddCardExpirationDateTitle = 'Expiration date';
+  static const String riderAddCardCVVTitle = 'CVV';
+  static const String riderAddCardExpirationDate = 'MM-YYYY';
+  static const String riderAddCardCVVToolTipTitle =
+      'The 3-digit code on the back of your card';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
 }

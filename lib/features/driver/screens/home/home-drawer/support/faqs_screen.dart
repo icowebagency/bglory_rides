@@ -164,40 +164,43 @@ class _FaqsScreenState extends State<FaqsScreen> {
                   FaqSubHeadings(
                     faqTitle: TTexts.faqGettingStarted,
                     faqOnTap: () {
-                      context.push(BGRouteNames.driverFaqGettingStartedScreen);
+                      context.push(
+                          BGDriverRouteNames.driverFaqGettingStartedScreen);
                     },
                   ),
                   FaqSubHeadings(
                     faqTitle: TTexts.faqUsingTheApp,
                     faqOnTap: () {
-                      context.push(BGRouteNames.driverFaqUsingTheAppScreen);
+                      context
+                          .push(BGDriverRouteNames.driverFaqUsingTheAppScreen);
                     },
                   ),
                   FaqSubHeadings(
                     faqTitle: TTexts.faqPaymentAndEarnings,
                     faqOnTap: () {
-                      context.push(
-                          BGRouteNames.driverFaqPaymentsAndEarningsScreen);
+                      context.push(BGDriverRouteNames
+                          .driverFaqPaymentsAndEarningsScreen);
                     },
                   ),
                   FaqSubHeadings(
                     faqTitle: TTexts.faqDriverSupport,
                     faqOnTap: () {
-                      context.push(BGRouteNames.driverFaqDriverSupportScreen);
+                      context.push(
+                          BGDriverRouteNames.driverFaqDriverSupportScreen);
                     },
                   ),
                   FaqSubHeadings(
                     faqTitle: TTexts.faqAccountAndSettings,
                     faqOnTap: () {
-                      context.push(
-                          BGRouteNames.driverFaqDAccountAndSettingsScreen);
+                      context.push(BGDriverRouteNames
+                          .driverFaqDAccountAndSettingsScreen);
                     },
                   ),
                   FaqSubHeadings(
                     faqTitle: TTexts.faqGeneralQuestions,
                     faqOnTap: () {
-                      context
-                          .push(BGRouteNames.driverFaqGeneralQuestionsScreen);
+                      context.push(
+                          BGDriverRouteNames.driverFaqGeneralQuestionsScreen);
                     },
                     showDivider: false,
                   ),

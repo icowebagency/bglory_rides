@@ -65,7 +65,8 @@ class WithdrawPinWidget extends StatelessWidget {
               Expanded(
                 child: SaveButtonWidget(
                   onTap: () {
-                    context.go(BGRouteNames.driverWithdrawSuccessfulScreen);
+                    context
+                        .go(BGDriverRouteNames.driverWithdrawSuccessfulScreen);
                   },
                   buttonText: TTexts.withdrawButtonSecondText,
                 ),

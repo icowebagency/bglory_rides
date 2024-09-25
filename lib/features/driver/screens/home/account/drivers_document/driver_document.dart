@@ -149,7 +149,7 @@ class _DriverDocumentScreenState extends State<DriverDocumentScreen> {
                     ),
                     DriverEditButton(
                       onTap: () {
-                        context.go(BGRouteNames.driverDocumentEdit);
+                        context.go(BGDriverRouteNames.driverDocumentEdit);
                       },
                     ),
                   ],
@@ -168,7 +168,9 @@ class DriverEditButton extends StatelessWidget {
     super.key,
     required this.onTap,
   });
+
   final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return Center(

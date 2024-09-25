@@ -229,7 +229,7 @@ class _PaymentDetailsEditScreenState extends State<PaymentDetailsEditScreen> {
                         ),
                         SaveButtonWidget(
                           onTap: () {
-                            context.go(BGRouteNames.driverAccountScreen);
+                            context.go(BGDriverRouteNames.driverAccountScreen);
                           },
                         ),
                       ],

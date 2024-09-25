@@ -312,7 +312,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                 const SizedBox(height: TSizes.spaceBtwItems),
                 SaveButtonWidget(
                   onTap: () {
-                    context.push(BGRouteNames.driverDownloadReceipt);
+                    context.push(BGDriverRouteNames.driverDownloadReceipt);
                   },
                   buttonText: TTexts.tripHistoryDetailsButtonTitle,
                 ),
