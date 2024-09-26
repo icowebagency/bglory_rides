@@ -110,7 +110,7 @@ class DriverData {
   final String? bankAccountNumber;
 
   @JsonKey(name: DriverKey.isProfileComplete)
-  final String? isProfileComplete;
+  final bool? isProfileComplete;
 
   @JsonKey(name: DriverKey.status)
   final String? status;
@@ -129,6 +129,16 @@ class DriverData {
 
   @JsonKey(name: DriverKey.balance)
   final double? balance;
+  @JsonKey(name: DriverKey.completedRides)
+  final double? completedRides;
+  @JsonKey(name: DriverKey.rejectedRides)
+  final double? rejectedRides;
+  @JsonKey(name: DriverKey.canceledRides)
+  final double? canceledRides;
+  @JsonKey(name: DriverKey.driveRate)
+  final double? driveRate;
+  @JsonKey(name: 'is_transaction_pin_set')
+  final bool? isTransactionPinSet; // New field added
 
   DriverData({
     this.id,
@@ -172,11 +182,16 @@ class DriverData {
     this.earnings,
     this.trips,
     this.balance,
+    this.completedRides,
+    this.rejectedRides,
+    this.canceledRides,
+    this.driveRate,
+    this.isTransactionPinSet,
   });
 
   bool? get profileIsIncomplete => (isProfileComplete == null
       ? null
-      : (int.parse(isProfileComplete!) == 0 ? true : false));
+      : !isProfileComplete!);
 
   factory DriverData.fromJson(Map<String, dynamic> json) =>
       _$DriverDataFromJson(json);

@@ -27,6 +27,7 @@ class VehicleInfoStep extends StatelessWidget {
     required this.onUpateVehicleModel,
     required this.onTakeVehicleExteriorPhoto,
     required this.onTakeVehicleInteriorPhoto,
+    this.autovalidateMode = AutovalidateMode.disabled,
   })  : _vehicleSelectedValue = vehicleSelectedValue,
         _vehicleList = vehicleManfacturersList,
         _vehicleModelList = vehicleModelList,
@@ -50,11 +51,13 @@ class VehicleInfoStep extends StatelessWidget {
   final ValueChanged<String?> onUpateVehicleModel;
   final ValueChanged<BuildContext> onTakeVehicleExteriorPhoto;
   final ValueChanged<BuildContext> onTakeVehicleInteriorPhoto;
+  final AutovalidateMode autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

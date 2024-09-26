@@ -6,7 +6,7 @@ import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart
 import 'package:bglory_rides/common/widgets/driver_info_upload_widget.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_emailFormTab.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNumberTab.dart';
-import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_info_step.dart';
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_license_info.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
@@ -85,6 +85,14 @@ class _DriverMotorcycleInformationState
     GlobalKey<FormState>()
   ];
 
+  final _formValidateMode = [
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+    AutovalidateMode.onUserInteraction,
+  ];
+
   final _genderList = ConstantValues.genderList;
 
   @override
@@ -107,6 +115,8 @@ class _DriverMotorcycleInformationState
 
   /// continueStep function
   continueStep() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     bool canGoNext = false;
     canGoNext = (_formKeys[currentStep].currentState?.validate() ?? false);
 
@@ -125,6 +135,7 @@ class _DriverMotorcycleInformationState
     }
 
     if (!canGoNext) {
+      _formValidateMode[currentStep] = AutovalidateMode.always;
       return;
     }
 
@@ -191,7 +202,7 @@ class _DriverMotorcycleInformationState
       log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
 
       ref
-          .read(driverRegistrationProvider.notifier)
+          .read(registrationNotifierProvider.notifier)
           .onRegister(
             profileData: ref.read(driverRegistrationDetailsProvider),
             files: ref.read(driverRegistrationFilesProvider),
@@ -471,6 +482,7 @@ class _DriverMotorcycleInformationState
                             content: DriverInfoStep(
                               profilePic: profilePic,
                               formKey: _formKeys[0],
+                              autovalidateMode: _formValidateMode[0],
                               fullname: _fullname,
                               address: _address,
                               dateOfBirth: _dateOfBirth,
@@ -492,6 +504,7 @@ class _DriverMotorcycleInformationState
                             title: const Text(''),
                             content: DriverLicenseInfo(
                               formKey: _formKeys[1],
+                              autovalidateMode: _formValidateMode[1],
                               licenseNumber: _licenseNumber,
                               licenseExpiry: _licenseExpiry,
                               driversLicensePhoto: driversLicensePhoto,
@@ -511,6 +524,7 @@ class _DriverMotorcycleInformationState
                             title: const Text(''),
                             content: Form(
                               key: _formKeys[2],
+                              autovalidateMode: _formValidateMode[2],
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -806,6 +820,7 @@ class _DriverMotorcycleInformationState
                               ),
                               child: Form(
                                 key: _formKeys[4],
+                                autovalidateMode: _formValidateMode[4],
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -932,7 +947,7 @@ class _DriverMotorcycleInformationState
                                     TextFormField(
                                       keyboardType: TextInputType.number,
                                       controller: _bankAccountNumber,
-                                      validator: TValidator.validNumber,
+                                      validator: TValidator.validAccountNumber,
                                       decoration: InputDecoration(
                                         hintText:
                                             TTexts.driverBankHolderNumberHint,
@@ -971,7 +986,7 @@ class _DriverMotorcycleInformationState
             Consumer(builder: (context, ref, child) {
               return Visibility(
                 visible: ref.watch(
-                  driverRegistrationProvider,
+                  registrationNotifierProvider,
                 ),
                 child: Container(
                   color: Colors.grey.withOpacity(0.4),

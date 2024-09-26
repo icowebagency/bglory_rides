@@ -1,11 +1,10 @@
 import 'package:bglory_rides/features/driver/data/model/driver_dashboard/driver_dashboard_data.dart';
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
+import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../../utils/secrets/api_constants.dart';
 
 part 'home_provider.freezed.dart';
 
@@ -40,7 +39,7 @@ class HomeState with _$HomeState {
   factory HomeState.initial() => HomeState(
       dashboardData: DriverDashboardData(
         todaysEarnings: 0,
-        averageRating: '--',
+        averageRating: 0,
         completedTrips: 0,
         driveRate: 0,
         acceptanceRate: 0,

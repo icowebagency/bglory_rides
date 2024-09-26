@@ -53,7 +53,7 @@ class _DriverlicenseGuidlineScreenState
                 ),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.sizeOf(context).height * 0.3,
                   decoration: BoxDecoration(
                     color: TColors.containerBackgroundColor,
                     borderRadius: BorderRadius.circular(10),

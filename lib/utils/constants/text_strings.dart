@@ -386,6 +386,12 @@ class TTexts {
   static const String withdrawPaymentHint =
       ' 0209004644 - Awoyemi Damola - GT Bank';
 
+    static const String setWithdrawModalTitle = 'Set Transaction Pin';
+    static const String setWithdrawModalTitleConfirm = 'Confirm Transaction Pin';
+    static const String setWithdrawModalText = 'To complete this transaction, please enter your 4-digit pin ';
+    static const String setWithdrawModalTextConfirmation = 'Confirm your transaction pin, please enter your 4-digit pin ';
+
+
   // Withdraw successful section
   static const String withdrawSuccessfulButtonText = 'Go home';
   static const String withdrawSuccessfulHeadingText = 'Withdraw\n Successful';
