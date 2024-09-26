@@ -21,7 +21,6 @@ class EmailFormTab extends ConsumerWidget {
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

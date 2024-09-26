@@ -24,8 +24,8 @@ class DriverInfoUploadWidget extends StatelessWidget {
           3,
         ],
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.13,
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height * 0.13,
           decoration: const BoxDecoration(
             color: TColors.containerBackgroundColor,
           ),

@@ -1,11 +1,13 @@
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/driver_activity_breakdown_bottomsheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/earning_target_bottomsheet.dart';
 import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/pie_chart.dart';
+import 'package:bglory_rides/features/driver/screens/home/provider/driver_info/driver_info.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -22,8 +24,8 @@ class EarningsScreen extends StatefulWidget {
 class _EarningsScreenState extends State<EarningsScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -48,12 +50,23 @@ class _EarningsScreenState extends State<EarningsScreen> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     FittedBox(
-                      child: Text(
-                        TTexts.earningAmountTitle,
-                        style:
-                            Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      child: Consumer(
+                        builder: (context, ref, child) {
+                          return Text(
+                            ref
+                                    .watch(driverInfoProvider)
+                                    .driverData
+                                    ?.balance
+                                    .toString() ??
+                                '0.00',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(
                                   fontFamily: 'Notosans',
                                 ),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -133,35 +146,47 @@ class _EarningsScreenState extends State<EarningsScreen> {
                         color: TColors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const FittedBox(
-                        child: Row(
-                          children: [
-                            EarningRateWidget(
-                              earningColor: TColors.success,
-                              earningRateText: TTexts.earningDrivingRateTitle,
-                              percentageText:
-                                  TTexts.earningDrivingRatePercentage,
-                            ),
-                            EarningRateWidget(
-                              earningColor: TColors.warning,
-                              earningRateText:
-                                  TTexts.earningCompletedRidesTitle,
-                              percentageText:
-                                  TTexts.earningCompletedRidesPercentage,
-                            ),
-                            EarningRateWidget(
-                              earningColor: TColors.error,
-                              earningRateText: TTexts.earningRejectedRidesTitle,
-                              percentageText:
-                                  TTexts.earningRejectedRidesPercentage,
-                            ),
-                            EarningRateWidget(
-                              earningColor: TColors.error,
-                              earningRateText: TTexts.earningCanceledRidesTitle,
-                              percentageText:
-                                  TTexts.earningCanceledRidesPercentage,
-                            ),
-                          ],
+                      child: FittedBox(
+                        child: Consumer(
+                          builder: (context, ref, child) {
+                            final driverData =
+                                ref.watch(driverInfoProvider).driverData;
+                            return Row(
+                              children: [
+                                EarningRateWidget(
+                                  earningColor: TColors.success,
+                                  earningRateText:
+                                      TTexts.earningDrivingRateTitle,
+                                  percentageText:
+                                      driverData?.driveRate?.toString() ?? '0',
+                                ),
+                                EarningRateWidget(
+                                  earningColor: TColors.warning,
+                                  earningRateText:
+                                      TTexts.earningCompletedRidesTitle,
+                                  percentageText:
+                                      driverData?.completedRides?.toString() ??
+                                          '0',
+                                ),
+                                EarningRateWidget(
+                                  earningColor: TColors.error,
+                                  earningRateText:
+                                      TTexts.earningRejectedRidesTitle,
+                                  percentageText:
+                                      driverData?.rejectedRides?.toString() ??
+                                          '0',
+                                ),
+                                EarningRateWidget(
+                                  earningColor: TColors.error,
+                                  earningRateText:
+                                      TTexts.earningCanceledRidesTitle,
+                                  percentageText:
+                                      driverData?.canceledRides?.toString() ??
+                                          '0',
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                     ),

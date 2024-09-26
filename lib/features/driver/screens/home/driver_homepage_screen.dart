@@ -1,6 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:bglory_rides/features/driver/screens/home/provider/home/home_provider.dart';
 import 'package:bglory_rides/features/driver/screens/home/hailing/pickup_bottom_sheet.dart';
-import 'package:bglory_rides/features/driver/screens/home/provider/home_provider.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/driver_box_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
@@ -28,7 +28,6 @@ class DriverHomePageScreen extends ConsumerStatefulWidget {
 class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
 // initial rating value
   // Global key to control the scaffold
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   double _currentRating = 2.1;
   bool status = false;
 
@@ -311,7 +310,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                     children: [
                                       Expanded(
                                         child: DriverBox(
-                                          boxTitle: driverRate.toString(),
+                                          boxTitle: '${driverRate.toString()}%',
                                           boxSubTitle:
                                               TTexts.driverDriveRateTitle,
                                           boxIcon: Icons.rate_review,
@@ -326,7 +325,8 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                       /// Driver Acceptance rate
                                       Expanded(
                                         child: DriverBox(
-                                          boxTitle: acceptanceRate.toString(),
+                                          boxTitle:
+                                              '${acceptanceRate.toString()}%',
                                           boxSubTitle:
                                               TTexts.driverAcceptanceRateTitle,
                                           boxIcon: Iconsax.wallet,
