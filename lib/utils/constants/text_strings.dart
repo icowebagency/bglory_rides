@@ -918,9 +918,18 @@ class TTexts {
   static const String riderAddCardExpirationDate = 'MM-YYYY';
   static const String riderAddCardCVVToolTipTitle =
       'The 3-digit code on the back of your card';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
+
+  // Transaction Pin
+  static const String riderTransactionPinTitle = 'Set a transaction pin';
+  static const String riderTransactionPinSubTitle =
+      'Kindly enter a 4-digit pin to be able to process payment transactions';
+
+// Confirm Transaction Pin
+  static const String riderConfirmTransactionPinTitle = 'Confirm Pin';
+  static const String riderConfirmTransactionPinButton = 'Confirm';
+
+  // Rider HomeScreen
+  static const String riderSearchHintTitle = 'Enter destination';
 // static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';
