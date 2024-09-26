@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
-import 'package:bglory_rides/features/driver/data/repository/driver_repository.dart';
+import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../utils/secrets/api_constants.dart';
+part 'driver_registration_provider.g.dart';
+
 
 final driverRegistrationDetailsProvider = StateProvider<Map<String, String>>(
   (ref) => {},
@@ -17,23 +20,10 @@ final photoPickerProvider = Provider<ImagePicker>(
   (ref) => ImagePicker(),
 );
 
-final driverRegistrationProvider =
-    StateNotifierProvider<RegistrionStateNotifier, bool>(
-  (ref) => RegistrionStateNotifier(
-    driverRepositoryContract: ref.watch(driverRepositoryProvider),
-    ref: ref,
-  ),
-);
-
-class RegistrionStateNotifier extends StateNotifier<bool> {
-  final DriverRepositoryContract driverRepositoryContract;
-
-  bool Function()? validate;
-  final Ref ref;
-
-  RegistrionStateNotifier(
-      {required this.driverRepositoryContract, required this.ref})
-      : super(false);
+@riverpod
+class RegistrationNotifier extends _$RegistrationNotifier {
+  @override
+  bool build() => false;
 
   Future<bool> onRegister(
       {required Map<String, String> profileData,
@@ -41,8 +31,10 @@ class RegistrionStateNotifier extends StateNotifier<bool> {
       Function(String)? onError}) async {
     state = true;
 
-    final result = await driverRepositoryContract.completeDriverProfile(
-        profileData: profileData, files: files);
+    final result = await ref
+        .read(driverRepositoryProvider)
+        .completeDriverProfile(profileData: profileData, files: files);
+
     state = false;
 
     if (result is Failure) {

@@ -20,7 +20,6 @@ class VehicleInformationEditScreen extends StatefulWidget {
 class _VehicleInformationEditScreenState
     extends State<VehicleInformationEditScreen> {
   _VehicleInformationEditScreenState() {
-    _selectedValue = _genderList[0];
     _vehicleSelectedValue = _vehicleList[0];
     _modelSelectedValue = _allVehicleModels[0];
     _yearSelectedValue = _yearList[0];
@@ -120,12 +119,6 @@ class _VehicleInformationEditScreenState
     'Purple',
   ];
 
-  final _genderList = [
-    "Male",
-    "Female",
-  ];
-
-  String? _selectedValue;
   String? _vehicleSelectedValue;
   String? _modelSelectedValue;
   String? _yearSelectedValue;
@@ -133,7 +126,7 @@ class _VehicleInformationEditScreenState
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
         title: const Text(TTexts.vehicleInformationAppBarTitle),

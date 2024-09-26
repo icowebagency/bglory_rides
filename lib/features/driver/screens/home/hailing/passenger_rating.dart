@@ -17,8 +17,8 @@ class PassengerRaatingScreen extends StatefulWidget {
 class _PassengerRaatingScreenState extends State<PassengerRaatingScreen> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.sizeOf(context).height;
+    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: SafeArea(
         child: Padding(

@@ -1,10 +1,17 @@
+import 'dart:developer';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:bglory_rides/common/widgets/loading_widget.dart';
+import 'package:bglory_rides/features/driver/screens/home/provider/driver_info/driver_info.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/custom_drawer.dart';
 import 'package:bglory_rides/features/driver/screens/home/widgets/map_custom_icon_widget.dart';
+import 'package:bglory_rides/routing/driver_routing.dart';
+import 'package:bglory_rides/utils/extensions/router_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class DriverHomeShell extends StatefulWidget {
+class DriverHomeShell extends ConsumerStatefulWidget {
   const DriverHomeShell({Key? key, required this.navigationShell})
       : super(key: key);
   final StatefulNavigationShell navigationShell;
@@ -19,11 +26,21 @@ class DriverHomeShell extends StatefulWidget {
   }
 
   @override
-  State<DriverHomeShell> createState() => _DriverHomeWrapperState();
+  ConsumerState<DriverHomeShell> createState() => _DriverHomeWrapperState();
 }
 
-class _DriverHomeWrapperState extends State<DriverHomeShell> {
+class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
   int _drawerSelectedIndex = 0;
+
+  // Define the paths that belong to the StatefulShellBranches
+  final List<String> _shellRoutes = [
+    BGRouteNames.driverHomePageScreen,
+    BGRouteNames.driverEarnings,
+    BGRouteNames.driverTripHistory,
+    BGRouteNames.driverSettings,
+    BGRouteNames.driverSafety,
+    BGRouteNames.driverHelpAndSupport,
+  ];
 
   // Initial selected drawer item
   final _scaffoldkey = GlobalKey<ScaffoldState>();
@@ -36,22 +53,34 @@ class _DriverHomeWrapperState extends State<DriverHomeShell> {
     });
   }
 
+  void startRouteListening() {
+    DriverRouting.router.backButtonDispatcher;
+  }
+
   bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    if (widget.navigationShell.currentIndex != 0) {
+    final uri = DriverRouting.router.location;
+    log('INTERCEPTOR: $uri');
+
+    if (widget.navigationShell.currentIndex != 0 &&
+        _shellRoutes.contains(uri)) {
+      // Navigate back to the DriverHome tab if we're not on it
       _onItemTapped(0);
-      return true;
+      return true; // Stop default back button behavior
     }
+    // Allow default back button behavior otherwise
     return false;
   }
 
   @override
   void initState() {
     super.initState();
-    // final String location =
-    //     GoRouter.of(context).routeInformationProvider.value.uri.toString();
-    // _selectedIndex = _routeIndexMap[location] ?? 0;
+
     BackButtonInterceptor.add(myInterceptor,
         name: widget.name, context: context);
+
+    if (ref.read(driverInfoProvider).driverData == null) {
+      ref.read(driverInfoProvider.notifier).getDriverInfo();
+    } else {}
   }
 
   @override
@@ -66,20 +95,23 @@ class _DriverHomeWrapperState extends State<DriverHomeShell> {
       key: _scaffoldkey,
       body: Stack(
         children: [
-          widget.navigationShell,
+          LoadingWidget(
+            isLoading: ref.watch(driverInfoProvider).driverData == null,
+            child: widget.navigationShell,
+          ),
           Positioned(
-            top: 30,
             left: 0,
-            child: MapCustomIcons(
-              onTap: () {
-                _scaffoldkey.currentState?.openDrawer();
-              },
-              containerIcon: Icons.menu_rounded,
-              myMargin: EdgeInsets.only(
-                top: MediaQuery.sizeOf(context).height / 32,
-                left: 20,
+            child: SafeArea(
+              child: MapCustomIcons(
+                onTap: () {
+                  _scaffoldkey.currentState?.openDrawer();
+                },
+                containerIcon: Icons.menu_rounded,
+                myMargin: const EdgeInsets.only(
+                  left: 20,
+                ),
+                scaffoldKey: _scaffoldkey,
               ),
-              scaffoldKey: _scaffoldkey,
             ),
           ),
         ],

@@ -9,7 +9,7 @@ part of 'driver_dashboard_data.dart';
 DriverDashboardData _$DriverDashboardDataFromJson(Map<String, dynamic> json) =>
     DriverDashboardData(
       todaysEarnings: (json['todays_earnings'] as num).toInt(),
-      averageRating: json['average_rating'] as String,
+      averageRating: (json['average_rating'] as num).toInt(),
       completedTrips: (json['completed_trips'] as num).toInt(),
       driveRate: (json['drive_rate'] as num).toInt(),
       acceptanceRate: (json['acceptance_rate'] as num).toInt(),

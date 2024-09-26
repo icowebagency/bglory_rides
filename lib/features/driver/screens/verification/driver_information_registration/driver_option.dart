@@ -1,4 +1,4 @@
-import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/driver_registration_provider.dart';
+import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
 import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +72,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.13,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
                     decoration: BoxDecoration(
                       color:
                           dark ? TColors.white : TColors.grey.withOpacity(0.3),
@@ -136,7 +136,7 @@ class _DriverOptionScreenState extends State<DriverOptionScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.13,
+                    height: MediaQuery.sizeOf(context).height * 0.13,
                     decoration: BoxDecoration(
                       color:
                           dark ? TColors.white : TColors.grey.withOpacity(0.3),

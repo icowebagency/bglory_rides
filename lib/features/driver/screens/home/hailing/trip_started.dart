@@ -139,7 +139,7 @@ class _TripStartedState extends State<TripStarted> {
         return AlertDialog(
           backgroundColor: TColors.dragableBottomSheetColor,
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.55,
+            height: MediaQuery.sizeOf(context).height * 0.55,
             //  width: double.infinity,
             child: Center(
               child: SingleChildScrollView(
@@ -222,7 +222,6 @@ class _TripStartedState extends State<TripStarted> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(

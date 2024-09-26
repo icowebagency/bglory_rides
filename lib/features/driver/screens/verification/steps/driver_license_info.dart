@@ -16,6 +16,7 @@ class DriverLicenseInfo extends StatelessWidget {
     required this.driversLicensePhoto,
     required this.onPickDriverLicenseExpiryDate,
     required this.onPickDriverLicensePhoto,
+    this.autovalidateMode = AutovalidateMode.disabled,
   })  : _formKey = formKey,
         _licenseNumber = licenseNumber,
         _licenseExpiry = licenseExpiry;
@@ -26,11 +27,13 @@ class DriverLicenseInfo extends StatelessWidget {
   final File? driversLicensePhoto;
   final void Function(BuildContext context) onPickDriverLicenseExpiryDate;
   final void Function(BuildContext context) onPickDriverLicensePhoto;
+  final AutovalidateMode autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

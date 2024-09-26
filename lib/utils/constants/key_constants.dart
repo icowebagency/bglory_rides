@@ -47,15 +47,17 @@ class DriverKey {
   static const String earnings = "earnings";
   static const String trips = "trips";
   static const String balance = "balance";
-  static const String otpExpiresAt = "otp_expires_at"; 
+  static const String otpExpiresAt = "otp_expires_at";
   static const String totalEarnings = "total_earnings";
   static const String totalWithdrawals = "total_withdrawals";
   static const String availableBalance = "available_balance";
   static const String transactionHistory = "transaction_history";
-  static const String todaysEarnings= "todays_earnings";
-  static const String averageRating= "average_rating";
-  static const String completedTrips= "completed_trips";
-  static const String driveRate= "drive_rate";
-  static const String acceptanceRate= "acceptance_rate";
-
+  static const String todaysEarnings = "todays_earnings";
+  static const String averageRating = "average_rating";
+  static const String completedTrips = "completed_trips";
+  static const String driveRate = "drive_rate";
+  static const String acceptanceRate = "acceptance_rate";
+  static const String completedRides = "completed_rides";
+  static const String rejectedRides = "rejected_rides";
+  static const String canceledRides = "canceled_rides";
 }
