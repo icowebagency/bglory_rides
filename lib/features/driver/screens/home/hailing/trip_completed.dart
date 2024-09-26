@@ -134,7 +134,7 @@ class _TripCompletedState extends State<TripCompleted> {
             SaveButtonWidget(
               onTap: () {
                 Navigator.pop(context);
-                context.push(BGRouteNames.driverTripInvoiceScreen);
+                context.push(BGDriverRouteNames.driverTripInvoiceScreen);
               },
               buttonText: TTexts.tripCompletedButtonTitle,
             )

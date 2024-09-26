@@ -8,6 +8,7 @@ import 'package:bglory_rides/features/driver/screens/auth/widgets/login_phoneNum
 import 'package:bglory_rides/features/driver/screens/verification/driver_information_registration/provider/driver_registration_provider.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -189,7 +190,7 @@ class _DriverInformationScreenState
       });
     } else {
       () {
-        context.go(BGRouteNames.driverHomePageScreen);
+        context.go(BGDriverRouteNames.driverHomePageScreen);
       };
 
       log(jsonEncode(ref.read(driverRegistrationDetailsProvider)));
@@ -205,7 +206,7 @@ class _DriverInformationScreenState
           .then(
         (successful) {
           if (successful) {
-            context.go(BGRouteNames.driverHomePageScreen);
+            context.go(BGDriverRouteNames.driverHomePageScreen);
           }
         },
       );
@@ -316,6 +317,7 @@ class _DriverInformationScreenState
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -328,11 +330,12 @@ class _DriverInformationScreenState
                 },
                 child: Column(
                   children: [
-                    const Center(
+                    Center(
                       child: Image(
                         width: 100,
                         height: 100,
-                        image: AssetImage(TImages.driverLogo),
+                        image: AssetImage(
+                            dark ? TImages.darkAppLogo : TImages.driverLogo),
                       ),
                     ),
                     const SizedBox(
@@ -519,7 +522,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleInsurance,
-      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
+      navPath: BGDriverRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
         if (value != null) {
@@ -534,7 +537,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleRoadWorthiness,
-      navPath: BGRouteNames.driverRoadWorthiness,
+      navPath: BGDriverRouteNames.driverRoadWorthiness,
     ).then(
       (value) {
         if (value != null) {
@@ -549,7 +552,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleLicense,
-      navPath: BGRouteNames.driverVehicleLicense,
+      navPath: BGDriverRouteNames.driverVehicleLicense,
     ).then(
       (value) {
         if (value != null) {
@@ -564,7 +567,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.proofOfOwnership,
-      navPath: BGRouteNames.driverProofOfOwnership,
+      navPath: BGDriverRouteNames.driverProofOfOwnership,
     ).then(
       (value) {
         if (value != null) {
@@ -579,7 +582,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleImageInterior,
-      navPath: BGRouteNames.driverInteriorGuideline,
+      navPath: BGDriverRouteNames.driverInteriorGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -594,7 +597,7 @@ class _DriverInformationScreenState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.vehicleImageExterior,
-      navPath: BGRouteNames.driverExteriorGuideline,
+      navPath: BGDriverRouteNames.driverExteriorGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -629,7 +632,7 @@ class _DriverInformationScreenState
     context
         .push<File?>(
       Uri(
-        path: BGRouteNames.driverLicenseGuideline,
+        path: BGDriverRouteNames.driverLicenseGuideline,
       ).toString(),
     )
         .then(
@@ -695,7 +698,7 @@ class _DriverInformationScreenState
   }
 
   void onUpdateProfilePicture(BuildContext context) {
-    context.push<File?>(BGRouteNames.driverUploadProfile).then(
+    context.push<File?>(BGDriverRouteNames.driverUploadProfile).then(
       (value) {
         if (value != null) {
           profilePic = value;

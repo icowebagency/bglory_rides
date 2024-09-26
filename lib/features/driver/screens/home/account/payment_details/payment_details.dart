@@ -120,7 +120,8 @@ class _PaymentDetailsScreenState extends State<PaymentDetailsScreen> {
                     ),
                     DriverEditButton(
                       onTap: () {
-                        context.go(BGRouteNames.driverPaymentDetailsEditScreen);
+                        context.go(
+                            BGDriverRouteNames.driverPaymentDetailsEditScreen);
                       },
                     ),
                   ],

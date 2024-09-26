@@ -103,7 +103,7 @@ class _PickupBottomSheetScreenState extends State<PickupBottomSheetScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        context.push(BGRouteNames.driverChatScreen);
+                        context.push(BGDriverRouteNames.driverChatScreen);
                       },
                       child: const CircleAvatar(
                         backgroundColor: TColors.primary,

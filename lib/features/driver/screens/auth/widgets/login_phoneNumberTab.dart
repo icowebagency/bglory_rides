@@ -4,6 +4,7 @@ import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_sta
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
@@ -38,7 +39,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.read(driverAuthProvider.notifier);
     final state = ref.watch(driverAuthProvider);
-
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -49,7 +50,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: TSizes.spaceBtwSections * 2,
+                height: TSizes.spaceBtwSections,
               ),
               const Text(TTexts.phoneNo),
               const SizedBox(
@@ -68,17 +69,30 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                   onChanged: (value) => ref
                       .read(phoneNumberText.notifier)
                       .state = value.completeNumber,
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(
-                      Iconsax.close_circle,
+                  decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        state.textFieldController.clear();
+                      },
+                      child: Icon(
+                        Iconsax.close_circle,
+                        size: 18,
+                        color: dark ? TColors.warning : TColors.dark,
+                      ),
                     ),
                     hintText: TTexts.signupPhoneHintText,
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: TColors.primary,
-                    )),
+                      borderSide: BorderSide(
+                        color: dark ? TColors.secondary : TColors.primary,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: dark ? TColors.white : TColors.primary,
+                      ),
+                    ),
                     labelText: TTexts.phoneNo,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(),
                     ),
                   ),
@@ -88,22 +102,23 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+
               Center(
                 child: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: TTexts.signupsigningUpAgreement,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: dark ? TColors.white : TColors.dark),
                     children: [
                       TextSpan(
                         text: TTexts.signupTermsOfService,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!
-                            .apply(color: Colors.blue),
+                            .copyWith(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             // Navigate to Terms of Service Screen here.
@@ -111,7 +126,8 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                       ),
                       TextSpan(
                         text: TTexts.driverAndText,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: dark ? TColors.white : TColors.dark),
                       ),
                       TextSpan(
                         text: TTexts.privacyPolicy,
@@ -153,7 +169,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
-                              path: BGRouteNames.driverVerification,
+                              path: BGDriverRouteNames.driverVerification,
                               queryParameters: {
                                 KeyConstant.target: jsonEncode(target),
                               },
@@ -185,7 +201,7 @@ class LoginPhoneNumberFormTab extends ConsumerWidget {
         const SnackBar(
           content: Text(
             'Enter a valid Nigerian number',
-            style: TextStyle(color: Colors.red),
+            style: TextStyle(color: TColors.error),
           ),
         ),
       );

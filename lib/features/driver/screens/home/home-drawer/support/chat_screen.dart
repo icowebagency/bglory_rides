@@ -52,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.push(BGRouteNames.driverCallScreen);
+                    context.push(BGDriverRouteNames.driverCallScreen);
                   },
                   child: const CircleAvatar(
                     backgroundColor: TColors.primary,

@@ -95,7 +95,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                             ),
                             IconButton(
                               onPressed: () {
-                                context.go(BGRouteNames.driverHomePageScreen);
+                                context.go(
+                                    BGDriverRouteNames.driverHomePageScreen);
                               },
                               icon: const Icon(
                                 Iconsax.close_circle,
@@ -133,7 +134,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ),
                     child: ListTile(
                       onTap: () {
-                        context.push(BGRouteNames.driverChatScreen);
+                        context.push(BGDriverRouteNames.driverChatScreen);
                       },
                       leading: const Icon(
                         Iconsax.sms_tracking,
@@ -157,7 +158,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ),
                     child: ListTile(
                       onTap: () {
-                        context.push(BGRouteNames.driverCallUsScreen);
+                        context.push(BGDriverRouteNames.driverCallUsScreen);
                       },
                       leading: const Icon(
                         Iconsax.call_outgoing,
@@ -188,7 +189,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ),
                     child: ListTile(
                       onTap: () {
-                        context.push(BGRouteNames.driverFaqsScreen);
+                        context.push(BGDriverRouteNames.driverFaqsScreen);
                       },
                       leading: const Icon(
                         Iconsax.search_status,

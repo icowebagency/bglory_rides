@@ -132,7 +132,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     // Profile Icon Button
                     IconButton(
                       onPressed: () {
-                        context.push(BGRouteNames.driverAccountScreen);
+                        context.push(BGDriverRouteNames.driverAccountScreen);
                       },
                       icon: const Icon(
                         Icons.keyboard_arrow_right_rounded,

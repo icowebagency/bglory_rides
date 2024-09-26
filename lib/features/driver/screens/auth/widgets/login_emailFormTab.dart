@@ -4,6 +4,7 @@ import 'package:bglory_rides/features/driver/screens/auth/auth_provider/auth_sta
 import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_auth_state_notifer.dart';
 import 'package:bglory_rides/features/driver/screens/auth/widgets/goto_sign_in.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/gestures.dart';
@@ -28,6 +29,7 @@ class LoginEmailFormTab extends ConsumerWidget {
     required this.driverAuthProvider,
     required this.isLogin,
   });
+
   final _formKey = GlobalKey<FormState>();
   final AutoDisposeStateNotifierProvider<DriverAuthStateNotifer, AuthState>
       driverAuthProvider;
@@ -38,6 +40,7 @@ class LoginEmailFormTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.read(driverAuthProvider.notifier);
     final state = ref.watch(driverAuthProvider);
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -48,9 +51,11 @@ class LoginEmailFormTab extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: TSizes.spaceBtwSections * 2,
+                height: TSizes.spaceBtwSections * 1,
               ),
-              const Text(TTexts.email),
+              const Text(
+                TTexts.email,
+              ),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
@@ -66,22 +71,28 @@ class LoginEmailFormTab extends ConsumerWidget {
                         onTap: () {
                           state.textFieldController.clear();
                         },
-                        child: const Icon(
+                        child: Icon(
                           Iconsax.close_circle,
+                          size: 18,
+                          color: dark ? TColors.warning : TColors.dark,
                         ),
                       ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: TColors.primary),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: dark ? TColors.secondary : TColors.primary,
+                        ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: TColors.primary.withOpacity(0.3),
+                          color: dark ? TColors.white : TColors.primary,
                         ),
                       ),
+                      labelText: TTexts.driverHintText,
                       hintText: TTexts.driverHintText,
-                      hintStyle: Theme.of(context).textTheme.bodySmall!.apply(
-                            color: TColors.darkGrey,
-                          ),
+                      hintStyle:
+                          Theme.of(context).textTheme.bodySmall!.copyWith(
+                                color: dark ? TColors.white : TColors.dark,
+                              ),
                     ),
                   ),
                 ),
@@ -89,15 +100,15 @@ class LoginEmailFormTab extends ConsumerWidget {
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
               Center(
                 child: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: TTexts.signupsigningUpAgreement,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: dark ? TColors.white : TColors.dark),
                     children: [
                       TextSpan(
                         text: TTexts.signupTermsOfService,
@@ -112,7 +123,8 @@ class LoginEmailFormTab extends ConsumerWidget {
                       ),
                       TextSpan(
                         text: TTexts.driverAndText,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: dark ? TColors.white : TColors.dark),
                       ),
                       TextSpan(
                         text: TTexts.privacyPolicy,
@@ -151,7 +163,7 @@ class LoginEmailFormTab extends ConsumerWidget {
                         (otpGeneratedSuccessfully) {
                           if (otpGeneratedSuccessfully) {
                             final path = Uri(
-                              path: BGRouteNames.driverVerification,
+                              path: BGDriverRouteNames.driverVerification,
                               queryParameters: {
                                 KeyConstant.target: jsonEncode(target),
                               },

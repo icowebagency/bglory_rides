@@ -165,7 +165,7 @@ class _PassengerRaatingScreenState extends State<PassengerRaatingScreen> {
                 ),
                 SaveButtonWidget(
                   onTap: () {
-                    context.go(BGRouteNames.driverHomePageScreen);
+                    context.go(BGDriverRouteNames.driverHomePageScreen);
                   },
                   buttonText: TTexts.driverPassengerRatingButton,
                 ),

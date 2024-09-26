@@ -11,6 +11,7 @@ import 'package:bglory_rides/features/driver/screens/verification/steps/driver_i
 import 'package:bglory_rides/features/driver/screens/verification/steps/driver_license_info.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:bglory_rides/utils/constants/key_constants.dart';
+import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:bglory_rides/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
@@ -194,7 +195,7 @@ class _DriverMotorcycleInformationState
       });
     } else {
       () {
-        context.go(BGRouteNames.driverHomePageScreen);
+        context.go(BGDriverRouteNames.driverHomePageScreen);
       };
 
       log(jsonEncode(ref.read(driverRegistrationFilesProvider)));
@@ -210,7 +211,7 @@ class _DriverMotorcycleInformationState
           .then(
         (successful) {
           if (successful) {
-            context.go(BGRouteNames.driverHomePageScreen);
+            context.go(BGDriverRouteNames.driverHomePageScreen);
           }
         },
       );
@@ -218,7 +219,7 @@ class _DriverMotorcycleInformationState
   }
 
   void onUpdateProfilePicture(BuildContext context) {
-    context.push<File?>(BGRouteNames.driverUploadProfile).then(
+    context.push<File?>(BGDriverRouteNames.driverUploadProfile).then(
       (value) {
         if (value != null) {
           profilePic = value;
@@ -237,7 +238,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.motorcycleImage,
-      navPath: BGRouteNames.driverMotorcycleGuideline,
+      navPath: BGDriverRouteNames.driverMotorcycleGuideline,
     ).then(
       (value) {
         if (value != null) {
@@ -252,7 +253,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.motorcycleInsurance,
-      navPath: BGRouteNames.vehicleInsuranceGuidlineScreen,
+      navPath: BGDriverRouteNames.vehicleInsuranceGuidlineScreen,
     ).then(
       (value) {
         if (value != null) {
@@ -267,7 +268,7 @@ class _DriverMotorcycleInformationState
     getPictureAndUpdateDataField(
       context: context,
       imageDetailKey: DriverKey.hackneyPermit,
-      navPath: BGRouteNames.driverMotorcycleHackneyPermit,
+      navPath: BGDriverRouteNames.driverMotorcycleHackneyPermit,
     ).then(
       (value) {
         if (value != null) {
@@ -373,7 +374,7 @@ class _DriverMotorcycleInformationState
     context
         .push<File?>(
       Uri(
-        path: BGRouteNames.driverLicenseGuideline,
+        path: BGDriverRouteNames.driverLicenseGuideline,
       ).toString(),
     )
         .then(
@@ -436,6 +437,7 @@ class _DriverMotorcycleInformationState
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -448,11 +450,12 @@ class _DriverMotorcycleInformationState
                 },
                 child: Column(
                   children: [
-                    const Center(
+                    Center(
                       child: Image(
                         width: 100,
                         height: 100,
-                        image: AssetImage(TImages.driverLogo),
+                        image: AssetImage(
+                            dark ? TImages.darkAppLogo : TImages.driverLogo),
                       ),
                     ),
                     const SizedBox(

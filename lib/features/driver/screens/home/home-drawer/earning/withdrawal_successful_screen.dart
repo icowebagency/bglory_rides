@@ -43,7 +43,7 @@ class _WithdrawalSuccessfulScreenState
               const Spacer(),
               SaveButtonWidget(
                 onTap: () {
-                  context.go(BGRouteNames.driverHomePageScreen);
+                  context.go(BGDriverRouteNames.driverHomePageScreen);
                 },
               ),
             ],

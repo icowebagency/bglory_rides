@@ -74,276 +74,281 @@ final GlobalKey<NavigatorState> driverNavKey = GlobalKey<NavigatorState>();
 class DriverRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: driverNavKey,
-    initialLocation: BGRouteNames.driverOnboarding,
+    initialLocation: BGDriverRouteNames.driverOnboarding,
     routes: [
       GoRoute(
-        path: BGRouteNames.driverLogin,
+        path: BGDriverRouteNames.driverLogin,
         builder: (context, state) => const DriverLoginScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverOnboarding,
+        path: BGDriverRouteNames.driverOnboarding,
         builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverSignup,
+        path: BGDriverRouteNames.driverSignup,
         builder: (context, state) => const DriverSignup(),
       ),
       GoRoute(
-        path: BGRouteNames.driverProfile,
+        path: BGDriverRouteNames.driverProfile,
         builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverProfileEdit,
+        path: BGDriverRouteNames.driverProfileEdit,
         builder: (context, state) => const ProfileEditScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverDocumentEdit,
+        path: BGDriverRouteNames.driverDocumentEdit,
         builder: (context, state) => const DocumentEditScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverDocumentScreen,
+        path: BGDriverRouteNames.driverDocumentScreen,
         builder: (context, state) => const DriverDocumentScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.vehicleInformation,
+        path: BGDriverRouteNames.vehicleInformation,
         builder: (context, state) => const VehicleInformationScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.vehicleInformationEdit,
+        path: BGDriverRouteNames.vehicleInformationEdit,
         builder: (context, state) => const VehicleInformationEditScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverInsightScreen,
+        path: BGDriverRouteNames.driverInsightScreen,
         builder: (context, state) => const InsightScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverWithdrawSuccessfulScreen,
+        path: BGDriverRouteNames.driverWithdrawSuccessfulScreen,
         builder: (context, state) => const WithdrawalSuccessfulScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverTransactionHistoryScreen,
+        path: BGDriverRouteNames.driverTransactionHistoryScreen,
         builder: (context, state) => const TransactionHistory(),
       ),
       GoRoute(
-        path: BGRouteNames.driverTripHistoryDetails,
+        path: BGDriverRouteNames.driverTripHistoryDetails,
         builder: (context, state) => const TripDetailsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverPaymentDetailsScreen,
+        path: BGDriverRouteNames.driverPaymentDetailsScreen,
         builder: (context, state) => const PaymentDetailsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverPaymentDetailsEditScreen,
+        path: BGDriverRouteNames.driverPaymentDetailsEditScreen,
         builder: (context, state) => const PaymentDetailsEditScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.vehicleDocumentScreen,
+        path: BGDriverRouteNames.vehicleDocumentScreen,
         builder: (context, state) => const VehicleDocumentsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.vehicleDocumentEditScreen,
+        path: BGDriverRouteNames.vehicleDocumentEditScreen,
         builder: (context, state) => const VehicleDocumentsEditScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.vehicleInsuranceGuidlineScreen,
+        path: BGDriverRouteNames.vehicleInsuranceGuidlineScreen,
         builder: (context, state) => const VehicleInsuranceGuidline(),
       ),
       GoRoute(
-        path: BGRouteNames.driverAppSettingsScreen,
+        path: BGDriverRouteNames.driverAppSettingsScreen,
         builder: (context, state) => const AppSettingsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverAccountScreen,
+        path: BGDriverRouteNames.driverAccountScreen,
         builder: (context, state) => const AccountScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverWithdrawEarningScreen,
+        path: BGDriverRouteNames.driverWithdrawEarningScreen,
         builder: (context, state) => const WithdrawEarningsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverVerification,
+        path: BGDriverRouteNames.driverVerification,
         builder: (context, state) => DriverVerificationScreen(
           target: jsonDecode(state.uri.queryParameters[KeyConstant.target]!),
         ),
       ),
       GoRoute(
-        path: BGRouteNames.driverVerificationSuccessful,
+        path: BGDriverRouteNames.driverVerificationSuccessful,
         builder: (context, state) => const SuccessfulVerification(),
       ),
       GoRoute(
-        path: BGRouteNames.driverOption,
+        path: BGDriverRouteNames.driverOption,
         builder: (context, state) => const DriverOptionScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverUploadInformation,
+        path: BGDriverRouteNames.driverUploadInformation,
         builder: (context, state) => const DriverInformationScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverUploadProfile,
+        path: BGDriverRouteNames.driverUploadProfile,
         builder: (context, state) => const DriverProfileUploadGuidelineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverLicenseGuideline,
+        path: BGDriverRouteNames.driverLicenseGuideline,
         builder: (context, state) => const DriverlicenseGuidlineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverExteriorGuideline,
+        path: BGDriverRouteNames.driverExteriorGuideline,
         builder: (context, state) =>
             const DriverExteriorPictureGuidlineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverInteriorGuideline,
+        path: BGDriverRouteNames.driverInteriorGuideline,
         builder: (context, state) =>
             const DriverInteriorPictureGuidelineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverAppNotification,
+        path: BGDriverRouteNames.driverAppNotification,
         builder: (context, state) => const AppNotificationScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverNotificationAndSound,
+        path: BGDriverRouteNames.driverNotificationAndSound,
         builder: (context, state) => const NotificationAndSoundScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverMotorcycleGuideline,
+        path: BGDriverRouteNames.driverMotorcycleGuideline,
         builder: (context, state) =>
             const DriverMotorcyclePictureGuidelineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverMotorcycleHackneyPermit,
+        path: BGDriverRouteNames.driverMotorcycleHackneyPermit,
         builder: (context, state) =>
             const DriverMotorcycleHackneyPermitPictureScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverProofOfOwnership,
+        path: BGDriverRouteNames.driverProofOfOwnership,
         builder: (context, state) =>
             const DriverProofOfOwnershipGuidelineScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverVehicleLicense,
+        path: BGDriverRouteNames.driverVehicleLicense,
         builder: (context, state) => const DriverVehicleLicenseScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverRoadWorthiness,
+        path: BGDriverRouteNames.driverRoadWorthiness,
         builder: (context, state) => const DriverVehicleRoadWorthinessScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverAutoAccept,
+        path: BGDriverRouteNames.driverAutoAccept,
         builder: (context, state) => const AutoAcceptScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverMotorcycleInformation,
+        path: BGDriverRouteNames.driverMotorcycleInformation,
         builder: (context, state) => const DriverMotorcycleInformation(),
       ),
       GoRoute(
-        path: BGRouteNames.driverSoundScreen,
+        path: BGDriverRouteNames.driverSoundScreen,
         builder: (context, state) => const SoundScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverDownloadReceipt,
+        path: BGDriverRouteNames.driverDownloadReceipt,
         builder: (context, state) => const DownloadReceiptScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverThemeScreen,
+        path: BGDriverRouteNames.driverThemeScreen,
         builder: (context, state) => const DriverThemeScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverAboutScreen,
+        path: BGDriverRouteNames.driverAboutScreen,
         builder: (context, state) => const AboutScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverSafetyShareTripDetailsScreen,
+        path: BGDriverRouteNames.driverSafetyShareTripDetailsScreen,
         builder: (context, state) => const SafetyShareTripDetailsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverChatScreen,
+        path: BGDriverRouteNames.driverChatScreen,
         builder: (context, state) => const ChatScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverCallUsScreen,
+        path: BGDriverRouteNames.driverCallUsScreen,
         builder: (context, state) => const CallUsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqsScreen,
+        path: BGDriverRouteNames.driverFaqsScreen,
         builder: (context, state) => const FaqsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverTripInvoiceScreen,
+        path: BGDriverRouteNames.driverTripInvoiceScreen,
         builder: (context, state) => const TripInvoiceScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverPassengerRatingScreen,
+        path: BGDriverRouteNames.driverPassengerRatingScreen,
         builder: (context, state) => const PassengerRaatingScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverCallScreen,
+        path: BGDriverRouteNames.driverCallScreen,
         builder: (context, state) => const CallScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqGettingStartedScreen,
+        path: BGDriverRouteNames.driverFaqGettingStartedScreen,
         builder: (context, state) => const GettingStartedScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqUsingTheAppScreen,
+        path: BGDriverRouteNames.driverFaqUsingTheAppScreen,
         builder: (context, state) => const UsingTheAppScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqPaymentsAndEarningsScreen,
+        path: BGDriverRouteNames.driverFaqPaymentsAndEarningsScreen,
         builder: (context, state) => const PaymentAndEarningsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqDriverSupportScreen,
+        path: BGDriverRouteNames.driverFaqDriverSupportScreen,
         builder: (context, state) => const DriverSupportScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqDAccountAndSettingsScreen,
+        path: BGDriverRouteNames.driverFaqDAccountAndSettingsScreen,
         builder: (context, state) => const AccountAndSettingsScreen(),
       ),
       GoRoute(
-        path: BGRouteNames.driverFaqGeneralQuestionsScreen,
+        path: BGDriverRouteNames.driverFaqGeneralQuestionsScreen,
         builder: (context, state) => const GeneralQuestionsScreens(),
       ),
       GoRoute(
+
+        path: BGDriverRouteNames.driverCallOptionSheetScreen,
+        builder: (context, state) => DriverCallOptionSheetScreen(),
+
         path: BGRouteNames.driverCallOptionSheetScreen,
         builder: (context, state) => const DriverCallOptionSheetScreen(),
+
       ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: BGRouteNames.driverHomePageScreen,
+                path: BGDriverRouteNames.driverHomePageScreen,
                 builder: (context, state) => const DriverHomePageScreen(),
               ),
             ],
           ),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: BGRouteNames.driverEarnings,
+              path: BGDriverRouteNames.driverEarnings,
               builder: (context, state) => const EarningsScreen(),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: BGRouteNames.driverTripHistory,
+              path: BGDriverRouteNames.driverTripHistory,
               builder: (context, state) => const TripHistoryScreen(),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: BGRouteNames.driverSettings,
+              path: BGDriverRouteNames.driverSettings,
               builder: (context, state) => const SettingsScreen(),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: BGRouteNames.driverSafety,
+              path: BGDriverRouteNames.driverSafety,
               builder: (context, state) => const SafetyScreen(),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: BGRouteNames.driverHelpAndSupport,
+              path: BGDriverRouteNames.driverHelpAndSupport,
               builder: (context, state) => const HelpAndSupportScreen(),
             ),
           ]),
@@ -356,7 +361,7 @@ class DriverRouting {
   );
 }
 
-class BGRouteNames {
+class BGDriverRouteNames {
   static const String driverUploadProfile = '/driver/upload-profile';
   static const String driverUploadInformation = '/driver/upload-information';
   static const String driverOption = '/driver/option';

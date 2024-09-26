@@ -114,11 +114,18 @@ class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
               ),
               Expanded(
                 child: SaveButtonWidget(
+
+                  onTap: () {
+                    context
+                        .go(BGDriverRouteNames.driverWithdrawSuccessfulScreen);
+                  },
+
                   onTap: _controller.text.length < pinLength
                       ? null
                       : () {
                           context.pop(_controller.text);
                         },
+
                   buttonText: TTexts.withdrawButtonSecondText,
                 ),
               ),

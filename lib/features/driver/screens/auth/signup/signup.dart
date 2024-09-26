@@ -9,6 +9,7 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 
 class DriverSignup extends StatefulWidget {
   const DriverSignup({super.key});
@@ -20,6 +21,7 @@ class DriverSignup extends StatefulWidget {
 class _DriverSignupState extends State<DriverSignup> {
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -34,11 +36,12 @@ class _DriverSignupState extends State<DriverSignup> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Center(
+                    Center(
                       child: Image(
                         width: 150,
                         height: 100,
-                        image: AssetImage(TImages.driverLogo),
+                        image: AssetImage(
+                            dark ? TImages.darkAppLogo : TImages.lightAppLogo),
                       ),
                     ),
                     const SizedBox(
@@ -50,21 +53,24 @@ class _DriverSignupState extends State<DriverSignup> {
                     ),
                     Text(
                       TTexts.signupDriverSubTitle,
-                      style: Theme.of(context).textTheme.bodyMedium!.apply(
-                            color: TColors.darkGrey,
-                          ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: dark ? TColors.white : TColors.dark),
                     ),
                     // Signup Tab line
-                    const TabBar(
+                    TabBar(
                       automaticIndicatorColorAdjustment: true,
-                      unselectedLabelColor: TColors.darkGrey,
-                      labelColor: TColors.primary,
+                      unselectedLabelColor: dark
+                          ? TColors.white.withOpacity(0.7)
+                          : TColors.darkGrey,
+                      labelColor: dark ? TColors.white : TColors.primary,
                       isScrollable: false,
                       indicatorColor: TColors.primary,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
-                      tabs: [
+                      tabs: const [
                         Tab(
                           text: 'Email',
                         ),

@@ -283,7 +283,7 @@ class _TripInvoiceScreenState extends State<TripInvoiceScreen> {
             const SizedBox(height: TSizes.spaceBtwItems),
             SaveButtonWidget(
               onTap: () {
-                context.go(BGRouteNames.driverPassengerRatingScreen);
+                context.go(BGDriverRouteNames.driverPassengerRatingScreen);
               },
               buttonText: TTexts.driverTripInvoiceButton,
             )

@@ -102,7 +102,7 @@ class _ThirdTabState extends State<ThirdTab> {
         const SizedBox(height: TSizes.spaceBtwSections),
         SaveButtonWidget(
           onTap: () {
-            context.push(BGRouteNames.driverWithdrawEarningScreen);
+            context.push(BGDriverRouteNames.driverWithdrawEarningScreen);
           },
           buttonText: TTexts.firstTabWithdrawEarningBtnText,
         ),
