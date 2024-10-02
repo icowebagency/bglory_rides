@@ -1,7 +1,15 @@
 import 'package:bglory_rides/features/onboarding_rider/riderOnboarding.dart';
 import 'package:bglory_rides/features/rider/screens/auth/login/rider_login.dart';
 import 'package:bglory_rides/features/rider/screens/auth/signup/rider_signup.dart';
+import 'package:bglory_rides/features/rider/screens/home/profile/rider_profile_edit.dart';
+import 'package:bglory_rides/features/rider/screens/home/profile/rider_profile_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/driver_settings.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/payment_and_cards.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_help_and_support.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_safety.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_homescreen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_homeshell.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/confirm_transaction_pin.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/details_screen.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/rider_add_card.dart';
@@ -16,7 +24,7 @@ final GlobalKey<NavigatorState> riderNavKey = GlobalKey<NavigatorState>();
 class RiderRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: riderNavKey,
-    initialLocation: BGRiderRouteNames.riderHomeScreen,
+    initialLocation: BGRiderRouteNames.riderHomePageScreen,
     routes: [
       GoRoute(
         path: BGRiderRouteNames.riderOnboardingScreen,
@@ -55,8 +63,57 @@ class RiderRouting {
         builder: (context, state) => const ConfirmTransactionPinScreen(),
       ),
       GoRoute(
-        path: BGRiderRouteNames.riderHomeScreen,
-        builder: (context, state) => const RiderHomeScreen(),
+        path: BGRiderRouteNames.riderProfileScreen,
+        builder: (context, state) => const RiderProfileScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderProfileEditScreen,
+        builder: (context, state) => const RiderProfileEditScreen(),
+      ),
+      StatefulShellRoute.indexedStack(
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderHomePageScreen,
+                builder: (context, state) => const RiderHomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRiderRouteNames.riderTripHistoryScreen,
+              builder: (context, state) => const RiderTripHistoryScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRiderRouteNames.riderPaymentAndCardsScreen,
+              builder: (context, state) => const PaymentAndCardsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRiderRouteNames.riderSettingsScreen,
+              builder: (context, state) => const RiderSettingsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRiderRouteNames.riderSafetyScreen,
+              builder: (context, state) => const RiderSafetyScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: BGRiderRouteNames.riderHelpAndSupportScreen,
+              builder: (context, state) => const RiderHelpAndSupportScreen(),
+            ),
+          ]),
+        ],
+        builder: (context, state, navigationShell) => RiderHomeShell(
+          navigationShell: navigationShell,
+        ),
       ),
     ],
   );
@@ -64,6 +121,7 @@ class RiderRouting {
 
 class BGRiderRouteNames {
   static const String riderOnboardingScreen = '/rider/onboarding-screen';
+  static const String riderHomePageScreen = '/rider/home-screen';
   static const String riderLogin = '/rider/login-screen';
   static const String riderSignup = '/rider/signup-screen';
   static const String riderUserDetails = '/rider/details-screen';
@@ -76,4 +134,13 @@ class BGRiderRouteNames {
   static const String riderConfirmTransactionPinScreen =
       '/rider/confirm-transaction-pin-screen';
   static const String riderHomeScreen = '/rider/home-screen';
+  static const String riderTripHistoryScreen = '/rider/trip-history-screen';
+  static const String riderPaymentAndCardsScreen =
+      '/rider/payment-and-cards-screen';
+  static const String riderSafetyScreen = '/rider/safety-screen';
+  static const String riderHelpAndSupportScreen =
+      '/rider/help-and-support-screen';
+  static const String riderSettingsScreen = '/rider/settings-screen';
+  static const String riderProfileScreen = '/rider/profile-screen';
+  static const String riderProfileEditScreen = '/rider/profile-edit-screen';
 }

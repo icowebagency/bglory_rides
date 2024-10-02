@@ -386,11 +386,12 @@ class TTexts {
   static const String withdrawPaymentHint =
       ' 0209004644 - Awoyemi Damola - GT Bank';
 
-    static const String setWithdrawModalTitle = 'Set Transaction Pin';
-    static const String setWithdrawModalTitleConfirm = 'Confirm Transaction Pin';
-    static const String setWithdrawModalText = 'To complete this transaction, please enter your 4-digit pin ';
-    static const String setWithdrawModalTextConfirmation = 'Confirm your transaction pin, please enter your 4-digit pin ';
-
+  static const String setWithdrawModalTitle = 'Set Transaction Pin';
+  static const String setWithdrawModalTitleConfirm = 'Confirm Transaction Pin';
+  static const String setWithdrawModalText =
+      'To complete this transaction, please enter your 4-digit pin ';
+  static const String setWithdrawModalTextConfirmation =
+      'Confirm your transaction pin, please enter your 4-digit pin ';
 
   // Withdraw successful section
   static const String withdrawSuccessfulButtonText = 'Go home';
@@ -644,7 +645,7 @@ class TTexts {
   static const String earningsTargetTitle = 'Earning Target';
   static const String earningsDailyTargetTitle = 'Set daily target';
   static const String earningsDailyTargetAmount = '₦4850';
-  static const String nairaSymbol = '₦ ';
+  static const String nairaSymbol = '₦';
   static const String earningsTargetSubTitle =
       'Set daily, weekly or monthly target';
 
@@ -936,8 +937,65 @@ class TTexts {
 
   // Rider HomeScreen
   static const String riderSearchHintTitle = 'Enter destination';
-// static const String rider  = '';
-// static const String rider  = '';
+  static const String riderHomeScreenTitle = 'Home';
+  static const String riderHomeScreenSearchTitle = 'Where is your next trip?';
+  static const String riderHomeScreenRecentDestinationTitle =
+      'Recent Destinations';
+  static const String riderHomeScreenRecentDestinationTitleOne =
+      '18, Chief Dominic Street';
+  static const String riderHomeScreenRecentDestinationSubTitleOne =
+      'Surulere, Lagos';
+  static const String riderHomeScreenRecentDestinationTitleTwo =
+      'Shoprite Mall';
+  static const String riderHomeScreenRecentDestinationSubTitleTwo =
+      'Lekki, Lagos';
+  static const String riderHomeScreenRecentDestinationTitleThree =
+      'Radison Blue Hotel';
+  static const String riderHomeScreenRecentDestinationSubTitleThree =
+      'Ikeja, Lagos';
+  static const String riderHomeScreenChooseRideTitle = 'Choose your ride';
+  static const String riderHomeScreenChooseRidePremiumTitle = 'Premium';
+  static const String riderHomeScreenChooseRidePremiumPriceTitle = '4,500';
+  static const String riderHomeScreenChooseRidePremiumSubTitle =
+      'Arrives in 20 mins';
+  static const String riderHomeScreenChooseRideComfortTitle = 'Comfort';
+  static const String riderHomeScreenChooseRideComfortSubTitle =
+      'Arrives in 20 mins';
+  static const String riderHomeScreenChooseRideEconomyTitle = 'Economy';
+  static const String riderHomeScreenChooseRideEconomySubTitle =
+      'Arrives in 20 mins';
+
+  // Rider Home Drawer
+  static const String riderTripHistory = 'Trip History';
+  static const String riderPaymentAndCards = 'Payment And Cards';
+  static const String riderSettings = 'Settings';
+  static const String riderSafety = 'Safety';
+  static const String riderHelpAndSupport = 'Help And Support';
+
+  // Rider Profile screen
+  static const String riderProfileScreenAppBarTitle = 'User Profile';
+  static const String riderProfileScreenPersonalInfoTitle =
+      'Personal Information';
+  static const String riderProfileScreenFullNameTitle = 'Full name';
+  static const String riderProfileScreenRealFullNameTitle = 'Abiodun Osagie';
+  static const String riderProfileScreenPhoneNumberTitle = 'Phone Number';
+  static const String riderProfileScreenRealPhoneNumberTitle = '070300850394';
+  static const String riderProfileScreenEmailTitle = 'Email';
+  static const String riderProfileScreenRealEmailTitle =
+      'abiodunosagie8@gmail.com';
+  static const String riderProfileScreenVerifiedTitle = 'Verified';
+  static const String riderProfileScreenNotVerifiedTitle = 'Not Verified';
+  static const String riderProfileScreenEditTitle = 'Edit';
+  static const String riderProfileScreenSavedPlacesTitle = 'Saved Places';
+  static const String riderProfileScreenSavedPlacesHomeAddressTitle =
+      'Home address';
+  static const String riderProfileScreenSavedPlacesRealHomeAddressTitle =
+      '18, Chief Dominic Street, Surulere.';
+  static const String riderProfileScreenSavedPlacesAddFavTitle =
+      'Add a favorite place';
+  static const String riderProfileScreenLogOutTitle = 'Log out';
+  static const String riderProfileScreenDeleteAccountTitle = 'Delete account';
+// static const String riderProfileScreenAppBarTitle  = '';
 // static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';

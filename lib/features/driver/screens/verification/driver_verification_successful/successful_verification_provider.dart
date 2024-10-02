@@ -6,7 +6,7 @@ import 'package:bglory_rides/features/driver/data/repository/driver_repository.d
 import 'package:bglory_rides/utils/constants/constant_values.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../utils/secrets/api_constants.dart';
+import '../../../../../utils/secret/api_constants.dart';
 
 final successfulVerificationStateNotifierProvider =
     StateNotifierProvider<SuccessfulVerificationStateNotifier, bool>(

@@ -4,8 +4,9 @@ import 'package:bglory_rides/features/driver/data/model/driver_response/driver_r
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/driver_info/driver_info.dart';
 import 'package:bglory_rides/utils/constants/constant_values.dart';
-import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../../utils/secret/api_constants.dart';
 
 part 'successful_verification_provider.g.dart';
 

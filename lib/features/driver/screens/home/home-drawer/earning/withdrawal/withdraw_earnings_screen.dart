@@ -271,7 +271,7 @@ class _WithdrawEarningsScreenState
                                 amount: _amount.toString(),
                                 transactionPin: pin,
                                 onSuccess: () {
-                                  context.go(BGRouteNames
+                                  context.go(BGDriverRouteNames
                                       .driverWithdrawSuccessfulScreen);
                                 },
                                 onError: NotificationUtil.showErrorNotification,
