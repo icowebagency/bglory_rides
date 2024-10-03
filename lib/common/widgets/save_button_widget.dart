@@ -26,6 +26,7 @@ class SaveButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
+          side: BorderSide.none,
         ),
         onPressed: onTap,
         child: Text(

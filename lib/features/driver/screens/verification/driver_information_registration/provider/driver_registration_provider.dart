@@ -1,12 +1,12 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
-import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'driver_registration_provider.g.dart';
+import '../../../../../../utils/secret/api_constants.dart';
 
+part 'driver_registration_provider.g.dart';
 
 final driverRegistrationDetailsProvider = StateProvider<Map<String, String>>(
   (ref) => {},

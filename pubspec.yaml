@@ -26,7 +26,6 @@ dependencies:
   otp_text_field_v2: ^1.0.3
   animated_rating_stars: ^1.0.1
   dotted_border: ^2.1.0
-  flutter_google_places_sdk: ^0.3.9
 
   # Icons
   iconsax: ^0.0.8
