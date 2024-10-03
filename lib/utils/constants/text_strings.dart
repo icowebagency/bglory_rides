@@ -995,8 +995,34 @@ class TTexts {
       'Add a favorite place';
   static const String riderProfileScreenLogOutTitle = 'Log out';
   static const String riderProfileScreenDeleteAccountTitle = 'Delete account';
-// static const String riderProfileScreenAppBarTitle  = '';
-// static const String rider  = '';
+
+  // Rider Profile Edit Screen
+  static const String riderProfileScreenEditAppBarTitle = 'Update your profile';
+
+  static const String riderProfileScreenEditEmailTitle =
+      'abiodunosagie8@gmail.com';
+  static const String riderProfileScreenEditButtonTextTitle = 'Update';
+
+  // Rider Saved Places
+
+  static const String riderSavedPlacesAppBarTitle = 'Saved places';
+  static const String riderSavedPlacesListCheckerTitle = 'No saved places yet!';
+  static const String riderSavedPlacesSubTitle = 'Add a favorite place';
+
+  // Rider LogOutPopUpDialog Screen
+  static const String riderPopUpDialogTitle = 'Logout account';
+  static const String riderPopUpDialogButtonOneTitle = 'Yes, Logout';
+  static const String riderPopUpDialogButtonTwoTitle = 'Cancel';
+  static const String riderPopUpDialogSubTitle =
+      'Are you sure you want to logout your account ? You can always come back anytime.';
+  // Rider Delete Account Dialog
+  static const String riderDeleteAccountPopUpDialogTitle =
+      'Permanently delete your driver\'s account?';
+  static const String riderDeleteAccountPopUpDialogButtonOneTitle =
+      'Yes, delete account';
+  static const String riderDeleteAccountPopUpDialogButtonTwoTitle = 'Cancel';
+  static const String riderDeleteAccountPopUpDialogSubTitle =
+      'If you permanently delete your BG Rides account, you will need to go through the registration process again You can always come back anytime.';
 // static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';

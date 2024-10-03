@@ -9,6 +9,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
 import '../../../driver/screens/home/provider/home/home_provider.dart';
+import '../../../driver/screens/home/widgets/map_custom_icon_widget.dart';
 
 const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
 
@@ -120,23 +121,23 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
             child: SafeArea(
               child: Column(
                 children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     // Back button or any other top icon
-                  //     SizedBox(width: width * 0.15),
-                  //
-                  //     /// Driver notification
-                  //     MapCustomIcons(
-                  //       myMargin: const EdgeInsets.only(right: 20),
-                  //       containerIcon: Iconsax.notification,
-                  //       scaffoldKey: null,
-                  //       onTap: () {
-                  //         // _showBottomSheet(context);
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Back button or any other top icon
+                      SizedBox(width: width * 0.15),
+
+                      /// Driver notification
+                      MapCustomIcons(
+                        myMargin: const EdgeInsets.only(right: 20),
+                        containerIcon: Iconsax.notification,
+                        scaffoldKey: null,
+                        onTap: () {
+                          // _showBottomSheet(context);
+                        },
+                      ),
+                    ],
+                  ),
 
                   // Search bar that shows the entered destination
                   if (destination.isNotEmpty)

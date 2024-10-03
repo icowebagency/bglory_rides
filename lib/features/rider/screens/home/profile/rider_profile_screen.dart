@@ -1,4 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:bglory_rides/common/widgets/save_button_widget.dart';
+import 'package:bglory_rides/features/driver/general_widgets/outlined_button_widget.dart';
 import 'package:bglory_rides/routing/rider_routing.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
@@ -27,6 +29,20 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
           TTexts.riderProfileScreenAppBarTitle,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {
+                context.go(BGRiderRouteNames.riderHomeScreen);
+              },
+              icon: const Icon(
+                Iconsax.home,
+                color: TColors.primary,
+              ),
+            ),
+          ),
+        ],
       ),
       body: GestureDetector(
         onTap: () {
@@ -39,44 +55,20 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Stack(
-                    children: [
-                      // Profile image
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 10,
-                            color: TColors.grey.withOpacity(0.4),
-                          ),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage(
-                            TImages.riderUser,
-                          ),
-                        ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 10,
+                        color: TColors.grey.withOpacity(0.4),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: TColors.primary,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Iconsax.edit,
-                                color: TColors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage(
+                        TImages.riderUser,
                       ),
-                    ],
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -313,7 +305,10 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         trailing: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context
+                                .push(BGRiderRouteNames.riderSavedPlacesScreen);
+                          },
                           icon: const Icon(Iconsax.arrow_right_3),
                         ),
                       ),
@@ -337,6 +332,9 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
                     children: [
                       // saved places
                       ListTile(
+                        onTap: () {
+                          _logOutPopUpDialog(context);
+                        },
                         leading: const Icon(
                           Iconsax.logout,
                           color: TColors.error,
@@ -362,6 +360,9 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
                       ),
                       // fav
                       ListTile(
+                        onTap: () {
+                          _deleteAccountDialog(context);
+                        },
                         leading: const Icon(
                           Iconsax.trash,
                           color: TColors.error,
@@ -387,4 +388,108 @@ class _RiderProfileScreenState extends State<RiderProfileScreen> {
       ),
     );
   }
+}
+
+void _logOutPopUpDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.3,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                TTexts.riderPopUpDialogTitle,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontSize: 20),
+              ),
+              Text(
+                textAlign: TextAlign.center,
+                TTexts.riderPopUpDialogSubTitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
+              SaveButtonWidget(
+                onTap: () {},
+                buttonText: TTexts.riderPopUpDialogButtonOneTitle,
+                buttonColor: TColors.error,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              OutlinedButtonWidget(
+                onTap: () {},
+                buttonText: TTexts.riderPopUpDialogButtonTwoTitle,
+                buttonTextColor: TColors.dark,
+                buttonOutlineColor: TColors.dark,
+              )
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void _deleteAccountDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.35,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                TTexts.riderDeleteAccountPopUpDialogTitle,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontSize: 20),
+              ),
+              Text(
+                textAlign: TextAlign.center,
+                TTexts.riderDeleteAccountPopUpDialogSubTitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
+              SaveButtonWidget(
+                onTap: () {},
+                buttonText: TTexts.riderDeleteAccountPopUpDialogButtonOneTitle,
+                buttonColor: TColors.error,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              OutlinedButtonWidget(
+                onTap: () {},
+                buttonText: TTexts.riderPopUpDialogButtonTwoTitle,
+                buttonTextColor: TColors.dark,
+                buttonOutlineColor: TColors.dark,
+              )
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

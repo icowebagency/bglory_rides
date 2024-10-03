@@ -3,6 +3,7 @@ import 'package:bglory_rides/features/rider/screens/auth/login/rider_login.dart'
 import 'package:bglory_rides/features/rider/screens/auth/signup/rider_signup.dart';
 import 'package:bglory_rides/features/rider/screens/home/profile/rider_profile_edit.dart';
 import 'package:bglory_rides/features/rider/screens/home/profile/rider_profile_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/profile/saved_places.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/driver_settings.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/payment_and_cards.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_help_and_support.dart';
@@ -69,6 +70,10 @@ class RiderRouting {
       GoRoute(
         path: BGRiderRouteNames.riderProfileEditScreen,
         builder: (context, state) => const RiderProfileEditScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderSavedPlacesScreen,
+        builder: (context, state) => const SavedPlacesScreen(),
       ),
       StatefulShellRoute.indexedStack(
         branches: [
@@ -143,4 +148,5 @@ class BGRiderRouteNames {
   static const String riderSettingsScreen = '/rider/settings-screen';
   static const String riderProfileScreen = '/rider/profile-screen';
   static const String riderProfileEditScreen = '/rider/profile-edit-screen';
+  static const String riderSavedPlacesScreen = '/rider/saved-places-screen';
 }

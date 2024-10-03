@@ -1,6 +1,8 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
+import 'package:bglory_rides/routing/rider_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/colors.dart';
@@ -17,6 +19,10 @@ class RiderProfileEditScreen extends StatefulWidget {
 
 class _RiderProfileEditScreenState extends State<RiderProfileEditScreen> {
   double _currentRating = 3.5;
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +30,7 @@ class _RiderProfileEditScreenState extends State<RiderProfileEditScreen> {
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text(
-          TTexts.riderProfileScreenAppBarTitle,
+          TTexts.riderProfileScreenEditAppBarTitle,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20),
         ),
       ),
@@ -146,7 +152,7 @@ class _RiderProfileEditScreenState extends State<RiderProfileEditScreen> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(2),
                     color: TColors.white,
                   ),
                   child: Form(
@@ -154,15 +160,126 @@ class _RiderProfileEditScreenState extends State<RiderProfileEditScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
+                          keyboardType: TextInputType.name,
+                          controller: firstNameController,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                firstNameController.clear();
+                              },
                               icon: const Icon(
                                 Iconsax.close_circle,
                                 size: 18,
                                 color: TColors.grey,
                               ),
                             ),
+                            labelText: TTexts.firstName,
+                            labelStyle: Theme.of(context).textTheme.bodySmall,
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor
+                                .withOpacity(0.6),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.name,
+                          controller: lastNameController,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                lastNameController.clear();
+                              },
+                              icon: const Icon(
+                                Iconsax.close_circle,
+                                size: 18,
+                                color: TColors.grey,
+                              ),
+                            ),
+                            labelText: TTexts.lastName,
+                            labelStyle: Theme.of(context).textTheme.bodySmall,
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor
+                                .withOpacity(0.6),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.phone,
+                          controller: phoneNumberController,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                phoneNumberController.clear();
+                              },
+                              icon: const Icon(
+                                Iconsax.close_circle,
+                                size: 18,
+                                color: TColors.grey,
+                              ),
+                            ),
+                            labelText: TTexts.phoneNo,
+                            labelStyle: Theme.of(context).textTheme.bodySmall,
+                            filled: true,
+                            fillColor: TColors.containerBackgroundColor
+                                .withOpacity(0.6),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: TColors.primary,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: TColors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                emailController.clear();
+                              },
+                              icon: const Icon(
+                                Iconsax.close_circle,
+                                size: 18,
+                                color: TColors.grey,
+                              ),
+                            ),
+                            labelText: TTexts.email,
+                            labelStyle: Theme.of(context).textTheme.bodySmall,
                             filled: true,
                             fillColor: TColors.containerBackgroundColor
                                 .withOpacity(0.6),
@@ -183,9 +300,12 @@ class _RiderProfileEditScreenState extends State<RiderProfileEditScreen> {
                           height: TSizes.spaceBtwItems * 3,
                         ),
                         SaveButtonWidget(
-                          onTap: () {},
-                          buttonText: TTexts.driverUpdateButton,
-                        )
+                          onTap: () {
+                            context.go(BGRiderRouteNames.riderProfileScreen);
+                          },
+                          buttonText:
+                              TTexts.riderProfileScreenEditButtonTextTitle,
+                        ),
                       ],
                     ),
                   ),
