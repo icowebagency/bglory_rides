@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:bglory_rides/common/widgets/app_circular_progress_indicator.dart';
 import 'package:bglory_rides/features/driver/screens/verification/driver_verification/driver_verification_provider.dart';
 import 'package:bglory_rides/utils/helpers/helper_functions.dart';
@@ -73,8 +71,10 @@ class _DriverVerificationScreenState
         ? widget.target!['email']!
         : widget.target!['phone']!;
 
+
     log('${widget.target}');
     final dark = THelperFunctions.isDarkMode(context);
+
 
     return Scaffold(
       body: SafeArea(

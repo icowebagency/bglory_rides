@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../../../../common/widgets/save_button_widget.dart';
-import '../../../../../../../routing/driver_routing.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/constants/text_strings.dart';
 import '../../../../../general_widgets/outlined_button_widget.dart';
@@ -104,8 +103,9 @@ class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
               Expanded(
                 child: OutlinedButtonWidget(
                   buttonOutlineColor: TColors.primary,
-                  onTap: () => Navigator.pop(
-                      context), // Use arrow function for cleaner syntax
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   buttonText: TTexts.withdrawButtonCancelText,
                 ),
               ),
@@ -114,14 +114,18 @@ class _WithdrawPinWidgetState extends State<WithdrawPinWidget> {
               ),
               Expanded(
                 child: SaveButtonWidget(
-                  // Use a single onTap callback with conditional logic
+
                   onTap: () {
-                    if (_controller.text.length < pinLength) return;
                     context
                         .go(BGDriverRouteNames.driverWithdrawSuccessfulScreen);
-                    context.pop(
-                        _controller.text); // Assuming pop requires pin value
                   },
+
+                  onTap: _controller.text.length < pinLength
+                      ? null
+                      : () {
+                          context.pop(_controller.text);
+                        },
+
                   buttonText: TTexts.withdrawButtonSecondText,
                 ),
               ),

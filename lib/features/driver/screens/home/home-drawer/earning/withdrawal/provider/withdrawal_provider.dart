@@ -1,10 +1,9 @@
 import 'package:bglory_rides/features/driver/data/provider/driver_data_providers.dart';
 import 'package:bglory_rides/features/driver/screens/home/provider/driver_info/driver_info.dart';
+import 'package:bglory_rides/utils/secrets/api_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../../../../../../utils/secret/api_constants.dart';
 
 part 'withdrawal_provider.freezed.dart';
 part 'withdrawal_provider.g.dart';

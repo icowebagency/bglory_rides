@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="BGDriver" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--flavor driver" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/main_driver.dart" />
-    <method v="2" />
-  </configuration>
-</component>
