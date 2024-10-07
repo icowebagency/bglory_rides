@@ -1,4 +1,3 @@
-import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
@@ -8,15 +7,14 @@ import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class PassengerRatingScreen extends StatefulWidget {
-  const PassengerRatingScreen({super.key});
+class PassengerRaatingScreen extends StatefulWidget {
+  const PassengerRaatingScreen({super.key});
 
   @override
-  State<PassengerRatingScreen> createState() => _PassengerRatingScreenState();
+  State<PassengerRaatingScreen> createState() => _PassengerRaatingScreenState();
 }
 
-class _PassengerRatingScreenState extends State<PassengerRatingScreen> {
-  double _currentRating = 3.5;
+class _PassengerRaatingScreenState extends State<PassengerRaatingScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
@@ -70,33 +68,37 @@ class _PassengerRatingScreenState extends State<PassengerRatingScreen> {
                                 ),
                           ),
                           const SizedBox(height: TSizes.spaceBtwItems),
-
-                          /// Star rating
-                          AnimatedRatingStars(
-                            readOnly: false,
-                            starSize: 30,
-                            displayRatingValue: true,
-                            minRating: 0.0,
-                            maxRating: 5.0,
-                            emptyColor: Colors.grey,
-                            interactiveTooltips: true,
-                            filledIcon: Icons.star,
-                            filledColor: TColors.warning,
-                            emptyIcon: Icons.star_outlined,
-                            halfFilledIcon: Icons.star_half,
-                            animationCurve: Curves.easeInOut,
-                            animationDuration: const Duration(
-                              milliseconds: 500,
+                          const FittedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: TColors.warning,
+                                  size: 30,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: TColors.warning,
+                                  size: 30,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: TColors.warning,
+                                  size: 30,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: TColors.warning,
+                                  size: 30,
+                                ),
+                                Icon(
+                                  Icons.star_border_rounded,
+                                  color: TColors.warning,
+                                  size: 30,
+                                ),
+                              ],
                             ),
-                            initialRating: 3.5,
-                            onChanged: (rating) {
-                              setState(() {
-                                _currentRating = rating;
-                              });
-                            },
-                            customFilledIcon: Icons.star,
-                            customEmptyIcon: Icons.star_outline,
-                            customHalfFilledIcon: Icons.star_half,
                           ),
                           const SizedBox(height: TSizes.spaceBtwItems),
                           Text(

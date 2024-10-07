@@ -4,7 +4,7 @@ class TColors {
   // App theme colors
   static const Color primary = Color(0xFF125A36);
   static const Color secondary = Color(0xFF99CD32);
-  static const Color accent = Color(0xFFDFF0E9);
+  static const Color accent = Color(0xFFb0c7ff);
 
   // Text colors
   static const Color textPrimary = Color(0xFF0F0F0F);

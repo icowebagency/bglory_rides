@@ -23,7 +23,6 @@ class OutlinedButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: 65,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: buttonOutlineColor!, width: 1.2),
