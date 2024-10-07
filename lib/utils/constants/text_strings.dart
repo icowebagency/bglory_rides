@@ -386,11 +386,12 @@ class TTexts {
   static const String withdrawPaymentHint =
       ' 0209004644 - Awoyemi Damola - GT Bank';
 
-    static const String setWithdrawModalTitle = 'Set Transaction Pin';
-    static const String setWithdrawModalTitleConfirm = 'Confirm Transaction Pin';
-    static const String setWithdrawModalText = 'To complete this transaction, please enter your 4-digit pin ';
-    static const String setWithdrawModalTextConfirmation = 'Confirm your transaction pin, please enter your 4-digit pin ';
-
+  static const String setWithdrawModalTitle = 'Set Transaction Pin';
+  static const String setWithdrawModalTitleConfirm = 'Confirm Transaction Pin';
+  static const String setWithdrawModalText =
+      'To complete this transaction, please enter your 4-digit pin ';
+  static const String setWithdrawModalTextConfirmation =
+      'Confirm your transaction pin, please enter your 4-digit pin ';
 
   // Withdraw successful section
   static const String withdrawSuccessfulButtonText = 'Go home';
@@ -476,6 +477,8 @@ class TTexts {
   static const String tripHistoryDetailsButtonTitle = 'View Receipt';
   static const String tripHistoryDetailsInAppPaymentSubTitle =
       'Total amount paid on the app via bank card';
+  static const String tripHistoryDetailsPaymentSubTitle =
+      'Total amount to pay via debit/credit card';
   static const String tripHistoryDetailsInAppPaymentPrice = '₦4500';
 
   // Download Receipt Bottom Sheet
@@ -644,7 +647,7 @@ class TTexts {
   static const String earningsTargetTitle = 'Earning Target';
   static const String earningsDailyTargetTitle = 'Set daily target';
   static const String earningsDailyTargetAmount = '₦4850';
-  static const String nairaSymbol = '₦ ';
+  static const String nairaSymbol = '₦';
   static const String earningsTargetSubTitle =
       'Set daily, weekly or monthly target';
 
@@ -924,20 +927,222 @@ class TTexts {
   static const String riderAddCardExpirationDate = 'MM-YYYY';
   static const String riderAddCardCVVToolTipTitle =
       'The 3-digit code on the back of your card';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
+
+  // Transaction Pin
+  static const String riderTransactionPinTitle = 'Set a transaction pin';
+  static const String riderTransactionPinSubTitle =
+      'Kindly enter a 4-digit pin to be able to process payment transactions';
+
+// Confirm Transaction Pin
+  static const String riderConfirmTransactionPinTitle = 'Confirm Pin';
+  static const String riderConfirmTransactionPinButton = 'Confirm';
+
+  // Rider HomeScreen
+  static const String riderSearchHintTitle = 'Enter destination';
+  static const String riderHomeScreenTitle = 'Home';
+  static const String riderHomeScreenSearchTitle = 'Where is your next trip?';
+  static const String riderHomeScreenRecentDestinationTitle =
+      'Recent Destinations';
+  static const String riderHomeScreenRecentDestinationTitleOne =
+      '18, Chief Dominic Street';
+  static const String riderHomeScreenRecentDestinationSubTitleOne =
+      'Surulere, Lagos';
+  static const String riderHomeScreenRecentDestinationTitleTwo =
+      'Shoprite Mall';
+  static const String riderHomeScreenRecentDestinationSubTitleTwo =
+      'Lekki, Lagos';
+  static const String riderHomeScreenRecentDestinationTitleThree =
+      'Radison Blue Hotel';
+  static const String riderHomeScreenRecentDestinationSubTitleThree =
+      'Ikeja, Lagos';
+  static const String riderHomeScreenChooseRideTitle = 'Choose your ride';
+  static const String riderHomeScreenChooseRidePremiumTitle = 'Premium';
+  static const String riderHomeScreenChooseRidePremiumPriceTitle = '4,500';
+  static const String riderHomeScreenChooseRidePremiumSubTitle =
+      'Arrives in 20 mins';
+  static const String riderHomeScreenChooseRideComfortTitle = 'Comfort';
+  static const String riderHomeScreenChooseRideComfortSubTitle =
+      'Arrives in 20 mins';
+  static const String riderHomeScreenChooseRideEconomyTitle = 'Economy';
+  static const String riderHomeScreenChooseRideEconomySubTitle =
+      'Arrives in 20 mins';
+
+  // Rider Home Drawer
+  static const String riderTripHistory = 'Trip History';
+  static const String riderPaymentAndCards = 'Payment And Cards';
+  static const String riderSettings = 'Settings';
+  static const String riderSafety = 'Safety';
+  static const String riderHelpAndSupport = 'Help And Support';
+
+  // Rider Profile screen
+  static const String riderProfileScreenAppBarTitle = 'User Profile';
+  static const String riderProfileScreenPersonalInfoTitle =
+      'Personal Information';
+  static const String riderProfileScreenFullNameTitle = 'Full name';
+  static const String riderProfileScreenRealFullNameTitle = 'Abiodun Osagie';
+  static const String riderProfileScreenPhoneNumberTitle = 'Phone Number';
+  static const String riderProfileScreenRealPhoneNumberTitle = '070300850394';
+  static const String riderProfileScreenEmailTitle = 'Email';
+  static const String riderProfileScreenRealEmailTitle =
+      'abiodunosagie8@gmail.com';
+  static const String riderProfileScreenVerifiedTitle = 'Verified';
+  static const String riderProfileScreenNotVerifiedTitle = 'Not Verified';
+  static const String riderProfileScreenEditTitle = 'Edit';
+  static const String riderProfileScreenSavedPlacesTitle = 'Saved Places';
+  static const String riderProfileScreenSavedPlacesHomeAddressTitle =
+      'Home address';
+  static const String riderProfileScreenSavedPlacesRealHomeAddressTitle =
+      '18, Chief Dominic Street, Surulere.';
+  static const String riderProfileScreenSavedPlacesAddFavTitle =
+      'Add a favorite place';
+  static const String riderProfileScreenLogOutTitle = 'Log out';
+  static const String riderProfileScreenDeleteAccountTitle = 'Delete account';
+
+  // Rider Profile Edit Screen
+  static const String riderProfileScreenEditAppBarTitle = 'Update your profile';
+
+  static const String riderProfileScreenEditEmailTitle =
+      'abiodunosagie8@gmail.com';
+  static const String riderProfileScreenEditButtonTextTitle = 'Update';
+
+  // Rider Saved Places
+
+  static const String riderSavedPlacesAppBarTitle = 'Saved places';
+  static const String riderSavedPlacesListCheckerTitle = 'No saved places yet!';
+  static const String riderSavedPlacesSubTitle = 'Add a favorite place';
+
+  // Rider LogOutPopUpDialog Screen
+  static const String riderPopUpDialogTitle = 'Logout account';
+  static const String riderPopUpDialogButtonOneTitle = 'Yes, Logout';
+  static const String riderPopUpDialogButtonTwoTitle = 'Cancel';
+  static const String riderPopUpDialogSubTitle =
+      'Are you sure you want to logout your account ? You can always come back anytime.';
+  // Rider Delete Account Dialog
+  static const String riderDeleteAccountPopUpDialogTitle =
+      'Permanently delete your driver\'s account?';
+  static const String riderDeleteAccountPopUpDialogButtonOneTitle =
+      'Yes, delete account';
+  static const String riderDeleteAccountPopUpDialogButtonTwoTitle = 'Cancel';
+  static const String riderDeleteAccountPopUpDialogSubTitle =
+      'If you permanently delete your BG Rides account, you will need to go through the registration process again You can always come back anytime.';
+  // Payment type bottom sheet
+  static const String riderPaymentTypeBottomSheetTitle = 'Payment type';
+  static const String riderPaymentTypeBottomSheetDebitTitle =
+      'Debit card payment';
+  static const String riderPaymentTypeBottomSheetCashTitle = 'Cash payment';
+  // Get a driver Bottom Sheet
+  static const String riderGetADriverBottomSheetRiderTypeTitle =
+      'Premium ride fare';
+  static const String riderGetADriverBottomSheetRiderGetADriverTitle =
+      'Get a driver';
+  static const String riderGetADriverBottomSheetRiderTripDistanceTitle = '10km';
+  static const String riderGetADriverBottomSheetRiderTripTimeTitle = '20 mins';
+
+  // Driver found Rider BottomSheet
+  static const String riderDriverFoundBottomSheetTitle = 'Driver found';
+  static const String riderDriverFoundBottomSheetDriverName = 'Abiodun Osagie';
+  static const String riderDriverFoundBottomSheetDriverRating = '4.5';
+  static const String riderDriverFoundBottomSheetDriverCarName =
+      'Toyota Corolla 2010 (white) -';
+  static const String riderDriverFoundBottomSheetDriverCarPlatNumber =
+      'AA123BBB';
+  static const String riderDriverFoundBottomSheetDriverArrivalTime =
+      'Driver is 5 minutes away, order now to start trip';
+  static const String riderDriverFoundBottomSheetDriverOrderRideButtonTitle =
+      'Order ride';
+  static const String riderDriverFoundBottomSheetDriverArrivalTitle =
+      'Your ride will arrive at pickup in';
+  static const String riderDriverFoundBottomSheetDriverArrivedTitle =
+      'Yippee!!! Your ride is here';
+  static const String riderDriverFoundBottomSheetDriverArrivalTimeTitle =
+      ' 5 minutes';
+  static const String riderDriverFoundBottomSheetDriverConfirmTripTitle =
+      'Confirm trip details';
+  static const String riderDriverFoundBottomSheetStartTripArrivalTimeTitle =
+      'Arrive at your destination in';
+  static const String riderDriverFoundBottomSheetTripCompletedArrivalTimeTitle =
+      'You have arrived at your destination';
+  static const String
+      riderDriverFoundBottomSheetStartTripArrivalTimeCountingTitle =
+      ' 01:45 minutes';
+  static const String riderDriverFoundBottomSheetStartTripCompletedTitle =
+      'Trip Completed';
+  static const String
+      riderDriverFoundBottomSheetStartTripCompletedInvoiceTitle =
+      'View trip details';
+  static const String riderInvoiceButtonTitle = 'Make payment';
+
+  static const String riderTripInAppPaymentCashTitle = 'Cash details';
+  static const String riderTripInAppPaymentCardDetailsTitle =
+      '**** **** **** 2141';
+
+  static const String riderConfirmationTitle = 'Transaction Pin';
+  static const String riderConfirmationSubTitle =
+      'To complete this transaction, please enter your 4-digit pin';
+
+  // Payment successful
+  static const String riderPaymentSuccessfulTitle = 'Payment Successful';
+  static const String riderPaymentSuccessfulSubTitle =
+      'Congratulations! You have successfully\npaid for your trip.';
+  static const String riderPaymentSuccessfulBookTitle = 'Book a trip';
+  static const String riderPaymentSuccessfulRateTitle = 'Rate driver';
+  static const String riderPaymentSuccessfulInvoiceTitle = 'View invoice';
+
+  // Rate driver screen
+  static const String riderRateDriverTitle = 'Rate this driver';
+  static const String riderRateDriverNameTitle = 'Abiodun Smith';
+
+  static const String riderRatingTitle = 'Driver\'s rating';
+  static const String riderRatingFeedbackTitle = 'Feedback submitted';
+  static const String riderRatingFeedbackButtonTitle = 'Go home';
+  static const String riderRateDriverAdditionalCommentTitle =
+      'Additional comment';
+  static const String riderRateDriverCommentTitle =
+      'He is a very patient and friendly driver, he was so kind to have assisted me with my luggage\'s, a great driver';
+  // Rider Invoice
+  static const String riderInvoiceTitle = 'Preview';
+  static const String riderInvoiceDateTitle = 'Mon, 19 June, 2024';
+  static const String riderInvoiceNumberTitle = 'Invoice no.';
+  static const String riderInvoiceNameTitle = 'Invoice';
+  static const String riderInvoiceNumber = '  1458353-001';
+  static const String riderInvoicePassengerNameTitle = 'Passenger\'s name';
+  static const String riderInvoicePassengerPhoneTitle = 'Phone number';
+  static const String riderInvoiceDriverTitle = 'Driver\'s number';
+  static const String riderInvoicePassengerRealPhoneTitle = '07030850395';
+  static const String riderInvoiceDriverDetailsTitle = 'Driver\'s detail';
+  static const String riderInvoiceDriverNameTitle = 'Name';
+  static const String riderInvoiceDriverRealNameTitle = 'Damola Awoyemi';
+  static const String riderInvoiceDriverPickupTitle = 'Pick up';
+  static const String riderInvoiceDriverPickupContentTitle =
+      '18, Chief Dominic Street,\nSurulere 268563';
+  static const String riderInvoiceDriverPickupTimeTitle = '07:10AM';
+  static const String riderInvoiceDriverDestinationTitle = 'Destination';
+  static const String riderInvoiceDriverDestinationContentTitle =
+      'Radison Blue Hotel,\nIkeja, 25450';
+  static const String riderInvoiceDriverDestinationTimeTitle = '10:15AM';
+  static const String riderInvoicePaymentTitle = 'Payment details';
+  static const String riderInvoiceRideFareTitle = 'Ride fare';
+  static const String riderInvoiceRideFareAmountTitle = '₦4850';
+  static const String riderInvoiceBookingFeeTitle = 'Booking fee';
+  static const String riderInvoiceBookingFeeAmountTitle = '₦4850';
+  static const String riderInvoiceDiscountTitle = 'Discount';
+  static const String riderInvoiceDiscountAmountTitle = '₦4850';
+  static const String riderInvoiceTotalTitle = 'Total';
+  static const String riderInvoiceTotalAmountTitle = '₦4850';
+  static const String riderInvoiceCardTypeTitle = 'Card payment';
+  static const String riderInvoiceCardTypeAmountTitle = '₦4850';
+
+  // Payment and card section
+  static const String riderPaymentAndCardAppbarTitle = 'Payment And Cards';
+  static const String riderPaymentAndCardTitle = 'Saved Cards';
+  static const String riderPaymentAndCardButtonTitle = '+ Add a new card';
+  static const String riderAddNewCardBottomSheet =
+      'Add a new debit/credit card';
+  static const String riderAddNewCardBottomSheetNameOnCard = 'Name on card';
+  static const String riderAddNewCardBottomSheetCardNumber = 'Card number';
+  static const String riderAddNewCardBottomSheetExpiryDate = 'Expiration date';
+  static const String riderAddNewCardBottomSheetCVV = 'CVV';
+  static const String riderAddNewCardBottomSheetButton = 'Add card';
 // static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';

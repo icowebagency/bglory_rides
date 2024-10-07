@@ -273,7 +273,7 @@ class DriverRouting {
       ),
       GoRoute(
         path: BGDriverRouteNames.driverPassengerRatingScreen,
-        builder: (context, state) => const PassengerRaatingScreen(),
+        builder: (context, state) => const PassengerRatingScreen(),
       ),
       GoRoute(
         path: BGDriverRouteNames.driverCallScreen,
@@ -304,13 +304,8 @@ class DriverRouting {
         builder: (context, state) => const GeneralQuestionsScreens(),
       ),
       GoRoute(
-
         path: BGDriverRouteNames.driverCallOptionSheetScreen,
-        builder: (context, state) => DriverCallOptionSheetScreen(),
-
-        path: BGRouteNames.driverCallOptionSheetScreen,
         builder: (context, state) => const DriverCallOptionSheetScreen(),
-
       ),
       StatefulShellRoute.indexedStack(
         branches: [
