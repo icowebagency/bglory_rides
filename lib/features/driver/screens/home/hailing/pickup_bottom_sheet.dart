@@ -1,6 +1,5 @@
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/features/driver/screens/home/hailing/driver_call_option_sheet.dart';
-import 'package:bglory_rides/features/driver/screens/home/hailing/start_trip_bottom_sheet.dart';
 import 'package:bglory_rides/routing/driver_routing.dart';
 import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:bglory_rides/utils/constants/image_strings.dart';
@@ -147,16 +146,6 @@ class _PickupBottomSheetScreenState extends State<PickupBottomSheetScreen> {
             SaveButtonWidget(
               onTap: () {
                 Navigator.pop(context);
-                showModalBottomSheet(
-                  constraints: BoxConstraints.tight(
-                    Size.fromHeight(height * 0.5),
-                  ),
-                  isScrollControlled: false,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const StartTripBottomSheet();
-                  },
-                );
               },
               buttonText: TTexts.pickupBottomSheetDriverButton,
             )

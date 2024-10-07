@@ -11,6 +11,10 @@ import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_homescreen.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_homeshell.dart';
+import 'package:bglory_rides/features/rider/screens/home/trip/payment_successful.dart';
+import 'package:bglory_rides/features/rider/screens/home/trip/rate_driver.dart';
+import 'package:bglory_rides/features/rider/screens/home/trip/rider_invoice_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/trip/rider_trip_details.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/confirm_transaction_pin.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/details_screen.dart';
 import 'package:bglory_rides/features/rider/screens/rider_verification/rider_add_card.dart';
@@ -75,6 +79,21 @@ class RiderRouting {
         path: BGRiderRouteNames.riderSavedPlacesScreen,
         builder: (context, state) => const SavedPlacesScreen(),
       ),
+      GoRoute(
+        path: BGRiderRouteNames.riderTripDetailsScreen,
+        builder: (context, state) => const RiderTripDetailsScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderPaymentSuccessfulScreen,
+        builder: (context, state) => const RiderPaymentSuccessfulScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderInvoiceScreen,
+        builder: (context, state) => const RiderInvoiceScreen(),
+      ),
+      GoRoute(
+          path: BGRiderRouteNames.riderRateDriverScreen,
+          builder: (context, state) => const RateDriverScreen()),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(
@@ -149,4 +168,9 @@ class BGRiderRouteNames {
   static const String riderProfileScreen = '/rider/profile-screen';
   static const String riderProfileEditScreen = '/rider/profile-edit-screen';
   static const String riderSavedPlacesScreen = '/rider/saved-places-screen';
+  static const String riderTripDetailsScreen = '/rider/trip-details-screen';
+  static const String riderPaymentSuccessfulScreen =
+      '/rider/payment-successful-screen';
+  static const String riderRateDriverScreen = '/rider/rate-driver-screen';
+  static const String riderInvoiceScreen = '/rider/invoice-screen';
 }

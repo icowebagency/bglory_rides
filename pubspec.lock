@@ -373,18 +373,18 @@ packages:
     dependency: transitive
     description:
       name: file_selector_linux
-      sha256: "045d372bf19b02aeb69cacf8b4009555fb5f6f0b7ad8016e5f46dd1387ddd492"
+      sha256: "712ce7fab537ba532c8febdb1a8f167b32441e74acd68c3ccb2e36dcb52c4ab2"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2+1"
+    version: "0.9.3"
   file_selector_macos:
     dependency: transitive
     description:
       name: file_selector_macos
-      sha256: f42eacb83b318e183b1ae24eead1373ab1334084404c8c16e0354f9a3e55d385
+      sha256: cb284e267f8e2a45a904b5c094d2ba51d0aabfc20b1538ab786d9ef7dc2bf75c
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.4"
+    version: "0.9.4+1"
   file_selector_platform_interface:
     dependency: transitive
     description:
@@ -397,10 +397,10 @@ packages:
     dependency: transitive
     description:
       name: file_selector_windows
-      sha256: "2ad726953f6e8affbc4df8dc78b77c3b4a060967a291e528ef72ae846c60fb69"
+      sha256: "8f5d2f6590d51ecd9179ba39c64f722edc15226cc93dcc8698466ad36a4a85a4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3+2"
+    version: "0.9.3+3"
   fixnum:
     dependency: transitive
     description:
@@ -604,34 +604,34 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "2ddb88e9ad56ae15ee144ed10e33886777eb5ca2509a914850a5faa7b52ff459"
+      sha256: b4c1cce7eda99ff729bb69d10cd7555017a0665f66ca46ee574e6a03785b389d
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.7"
+    version: "14.2.9"
   google_maps:
     dependency: transitive
     description:
       name: google_maps
-      sha256: "47eef3836b49bb030d5cb3afc60b8451408bf34cf753e571b645d6529eb4251a"
+      sha256: "4d6e199c561ca06792c964fa24b2bac7197bf4b401c2e1d23e345e5f9939f531"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.0"
+    version: "8.1.1"
   google_maps_flutter:
     dependency: "direct main"
     description:
       name: google_maps_flutter
-      sha256: a7a2d2a3588c4a3e3b9dd98477dcf3d97e4ef32d8d46fd2ffb3c0e6f836fca1a
+      sha256: "2e302fa3aaf4e2a297f0342d83ebc5e8e9f826e9a716aef473fe7f404ec630a7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.1"
+    version: "2.9.0"
   google_maps_flutter_android:
     dependency: transitive
     description:
       name: google_maps_flutter_android
-      sha256: "36e75af1d0bd4c7391eacdaedf9ca7632c5b9709c5ec618b04489b79ea2b3f82"
+      sha256: "10cf27bee8c560f8e69992b3a0f27ddf1d7acbea622ddb13ef3f587848a73f26"
       url: "https://pub.dev"
     source: hosted
-    version: "2.14.6"
+    version: "2.14.7"
   google_maps_flutter_ios:
     dependency: transitive
     description:
@@ -644,18 +644,18 @@ packages:
     dependency: transitive
     description:
       name: google_maps_flutter_platform_interface
-      sha256: "099874463dc4c9bff04fe4b2b8cf7284d2455c2deead8f9a59a87e1b9f028c69"
+      sha256: faf05935c2714445ae23ca16af523beba7bd5418c4c74798d67144f562df3e87
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "2.9.3"
   google_maps_flutter_web:
     dependency: transitive
     description:
       name: google_maps_flutter_web
-      sha256: f3155c12119d8a5c2732fdf39ceb5cc095bc662059a03b4ea23294ecebe1d199
+      sha256: ff39211bd25d7fad125d19f757eba85bd154460907cd4d135e07e3d0f98a4130
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.8"
+    version: "0.5.10"
   graphs:
     dependency: transitive
     description:
@@ -812,18 +812,10 @@ packages:
     dependency: transitive
     description:
       name: js
-      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
+      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.7"
-  js_wrapping:
-    dependency: transitive
-    description:
-      name: js_wrapping
-      sha256: e385980f7c76a8c1c9a560dfb623b890975841542471eade630b2871d243851c
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4"
+    version: "0.7.1"
   json_annotation:
     dependency: "direct main"
     description:
@@ -1353,10 +1345,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_macos
-      sha256: "9a1a42d5d2d95400c795b2914c36fdcb525870c752569438e4ebb09a2b5d90de"
+      sha256: "769549c999acdb42b8bcfa7c43d72bf79a382ca7441ab18a808e101149daf672"
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.0"
+    version: "3.2.1"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -1385,10 +1377,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: f33d6bb662f0e4f79dcd7ada2e6170f3b3a2530c28fc41f49a411ddedd576a77
+      sha256: a5be9ef6618a7ac1e964353ef476418026db906c4facdedaa299b7a2e71690ff
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.0"
+    version: "4.5.1"
   vector_math:
     dependency: transitive
     description:
@@ -1441,10 +1433,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: "97da13628db363c635202ad97068d47c5b8aa555808e7a9411963c533b449b27"
+      sha256: cd3543bd5798f6ad290ea73d210f423502e71900302dde696f8bff84bf89a1cb
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "1.1.0"
   web_socket:
     dependency: transitive
     description:
@@ -1481,10 +1473,10 @@ packages:
     dependency: transitive
     description:
       name: xdg_directories
-      sha256: faea9dee56b520b55a566385b84f2e8de55e7496104adada9962e0bd11bcff1d
+      sha256: "7a3f37b05d989967cdddcbb571f1ea834867ae2faa29725fd085180e0883aa15"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.1.0"
   xml:
     dependency: transitive
     description:

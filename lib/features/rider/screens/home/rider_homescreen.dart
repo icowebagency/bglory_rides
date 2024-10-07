@@ -1,8 +1,10 @@
 import 'package:bglory_rides/features/rider/screens/home/widgets/rider_trip_history.dart';
+import 'package:bglory_rides/routing/rider_routing.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -33,56 +35,11 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
   bool isDraggableSheetVisible =
       true; // Flag to control DraggableScrollableSheet
   FocusNode topFieldFocusNode = FocusNode();
-  int? selectedRadio;
 
   void _showPriceBottomSheet(BuildContext context) {
     // Dismiss the DraggableScrollableSheet and show a new BottomSheet for price options
     setState(() {
       isDraggableSheetVisible = false; // Hide the DraggableScrollableSheet
-    });
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // If you want to control the height
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(20),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Add price options widgets here
-                buildRadioButton(
-                  value: 1,
-                  title: TTexts.riderHomeScreenChooseRidePremiumTitle,
-                  subtitle: TTexts.riderHomeScreenChooseRidePremiumSubTitle,
-                  price: TTexts.riderHomeScreenChooseRidePremiumPriceTitle,
-                ),
-                buildRadioButton(
-                  value: 2,
-                  title: TTexts.riderHomeScreenChooseRidePremiumTitle,
-                  subtitle: TTexts.riderHomeScreenChooseRidePremiumSubTitle,
-                  price: TTexts.riderHomeScreenChooseRidePremiumPriceTitle,
-                ),
-                buildRadioButton(
-                  value: 3,
-                  title: TTexts.riderHomeScreenChooseRidePremiumTitle,
-                  subtitle: TTexts.riderHomeScreenChooseRidePremiumSubTitle,
-                  price: TTexts.riderHomeScreenChooseRidePremiumPriceTitle,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    ).whenComplete(() {
-      // After the price BottomSheet is closed, you can make the DraggableScrollableSheet visible again if needed
-      setState(() {
-        isDraggableSheetVisible =
-            true; // Show the DraggableScrollableSheet again
-      });
     });
   }
 
@@ -133,7 +90,14 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                         containerIcon: Iconsax.notification,
                         scaffoldKey: null,
                         onTap: () {
-                          // _showBottomSheet(context);
+                          // showModalBottomSheet(
+                          //   isScrollControlled: false,
+                          //   context: context,
+                          //   builder: (BuildContext context) {
+                          //     return const TripCompletedBottomSheet();
+                          //   },
+                          // );
+                          context.push(BGRiderRouteNames.riderInvoiceScreen);
                         },
                       ),
                     ],
@@ -157,7 +121,8 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                destination, // Display the entered destination here
+                                destination,
+                                // Display the entered destination here
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
@@ -243,8 +208,8 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
 
           // Bottom sheet section with DraggableScrollableSheet
           Visibility(
-            visible:
-                isDraggableSheetVisible, // Control the visibility of the DraggableScrollable widget
+            visible: isDraggableSheetVisible,
+            // Control the visibility of the DraggableScrollable widget
             child: DraggableScrollableSheet(
               initialChildSize: 0.35, // Adjust as needed
               minChildSize: 0.12, // Adjust as needed
@@ -364,90 +329,6 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget buildRadioButton(
-      {required int value,
-      required String title,
-      required String subtitle,
-      required String price}) {
-    bool isSelected = selectedRadio == value;
-
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedRadio = value;
-        });
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
-        padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: TColors.white,
-          borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(
-            color: isSelected ? TColors.primary : TColors.grey.withOpacity(0.3),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Radio<int>(
-                  value: value,
-                  groupValue: selectedRadio,
-                  onChanged: (int? newValue) {
-                    setState(() {
-                      selectedRadio =
-                          newValue; // Update the selected radio value
-                    });
-                  },
-                  activeColor: isSelected
-                      ? TColors.primary
-                      : TColors.grey, // Change radio color
-                ),
-                const SizedBox(width: 10.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title, style: Theme.of(context).textTheme.titleLarge),
-                    Text(
-                      subtitle,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    const SizedBox(
-                        height: 8.0), // Space between subtitle and price
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  TTexts.nairaSymbol,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: isSelected ? TColors.success : TColors.dark,
-                        fontSize: 18,
-                        fontFamily: 'Notosans',
-                        fontWeight: FontWeight.w900,
-                      ),
-                ),
-                Text(
-                  price,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: isSelected ? TColors.success : TColors.dark,
-                        fontSize: 18,
-                      ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

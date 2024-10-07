@@ -273,7 +273,7 @@ class DriverRouting {
       ),
       GoRoute(
         path: BGDriverRouteNames.driverPassengerRatingScreen,
-        builder: (context, state) => const PassengerRaatingScreen(),
+        builder: (context, state) => const PassengerRatingScreen(),
       ),
       GoRoute(
         path: BGDriverRouteNames.driverCallScreen,
