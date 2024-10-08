@@ -8,7 +8,15 @@ import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/drive
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/payment_and_cards.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_help_and_support.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_safety.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_about_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_app_notification.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_notifications_and_sound.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_sound_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_theme_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/safety_emergency/rider_safety_share_ride_details.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history_screens/rider_blank_trip_history.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history_screens/trip_details_history.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_homescreen.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_homeshell.dart';
 import 'package:bglory_rides/features/rider/screens/home/trip/payment_successful.dart';
@@ -92,6 +100,38 @@ class RiderRouting {
         builder: (context, state) => const RiderInvoiceScreen(),
       ),
       GoRoute(
+        path: BGRiderRouteNames.riderBlankTripHistoryScreen,
+        builder: (context, state) => const RiderBlankTripHistoryScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderTripDetailsHistoryScreen,
+        builder: (context, state) => const RiderTripDetailsHistoryScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderNotificationsAndSoundScreen,
+        builder: (context, state) => const RiderNotificationsAndSoundScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderSoundScreen,
+        builder: (context, state) => const RiderSoundScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderAppNotificationsScreen,
+        builder: (context, state) => const RiderAppNotificationScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderThemeScreen,
+        builder: (context, state) => const RiderThemeScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderAboutScreen,
+        builder: (context, state) => const RiderAboutScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderSafetyShareDetailsScreen,
+        builder: (context, state) => const RiderSafetyShareTripDetailsScreen(),
+      ),
+      GoRoute(
           path: BGRiderRouteNames.riderRateDriverScreen,
           builder: (context, state) => const RateDriverScreen()),
       StatefulShellRoute.indexedStack(
@@ -173,4 +213,17 @@ class BGRiderRouteNames {
       '/rider/payment-successful-screen';
   static const String riderRateDriverScreen = '/rider/rate-driver-screen';
   static const String riderInvoiceScreen = '/rider/invoice-screen';
+  static const String riderBlankTripHistoryScreen =
+      '/rider/blank-trip-history-screen';
+  static const String riderTripDetailsHistoryScreen =
+      '/rider/trip-details-history-screen';
+  static const String riderNotificationsAndSoundScreen =
+      '/rider/notifications-and-sound-screen';
+  static const String riderAppNotificationsScreen =
+      '/rider/app-notifications-screen';
+  static const String riderSoundScreen = '/rider/sound-screen';
+  static const String riderThemeScreen = '/rider/theme-screen';
+  static const String riderAboutScreen = '/rider/about-screen';
+  static const String riderSafetyShareDetailsScreen =
+      '/rider/safety-share-ride-screen';
 }

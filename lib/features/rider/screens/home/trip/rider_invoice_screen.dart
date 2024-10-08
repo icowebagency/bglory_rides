@@ -34,7 +34,9 @@ class _RiderInvoiceScreenState extends State<RiderInvoiceScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _downloadReceiptDialog(context);
+            },
             icon: const Icon(
               Iconsax.receive_square,
               color: TColors.white,
@@ -42,7 +44,9 @@ class _RiderInvoiceScreenState extends State<RiderInvoiceScreen> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _resendReceiptDialog(context);
+            },
             icon: const Icon(
               Iconsax.directbox_send,
               color: TColors.white,
@@ -50,7 +54,9 @@ class _RiderInvoiceScreenState extends State<RiderInvoiceScreen> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _shareReceiptDialog(context);
+            },
             icon: const Icon(
               Iconsax.export,
               color: TColors.white,
@@ -362,6 +368,116 @@ class _RiderInvoiceScreenState extends State<RiderInvoiceScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _downloadReceiptDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button to close
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: TColors.dragableBottomSheetColor,
+          content: SizedBox(
+            height: 100,
+            width: double.infinity,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    TTexts.receiptSentTitle,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    TTexts.receiptSentSubTitle,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  /// Resend receipt
+  Future<void> _resendReceiptDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button to close
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: TColors.dragableBottomSheetColor,
+          content: SizedBox(
+            height: 100,
+            width: double.infinity,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    TTexts.receiptSentTitle,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    TTexts.receiptSentSubTitle,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  /// Share receipt
+  Future<void> _shareReceiptDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button to close
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: TColors.dragableBottomSheetColor,
+          content: SizedBox(
+            height: 100,
+            width: double.infinity,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    TTexts.receiptSentTitle,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    TTexts.receiptSentSubTitle,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

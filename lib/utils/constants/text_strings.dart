@@ -137,6 +137,7 @@ class TTexts {
   static const String driverMakeDelivery = "Make delivery";
   static const String driverSubTitle = "motorbike at least 2000cc";
   static const String driverBoxTripTitle = "Take Trips";
+  static const String driverBookTripTitle = "Book a trip";
   static const String driverBoxCarTitle = "Car from 2000 or newer";
   static const String driverPictureUploadTitle = "Profile picture upload";
   static const String driverVehicleInformationTitle = "Vehicle Information";
@@ -1143,6 +1144,55 @@ class TTexts {
   static const String riderAddNewCardBottomSheetExpiryDate = 'Expiration date';
   static const String riderAddNewCardBottomSheetCVV = 'CVV';
   static const String riderAddNewCardBottomSheetButton = 'Add card';
+
+  // Rider Trip
+  static const String riderBlankTripTitle =
+      'Enjoy being driven around\nwith BGlory Rides';
+  static const String riderBlankTripSubTitle =
+      'Let us help you get to your destination with ease';
+  // Rider Settings
+  static const String riderSettingsAppBarTitle = 'Settings';
+  static const String riderSettingsNotificationTitle =
+      'Notifications and sound';
+  static const String riderSettingsThemeTitle = 'Theme';
+  static const String riderSettingsAboutTitle = 'About';
+  static const String riderNotificationAppBarTitle = 'Notification and sound';
+  static const String riderNotificationAppTitle = 'App notification';
+  static const String riderSoundTitle = 'Sound';
+  // App notification
+  static const String riderAppNotificationEmail = 'Email';
+  static const String riderAppNotificationPush = 'Push';
+  static const String riderAppNotificationSMS = 'SMS';
+  static const String riderAppNotificationInAppMessage = 'In-app message';
+  static const String riderAppNotificationInAppBanners = 'In-app banners';
+  // Rider Sound
+  static const String riderSoundAppBarTitle = 'Sound';
+  static const String riderSoundSubTitle = 'Incoming request sound';
+  static const String riderSoundNoneTitle = 'None';
+  static const String riderSoundNoneAurora = 'Aurora';
+  static const String riderSoundNoneBamboo = 'Bamboo';
+  static const String riderSoundNoneChord = 'Chord';
+  static const String riderSoundNoneCircles = 'Circles';
+  static const String riderSoundNoneHello = 'Hello';
+  static const String riderSoundNoneInput = 'Input';
+  // Rider Theme
+  static const String riderThemeAppBarTitle = 'Theme';
+  static const String riderThemeSystemDefaultTitle = 'System default';
+  static const String riderThemeDarkTitle = 'Dark';
+  static const String riderThemeLightTitle = 'Light';
+  // Safety Section
+  static const String riderSafetyAppBarTitle = 'Safety features';
+  static const String riderSafetySubTitle =
+      'Safety features to help you feel safe and secured while taking a trip';
+  static const String riderSafetyEmergencyTitle = 'Emergency call';
+  static const String riderSafetyShareTrip = 'Share trip details';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
+// static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';
 // static const String rider  = '';
