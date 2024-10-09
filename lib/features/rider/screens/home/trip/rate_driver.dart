@@ -87,7 +87,7 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                       ),
                       const SizedBox(height: TSizes.spaceBtwItems),
                       AnimatedRatingStars(
-                        readOnly: true,
+                        readOnly: false,
                         starSize: 30,
                         displayRatingValue: true,
                         minRating: 0.0,

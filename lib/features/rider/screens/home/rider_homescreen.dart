@@ -97,7 +97,8 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                           //     return const TripCompletedBottomSheet();
                           //   },
                           // );
-                          context.push(BGRiderRouteNames.riderInvoiceScreen);
+                          context.push(
+                              BGRiderRouteNames.riderBlankTripHistoryScreen);
                         },
                       ),
                     ],

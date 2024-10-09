@@ -1,19 +1,21 @@
 import 'package:bglory_rides/routing/rider_routing.dart';
-import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../../utils/constants/colors.dart';
+import '../../../../../../utils/constants/text_strings.dart';
 
-class RiderSettingsScreen extends StatefulWidget {
-  const RiderSettingsScreen({super.key});
+class RiderNotificationsAndSoundScreen extends StatefulWidget {
+  const RiderNotificationsAndSoundScreen({super.key});
 
   @override
-  State<RiderSettingsScreen> createState() => _RiderSettingsScreenState();
+  State<RiderNotificationsAndSoundScreen> createState() =>
+      _RiderNotificationsAndSoundScreenState();
 }
 
-class _RiderSettingsScreenState extends State<RiderSettingsScreen> {
+class _RiderNotificationsAndSoundScreenState
+    extends State<RiderNotificationsAndSoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _RiderSettingsScreenState extends State<RiderSettingsScreen> {
         backgroundColor: TColors.containerBackgroundColor,
         centerTitle: true,
         title: const Text(
-          TTexts.riderSettingsAppBarTitle,
+          TTexts.riderNotificationAppBarTitle,
         ),
       ),
       body: Container(
@@ -41,13 +43,12 @@ class _RiderSettingsScreenState extends State<RiderSettingsScreen> {
                 Iconsax.notification,
               ),
               title: Text(
-                TTexts.riderSettingsNotificationTitle,
+                TTexts.riderNotificationAppTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               trailing: IconButton(
                 onPressed: () {
-                  context
-                      .push(BGRiderRouteNames.riderNotificationsAndSoundScreen);
+                  context.push(BGRiderRouteNames.riderAppNotificationsScreen);
                 },
                 icon: const Icon(
                   Iconsax.arrow_right_3,
@@ -63,39 +64,15 @@ class _RiderSettingsScreenState extends State<RiderSettingsScreen> {
             const SizedBox(height: 10),
             ListTile(
               leading: const Icon(
-                Iconsax.path_square,
+                Iconsax.sound,
               ),
               title: Text(
-                TTexts.riderSettingsThemeTitle,
+                TTexts.riderSoundTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               trailing: IconButton(
                 onPressed: () {
-                  context.push(BGRiderRouteNames.riderThemeScreen);
-                },
-                icon: const Icon(
-                  Iconsax.arrow_right_3,
-                ),
-              ),
-            ),
-            Divider(
-              thickness: 1,
-              color: TColors.softGrey.withOpacity(0.7),
-              indent: 20,
-              endIndent: 20,
-            ),
-            const SizedBox(height: 10),
-            ListTile(
-              leading: const Icon(
-                Iconsax.info_circle,
-              ),
-              title: Text(
-                TTexts.riderSettingsAboutTitle,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  context.push(BGRiderRouteNames.riderAboutScreen);
+                  context.push(BGRiderRouteNames.riderSoundScreen);
                 },
                 icon: const Icon(
                   Iconsax.arrow_right_3,

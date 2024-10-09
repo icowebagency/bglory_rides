@@ -15,6 +15,41 @@
 
 ## 🛠 Tech Stack
 
+
+### Frontend
+- **Flutter**: Cross-platform mobile development
+- **Riverpod**: State management
+- **GoRouter**: Navigation management
+
+### Backend
+- **Node.js**: Backend services
+- **Express**: API management
+- **PostgreSQL**: Database
+
+### APIs Integrated
+- Car model, color, year, and other information APIs
+- SMS OTP authentication and email setup APIs
+- Bank card verification APIs
+
+## 🚧 Installation & Setup
+
+To run **BGlory Rides** on your local machine, follow these steps:
+
+### Prerequisites
+
+Ensure you have the following tools installed:
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- [Node.js](https://nodejs.org/en/download/)
+- A simulator/emulator or a physical device for testing
+- [PostgreSQL](https://www.postgresql.org/download/)
+
+### Setup Flutter and Backend
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/bglory-rides.git
+=======
+
 ### Frontend
 - **Flutter**: Cross-platform mobile development
 - **Riverpod**: State management
@@ -46,5 +81,6 @@ Ensure you have the following tools installed:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/bglory-rides.git
+
 
 

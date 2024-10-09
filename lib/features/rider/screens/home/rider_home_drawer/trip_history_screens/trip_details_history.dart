@@ -1,7 +1,6 @@
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
-import 'package:bglory_rides/features/rider/screens/home/bottomSheets_screens/confirmation_pin.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
 import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +8,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
+import '../../../../../../utils/constants/image_strings.dart';
+import '../../bottomSheets_screens/rider_download_receipt.dart';
 
 const LatLng currentPosition = LatLng(4.865855964962911, 6.964088436779546);
 
-class RiderTripDetailsScreen extends StatefulWidget {
-  const RiderTripDetailsScreen({super.key});
+class RiderTripDetailsHistoryScreen extends StatefulWidget {
+  const RiderTripDetailsHistoryScreen({super.key});
 
   @override
-  State<RiderTripDetailsScreen> createState() => _RiderTripDetailsScreenState();
+  State<RiderTripDetailsHistoryScreen> createState() =>
+      _RiderTripDetailsHistoryScreenState();
 }
 
-class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
+class _RiderTripDetailsHistoryScreenState
+    extends State<RiderTripDetailsHistoryScreen> {
   double _currentRating = 2.1;
   int currentStep = 0;
   final int _totalSteps = 3;
@@ -85,6 +87,11 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
       ),
     ),
   ];
+
+  /// Controls builder to remove buttons
+  Widget controlsBuilder(BuildContext context, ControlsDetails controls) {
+    return Container(); // Return an empty container to remove the default buttons
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -368,85 +375,6 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
                 const SizedBox(height: TSizes.spaceBtwItems),
                 const Divider(),
 
-                /// Card details
-                Text(
-                  TTexts.riderTripInAppPaymentCashTitle,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-
-                Column(
-                  children: List.generate(2, (index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(
-                          () {
-                            // Update the selected card index when a card is tapped.
-                            selectedCardIndex = index;
-                          },
-                        );
-                      },
-                      child: Container(
-                        height: 70,
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10), // Add some margin
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 20), // Add padding inside the container
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: selectedCardIndex == index
-                                ? TColors.primary
-                                : TColors.grey,
-                          ),
-                          color: selectedCardIndex == index
-                              ? TColors.primary
-                                  .withOpacity(0.1) // Change color if selected
-                              : TColors.white, // Default color
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Radio<int>(
-                                  activeColor: selectedCardIndex == index
-                                      ? TColors.primary
-                                      : TColors.grey,
-                                  value: index,
-                                  groupValue:
-                                      selectedCardIndex, // Bind to the selected index
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedCardIndex = value;
-                                    });
-                                  },
-                                ),
-                                Text(
-                                  TTexts.riderTripInAppPaymentCardDetailsTitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Image(
-                              height: 20,
-                              image: AssetImage(
-                                cardLogos[index],
-                              ),
-                            ), // Replace with your image
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-                ),
                 const SizedBox(height: TSizes.spaceBtwItems),
                 SaveButtonWidget(
                   onTap: () {
@@ -454,11 +382,11 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
                       isScrollControlled: false,
                       context: context,
                       builder: (BuildContext context) {
-                        return const RiderConfirmationPinScreen();
+                        return const RiderDownloadReceiptBottomSheet();
                       },
                     );
                   },
-                  buttonText: TTexts.riderInvoiceButtonTitle,
+                  buttonText: TTexts.tripHistoryDetailsButtonTitle,
                 ),
               ],
             ),
