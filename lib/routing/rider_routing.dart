@@ -14,6 +14,10 @@ import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_sound_screen.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/rider_settings/rider_theme_screen.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/safety_emergency/rider_safety_share_ride_details.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/support/call_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/support/chat_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/support/faq_details_screen.dart';
+import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/support/faqs_screen.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history_screens/rider_blank_trip_history.dart';
 import 'package:bglory_rides/features/rider/screens/home/rider_home_drawer/trip_history_screens/trip_details_history.dart';
@@ -132,6 +136,22 @@ class RiderRouting {
         builder: (context, state) => const RiderSafetyShareTripDetailsScreen(),
       ),
       GoRoute(
+        path: BGRiderRouteNames.riderChatScreen,
+        builder: (context, state) => const RiderChatScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderCallUsScreen,
+        builder: (context, state) => const RiderCallUsScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderFaqsScreen,
+        builder: (context, state) => const RiderFaqsScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderFaqDetailScreen,
+        builder: (context, state) => const RiderFaqDetailsScreen(),
+      ),
+      GoRoute(
           path: BGRiderRouteNames.riderRateDriverScreen,
           builder: (context, state) => const RateDriverScreen()),
       StatefulShellRoute.indexedStack(
@@ -226,4 +246,8 @@ class BGRiderRouteNames {
   static const String riderAboutScreen = '/rider/about-screen';
   static const String riderSafetyShareDetailsScreen =
       '/rider/safety-share-ride-screen';
+  static const String riderChatScreen = '/rider/chat-screen';
+  static const String riderCallUsScreen = '/rider/call-us-screen';
+  static const String riderFaqsScreen = '/rider/faqs-screen';
+  static const String riderFaqDetailScreen = '/rider/faqs-detail-screen';
 }

@@ -2,8 +2,8 @@ import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-class FaqSubHeadings extends StatelessWidget {
-  const FaqSubHeadings({
+class FaqScreenComponent extends StatelessWidget {
+  const FaqScreenComponent({
     super.key,
     required this.faqTitle,
     required this.faqOnTap,
