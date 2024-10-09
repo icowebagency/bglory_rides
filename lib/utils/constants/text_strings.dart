@@ -1186,14 +1186,55 @@ class TTexts {
       'Safety features to help you feel safe and secured while taking a trip';
   static const String riderSafetyEmergencyTitle = 'Emergency call';
   static const String riderSafetyShareTrip = 'Share trip details';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
-// static const String rider  = '';
+  // Rider faqs
+
+  static const String riderFaqsOneTitle =
+      '1. How do I create an account on BGlory Rides? ';
+  static const String riderFaqsOneDetailsTitle =
+      'To create an account, download the BGlory Rides app, select “Sign Up,” and provide the required information, including your phone number and email. Then, verify your account via OTP. ';
+  static const String riderFaqsTwoTitle = '2. How do I book a ride? ';
+  static const String riderFaqsTwoDetailsTitle =
+      'Open the app, enter your pickup location and destination, choose a ride option, and tap “Request Ride.” A nearby driver will be notified and come to pick you up. ';
+  static const String riderFaqsThreeTitle =
+      '3. What ride options are available?';
+  static const String riderFaqsThreeDetailsTitle =
+      'BGlory Rides offers several options, including standard rides, executive rides, and shared rides, depending on availability in your area.';
+  static const String riderFaqsFourTitle =
+      '4. Can I schedule a ride in advance?';
+  static const String riderFaqsFourDetailsTitle =
+      'Yes, you can schedule a ride by selecting the “Schedule Ride” option and choosing a time and date for pickup. ';
+  static const String riderFaqsFiveTitle = '5. How do I pay for my ride?';
+  static const String riderFaqsSixTitle = '6. Is there a cancellation fee?';
+  static const String riderFaqsSevenTitle = '7. How do I track my driver?';
+  static const String riderFaqsFiveDetailsTitle =
+      'You can pay using cash, credit/debit cards, or a digital wallet linked to your account. Simply select your preferred payment method at the end of the ride.';
+  static const String riderFaqsSixDetailsTitle =
+      'Yes, if you cancel after a driver has been dispatched, you may incur a cancellation fee. The amount varies based on the ride option and timing.';
+  static const String riderFaqsSevenDetailsTitle =
+      'Once you book a ride, you can track your driver in real-time using the map in the app. You’ll see their name, car details, and estimated arrival time.';
+  static const String riderFaqsEightTitle = '8. Can I contact my driver? ';
+  static const String riderFaqsEightDetailsTitle =
+      'Yes, you can contact your driver through the app via phone call or in-app messaging. ';
+  static const String riderFaqsNineTitle = '9. How do I rate my ride? ';
+  static const String riderFaqsNineDetailsTitle =
+      'After the ride ends, you’ll be prompted to rate your driver on a scale of 1 to 5 stars. You can also leave a comment about your experience.';
+  static const String riderFaqsTenTitle =
+      '10. What should I do if I leave an item in the car?';
+  static const String riderFaqsTenDetailsTitle =
+      'If you forget an item in the car, go to your trip history, select the ride, and contact the driver directly through the app.';
+  static const String riderFaqsElevenTitle = '11. Are rides insured? ';
+  static const String riderFaqsElevenDetailsTitle =
+      'Yes, all BGlory Rides are insured for both the driver and passengers to ensure safety and peace of mind.';
+  static const String riderFaqsTwelveTitle =
+      '12. Can I request a specific driver?';
+  static const String riderFaqsTwelveDetailsTitle =
+      'Currently, BGlory Rides does not support selecting specific drivers. A nearby available driver will be automatically assigned to your ride.';
+
+  static const String riderFaqsThirteenTitle =
+      '13. How are ride fares calculated?';
+  static const String riderFaqsThirteenDetailsTitle =
+      'Fares are based on distance, time, and demand. You’ll see an estimated fare before confirming your ride request. ';
+  static const String riderFAQsDetailsTitle = 'What are you looking for?';
+
 // static const String rider  = '';
 }

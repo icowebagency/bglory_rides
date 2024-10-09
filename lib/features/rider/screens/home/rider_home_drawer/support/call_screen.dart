@@ -5,16 +5,18 @@ import 'package:bglory_rides/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class CallUsScreen extends StatefulWidget {
-  const CallUsScreen({super.key});
+class RiderCallUsScreen extends StatefulWidget {
+  const RiderCallUsScreen({super.key});
 
   @override
-  State<CallUsScreen> createState() => _CallUsScreenState();
+  State<RiderCallUsScreen> createState() => _RiderCallUsScreenState();
 }
 
-class _CallUsScreenState extends State<CallUsScreen> {
+class _RiderCallUsScreenState extends State<RiderCallUsScreen> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
