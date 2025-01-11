@@ -113,7 +113,7 @@ class DriverData {
   final bool? isProfileComplete;
 
   @JsonKey(name: DriverKey.status)
-  final String? status;
+  final int? status;
 
   @JsonKey(name: DriverKey.createdAt)
   final DateTime? createdAt;
