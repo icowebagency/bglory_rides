@@ -47,7 +47,7 @@ Ensure you have the following tools installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone 
+   git clone  https://github.com/icowebagency/bglory_rides.git
 =======
 
 ### Frontend
