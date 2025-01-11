@@ -80,7 +80,7 @@ Ensure you have the following tools installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/bglory-rides.git
+   git clone https://github.com/bglory-rides.git
 
 
 
