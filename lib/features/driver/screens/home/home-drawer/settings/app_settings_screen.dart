@@ -39,7 +39,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
                 ),
                 child: ListTile(
                   onTap: () {
-                    context.push(BGRouteNames.driverAutoAccept);
+                    context.push(BGDriverRouteNames.driverAutoAccept);
                   },
                   leading: const Icon(Iconsax.check),
                   title: const Text(TTexts.appSettingsAutoAcceptTitle),

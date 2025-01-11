@@ -110,7 +110,7 @@ class PhoneNumberFormTab extends StatelessWidget {
                     String userInput = _phoneNumbercontroller.text;
 
                     final path = Uri(
-                        path: BGRouteNames.driverVerification,
+                        path: BGDriverRouteNames.driverVerification,
                         queryParameters: {
                           'userInput': userInput,
                         }).toString();

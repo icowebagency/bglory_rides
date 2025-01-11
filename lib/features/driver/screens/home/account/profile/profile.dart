@@ -180,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: TSizes.spaceBtwSections,
                         ),
                         DriverEditButton(onTap: () {
-                          context.go(BGRouteNames.driverProfileEdit);
+                          context.go(BGDriverRouteNames.driverProfileEdit);
                         })
                       ],
                     ),

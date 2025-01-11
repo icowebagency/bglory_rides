@@ -280,8 +280,8 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                           boxSubTitle: TTexts.driverEarning,
                                           boxIcon: Icons.wallet,
                                           boxOnTap: () {
-                                            context.go(
-                                                BGRouteNames.driverEarnings);
+                                            context.go(BGDriverRouteNames
+                                                .driverEarnings);
                                           },
                                           useFittedBox: true,
                                         ),
@@ -295,8 +295,8 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                             TTexts.driverCompletedTripsTitle,
                                         boxIcon: Icons.car_rental,
                                         boxOnTap: () {
-                                          context
-                                              .go(BGRouteNames.driverEarnings);
+                                          context.go(BGDriverRouteNames
+                                              .driverEarnings);
                                         },
                                         useFittedBox: true,
                                       )),
@@ -315,8 +315,8 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                               TTexts.driverDriveRateTitle,
                                           boxIcon: Icons.rate_review,
                                           boxOnTap: () {
-                                            context.push(
-                                                BGRouteNames.driverEarnings);
+                                            context.push(BGDriverRouteNames
+                                                .driverEarnings);
                                           },
                                           useFittedBox: false,
                                         ),
@@ -331,8 +331,8 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                               TTexts.driverAcceptanceRateTitle,
                                           boxIcon: Iconsax.wallet,
                                           boxOnTap: () {
-                                            context.push(
-                                                BGRouteNames.driverEarnings);
+                                            context.push(BGDriverRouteNames
+                                                .driverEarnings);
                                           },
                                           useFittedBox: true,
                                         ),

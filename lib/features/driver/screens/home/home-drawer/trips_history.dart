@@ -53,7 +53,8 @@ class _TripHistoryScreenState extends State<TripHistoryScreen> {
                     children: [
                       TripHistoryWidget(
                         onTap: () {
-                          context.push(BGRouteNames.driverTripHistoryDetails);
+                          context.push(
+                              BGDriverRouteNames.driverTripHistoryDetails);
                         },
                         tripTitle: TTexts.tripsHistoryLocationTitle,
                         tripLocation: TTexts.tripsHistoryLocation,

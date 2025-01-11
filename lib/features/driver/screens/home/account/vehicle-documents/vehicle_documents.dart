@@ -199,7 +199,8 @@ class _VehicleDocumentsScreenState extends State<VehicleDocumentsScreen> {
                     ),
                     DriverEditButton(
                       onTap: () {
-                        context.go(BGRouteNames.vehicleDocumentEditScreen);
+                        context
+                            .go(BGDriverRouteNames.vehicleDocumentEditScreen);
                       },
                     ),
                   ],

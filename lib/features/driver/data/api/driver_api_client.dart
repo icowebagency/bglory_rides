@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 
-import '../../../../utils/secrets/api_request.dart';
-import '../../../../utils/secrets/api_secrets.dart';
-import '../../../../utils/secrets/handle_api_mixin.dart';
+import '../../../../utils/secret/api_request.dart';
+import '../../../../utils/secret/api_secrets.dart';
+import '../../../../utils/secret/handle_api_mixin.dart';
 
 abstract class DriverApiClientContract {
   Future requestSignUpOtp({required Map<String, String> target});
@@ -191,10 +191,14 @@ class DriverApiClientImp with HandleApi implements DriverApiClientContract {
   Future getTrips({required String token, required int page}) {
     var headers = {'Authorization': 'Bearer Bearer $token'};
     var request = SimpleApiRequest(
-        'GET',
-        Uri(path: driverTripsEndpoint, queryParameters: {
+      'GET',
+      Uri(
+        // path: driverTripsEndpoint,
+        queryParameters: {
           'page': page,
-        }));
+        },
+      ),
+    );
 
     request.headers.addAll(headers);
 

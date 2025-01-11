@@ -34,12 +34,12 @@ class _DriverHomeWrapperState extends ConsumerState<DriverHomeShell> {
 
   // Define the paths that belong to the StatefulShellBranches
   final List<String> _shellRoutes = [
-    BGRouteNames.driverHomePageScreen,
-    BGRouteNames.driverEarnings,
-    BGRouteNames.driverTripHistory,
-    BGRouteNames.driverSettings,
-    BGRouteNames.driverSafety,
-    BGRouteNames.driverHelpAndSupport,
+    BGDriverRouteNames.driverHomePageScreen,
+    BGDriverRouteNames.driverEarnings,
+    BGDriverRouteNames.driverTripHistory,
+    BGDriverRouteNames.driverSettings,
+    BGDriverRouteNames.driverSafety,
+    BGDriverRouteNames.driverHelpAndSupport,
   ];
 
   // Initial selected drawer item

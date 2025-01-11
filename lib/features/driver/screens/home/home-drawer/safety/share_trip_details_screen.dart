@@ -185,7 +185,7 @@ class _SafetyShareTripDetailsScreenState
                 const SizedBox(height: TSizes.spaceBtwItems),
                 SaveButtonWidget(
                   onTap: () {
-                    context.go(BGRouteNames.driverHomePageScreen);
+                    context.go(BGDriverRouteNames.driverHomePageScreen);
                   },
                   buttonText: TTexts.driverTripDetailsButtonText,
                 ),

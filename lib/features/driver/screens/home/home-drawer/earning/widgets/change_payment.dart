@@ -45,28 +45,32 @@ class _ChangePaymentScreenState extends State<ChangePaymentScreen> {
                   ),
 
                   /// Add new card
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      context.push(BGRouteNames.driverAddCardScreen);
-                    },
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Iconsax.add_circle,
-                          color: TColors.white,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          TTexts.driverChangePaymentBottomSheetAddButtonTitle,
-                        ),
-                      ],
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        context.push(BGDriverRouteNames.driverAddCardScreen);
+                      },
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Iconsax.add_circle,
+                            color: TColors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            TTexts.driverChangePaymentBottomSheetAddButtonTitle,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

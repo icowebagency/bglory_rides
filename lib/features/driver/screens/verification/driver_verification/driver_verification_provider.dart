@@ -5,7 +5,7 @@ import 'package:bglory_rides/features/driver/screens/auth/auth_provider/driver_a
 import 'package:bglory_rides/utils/notification/notification_utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../utils/secrets/api_constants.dart';
+import '../../../../../utils/secret/api_constants.dart';
 
 final driverVerificationStateNotifier =
     StateNotifierProvider<DriverVerificationStateNotifier, AuthState>(

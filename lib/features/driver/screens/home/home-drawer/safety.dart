@@ -162,8 +162,8 @@ class _SafetyScreenState extends State<SafetyScreen> {
                 ),
                 child: ListTile(
                   onTap: () {
-                    context
-                        .push(BGRouteNames.driverSafetyShareTripDetailsScreen);
+                    context.push(
+                        BGDriverRouteNames.driverSafetyShareTripDetailsScreen);
                   },
                   leading: const Icon(
                     Iconsax.wifi_square,

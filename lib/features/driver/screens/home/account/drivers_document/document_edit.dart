@@ -215,7 +215,7 @@ class _DocumentEditScreenState extends State<DocumentEditScreen> {
                   width: width,
                   child: ElevatedButton(
                     onPressed: () {
-                      context.go(BGRouteNames.driverAccountScreen);
+                      context.go(BGDriverRouteNames.driverAccountScreen);
                     },
                     child: const Text(TTexts.driverUpdateButton),
                   ),

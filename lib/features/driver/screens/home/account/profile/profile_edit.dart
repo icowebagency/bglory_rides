@@ -358,7 +358,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                context.go(BGRouteNames.driverAccountScreen);
+                                context
+                                    .go(BGDriverRouteNames.driverAccountScreen);
                               },
                               child: Text(
                                 TTexts.driverUpdateButton,

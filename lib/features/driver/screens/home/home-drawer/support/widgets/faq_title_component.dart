@@ -1,3 +1,4 @@
+import 'package:bglory_rides/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -21,7 +22,7 @@ class FaqSubHeadings extends StatelessWidget {
           onTap: faqOnTap,
           title: Text(
             faqTitle,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           trailing: const Icon(
             Iconsax.arrow_right_3,
@@ -30,8 +31,10 @@ class FaqSubHeadings extends StatelessWidget {
         ),
         if (showDivider)
           const Divider(
+            thickness: 0.7,
             endIndent: 15,
             indent: 15,
+            color: TColors.softGrey,
           ),
       ],
     );
