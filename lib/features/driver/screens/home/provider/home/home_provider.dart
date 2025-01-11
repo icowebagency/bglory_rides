@@ -40,7 +40,7 @@ class HomeState with _$HomeState {
   factory HomeState.initial() => HomeState(
       dashboardData: DriverDashboardData(
         todaysEarnings: 0,
-        averageRating: 0,
+        averageRating: '0.00',
         completedTrips: 0,
         driveRate: 0,
         acceptanceRate: 0,

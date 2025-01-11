@@ -1,0 +1,255 @@
+import 'package:bglory_rides/features/driver/screens/home/home-drawer/earning/history_tab/withdraw_history_widget.dart';
+import 'package:bglory_rides/utils/constants/colors.dart';
+import 'package:bglory_rides/utils/constants/text_strings.dart';
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+
+class TransactionWidgetData {
+  final String withdrawalDate;
+  final IconData withdrawalIconProgress;
+  final Color withdrawalIconProgressColor;
+  final IconData withdrawalIconType;
+  final String withdrawalProgress;
+  final Color withdrawalProgressColor;
+  final Color withdrawIconTypeColor;
+  final String withdrewedAmount;
+
+  const TransactionWidgetData({
+    required this.withdrawalDate,
+    required this.withdrawalIconProgress,
+    required this.withdrawalIconProgressColor,
+    required this.withdrawalIconType,
+    required this.withdrawalProgress,
+    required this.withdrawalProgressColor,
+    required this.withdrawIconTypeColor,
+    required this.withdrewedAmount,
+  });
+
+  TransactionWidget toWidget() => TransactionWidget(
+        withdrawalDate: withdrawalDate,
+        withdrawalIconProgress: withdrawalIconProgress,
+        withdrawalIconProgressColor: withdrawalIconProgressColor,
+        withdrawalIconType: withdrawalIconType,
+        withdrawalProgress: withdrawalProgress,
+        withdrawalProgressColor: withdrawalProgressColor,
+        withdrawIconTypeColor: withdrawIconTypeColor,
+        withdrewedAmount: withdrewedAmount,
+      );
+
+  static  List<TransactionWidgetData> get dummydata => [
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryYesterdayTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalOnePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateOneTitle,
+          withdrawalIconProgress: Iconsax.close_circle,
+          withdrawalIconProgressColor: TColors.error,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryUnSuccessTitle,
+          withdrawalProgressColor: TColors.error,
+          withdrawIconTypeColor: TColors.error,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalTwoPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTwoTitle,
+          withdrawalIconProgress: Iconsax.minus_cirlce,
+          withdrawalIconProgressColor: TColors.warning,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryPendingTitle,
+          withdrawalProgressColor: TColors.warning,
+          withdrawIconTypeColor: TColors.warning,
+          withdrewedAmount:
+              TTexts.transactionHistoryEarningWithdrawalThreePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateThreeTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFourPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateFourTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFivePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalOnePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateOneTitle,
+          withdrawalIconProgress: Iconsax.close_circle,
+          withdrawalIconProgressColor: TColors.error,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryUnSuccessTitle,
+          withdrawalProgressColor: TColors.error,
+          withdrawIconTypeColor: TColors.error,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalTwoPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTwoTitle,
+          withdrawalIconProgress: Iconsax.minus_cirlce,
+          withdrawalIconProgressColor: TColors.warning,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryPendingTitle,
+          withdrawalProgressColor: TColors.warning,
+          withdrawIconTypeColor: TColors.warning,
+          withdrewedAmount:
+              TTexts.transactionHistoryEarningWithdrawalThreePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateThreeTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFourPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateFourTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFivePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalOnePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateOneTitle,
+          withdrawalIconProgress: Iconsax.close_circle,
+          withdrawalIconProgressColor: TColors.error,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryUnSuccessTitle,
+          withdrawalProgressColor: TColors.error,
+          withdrawIconTypeColor: TColors.error,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalTwoPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTwoTitle,
+          withdrawalIconProgress: Iconsax.minus_cirlce,
+          withdrawalIconProgressColor: TColors.warning,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryPendingTitle,
+          withdrawalProgressColor: TColors.warning,
+          withdrawIconTypeColor: TColors.warning,
+          withdrewedAmount:
+              TTexts.transactionHistoryEarningWithdrawalThreePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateThreeTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFourPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateFourTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFivePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalOnePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateOneTitle,
+          withdrawalIconProgress: Iconsax.close_circle,
+          withdrawalIconProgressColor: TColors.error,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryUnSuccessTitle,
+          withdrawalProgressColor: TColors.error,
+          withdrawIconTypeColor: TColors.error,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalTwoPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateTwoTitle,
+          withdrawalIconProgress: Iconsax.minus_cirlce,
+          withdrawalIconProgressColor: TColors.warning,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistoryPendingTitle,
+          withdrawalProgressColor: TColors.warning,
+          withdrawIconTypeColor: TColors.warning,
+          withdrewedAmount:
+              TTexts.transactionHistoryEarningWithdrawalThreePrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateThreeTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFourPrice,
+        ),
+        const TransactionWidgetData(
+          withdrawalDate: TTexts.transactionHistoryDateFourTitle,
+          withdrawalIconProgress: Iconsax.tick_circle,
+          withdrawalIconProgressColor: TColors.success,
+          withdrawalIconType: Iconsax.send,
+          withdrawalProgress: TTexts.transactionHistorySuccessTitle,
+          withdrawalProgressColor: TColors.success,
+          withdrawIconTypeColor: TColors.success,
+          withdrewedAmount: TTexts.transactionHistoryEarningWithdrawalFivePrice,
+        ),
+      ];
+}
