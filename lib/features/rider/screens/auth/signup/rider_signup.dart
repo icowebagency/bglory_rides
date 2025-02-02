@@ -1,15 +1,14 @@
+import 'package:bglory_rides/features/rider/screens/auth/auth_providers/auth_providers.dart';
+import 'package:bglory_rides/features/rider/screens/auth/widgets/email_login_tab.dart';
+import 'package:bglory_rides/features/rider/screens/auth/widgets/number_login_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../../common/widgets/app_circular_progress_indicator.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
-import '../../../../driver/screens/auth/signup/driver_signup_provider.dart';
-import '../../../../driver/screens/auth/widgets/login_emailFormTab.dart';
-import '../../../../driver/screens/auth/widgets/login_phoneNumberTab.dart';
 
 class RiderSignup extends StatefulWidget {
   const RiderSignup({super.key});
@@ -83,22 +82,20 @@ class _RiderSignupState extends State<RiderSignup> {
                       child: Consumer(builder: (context, ref, child) {
                         return Builder(builder: (context) {
                           ref
-                              .read(driverSignUpStateNotifierProvider.notifier)
+                              .read(riderSignUpNotifierProvider.notifier)
                               .setPageController(
                                 controller: DefaultTabController.of(context),
                               );
                           return TabBarView(children: [
                             ///  Email Tab
                             LoginEmailFormTab(
-                              driverAuthProvider:
-                                  driverSignUpStateNotifierProvider,
                               isLogin: false,
+                              riderAuthNotifier: riderSignUpNotifierProvider,
                             ),
 
                             ///  Phone Number Tab
                             LoginPhoneNumberFormTab(
-                              driverAuthProvider:
-                                  driverSignUpStateNotifierProvider,
+                              riderAuthNotifier: riderSignUpNotifierProvider,
                               isLogin: false,
                             ),
                           ]);
@@ -110,11 +107,7 @@ class _RiderSignupState extends State<RiderSignup> {
               ),
               Consumer(builder: (context, ref, child) {
                 return Visibility(
-                  visible: ref.watch(
-                    driverSignUpStateNotifierProvider.select(
-                      (value) => value.isLoading,
-                    ),
-                  ),
+                  visible: ref.watch(riderSignUpNotifierProvider.select((value) => value.isLoading)),
                   child: Container(
                     color: Colors.grey.withOpacity(0.4),
                     child: const Center(

@@ -25,29 +25,29 @@ mixin HandleApi {
       } else {
         final error = jsonDecode(responseData);
         return Failure(
-          errorResponse: error['message'],
+          message: error['message'],
         );
       }
     } on HttpException {
       log('HttpException');
 
-      return Failure(code: NO_INTERNET, errorResponse: serverError);
-    } on FormatException {
-      log('FormatException');
+      return Failure(code: NO_INTERNET, message: serverError);
+    } on FormatException catch(e) {
+      log('FormatException $e');
 
-      return Failure(code: USER_INVALID_RESPONSE, errorResponse: invalidFormat);
+      return Failure(code: USER_INVALID_RESPONSE, message: invalidFormat);
     } on SocketException {
       log('SocketException');
 
-      return Failure(code: USER_INVALID_RESPONSE, errorResponse: internetError);
+      return Failure(code: USER_INVALID_RESPONSE, message: internetError);
     } on TimeoutException {
       log('TimeoutException');
 
-      return Failure(code: TIME_OUT, errorResponse: timeoutError);
+      return Failure(code: TIME_OUT, message: timeoutError);
     } catch (e) {
       log('$e');
 
-      return Failure(code: UNKNOWN_ERROR, errorResponse: e.toString());
+      return Failure(code: UNKNOWN_ERROR, message: e.toString());
     }
   }
 }

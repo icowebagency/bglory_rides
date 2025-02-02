@@ -25,7 +25,7 @@ class HomeData extends Notifier<HomeState> {
       state = state.copyWith(dashboardData: dashboardData);
     } else {
       NotificationUtil.showErrorNotification(
-          '${(result as Failure).errorResponse}');
+          '${(result as Failure).message}');
     }
   }
 }

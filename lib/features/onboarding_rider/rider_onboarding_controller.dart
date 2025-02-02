@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../routing/rider_routing.dart';
 
 final onboardingControllerProvider =
     StateNotifierProvider<RiderOnBoardingController, OnboardingState>(
@@ -29,6 +33,8 @@ class RiderOnBoardingController extends StateNotifier<OnboardingState> {
           ),
         );
 
+  FlutterSecureStorage _storage = FlutterSecureStorage();
+
   /// Update Current Index when Page Scroll
   void updatePageIndicator(index) => state.copyWith(currentIndex: index);
 
@@ -37,4 +43,12 @@ class RiderOnBoardingController extends StateNotifier<OnboardingState> {
     state.copyWith(currentIndex: index);
     state.pageController.jumpTo(index.toDouble());
   }
+
+  void init(BuildContext context) async {
+    final token = await _storage.read(key: "token");
+    if(token != null) {
+      context.go(BGRiderRouteNames.riderHomeScreen);
+    }
+  }
+
 }

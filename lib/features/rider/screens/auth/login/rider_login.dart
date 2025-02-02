@@ -2,14 +2,14 @@ import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_pro
 import 'package:bglory_rides/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:bglory_rides/features/rider/screens/auth/widgets/email_login_tab.dart';
+import 'package:bglory_rides/features/rider/screens/auth/widgets/number_login_tab.dart';
 import '../../../../../common/widgets/app_circular_progress_indicator.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
-import '../../../../driver/screens/auth/widgets/login_emailFormTab.dart';
-import '../../../../driver/screens/auth/widgets/login_phoneNumberTab.dart';
+import '../auth_providers/auth_providers.dart';
 
 class RiderLoginScreen extends StatefulWidget {
   const RiderLoginScreen({super.key});
@@ -21,6 +21,7 @@ class RiderLoginScreen extends StatefulWidget {
 class _RiderLoginScreenState extends State<RiderLoginScreen> {
   @override
   Widget build(BuildContext context) {
+    // print('gfdxss');
     final dark = THelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: 2,
@@ -82,7 +83,7 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> {
                     Builder(builder: (context) {
                       return Consumer(builder: (context, ref, child) {
                         ref
-                            .read(driverLoginStateNotifierProvider.notifier)
+                            .read(riderLoginNotifierProvider.notifier)
                             .setPageController(
                               controller: DefaultTabController.of(context),
                             );
@@ -90,15 +91,12 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> {
                           child: TabBarView(children: [
                             ///  Email Tab
                             LoginEmailFormTab(
-                              driverAuthProvider:
-                                  driverLoginStateNotifierProvider,
                               isLogin: true,
+                              riderAuthNotifier: riderLoginNotifierProvider,
                             ),
-
                             ///  Phone Number Tab
                             LoginPhoneNumberFormTab(
-                              driverAuthProvider:
-                                  driverLoginStateNotifierProvider,
+                              riderAuthNotifier: riderLoginNotifierProvider,
                               isLogin: true,
                             ),
                           ]),
@@ -110,11 +108,7 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> {
               ),
               Consumer(builder: (context, ref, child) {
                 return Visibility(
-                  visible: ref.watch(
-                    driverLoginStateNotifierProvider.select(
-                      (value) => value.isLoading,
-                    ),
-                  ),
+                  visible: ref.watch(riderLoginNotifierProvider.select((value) => value.isLoading,),),
                   child: Container(
                     color: Colors.grey.withOpacity(0.4),
                     child: const Center(

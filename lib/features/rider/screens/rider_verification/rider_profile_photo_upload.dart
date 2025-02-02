@@ -1,26 +1,75 @@
+import 'dart:io';
+
 import 'package:bglory_rides/common/widgets/save_button_widget.dart';
 import 'package:bglory_rides/features/driver/general_widgets/outlined_button_widget.dart';
+import 'package:bglory_rides/features/rider/screens/rider_verification/verification_providers/verification_notifier.dart';
 import 'package:bglory_rides/routing/rider_routing.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
+import '../../data/provider/camera/camera_notifier.dart';
 
-class RiderProfilePhotoUploadScreen extends StatefulWidget {
+class RiderProfilePhotoUploadScreen extends ConsumerStatefulWidget {
   const RiderProfilePhotoUploadScreen({super.key});
 
   @override
-  State<RiderProfilePhotoUploadScreen> createState() =>
+  ConsumerState<RiderProfilePhotoUploadScreen> createState() =>
       _RiderProfilePhotoUploadScreenState();
 }
 
 class _RiderProfilePhotoUploadScreenState
-    extends State<RiderProfilePhotoUploadScreen> {
+    extends ConsumerState<RiderProfilePhotoUploadScreen> with WidgetsBindingObserver{
+
+  File? _capturedImage;
+
+  @override
+  void initState() {
+    super.initState();
+    // _initializeCamera();
+    WidgetsBinding.instance.addObserver(this);
+    ref.read(cameraProvider.notifier).initializeCamera();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // if(ref.read(cameraProvider).cameraController == null || !ref.read(cameraProvider).cameraController!.value.isInitialized) {
+    //   return;
+    // }
+    if(state == AppLifecycleState.inactive) {
+      ref.read(cameraProvider.notifier).dispose();
+      return;
+    }
+    if(state == AppLifecycleState.resumed) {
+      ref.read(cameraProvider.notifier).initializeCamera();
+    }
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    ref.read(cameraProvider.notifier).dispose();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(verificationNotifier);
+    final verNotifier = ref.watch(verificationNotifier.notifier);
+    final cameraState = ref.watch(cameraProvider);
+    final cameraNotifier = ref.read(cameraProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -48,8 +97,36 @@ class _RiderProfilePhotoUploadScreenState
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                Container(
+                if(state.profileImg.isEmpty) if(cameraState.cameraController == null || !cameraState.cameraController!.value.isInitialized)
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: TColors.primary,
+                      ),
+                      color: TColors.grey.withOpacity(0.5),
+                    ),
+                  )
+                else
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: TColors.primary,
+                      ),
+                      color: TColors.grey.withOpacity(0.5),
+                    ),
+                    child: ClipRRect(
+                      borderRadius:  BorderRadius.circular(20),
+                      child: CameraPreview(cameraState.cameraController!),
+                    ),
+                  ),
+                if(state.profileImg.isNotEmpty) Container(
                   height: MediaQuery.of(context).size.height * 0.3,
+                  width: double.maxFinite,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
@@ -57,11 +134,18 @@ class _RiderProfilePhotoUploadScreenState
                     ),
                     color: TColors.grey.withOpacity(0.5),
                   ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.file(
+                      _capturedImage!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: TSizes.spaceBtwSections,
                 ),
-                Column(
+                if(state.profileImg.isEmpty)Column(
                   children: [
                     ListTile(
                       leading: const Icon(
@@ -89,63 +173,82 @@ class _RiderProfilePhotoUploadScreenState
                             ),
                       ),
                     ),
-                    //Todo: Once the user Uploads a photo, this text should show up and the other texts above hides off.
-                    Text(
-                      textAlign: TextAlign.center,
-                      TTexts.riderProfilePictureUploadTermsAndCondition,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: TColors.error,
+                  ],
+                ),
+                if(state.profileImg.isNotEmpty) ...[
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    TTexts.riderProfilePictureUploadTermsAndCondition,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: TColors.error,
+                    ),
+                  ),
+                ],
+                if(state.profileImg.isEmpty)Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularIconContainer(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.width * 0.15,
+                      onTap: () {
+                        cameraNotifier.toggleView();
+                      },
+                      color: TColors.grey.withOpacity(0.5),
+                      icon: const Icon(
+                        Icons.refresh,
+                        color: TColors.dark,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: TSizes.spaceBtwItems,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        final picture = await cameraState.cameraController!.takePicture();
+                        final img = File(picture.path);
+                        _capturedImage = img;
+                        verNotifier.updateProfile(img.path);
+                        print(picture.path);
+                        cameraNotifier.dispose();
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        decoration: const BoxDecoration(
+                          color: TColors.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Iconsax.camera,
+                            color: TColors.white,
                           ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: TSizes.spaceBtwItems,
+                    ),
+                    CircularIconContainer(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.width * 0.15,
+                      onTap: () {},
+                      color: TColors.grey.withOpacity(0.5),
+                      icon: const Icon(
+                        Iconsax.flash_slash,
+                        color: TColors.dark,
+                      ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 80),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircularIconContainer(
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        onTap: () {},
-                        color: TColors.grey.withOpacity(0.5),
-                        icon: const Icon(
-                          Icons.refresh,
-                          color: TColors.dark,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          decoration: const BoxDecoration(
-                            color: TColors.primary,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Center(
-                            child: Icon(
-                              Iconsax.camera,
-                              color: TColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      CircularIconContainer(
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        onTap: () {},
-                        color: TColors.grey.withOpacity(0.5),
-                        icon: const Icon(
-                          Iconsax.flash_slash,
-                          color: TColors.dark,
-                        ),
-                      ),
-                    ],
+                if(state.profileImg.isNotEmpty) ...[
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
                   ),
-                ),
-                //Todo:  Once the user Uploads a photo, this button should show up and the other buttons hides off.
-                SaveButtonWidget(
+                  SaveButtonWidget(
                   onTap: () {
                     context.push(BGRiderRouteNames.riderAddCard);
                   },
@@ -155,9 +258,13 @@ class _RiderProfilePhotoUploadScreenState
                   height: TSizes.spaceBtwItems,
                 ),
                 OutlinedButtonWidget(
-                  onTap: () {},
+                  onTap: () {
+                    cameraNotifier.initializeCamera();
+                    verNotifier.updateProfile("");
+                  },
                   buttonText: TTexts.generalRetakeTitle,
                 ),
+                ]
               ],
             ),
           ),

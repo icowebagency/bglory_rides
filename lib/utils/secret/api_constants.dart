@@ -1,15 +1,21 @@
 // ignore_for_file: constant_identifier_names
 
-class Success {
+abstract class ApiResponse<T> {
+  final T? data;
+  final String? message;
+
+  ApiResponse({this.data, this.message});
+}
+
+
+class Success<T> extends ApiResponse<T> {
   int? code;
   Object? response;
-  String? message;
-  dynamic data;
   Success({
     this.code,
     this.response,
-    this.data,
-    this.message,
+    super.data,
+    super.message,
   });
   @override
   String toString() {
@@ -17,14 +23,13 @@ class Success {
   }
 }
 
-class Failure {
+class Failure<T> extends ApiResponse<T>{
   int? code;
-  String? errorResponse;
-  Failure({this.code, this.errorResponse});
+  Failure({this.code, super.message});
 
   @override
   String toString() {
-    return 'Failure{code: $code, errorResponse: $errorResponse}';
+    return 'Failure{code: $code, errorResponse: $message}';
   }
 }
 
