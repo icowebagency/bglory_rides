@@ -39,9 +39,6 @@ class _RiderConfirmTripDetailsBottomSheetState
           ),
         ),
       ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitle,
-      ),
       title: StepperText(
         TTexts.rideHailingLocation,
       ),
@@ -51,7 +48,7 @@ class _RiderConfirmTripDetailsBottomSheetState
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: TColors.secondary,
+            color: TColors.grey,
             width: 1.3,
           ),
         ),
@@ -59,14 +56,11 @@ class _RiderConfirmTripDetailsBottomSheetState
           child: Container(
             margin: const EdgeInsets.all(3),
             decoration: const BoxDecoration(
-              color: TColors.primary,
+              color: TColors.grey,
               shape: BoxShape.circle,
             ),
           ),
         ),
-      ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitleTwo,
       ),
       title: StepperText(
         TTexts.rideHailingDestination,
@@ -189,7 +183,10 @@ class _RiderConfirmTripDetailsBottomSheetState
                 ),
               ),
             ),
-            const CarAnimationScreen(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              child: CarAnimationScreen(),
+            ),
             //Ride Timeline
             AnotherStepper(
               activeBarColor: TColors.primary,
@@ -197,6 +194,8 @@ class _RiderConfirmTripDetailsBottomSheetState
               stepperList: stepperData,
               stepperDirection: Axis.vertical,
               inActiveBarColor: TColors.grey,
+              verticalGap: 15,
+              barThickness: 1,
             ),
             const SizedBox(
               height: TSizes.spaceBtwItems,
@@ -206,13 +205,13 @@ class _RiderConfirmTripDetailsBottomSheetState
               children: [
                 Text(
                   TTexts.riderDriverFoundBottomSheetDriverArrivalTitle,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Text(
                   TTexts.riderDriverFoundBottomSheetDriverArrivalTimeTitle,
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge!
+                      .bodyMedium!
                       .copyWith(color: TColors.primary),
                 ),
               ],

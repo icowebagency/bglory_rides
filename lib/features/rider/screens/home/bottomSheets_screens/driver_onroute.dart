@@ -145,19 +145,22 @@ class _DriverOnrouteBottomSheetState extends State<DriverOnrouteBottomSheet> {
               ),
             ),
           ),
-          const CarAnimationScreen(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 19.0),
+            child: CarAnimationScreen(),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 TTexts.riderDriverFoundBottomSheetDriverArrivalTitle,
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
                 TTexts.riderDriverFoundBottomSheetDriverArrivalTimeTitle,
                 style: Theme.of(context)
                     .textTheme
-                    .titleLarge!
+                    .bodyMedium!
                     .copyWith(color: TColors.primary),
               ),
             ],

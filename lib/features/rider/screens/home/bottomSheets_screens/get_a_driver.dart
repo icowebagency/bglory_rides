@@ -23,33 +23,7 @@ class _GetADriverScreenState extends State<GetADriverScreen> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: TColors.secondary,
-            width: 1.3,
-          ),
-        ),
-        child: Center(
-          child: Container(
-            margin: const EdgeInsets.all(3),
-            decoration: const BoxDecoration(
-              color: TColors.secondary,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
-      ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitle,
-      ),
-      title: StepperText(
-        TTexts.rideHailingLocation,
-      ),
-    ),
-    StepperData(
-      iconWidget: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: TColors.secondary,
+            color: TColors.primary,
             width: 1.3,
           ),
         ),
@@ -63,9 +37,36 @@ class _GetADriverScreenState extends State<GetADriverScreen> {
           ),
         ),
       ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitleTwo,
+      // subtitle: StepperText(
+      //   TTexts.driverTripInvoiceTimeSubTitle,
+      // ),
+      title: StepperText(
+        TTexts.rideHailingLocation,
+        // textStyle: Theme.of(context).textTheme.labelLarge
       ),
+    ),
+    StepperData(
+      iconWidget: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: TColors.grey,
+            width: 1.3,
+          ),
+        ),
+        child: Center(
+          child: Container(
+            margin: const EdgeInsets.all(3),
+            decoration: const BoxDecoration(
+              color: TColors.grey,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ),
+      // subtitle: StepperText(
+      //   TTexts.driverTripInvoiceTimeSubTitleTwo,
+      // ),
       title: StepperText(
         TTexts.rideHailingDestination,
       ),
@@ -76,144 +77,150 @@ class _GetADriverScreenState extends State<GetADriverScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: TColors.accent,
-              borderRadius: BorderRadius.circular(10),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: TColors.accent,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.car,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        TTexts.riderGetADriverBottomSheetRiderTypeTitle,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: TColors.primary,
+                            ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        TTexts.nairaSymbol,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: TColors.primary,
+                              fontFamily: 'Notosans',
+                            ),
+                      ),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      Text(
+                        TTexts.riderHomeScreenChooseRidePremiumPriceTitle,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: TColors.primary,
+                            ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.car,
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      TTexts.riderGetADriverBottomSheetRiderTypeTitle,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: TColors.primary,
-                          ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      TTexts.nairaSymbol,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: TColors.primary,
-                            fontFamily: 'Notosans',
-                          ),
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      TTexts.riderHomeScreenChooseRidePremiumPriceTitle,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: TColors.primary,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
             ),
-          ),
-          const SizedBox(
-            height: TSizes.spaceBtwItems,
-          ),
-          //Ride Timeline
-          AnotherStepper(
-            activeBarColor: TColors.primary,
-            activeIndex: 1,
-            stepperList: stepperData,
-            stepperDirection: Axis.vertical,
-            inActiveBarColor: TColors.grey,
-          ),
-          const SizedBox(
-            height: TSizes.spaceBtwItems,
-          ),
-          FittedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.money_4,
-                      size: 20,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      TTexts.riderPaymentTypeBottomSheetDebitTitle,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.routing,
-                      size: 20,
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      TTexts.riderGetADriverBottomSheetRiderTripDistanceTitle,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.clock,
-                      size: 20,
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      TTexts.riderGetADriverBottomSheetRiderTripTimeTitle,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                    ),
-                  ],
-                ),
-              ],
+            //Ride Timeline
+            AnotherStepper(
+              activeBarColor: TColors.grey,
+              activeIndex: 0,
+              barThickness: 1,
+              stepperList: stepperData,
+              stepperDirection: Axis.vertical,
+              inActiveBarColor: TColors.grey,
+              verticalGap: 15,
             ),
-          ),
-          const SizedBox(
-            height: TSizes.spaceBtwItems,
-          ),
-          SaveButtonWidget(
-            onTap: () {},
-            buttonTextColor: TColors.white,
-            buttonText: TTexts.riderGetADriverBottomSheetRiderGetADriverTitle,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          OutlinedButtonWidget(
-            onTap: () {},
-            buttonText: TTexts.driverChangePaymentBottomSheetCancelButtonText,
-            buttonTextColor: TColors.dark,
-            buttonOutlineColor: TColors.dark,
-          ),
-        ],
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
+            FittedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.money_4,
+                        size: 17,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        TTexts.riderPaymentTypeBottomSheetDebitTitle,
+                          style: Theme.of(context).textTheme.labelMedium
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.routing,
+                        size: 17,
+                      ),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      Text(
+                        TTexts.riderGetADriverBottomSheetRiderTripDistanceTitle,
+                          style: Theme.of(context).textTheme.labelMedium
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.clock,
+                        size: 17,
+                      ),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      Text(
+                        TTexts.riderGetADriverBottomSheetRiderTripTimeTitle,
+                        style: Theme.of(context).textTheme.labelMedium
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
+            SaveButtonWidget(
+              onTap: () {},
+              buttonTextColor: TColors.white,
+              buttonText: TTexts.riderGetADriverBottomSheetRiderGetADriverTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            OutlinedButtonWidget(
+              onTap: () {},
+              buttonText: TTexts.driverChangePaymentBottomSheetCancelButtonText,
+              buttonTextColor: TColors.dark,
+              buttonOutlineColor: TColors.dark,
+            ),
+          ],
+        ),
       ),
     );
   }

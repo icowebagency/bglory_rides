@@ -35,29 +35,31 @@ class RiderTripHisotryWidget extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  tripTitle,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  tripSubTitle,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: TColors.grey,
-                      ),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    tripTitle,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    tripSubTitle,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: TColors.grey,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
         const SizedBox(
-          height: TSizes.spaceBtwItems,
+          height: TSizes.sm,
         ),
         const Divider(
           thickness: 1,

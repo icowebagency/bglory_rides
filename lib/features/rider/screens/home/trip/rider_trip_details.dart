@@ -63,7 +63,7 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: TColors.secondary,
+            color: TColors.primary,
             width: 1.3,
           ),
         ),
@@ -134,6 +134,8 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
                   activeIndex: 1,
                   stepperList: stepperData,
                   stepperDirection: Axis.vertical,
+                  verticalGap: 20,
+                  barThickness: 1,
                   inActiveBarColor: TColors.grey,
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
@@ -141,12 +143,14 @@ class _RiderTripDetailsScreenState extends State<RiderTripDetailsScreen> {
                   height: height * 0.26,
                   width: width,
                   child: const GoogleMap(
+                    myLocationButtonEnabled: false,
                     zoomGesturesEnabled: true,
                     mapType: MapType.terrain,
                     initialCameraPosition: CameraPosition(
                       zoom: 13,
                       target: currentPosition,
                     ),
+
                   ),
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),

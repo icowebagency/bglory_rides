@@ -28,6 +28,10 @@
         <string>This allows you to use BGlory to take pictures</string>
         <key>NSMicrophoneUsageDescription</key>
         <string>your usage description here</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>This app requires access to your location to notify you of requests in your proximity</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+        <string>This app needs access to location when in the background.</string>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>

@@ -1,3 +1,9 @@
+import 'dart:async';
+
+import 'package:bglory_rides/common/google_maps/provider.dart';
+import 'package:bglory_rides/features/rider/screens/home/providers/home_provider.dart';
+import 'package:bglory_rides/features/rider/screens/home/providers/map_provider.dart';
+import 'package:bglory_rides/features/rider/screens/home/providers/search_location_provider.dart';
 import 'package:bglory_rides/features/rider/screens/home/widgets/rider_trip_history.dart';
 import 'package:bglory_rides/routing/rider_routing.dart';
 import 'package:bglory_rides/utils/constants/sizes.dart';
@@ -10,10 +16,15 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
-import '../../../driver/screens/home/provider/home/home_provider.dart';
 import '../../../driver/screens/home/widgets/map_custom_icon_widget.dart';
+import 'bottomSheets_screens/confirm_trip_details.dart';
+import 'bottomSheets_screens/driver_found.dart';
+import 'bottomSheets_screens/driver_onroute.dart';
+import 'bottomSheets_screens/get_a_driver.dart';
+import 'bottomSheets_screens/start_trip.dart';
+import 'bottomSheets_screens/trip_completed.dart';
 
-const LatLng currentPosition = LatLng(4.873944125830453, 6.968284104088095);
+const LatLng currentPosition = LatLng(37.42796133580664, -122.085749655962);
 
 class RiderHomeScreen extends ConsumerStatefulWidget {
   const RiderHomeScreen({super.key});
@@ -28,6 +39,8 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
 
   // A TextEditingController to control the text
   final TextEditingController _controller = TextEditingController();
+  
+  final DraggableScrollableController _sheetController = DraggableScrollableController();
 
   // Variables to control the search field visibility and text
   bool isTyping = false;
@@ -45,8 +58,6 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
 
   @override
   void initState() {
-    ref.read(driverHomeDataNotifierProvider.notifier).loadHomePageData();
-
     super.initState();
   }
 
@@ -56,18 +67,29 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
     double width = size.width;
     double height = size.height;
     final dark = THelperFunctions.isDarkMode(context);
+    final searchState = ref.watch(searchLocationProvider);
+    final homeState = ref.watch(homeProvider);
+    final mapProvider = ref.watch(userMapProvider);
 
     return Scaffold(
       body: Stack(
         children: [
-          // Google Map widget
-          const GoogleMap(
-            zoomGesturesEnabled: true,
-            mapType: MapType.terrain,
-            initialCameraPosition: CameraPosition(
-              zoom: 17.1,
+          GoogleMap(
+            mapType: MapType.normal,
+            myLocationEnabled: true,
+            compassEnabled: false,
+            zoomControlsEnabled: true,
+            myLocationButtonEnabled: true,
+            markers: mapProvider.markers,
+            polylines: mapProvider.polylines,
+            initialCameraPosition: const CameraPosition(
+              zoom: 14,
               target: currentPosition,
             ),
+            zoomGesturesEnabled: true,
+            onMapCreated: (GoogleMapController controller) {
+              ref.read(userMapProvider.notifier).initializeMap(controller);
+            },
           ),
 
           // Top search bar that displays the entered destination
@@ -90,21 +112,23 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                         containerIcon: Iconsax.notification,
                         scaffoldKey: null,
                         onTap: () {
-                          // showModalBottomSheet(
-                          //   isScrollControlled: false,
-                          //   context: context,
-                          //   builder: (BuildContext context) {
-                          //     return const TripCompletedBottomSheet();
-                          //   },
-                          // );
-                          context.push(
-                              BGRiderRouteNames.riderBlankTripHistoryScreen);
+                          showBottomSheet(
+                            // isScrollControlled: false,
+                            context: context,
+                            // barrierColor: Colors.transparent,
+                            builder: (BuildContext context) {
+                              return const TripCompletedBottomSheet();
+                            },
+                          );
+                          // context.push(
+                          //     BGRiderRouteNames.riderBlankTripHistoryScreen);
                         },
                       ),
                     ],
                   ),
 
                   // Search bar that shows the entered destination
+                  ///TODO: Remove this destination
                   if (destination.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.all(10),
@@ -137,71 +161,72 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                     ),
 
                   // Original search column that becomes visible when typing
-                  Visibility(
-                    visible: isTyping,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
-                      child: Container(
-                        color: TColors.white,
-
-                        /// Top search field
-                        child: TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              destination =
-                                  value; // Update destination while typing.
-                            });
-                          },
-                          controller: _controller,
-                          decoration: InputDecoration(
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isTyping = false;
-                                  _controller.clear();
-                                });
-                              },
-                              child: const Icon(
-                                Iconsax.close_circle,
-                                size: 18,
-                                color: TColors.dark,
-                              ),
-                            ),
-                            prefixIcon: const Icon(Iconsax.search_status,
-                                color: TColors.dark),
-                            labelText: TTexts.riderSearchHintTitle,
-                            hintText: TTexts.riderSearchHintTitle,
-                            hintStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(color: TColors.dark),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: TColors.primary,
-                              ),
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: TColors.primary,
-                              ),
-                            ),
-                          ),
-                          // Trigger the BottomSheet and update destination when 'Enter' is pressed
-                          onFieldSubmitted: (value) {
-                            setState(() {
-                              destination =
-                                  value; // Update the destination with the typed value
-                              isTyping =
-                                  false; // Hide the search input once entered
-                            });
-                            _showPriceBottomSheet(
-                                context); // Show the BottomSheet
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  ///TODO: implement properly
+                  // Visibility(
+                  //   visible: isTyping,
+                  //   child: Padding(
+                  //     padding:
+                  //         const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  //     child: Container(
+                  //       color: TColors.white,
+                  //
+                  //       /// Top search field
+                  //       child: TextFormField(
+                  //         onChanged: (value) {
+                  //           setState(() {
+                  //             destination =
+                  //                 value; // Update destination while typing.
+                  //           });
+                  //         },
+                  //         controller: _controller,
+                  //         decoration: InputDecoration(
+                  //           suffixIcon: GestureDetector(
+                  //             onTap: () {
+                  //               setState(() {
+                  //                 isTyping = false;
+                  //                 _controller.clear();
+                  //               });
+                  //             },
+                  //             child: const Icon(
+                  //               Iconsax.close_circle,
+                  //               size: 18,
+                  //               color: TColors.dark,
+                  //             ),
+                  //           ),
+                  //           prefixIcon: const Icon(Iconsax.search_status,
+                  //               color: TColors.dark),
+                  //           labelText: TTexts.riderSearchHintTitle,
+                  //           hintText: TTexts.riderSearchHintTitle,
+                  //           hintStyle: Theme.of(context)
+                  //               .textTheme
+                  //               .bodySmall!
+                  //               .copyWith(color: TColors.dark),
+                  //           focusedBorder: const OutlineInputBorder(
+                  //             borderSide: BorderSide(
+                  //               color: TColors.primary,
+                  //             ),
+                  //           ),
+                  //           enabledBorder: const OutlineInputBorder(
+                  //             borderSide: BorderSide(
+                  //               color: TColors.primary,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         // Trigger the BottomSheet and update destination when 'Enter' is pressed
+                  //         onFieldSubmitted: (value) {
+                  //           setState(() {
+                  //             destination =
+                  //                 value; // Update the destination with the typed value
+                  //             isTyping =
+                  //                 false; // Hide the search input once entered
+                  //           });
+                  //           _showPriceBottomSheet(
+                  //               context); // Show the BottomSheet
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -209,12 +234,13 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
 
           // Bottom sheet section with DraggableScrollableSheet
           Visibility(
-            visible: isDraggableSheetVisible,
+            visible: homeState.isDraggableSheetVisible,
             // Control the visibility of the DraggableScrollable widget
             child: DraggableScrollableSheet(
               initialChildSize: 0.35, // Adjust as needed
-              minChildSize: 0.12, // Adjust as needed
-              maxChildSize: 0.75, // Maximum size when fully expanded
+              minChildSize: 0.25, // Adjust as needed
+              maxChildSize: 0.85, // Maximum size when fully expanded
+              controller: _sheetController,
               builder: (BuildContext context, scrollController) {
                 return GestureDetector(
                   onTap: () {
@@ -240,9 +266,74 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          /// First text field.
                           TextFormField(
                             onChanged: (value) {
+                              ref.read(searchLocationProvider.notifier).onTextChanged(value);
+                              // setState(() {
+                              //   destination =
+                              //       value; // Updates destination while typing.
+                              // });
+                            },
+                            readOnly: true,
+                            onFieldSubmitted: (value) {
+                              destination = value;
+                              _controller.text = destination;
+                            },
+                            controller: homeState.source,
+                            decoration: InputDecoration(
+                              // suffixIcon: GestureDetector(
+                              //   onTap: () {
+                              //     setState(() {
+                              //       isTyping = false;
+                              //       // _controller.clear();
+                              //     });
+                              //   },
+                              //   child: const Icon(
+                              //     Iconsax.close_circle,
+                              //     size: 18,
+                              //     color: TColors.dark,
+                              //   ),
+                              // ),
+                              prefixIcon: const Icon(
+                                Icons.my_location,
+                                size: 18,
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: TColors.primary,
+                                ),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: TColors.primary,
+                                ),
+                              ),
+                              hintText: TTexts.riderSearchHintTitle,
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(color: TColors.dark),
+                            ),
+                            onTap: () {
+                              _sheetController.animateTo(0.75,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
+                              // setState(() {
+                              //   isTyping = true; // Show the search bar
+                              // });
+                            },
+                          ),
+                          const SizedBox(height: TSizes.spaceBtwItems),
+                          Text(
+                            TTexts.riderHomeScreenSearchTitle,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          const SizedBox(height: TSizes.spaceBtwItems),
+
+                          TextFormField(
+                            onChanged: (value) {
+                              ref.read(searchLocationProvider.notifier).onTextChanged(value);
                               setState(() {
                                 destination =
                                     value; // Updates destination while typing.
@@ -259,6 +350,7 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                                   setState(() {
                                     isTyping = false;
                                     _controller.clear();
+                                    ref.read(searchLocationProvider.notifier).clearState();
                                   });
                                 },
                                 child: const Icon(
@@ -285,9 +377,13 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                                   .copyWith(color: TColors.dark),
                             ),
                             onTap: () {
-                              setState(() {
-                                isTyping = true; // Show the search bar
-                              });
+                              // setState(() {
+                              //   isTyping = true; // Show the search bar
+                              // });
+                              _sheetController.animateTo(0.75,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
                             },
                           ),
 
@@ -297,8 +393,8 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                           Expanded(
                             child: SingleChildScrollView(
                               controller: scrollController,
-                              child: const Column(
-                                children: [
+                              child: Column(
+                                children: searchState.predictions.isEmpty ? const [
                                   RiderTripHisotryWidget(
                                     tripTitle: TTexts
                                         .riderHomeScreenRecentDestinationTitleOne,
@@ -317,6 +413,29 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
                                     tripSubTitle: TTexts
                                         .riderHomeScreenRecentDestinationSubTitleThree,
                                   ),
+                                ] : [
+                                  ...List.generate(searchState.predictions.length, (index) {
+                                    final prediction = searchState.predictions[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        _sheetController.animateTo(0.35,
+                                          duration: const Duration(milliseconds: 300),
+                                          curve: Curves.easeInOut,
+                                        );
+                                        ref.read(searchLocationProvider.notifier).clearState();
+                                        final prediction = searchState.predictions[index];
+                                        _controller.text = prediction.structuredFormatting?.mainText ?? prediction.description;
+                                        destination = prediction.structuredFormatting?.mainText ?? prediction.description;
+                                        setState(() {});
+                                        ref.read(homeProvider.notifier).setDestination(prediction.placeId);
+                                      },
+                                      child: RiderTripHisotryWidget(
+                                        tripTitle: prediction.structuredFormatting?.mainText ?? prediction.description,
+                                        tripSubTitle: prediction.structuredFormatting?.secondaryText ?? prediction.description,
+                                      ),
+                                    );
+                                  })
                                 ],
                               ),
                             ),
@@ -329,6 +448,32 @@ class _DriverHomePageScreenState extends ConsumerState<RiderHomeScreen> {
               },
             ),
           ),
+
+          // Searching for driver
+          Visibility(
+            visible: false,
+            child: Container(
+              height: height,
+              width: width,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              color: TColors.dark.withOpacity(0.4),
+              child: Center(
+                child: Container(
+                  width: double.maxFinite,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: TColors.white,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Text(
+                    TTexts.riderSearchingForDriver,
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

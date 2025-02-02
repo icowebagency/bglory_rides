@@ -39,9 +39,6 @@ class _StartTripDetailsBottomSheetState
           ),
         ),
       ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitle,
-      ),
       title: StepperText(
         TTexts.rideHailingLocation,
       ),
@@ -51,7 +48,7 @@ class _StartTripDetailsBottomSheetState
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: TColors.secondary,
+            color: TColors.grey,
             width: 1.3,
           ),
         ),
@@ -59,14 +56,11 @@ class _StartTripDetailsBottomSheetState
           child: Container(
             margin: const EdgeInsets.all(3),
             decoration: const BoxDecoration(
-              color: TColors.primary,
+              color: TColors.grey,
               shape: BoxShape.circle,
             ),
           ),
         ),
-      ),
-      subtitle: StepperText(
-        TTexts.driverTripInvoiceTimeSubTitleTwo,
       ),
       title: StepperText(
         TTexts.rideHailingDestination,
@@ -189,7 +183,10 @@ class _StartTripDetailsBottomSheetState
                 ),
               ),
             ),
-            const CarAnimationScreen(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              child: CarAnimationScreen(),
+            ),
             //Ride Timeline
             AnotherStepper(
               activeBarColor: TColors.primary,
@@ -197,29 +194,31 @@ class _StartTripDetailsBottomSheetState
               stepperList: stepperData,
               stepperDirection: Axis.vertical,
               inActiveBarColor: TColors.grey,
+              barThickness: 1,
+              verticalGap: 15,
             ),
-            const SizedBox(
-              height: TSizes.spaceBtwItems,
-            ),
+            // const SizedBox(
+            //   height: TSizes.md,
+            // ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   TTexts.riderDriverFoundBottomSheetStartTripArrivalTimeTitle,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Text(
                   TTexts
                       .riderDriverFoundBottomSheetStartTripArrivalTimeCountingTitle,
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge!
+                      .bodyMedium!
                       .copyWith(color: TColors.primary),
                 ),
               ],
             ),
             const SizedBox(
-              height: TSizes.spaceBtwSections,
+              height: TSizes.md,
             ),
             OutlinedButtonWidget(
               onTap: () {},

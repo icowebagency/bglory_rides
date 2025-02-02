@@ -22,7 +22,7 @@ class _DriverFoundRiderBottomSheetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,11 +158,14 @@ class _DriverFoundRiderBottomSheetState
           const SizedBox(
             height: TSizes.spaceBtwItems,
           ),
-          Text(
-            textAlign: TextAlign.center,
-            TTexts.riderDriverFoundBottomSheetDriverArrivalTime,
-            style:
-                Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 15),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              textAlign: TextAlign.center,
+              TTexts.riderDriverFoundBottomSheetDriverArrivalTime,
+              style:
+                  Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 13),
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -171,7 +174,8 @@ class _DriverFoundRiderBottomSheetState
             onTap: () {},
             buttonText:
                 TTexts.riderDriverFoundBottomSheetDriverOrderRideButtonTitle,
-          )
+          ),
+          const SizedBox(height: TSizes.spaceBtwSections,)
         ],
       ),
     );

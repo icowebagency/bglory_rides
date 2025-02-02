@@ -68,6 +68,7 @@ class TTexts {
   static const String driverRequestCodeTitle = "Request code in ";
   static const String driverRequestCode = "Request code";
   static const String driverRequestCodeSecondsTitle = "Secs";
+  static const String driverRequestCodeSecondTitle = "Sec";
   static const String driverVerifyButton = "Verify";
   static const String driverProceedButton = "Proceed";
   static const String driverTakePhotoButton = "Take Photo";
@@ -1120,6 +1121,7 @@ class TTexts {
   static const String riderInvoiceDriverDestinationTitle = 'Destination';
   static const String riderInvoiceDriverDestinationContentTitle =
       'Radison Blue Hotel,\nIkeja, 25450';
+  static const String riderSearchingForDriver = "Searching for driver";
   static const String riderInvoiceDriverDestinationTimeTitle = '10:15AM';
   static const String riderInvoicePaymentTitle = 'Payment details';
   static const String riderInvoiceRideFareTitle = 'Ride fare';
