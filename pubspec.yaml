@@ -116,7 +116,12 @@ flutter:
       fonts:
         - asset: assets/fonts/noto-sans.bold.ttf
 
-flutter_launcher_icons:
-  android: 'launcher_icon'
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/logo/bglory_splash_light.png
+  color_dark: "#063f1e"
+  image_dark: assets/logo/bglory_splash_dark.png
+  android: true
   ios: true
-  image_path: 'assets/logo/ic_launcher.png'
+  web: false
+  fullscreen: true
