@@ -26,8 +26,7 @@ class DriverHomePageScreen extends ConsumerStatefulWidget {
 }
 
 class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
-// initial rating value
-  // Global key to control the scaffold
+  // initial rating value
   double _currentRating = 2.1;
   bool status = false;
 
@@ -49,7 +48,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
             zoomGesturesEnabled: true,
             mapType: MapType.terrain,
             initialCameraPosition:
-                CameraPosition(zoom: 17.1, target: currentPosition),
+            CameraPosition(zoom: 17.1, target: currentPosition),
           ),
 
           /// Positioned widget to align the row at the top
@@ -127,7 +126,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
               return Consumer(
                 builder: (context, ref, child) {
                   final dashboardState =
-                      ref.watch(driverHomeDataNotifierProvider);
+                  ref.watch(driverHomeDataNotifierProvider);
                   final location = dashboardState.otherData.driverLocation;
                   final todaysDate = dashboardState.otherData.todaysDate;
                   final earnings = dashboardState.dashboardData.todaysEarnings;
@@ -180,7 +179,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                             child: FittedBox(
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   /// Date
                                   FittedBox(
@@ -232,15 +231,15 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                           displayRatingValue: true,
                                           minRating: 0.0,
                                           maxRating: 5.0,
-                                          emptyColor: Colors.grey,
+                                          emptyColor: TColors.grey,
                                           interactiveTooltips: true,
                                           filledIcon: Icons.star,
-                                          filledColor: TColors.warning,
+                                          filledColor: TColors.ratingActive,
                                           emptyIcon: Icons.star_outlined,
                                           halfFilledIcon: Icons.star_half,
                                           animationCurve: Curves.easeInOut,
                                           animationDuration:
-                                              const Duration(milliseconds: 500),
+                                          const Duration(milliseconds: 500),
                                           initialRating: 3.5,
                                           onChanged: (rating) {
                                             setState(() {
@@ -290,16 +289,16 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                       /// Completed Trips
                                       Expanded(
                                           child: DriverBox(
-                                        boxTitle: completedRides.toString(),
-                                        boxSubTitle:
+                                            boxTitle: completedRides.toString(),
+                                            boxSubTitle:
                                             TTexts.driverCompletedTripsTitle,
-                                        boxIcon: Icons.car_rental,
-                                        boxOnTap: () {
-                                          context.go(BGDriverRouteNames
-                                              .driverEarnings);
-                                        },
-                                        useFittedBox: true,
-                                      )),
+                                            boxIcon: Icons.car_rental,
+                                            boxOnTap: () {
+                                              context.go(BGDriverRouteNames
+                                                  .driverEarnings);
+                                            },
+                                            useFittedBox: true,
+                                          )),
                                     ],
                                   ),
                                 ),
@@ -312,7 +311,7 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                         child: DriverBox(
                                           boxTitle: '${driverRate.toString()}%',
                                           boxSubTitle:
-                                              TTexts.driverDriveRateTitle,
+                                          TTexts.driverDriveRateTitle,
                                           boxIcon: Icons.rate_review,
                                           boxOnTap: () {
                                             context.push(BGDriverRouteNames
@@ -326,9 +325,9 @@ class _DriverHomePageScreenState extends ConsumerState<DriverHomePageScreen> {
                                       Expanded(
                                         child: DriverBox(
                                           boxTitle:
-                                              '${acceptanceRate.toString()}%',
+                                          '${acceptanceRate.toString()}%',
                                           boxSubTitle:
-                                              TTexts.driverAcceptanceRateTitle,
+                                          TTexts.driverAcceptanceRateTitle,
                                           boxIcon: Iconsax.wallet,
                                           boxOnTap: () {
                                             context.push(BGDriverRouteNames

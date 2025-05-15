@@ -91,20 +91,20 @@ class DriverLicenseInfo extends StatelessWidget {
             controller: _licenseExpiry,
             keyboardType: TextInputType.number,
             validator: TValidator.simpleInputValidation,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Select Date',
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 Iconsax.calendar,
                 color: TColors.primary,
               ),
               fillColor: TColors.containerBackgroundColor,
               filled: true,
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: TColors.grey,
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: TColors.primary),
               ),
             ),

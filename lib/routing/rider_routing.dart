@@ -41,7 +41,7 @@ final GlobalKey<NavigatorState> riderNavKey = GlobalKey<NavigatorState>();
 class RiderRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: riderNavKey,
-    initialLocation: BGRiderRouteNames.riderHomePageScreen,
+    initialLocation: BGRiderRouteNames.riderOnboardingScreen,
     routes: [
       GoRoute(
         path: BGRiderRouteNames.riderOnboardingScreen,
@@ -213,7 +213,7 @@ class BGRiderRouteNames {
       '/rider/phone-verification-screen';
   static const String riderProfilePhotoUploadScreen =
       '/rider/phone-profile-upload-screen';
-  static const String riderAddCard = '/rider/add-card-screen';
+  static const String riderAddCard = '/rider/add-cards-screen';
   static const String riderTransactionPin = '/rider/transaction-pin-screen';
   static const String riderConfirmTransactionPinScreen =
       '/rider/confirm-transaction-pin-screen';

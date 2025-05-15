@@ -448,7 +448,7 @@ class BGDriverRouteNames {
       '/driver/faq-account-and-settings-screen';
   static const String driverFaqGeneralQuestionsScreen =
       '/driver/faq-general-questions-screen';
-  static const String driverAddCardScreen = '/driver/add-card-screen';
+  static const String driverAddCardScreen = '/driver/add-cards-screen';
   static const String driverCallOptionSheetScreen =
       '/driver/call-option-sheet-screen';
 }

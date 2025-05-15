@@ -85,20 +85,20 @@ class _DriverSignupState extends State<DriverSignup> {
                           ref
                               .read(driverSignUpStateNotifierProvider.notifier)
                               .setPageController(
-                                controller: DefaultTabController.of(context),
-                              );
+                            controller: DefaultTabController.of(context),
+                          );
                           return TabBarView(children: [
                             ///  Email Tab
                             LoginEmailFormTab(
                               driverAuthProvider:
-                                  driverSignUpStateNotifierProvider,
+                              driverSignUpStateNotifierProvider,
                               isLogin: false,
                             ),
 
                             ///  Phone Number Tab
                             LoginPhoneNumberFormTab(
                               driverAuthProvider:
-                                  driverSignUpStateNotifierProvider,
+                              driverSignUpStateNotifierProvider,
                               isLogin: false,
                             ),
                           ]);
@@ -112,7 +112,7 @@ class _DriverSignupState extends State<DriverSignup> {
                 return Visibility(
                   visible: ref.watch(
                     driverSignUpStateNotifierProvider.select(
-                      (value) => value.isLoading,
+                          (value) => value.isLoading,
                     ),
                   ),
                   child: Container(
