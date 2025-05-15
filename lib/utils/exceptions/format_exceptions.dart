@@ -25,8 +25,8 @@ class TFormatException implements Exception {
         return const TFormatException('The date format is invalid. Please enter a valid date.');
       case 'invalid-url-format':
         return const TFormatException('The URL format is invalid. Please enter a valid URL.');
-      case 'invalid-credit-card-format':
-        return const TFormatException('The credit card format is invalid. Please enter a valid credit card number.');
+      case 'invalid-credit-cards-format':
+        return const TFormatException('The credit cards format is invalid. Please enter a valid credit cards number.');
       case 'invalid-numeric-format':
         return const TFormatException('The input should be a valid numeric format.');
     // Add more cases as needed...

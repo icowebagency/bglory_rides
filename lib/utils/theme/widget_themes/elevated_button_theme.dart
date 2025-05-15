@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
 
-/* -- Light & Dark Elevated Button Themes -- */
 class TElevatedButtonTheme {
-  TElevatedButtonTheme._(); //To avoid creating instances
+  TElevatedButtonTheme._();
 
-
-  /* -- Light Theme -- */
-  static final lightElevatedButtonTheme  = ElevatedButtonThemeData(
+  static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: TColors.light,
+      foregroundColor: TColors.white,
       backgroundColor: TColors.primary,
       disabledForegroundColor: TColors.darkGrey,
       disabledBackgroundColor: TColors.buttonDisabled,
@@ -22,11 +19,10 @@ class TElevatedButtonTheme {
     ),
   );
 
-  /* -- Dark Theme -- */
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: TColors.light,
+      foregroundColor: TColors.white,
       backgroundColor: TColors.primary,
       disabledForegroundColor: TColors.darkGrey,
       disabledBackgroundColor: TColors.darkerGrey,

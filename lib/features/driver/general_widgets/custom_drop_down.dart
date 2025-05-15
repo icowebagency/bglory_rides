@@ -16,50 +16,47 @@ class ValidatedDropdown extends FormField<String> {
     Widget? prefixIcon, // Optional prefix icon
     Widget? icon, // Optional dropdown icon
   }) : super(
-          key: key,
-          initialValue: initialValue ,
-          validator: validator,
-          onSaved: onSaved,
-          builder: (FormFieldState<String> field) {
-            return DropdownButtonFormField(
-              value: field.value,
-              isExpanded: isExpanded,
-              items: items
-                  .map((item) => DropdownMenuItem(
-                        value: item,
-                        child: Text(item),
-                      ))
-                  .toList(),
-              onChanged: (String? value) {
-                field.didChange(value);
-                onChanged?.call(value);
-              },
-              dropdownColor: dropdownColor,
-
-              icon: icon,
-              elevation: 0, // Remove default elevation
-              decoration: decoration.copyWith(
-                hintText: hintText,
-                errorText: field.errorText, // Display validation errors
-                prefixIcon: prefixIcon, // Apply prefixIcon if provided
-
-                filled: true,
-                fillColor: TColors.grey.withOpacity(0.4), // Default fill color
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: TColors.primary
-                      ..withOpacity(0.3), // Default border color
-                  ),
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: TColors.primary
-                        .withOpacity(0.3), // Default focused border color
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+    key: key,
+    initialValue: initialValue,
+    validator: validator,
+    onSaved: onSaved,
+    builder: (FormFieldState<String> field) {
+      return DropdownButtonFormField(
+        value: field.value,
+        isExpanded: isExpanded,
+        items: items
+            .map((item) => DropdownMenuItem(
+          value: item,
+          child: Text(item),
+        ))
+            .toList(),
+        onChanged: (String? value) {
+          field.didChange(value);
+          onChanged?.call(value);
+        },
+        dropdownColor: dropdownColor,
+        icon: icon,
+        elevation: 0, // Remove default elevation
+        decoration: decoration.copyWith(
+          hintText: hintText,
+          errorText: field.errorText, // Display validation errors
+          prefixIcon: prefixIcon, // Apply prefixIcon if provided
+          filled: true,
+          fillColor: TColors.grey.withOpacity(0.4), // Updated to TColors
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              // Fixed cascade notation issue and updated to TColors
+              color: TColors.primary.withOpacity(0.3),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              // Updated to TColors
+              color: TColors.primary.withOpacity(0.3),
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }

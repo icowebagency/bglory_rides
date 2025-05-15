@@ -477,9 +477,9 @@ class TTexts {
   static const String tripHistoryDetailsInAppPaymentTitle = 'In-app payment';
   static const String tripHistoryDetailsButtonTitle = 'View Receipt';
   static const String tripHistoryDetailsInAppPaymentSubTitle =
-      'Total amount paid on the app via bank card';
+      'Total amount paid on the app via bank cards';
   static const String tripHistoryDetailsPaymentSubTitle =
-      'Total amount to pay via debit/credit card';
+      'Total amount to pay via debit/credit cards';
   static const String tripHistoryDetailsInAppPaymentPrice = '₦4500';
 
   // Download Receipt Bottom Sheet
@@ -920,14 +920,14 @@ class TTexts {
       'By uploading, I agree that uploading a fake or inappropriate picture will be rejected';
 
 // Rider Add Card
-  static const String riderAddCardTitle = 'Add a payment card';
-  static const String riderAddCardNameOnCardTitle = 'Name on card';
+  static const String riderAddCardTitle = 'Add a payment cards';
+  static const String riderAddCardNameOnCardTitle = 'Name on cards';
   static const String riderAddCardCardNumberTitle = 'Card number';
   static const String riderAddCardExpirationDateTitle = 'Expiration date';
   static const String riderAddCardCVVTitle = 'CVV';
   static const String riderAddCardExpirationDate = 'MM-YYYY';
   static const String riderAddCardCVVToolTipTitle =
-      'The 3-digit code on the back of your card';
+      'The 3-digit code on the back of your cards';
 
   // Transaction Pin
   static const String riderTransactionPinTitle = 'Set a transaction pin';
@@ -1029,7 +1029,7 @@ class TTexts {
   // Payment type bottom sheet
   static const String riderPaymentTypeBottomSheetTitle = 'Payment type';
   static const String riderPaymentTypeBottomSheetDebitTitle =
-      'Debit card payment';
+      'Debit cards payment';
   static const String riderPaymentTypeBottomSheetCashTitle = 'Cash payment';
   // Get a driver Bottom Sheet
   static const String riderGetADriverBottomSheetRiderTypeTitle =
@@ -1133,17 +1133,17 @@ class TTexts {
   static const String riderInvoiceCardTypeTitle = 'Card payment';
   static const String riderInvoiceCardTypeAmountTitle = '₦4850';
 
-  // Payment and card section
+  // Payment and cards section
   static const String riderPaymentAndCardAppbarTitle = 'Payment And Cards';
   static const String riderPaymentAndCardTitle = 'Saved Cards';
-  static const String riderPaymentAndCardButtonTitle = '+ Add a new card';
+  static const String riderPaymentAndCardButtonTitle = '+ Add a new cards';
   static const String riderAddNewCardBottomSheet =
-      'Add a new debit/credit card';
-  static const String riderAddNewCardBottomSheetNameOnCard = 'Name on card';
+      'Add a new debit/credit cards';
+  static const String riderAddNewCardBottomSheetNameOnCard = 'Name on cards';
   static const String riderAddNewCardBottomSheetCardNumber = 'Card number';
   static const String riderAddNewCardBottomSheetExpiryDate = 'Expiration date';
   static const String riderAddNewCardBottomSheetCVV = 'CVV';
-  static const String riderAddNewCardBottomSheetButton = 'Add card';
+  static const String riderAddNewCardBottomSheetButton = 'Add cards';
 
   // Rider Trip
   static const String riderBlankTripTitle =

@@ -7,7 +7,6 @@ import 'package:bglory_rides/utils/theme/widget_themes/outlined_button_theme.dar
 import 'package:bglory_rides/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:bglory_rides/utils/theme/widget_themes/text_theme.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/colors.dart';
 
 class TAppTheme {
@@ -19,6 +18,25 @@ class TAppTheme {
     disabledColor: TColors.grey,
     brightness: Brightness.light,
     primaryColor: TColors.primary,
+    colorScheme: ColorScheme.light(
+      primary: TColors.primary,
+      onPrimary: TColors.white,
+      primaryContainer: TColors.primaryLight,
+      onPrimaryContainer: TColors.white,
+      secondary: TColors.secondary,
+      onSecondary: TColors.black,
+      secondaryContainer: TColors.secondaryLight,
+      onSecondaryContainer: TColors.black,
+      tertiary: TColors.tertiary,
+      onTertiary: TColors.white,
+      tertiaryContainer: TColors.tertiaryLight,
+      onTertiaryContainer: TColors.white,
+      error: TColors.error,
+      background: TColors.light,
+      onBackground: TColors.textPrimary,
+      surface: TColors.lightContainer,
+      onSurface: TColors.textPrimary,
+    ),
     textTheme: TTextTheme.lightTextTheme,
     chipTheme: TChipTheme.lightChipTheme,
     scaffoldBackgroundColor: TColors.light,
@@ -28,6 +46,15 @@ class TAppTheme {
     elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.lightInputDecorationTheme,
+    dividerTheme: const DividerThemeData(
+      color: TColors.divider,
+      thickness: 1,
+    ),
+    cardTheme: CardTheme(
+      color: TColors.lightContainer,
+      elevation: 2,
+      shadowColor: TColors.shadow,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -36,6 +63,25 @@ class TAppTheme {
     disabledColor: TColors.grey,
     brightness: Brightness.dark,
     primaryColor: TColors.primary,
+    colorScheme: ColorScheme.dark(
+      primary: TColors.primary,
+      onPrimary: TColors.white,
+      primaryContainer: TColors.primaryLight,
+      onPrimaryContainer: TColors.white,
+      secondary: TColors.secondary,
+      onSecondary: TColors.black,
+      secondaryContainer: TColors.secondaryLight,
+      onSecondaryContainer: TColors.black,
+      tertiary: TColors.tertiary,
+      onTertiary: TColors.white,
+      tertiaryContainer: TColors.tertiaryLight,
+      onTertiaryContainer: TColors.white,
+      error: TColors.error,
+      background: TColors.dark,
+      onBackground: TColors.white,
+      surface: TColors.darkContainer,
+      onSurface: TColors.white,
+    ),
     textTheme: TTextTheme.darkTextTheme,
     chipTheme: TChipTheme.darkChipTheme,
     scaffoldBackgroundColor: TColors.dark,
@@ -45,5 +91,14 @@ class TAppTheme {
     elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.darkInputDecorationTheme,
+    dividerTheme: const DividerThemeData(
+      color: TColors.dividerDark,
+      thickness: 1,
+    ),
+    cardTheme: CardTheme(
+      color: TColors.darkContainer,
+      elevation: 2,
+      shadowColor: TColors.black.withOpacity(0.3),
+    ),
   );
 }
