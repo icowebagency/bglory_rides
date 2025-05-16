@@ -33,7 +33,7 @@ class WithdrawalStateNotifier extends _$WithdrawalStateNotifier {
         .requestWithdrawal(amount: amount, transactionPin: transactionPin);
     loading = false;
     if (result is Failure) {
-      onError?.call((result.errorResponse) ?? 'Request Failed');
+      onError?.call((result.message) ?? 'Request Failed');
       return false;
     } else {
       onSuccess?.call();

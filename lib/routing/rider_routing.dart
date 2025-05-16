@@ -60,8 +60,11 @@ class RiderRouting {
         builder: (context, state) => const RiderDetailsScreen(),
       ),
       GoRoute(
+        name: BGRiderRouteNames.riderPhoneVerificationScreen,
         path: BGRiderRouteNames.riderPhoneVerificationScreen,
-        builder: (context, state) => const RiderPhoneVerificationScreen(),
+        builder: (context, state) => RiderPhoneVerificationScreen(
+          target: state.uri.queryParameters,
+        ),
       ),
       GoRoute(
         path: BGRiderRouteNames.riderProfilePhotoUploadScreen,

@@ -34,7 +34,7 @@ class DriverLoginAuthStateNotifier extends DriverAuthStateNotifer {
     final isTest = ref.read(isTestProvider);
 
     if (result is Failure) {
-      onError?.call("${(result).errorResponse}");
+      onError?.call("${(result).message}");
 
       return false;
     } else {

@@ -22,7 +22,7 @@ class SuccessfulVerificationStateNotifier
     final result = await ref.read(driverRepositoryProvider).getDriverEarnings();
 
     if (result is Failure) {
-      if (result.errorResponse == ConstantValues.driverProfileNotComplete) {
+      if (result.message == ConstantValues.driverProfileNotComplete) {
         return false;
       }
       onError('An Error Occurred');

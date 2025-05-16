@@ -25,7 +25,7 @@ class SuccessfulVerificationStateNotifier extends StateNotifier<bool> {
     final result = await driverRepositoryContract.getDriverEarnings();
 
     if (result is Failure) {
-      if (result.errorResponse == ConstantValues.driverProfileNotComplete) {
+      if (result.message == ConstantValues.driverProfileNotComplete) {
         return false;
       }
       onError('An Error Occurred');

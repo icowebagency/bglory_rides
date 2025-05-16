@@ -37,7 +37,7 @@ class DriverVerificationStateNotifier extends DriverAuthStateNotifer {
     final isTest = ref.read(isTestProvider);
 
     if (result is Failure) {
-      onError?.call((result).errorResponse ?? 'Login failed');
+      onError?.call((result).message ?? 'Login failed');
       return false;
     } else {
       if (isTest) {
@@ -68,7 +68,7 @@ class DriverVerificationStateNotifier extends DriverAuthStateNotifer {
     state = state.copyWith(isLoading: false);
 
     if (result is Failure) {
-      onError?.call(result.errorResponse ?? 'OTP Verification Failed');
+      onError?.call(result.message ?? 'OTP Verification Failed');
       return false;
     } else {
       ref.read(userTokenProvider.notifier).state =
