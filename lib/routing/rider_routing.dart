@@ -41,7 +41,7 @@ final GlobalKey<NavigatorState> riderNavKey = GlobalKey<NavigatorState>();
 class RiderRouting {
   static final GoRouter router = GoRouter(
     navigatorKey: riderNavKey,
-    initialLocation: BGRiderRouteNames.riderHomePageScreen,
+    initialLocation: BGRiderRouteNames.riderOnboardingScreen,
     routes: [
       GoRoute(
         path: BGRiderRouteNames.riderOnboardingScreen,
