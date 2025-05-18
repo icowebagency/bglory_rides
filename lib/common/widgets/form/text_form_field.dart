@@ -32,6 +32,7 @@ class TTextFormField extends StatelessWidget {
   final String? errorText;
   final Color? fillColor;
   final bool filled;
+  final TextStyle? labelStyle; // Added labelStyle property
 
   const TTextFormField({
     Key? key,
@@ -62,6 +63,7 @@ class TTextFormField extends StatelessWidget {
     this.errorText,
     this.fillColor,
     this.filled = true,
+    this.labelStyle, // Added to constructor
   }) : super(key: key);
 
   @override
@@ -109,6 +111,11 @@ class TTextFormField extends StatelessWidget {
             ),
           )
               : suffixIcon,
+          labelStyle: labelStyle, // Use the provided labelStyle
+          // Add better floating label behavior
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          // Add more padding to create space for the label
+          contentPadding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(TSizes.inputFieldRadius),
             borderSide: BorderSide(color: isDark ? TColors.darkGrey : TColors.grey),

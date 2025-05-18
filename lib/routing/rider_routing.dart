@@ -36,6 +36,9 @@ import 'package:bglory_rides/features/rider/screens/rider_verification/transacti
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/rider/screens/auth/terms/privacy_policy.dart';
+import '../features/rider/screens/auth/terms/terms_and_condition.dart';
+
 final GlobalKey<NavigatorState> riderNavKey = GlobalKey<NavigatorState>();
 
 class RiderRouting {
@@ -54,6 +57,14 @@ class RiderRouting {
       GoRoute(
         path: BGRiderRouteNames.riderSignup,
         builder: (context, state) => const RiderSignup(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderPrivacyPolicy,
+        builder: (context, state) => const PrivacyPolicyScreen(),
+      ),
+      GoRoute(
+        path: BGRiderRouteNames.riderTermsOfUse,
+        builder: (context, state) => const TermsOfUseScreen(),
       ),
       GoRoute(
         path: BGRiderRouteNames.riderUserDetails,
@@ -152,48 +163,59 @@ class RiderRouting {
         builder: (context, state) => const RiderFaqDetailsScreen(),
       ),
       GoRoute(
-          path: BGRiderRouteNames.riderRateDriverScreen,
-          builder: (context, state) => const RateDriverScreen()),
+        path: BGRiderRouteNames.riderRateDriverScreen,
+        builder: (context, state) => const RateDriverScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: BGRiderRouteNames.riderHomePageScreen,
+                path: BGRiderRouteNames.riderHomeScreen,
                 builder: (context, state) => const RiderHomeScreen(),
               ),
             ],
           ),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRiderRouteNames.riderTripHistoryScreen,
-              builder: (context, state) => const RiderTripHistoryScreen(),
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRiderRouteNames.riderPaymentAndCardsScreen,
-              builder: (context, state) => const PaymentAndCardsScreen(),
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRiderRouteNames.riderSettingsScreen,
-              builder: (context, state) => const RiderSettingsScreen(),
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRiderRouteNames.riderSafetyScreen,
-              builder: (context, state) => const RiderSafetyScreen(),
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: BGRiderRouteNames.riderHelpAndSupportScreen,
-              builder: (context, state) => const RiderHelpAndSupportScreen(),
-            ),
-          ]),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderTripHistoryScreen,
+                builder: (context, state) => const RiderTripHistoryScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderPaymentAndCardsScreen,
+                builder: (context, state) => const PaymentAndCardsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderSettingsScreen,
+                builder: (context, state) => const RiderSettingsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderSafetyScreen,
+                builder: (context, state) => const RiderSafetyScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: BGRiderRouteNames.riderHelpAndSupportScreen,
+                builder: (context, state) => const RiderHelpAndSupportScreen(),
+              ),
+            ],
+          ),
         ],
         builder: (context, state, navigationShell) => RiderHomeShell(
           navigationShell: navigationShell,
@@ -204,50 +226,40 @@ class RiderRouting {
 }
 
 class BGRiderRouteNames {
-  static const String riderOnboardingScreen = '/rider/onboarding-screen';
-  static const String riderHomePageScreen = '/rider/home-screen';
-  static const String riderLogin = '/rider/login-screen';
-  static const String riderSignup = '/rider/signup-screen';
-  static const String riderUserDetails = '/rider/details-screen';
-  static const String riderPhoneVerificationScreen =
-      '/rider/phone-verification-screen';
-  static const String riderProfilePhotoUploadScreen =
-      '/rider/phone-profile-upload-screen';
-  static const String riderAddCard = '/rider/add-cards-screen';
-  static const String riderTransactionPin = '/rider/transaction-pin-screen';
-  static const String riderConfirmTransactionPinScreen =
-      '/rider/confirm-transaction-pin-screen';
-  static const String riderHomeScreen = '/rider/home-screen';
-  static const String riderTripHistoryScreen = '/rider/trip-history-screen';
-  static const String riderPaymentAndCardsScreen =
-      '/rider/payment-and-cards-screen';
-  static const String riderSafetyScreen = '/rider/safety-screen';
-  static const String riderHelpAndSupportScreen =
-      '/rider/help-and-support-screen';
-  static const String riderSettingsScreen = '/rider/settings-screen';
-  static const String riderProfileScreen = '/rider/profile-screen';
-  static const String riderProfileEditScreen = '/rider/profile-edit-screen';
-  static const String riderSavedPlacesScreen = '/rider/saved-places-screen';
-  static const String riderTripDetailsScreen = '/rider/trip-details-screen';
-  static const String riderPaymentSuccessfulScreen =
-      '/rider/payment-successful-screen';
-  static const String riderRateDriverScreen = '/rider/rate-driver-screen';
-  static const String riderInvoiceScreen = '/rider/invoice-screen';
-  static const String riderBlankTripHistoryScreen =
-      '/rider/blank-trip-history-screen';
-  static const String riderTripDetailsHistoryScreen =
-      '/rider/trip-details-history-screen';
-  static const String riderNotificationsAndSoundScreen =
-      '/rider/notifications-and-sound-screen';
-  static const String riderAppNotificationsScreen =
-      '/rider/app-notifications-screen';
-  static const String riderSoundScreen = '/rider/sound-screen';
-  static const String riderThemeScreen = '/rider/theme-screen';
-  static const String riderAboutScreen = '/rider/about-screen';
-  static const String riderSafetyShareDetailsScreen =
-      '/rider/safety-share-ride-screen';
-  static const String riderChatScreen = '/rider/chat-screen';
-  static const String riderCallUsScreen = '/rider/call-us-screen';
-  static const String riderFaqsScreen = '/rider/faqs-screen';
-  static const String riderFaqDetailScreen = '/rider/faqs-detail-screen';
+  static const String riderOnboardingScreen            = '/rider/onboarding-screen';
+  static const String riderLogin                       = '/rider/login-screen';
+  static const String riderSignup                      = '/rider/signup-screen';
+  static const String riderPrivacyPolicy               = '/rider/privacy-policy-screen';
+  static const String riderTermsOfUse                  = '/rider/terms-of-use-screen';
+  static const String riderUserDetails                 = '/rider/details-screen';
+  static const String riderPhoneVerificationScreen     = '/rider/phone-verification-screen';
+  static const String riderProfilePhotoUploadScreen    = '/rider/phone-profile-upload-screen';
+  static const String riderAddCard                     = '/rider/add-cards-screen';
+  static const String riderTransactionPin              = '/rider/transaction-pin-screen';
+  static const String riderConfirmTransactionPinScreen = '/rider/confirm-transaction-pin-screen';
+  static const String riderProfileScreen               = '/rider/profile-screen';
+  static const String riderProfileEditScreen           = '/rider/profile-edit-screen';
+  static const String riderSavedPlacesScreen           = '/rider/saved-places-screen';
+  static const String riderTripDetailsScreen           = '/rider/trip-details-screen';
+  static const String riderPaymentSuccessfulScreen     = '/rider/payment-successful-screen';
+  static const String riderInvoiceScreen               = '/rider/invoice-screen';
+  static const String riderBlankTripHistoryScreen      = '/rider/blank-trip-history-screen';
+  static const String riderTripDetailsHistoryScreen    = '/rider/trip-details-history-screen';
+  static const String riderNotificationsAndSoundScreen = '/rider/notifications-and-sound-screen';
+  static const String riderAppNotificationsScreen      = '/rider/app-notifications-screen';
+  static const String riderSoundScreen                 = '/rider/sound-screen';
+  static const String riderThemeScreen                 = '/rider/theme-screen';
+  static const String riderAboutScreen                 = '/rider/about-screen';
+  static const String riderSafetyShareDetailsScreen    = '/rider/safety-share-ride-screen';
+  static const String riderChatScreen                  = '/rider/chat-screen';
+  static const String riderCallUsScreen                = '/rider/call-us-screen';
+  static const String riderFaqsScreen                  = '/rider/faqs-screen';
+  static const String riderFaqDetailScreen             = '/rider/faqs-detail-screen';
+  static const String riderRateDriverScreen            = '/rider/rate-driver-screen';
+  static const String riderTripHistoryScreen           = '/rider/trip-history-screen';
+  static const String riderPaymentAndCardsScreen       = '/rider/payment-and-cards-screen';
+  static const String riderSafetyScreen                = '/rider/safety-screen';
+  static const String riderHelpAndSupportScreen        = '/rider/help-and-support-screen';
+  static const String riderSettingsScreen              = '/rider/settings-screen';
+  static const String riderHomeScreen                  = '/rider/home-screen';
 }

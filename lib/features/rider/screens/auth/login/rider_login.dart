@@ -1,10 +1,10 @@
-import 'package:bglory_rides/features/driver/screens/auth/login/driver_login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import '../../../../../common/widgets/buttons/button.dart';
+import '../../../../../common/widgets/form/password_field.dart';
 import '../../../../../common/widgets/form/text_form_field.dart';
 import '../../../../../common/widgets/loaders/loading_overlay.dart';
 import '../../../../../routing/rider_routing.dart';
@@ -55,7 +55,6 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> with SingleTickerPr
         _isLoading = true;
       });
 
-      // Use Riverpod within the build method through Consumer
       // Handle login in UI for now
       Future.delayed(const Duration(seconds: 2), () {
         setState(() {
@@ -90,115 +89,124 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> with SingleTickerPr
   Widget build(BuildContext context) {
     final isDark = THelperFunctions.isDarkMode(context);
 
-    return Scaffold(
-      body: TLoadingOverlay(
-        isLoading: _isLoading,
-        backgroundColor: isDark ? TColors.dark : TColors.light,
-        opacity: 0.7,
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Top section with logo
-                  Center(
-                    child: Hero(
-                      tag: 'logo',
-                      child: Image(
-                        height: 60,
-                        image: AssetImage(
-                          isDark ? TImages.darkAppLogo : TImages.lightAppLogo,
+    return GestureDetector(
+      // Add this GestureDetector to handle taps on the screen for keyboard dismissal
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss keyboard when tapping outside
+      },
+      child: Scaffold(
+        body: TLoadingOverlay(
+          isLoading: _isLoading,
+          backgroundColor: isDark ? TColors.dark : TColors.light,
+          opacity: 0.7,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(TSizes.defaultSpace),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Top section with logo
+                    Center(
+                      child: Hero(
+                        tag: 'logo',
+                        child: Image(
+                          height: 60,
+                          image: AssetImage(
+                            isDark ? TImages.darkAppLogo : TImages.lightAppLogo,
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // Welcome Text
-                  Text(
-                    TTexts.loginDriverTitle,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+                    // Welcome Text
+                    Text(
+                      TTexts.loginDriverTitle,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
 
-                  Text(
-                    TTexts.loginDriverSubTitle,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-
-                  const SizedBox(height: TSizes.spaceBtwSections),
-
-                  // Tab bar for switching between email and phone login
-                  Container(
-                    decoration: BoxDecoration(
-                      color: isDark ? TColors.darkContainer : TColors.lightContainer,
-                      borderRadius: BorderRadius.circular(TSizes.cardRadiusMd),
+                    Text(
+                      TTexts.loginDriverSubTitle,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    child: TabBar(
-                      controller: _tabController,
-                      labelColor: isDark ? TColors.secondary : TColors.primary,
-                      unselectedLabelColor: isDark ? TColors.lightGrey : TColors.darkGrey,
-                      indicatorColor: isDark ? TColors.secondary : TColors.primary,
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: Colors.transparent,
-                      tabs: const [
-                        Tab(
-                          icon: Icon(Iconsax.sms),
-                          text: 'Email',
-                        ),
-                        Tab(
-                          icon: Icon(Iconsax.call),
-                          text: 'Phone',
-                        ),
-                      ],
+
+                    const SizedBox(height: TSizes.spaceBtwSections),
+
+                    // Tab bar for switching between email and phone login
+                    Container(
+                      decoration: BoxDecoration(
+                        color: isDark ? TColors.darkContainer : TColors.lightContainer,
+                        borderRadius: BorderRadius.circular(TSizes.cardRadiusMd),
+                      ),
+                      child: TabBar(
+                        controller: _tabController,
+                        labelColor: isDark ? TColors.secondary : TColors.primary,
+                        unselectedLabelColor: isDark ? TColors.lightGrey : TColors.darkGrey,
+                        indicatorColor: isDark ? TColors.secondary : TColors.primary,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        dividerColor: Colors.transparent,
+                        tabs: const [
+                          Tab(
+                            icon: Icon(Iconsax.sms),
+                            text: 'Email',
+                          ),
+                          Tab(
+                            icon: Icon(Iconsax.call),
+                            text: 'Phone',
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // Tab content
-                  SizedBox(
-                    height: 380, // Fixed height for content area
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        // Email Login Form
-                        _buildEmailLoginForm(isDark),
+                    // Tab content
+                    SizedBox(
+                      height: 380, // Fixed height for content area
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          // Email Login Form
+                          _buildEmailLoginForm(isDark),
 
-                        // Phone Login Form
-                        _buildPhoneLoginForm(isDark),
-                      ],
+                          // Phone Login Form
+                          _buildPhoneLoginForm(isDark),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // Create account button
-                  Center(
-                    child: GestureDetector(
-                      onTap: () => context.push(BGRiderRouteNames.riderSignup),
-                      child: RichText(
-                        text: TextSpan(
-                          text: TTexts.driverDontHaveAnAccount,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          children: [
-                            TextSpan(
-                              text: TTexts.createAccount,
-                              style: TextStyle(
-                                color: isDark ? TColors.secondary : TColors.primary,
-                                fontWeight: FontWeight.bold,
+                    // Create account button
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Make sure to use the proper navigation method for the rider signup
+                          context.push(BGRiderRouteNames.riderSignup);
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                            text: TTexts.driverDontHaveAnAccount,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            children: [
+                              TextSpan(
+                                text: TTexts.createAccount,
+                                style: TextStyle(
+                                  color: isDark ? TColors.secondary : TColors.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -207,81 +215,87 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> with SingleTickerPr
     );
   }
 
+  // Your existing form building methods...
   Widget _buildEmailLoginForm(bool isDark) {
     return Form(
       key: _emailFormKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Email field
-          TTextFormField(
-            labelText: TTexts.email,
-            hintText: TTexts.driverHintText,
-            controller: _emailController,
-            prefixIcon: const Icon(Iconsax.sms),
-            keyboardType: TextInputType.emailAddress,
-            validator: TValidator.validateEmail,
-            textInputAction: TextInputAction.next,
-          ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Email field
+            TTextFormField(
+              labelText: TTexts.email,
+              hintText: TTexts.driverHintText,
+              controller: _emailController,
+              prefixIcon: const Icon(Iconsax.sms),
+              keyboardType: TextInputType.emailAddress,
+              validator: TValidator.validateEmail,
+              textInputAction: TextInputAction.next,
+              padding: const EdgeInsets.only(bottom: TSizes.spaceBtwInputFields),
+              labelStyle: Theme.of(context).textTheme.labelLarge,
+            ),
 
-          // Password field with eye icon
-          TPasswordField(
-            labelText: TTexts.password,
-            hintText: TTexts.password,
-            controller: _passwordController,
-            validator: TValidator.validatePassword,
-            prefixIcon: const Icon(Iconsax.password_check),
-          ),
+            // Password field with eye icon
+            TPasswordField(
+              labelText: TTexts.password,
+              hintText: TTexts.password,
+              controller: _passwordController,
+              validator: TValidator.validatePassword,
+              prefixIcon: const Icon(Iconsax.password_check),
+            ),
 
-          // Remember me & Forget password
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Remember me
-              Row(
-                children: [
-                  Checkbox(
-                    value: _rememberMe,
-                    onChanged: (value) {
-                      setState(() {
-                        _rememberMe = value ?? false;
-                      });
-                    },
-                    activeColor: isDark ? TColors.secondary : TColors.primary,
-                  ),
-                  Text(
-                    TTexts.rememberMe,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ),
+            // Remember me & Forget password
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Remember me
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _rememberMe,
+                      onChanged: (value) {
+                        setState(() {
+                          _rememberMe = value ?? false;
+                        });
+                      },
+                      activeColor: isDark ? TColors.secondary : TColors.primary,
+                    ),
+                    Text(
+                      TTexts.rememberMe,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
 
-              // Forget password
-              TextButton(
-                onPressed: () {
-                  // Handle forgot password
-                },
-                child: Text(
-                  TTexts.forgetPassword,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark ? TColors.secondary : TColors.primary,
-                    decoration: TextDecoration.underline,
+                // Forget password
+                TextButton(
+                  onPressed: () {
+                    // Handle forgot password
+                  },
+                  child: Text(
+                    TTexts.forgetPassword,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: isDark ? TColors.secondary : TColors.primary,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 
-          const SizedBox(height: TSizes.spaceBtwSections),
+            const SizedBox(height: TSizes.spaceBtwSections),
 
-          // Sign in button
-          TButton(
-            text: TTexts.signIn,
-            onPressed: _handleLoginWithEmail,
-            style: TButtonStyle.primary,
-            backgroundColor: isDark ? TColors.secondary : TColors.primary,
-          ),
-        ],
+            // Sign in button
+            TButton(
+              text: TTexts.signIn,
+              onPressed: _handleLoginWithEmail,
+              style: TButtonStyle.primary,
+              backgroundColor: isDark ? TColors.secondary : TColors.primary,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -370,71 +384,6 @@ class _RiderLoginScreenState extends State<RiderLoginScreen> with SingleTickerPr
             backgroundColor: isDark ? TColors.secondary : TColors.primary,
           ),
         ],
-      ),
-    );
-  }
-}
-
-// Password field component
-class TPasswordField extends StatefulWidget {
-  final String? labelText;
-  final String? hintText;
-  final TextEditingController? controller;
-  final EdgeInsetsGeometry? padding;
-  final String? Function(String?)? validator;
-  final Function(String)? onChanged;
-  final bool isLoading;
-  final FocusNode? focusNode;
-  final TextInputAction? textInputAction;
-  final Widget? prefixIcon;
-
-  const TPasswordField({
-    Key? key,
-    this.labelText,
-    this.hintText,
-    this.controller,
-    this.padding,
-    this.validator,
-    this.onChanged,
-    this.isLoading = false,
-    this.focusNode,
-    this.textInputAction,
-    this.prefixIcon,
-  }) : super(key: key);
-
-  @override
-  State<TPasswordField> createState() => _TPasswordFieldState();
-}
-
-class _TPasswordFieldState extends State<TPasswordField> {
-  bool _obscureText = true;
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return TTextFormField(
-      labelText: widget.labelText ?? 'Password',
-      hintText: widget.hintText,
-      controller: widget.controller,
-      padding: widget.padding,
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      isLoading: widget.isLoading,
-      focusNode: widget.focusNode,
-      textInputAction: widget.textInputAction,
-      prefixIcon: widget.prefixIcon ?? const Icon(Iconsax.password_check),
-      obscureText: _obscureText,
-      suffixIcon: IconButton(
-        icon: Icon(
-          _obscureText ? Iconsax.eye : Iconsax.eye_slash,
-          color: isDark ? TColors.lightGrey : TColors.darkGrey,
-        ),
-        onPressed: widget.isLoading ? null : () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
-        },
       ),
     );
   }

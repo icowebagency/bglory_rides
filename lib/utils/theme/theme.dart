@@ -18,7 +18,7 @@ class TAppTheme {
     disabledColor: TColors.grey,
     brightness: Brightness.light,
     primaryColor: TColors.primary,
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: TColors.primary,
       onPrimary: TColors.white,
       primaryContainer: TColors.primaryLight,
@@ -32,8 +32,6 @@ class TAppTheme {
       tertiaryContainer: TColors.tertiaryLight,
       onTertiaryContainer: TColors.white,
       error: TColors.error,
-      background: TColors.light,
-      onBackground: TColors.textPrimary,
       surface: TColors.lightContainer,
       onSurface: TColors.textPrimary,
     ),
@@ -77,8 +75,6 @@ class TAppTheme {
       tertiaryContainer: TColors.tertiaryLight,
       onTertiaryContainer: TColors.white,
       error: TColors.error,
-      background: TColors.dark,
-      onBackground: TColors.white,
       surface: TColors.darkContainer,
       onSurface: TColors.white,
     ),
